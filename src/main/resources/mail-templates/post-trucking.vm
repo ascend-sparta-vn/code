@@ -1,0 +1,28 @@
+<html>
+<body>
+    <h3>Xin chào quý khách</h3>
+    <p>Quý khách vừa tạo thành công yêu cầu tìm xe chở hàng</p>
+    <p>Thông tin xe của quý khách : <p>
+    <p>Mã xe :TRK ${trucking_code}
+    <p>Loại xe : ${trucking_type}
+    <p>Loại hàng hóa : ${goods_type}
+    <p>Khối lượng hàng : ${trucking_weight}
+    <p>Đơn vị : ${trucking_unit}
+    
+    <p>Tỉnh thành phố đi : ${trucking_province_from} - Quận huyện đi ${trucking_district_from}</p>
+    <p>Tỉnh thành phố đến : ${trucking_provice_to} - Quận huyện đến ${trucking_district_to}</p>
+    <p>Địa chỉ đi : ${address_from}</p>
+    <p>Địa chỉ đến : ${address_to}</p>
+    <p>Ngày đi: ${created_date}</p>
+    <p>Ngày hết hiệu lực : ${expired_date}</p>
+    <p>Quãng đường: ${length} Km</p>
+    <p>Giá tiền: ${price}</p>
+    <p>Đơn vị: ${unit}</p>
+    <p>Mô tả: ${description}</p>
+
+	<p>Quý khách nhấp vào liên kết này để xem thông tin chi tiết xe : <a href="${urlTruckingDetail}">Chi tiết</a></p>
+	<p>Cảm ơn quý khách đã sử dụng dịch vụ!</p>
+	<p>---------------------------------------</p>
+	<p>Mọi thắc mắc xin vui lòng email liên hệ hỗ trợ : info@goixe.vn</p>
+</body>
+</html>

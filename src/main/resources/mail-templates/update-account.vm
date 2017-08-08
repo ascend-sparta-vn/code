@@ -1,0 +1,10 @@
+<html>
+<body>
+    <h3>Xin chào quý khách</h3>,
+    <p>Quý khách vừa cập nhật thành công tài khoản trên sàn giao dịch vận tải <a href="http://goixe.vn">goixe.vn</a>.</p>
+	<p><span>Tài khoản đang sử dụng của quý khách là: </span> ${username}</span></p>
+	<p>Cảm ơn quý khách đã sử dụng dịch vụ của <a href="http://goixe.vn">goixe.vn</a></p>
+	<p>---------------------------------------</p>
+	<p>Mọi thắc mắc xin vui lòng email liên hệ hỗ trợ : info@goixe.vn</p>
+</body>
+</html>

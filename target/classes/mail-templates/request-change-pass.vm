@@ -1,0 +1,24 @@
+<html>
+<body>
+    <h3>Xin chào quý khách</h3>
+    <p>Quý khách vừa yêu cầu cấp lại mật khẩu </p> 
+	<p>
+		<span>Vào lúc : </span> <b> ${time} </b>
+	</p>
+	<p>
+		<span>E-mail đăng nhập: </span> <b> ${username} </b>
+	</p
+	
+	<p>
+		<span>Quý khách vui lòng bấm vào link bên dưới để cấp lại mật khẩu: </span>
+	</p
+	
+	<p>
+		${link}
+	</p
+	(Lưu ý: Đường link cấp lại mật khẩu chỉ được sử dụng một lần duy nhất)
+	<p>Ban quản trị Goixe.vn, chân thành cảm ơn!</p>
+	<p>---------------------------------------</p>
+	<p>Mọi thắc mắc xin vui lòng email liên hệ hỗ trợ : info@goixe.vn</p>
+</body>
+</html>

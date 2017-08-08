@@ -1,0 +1,14 @@
+<html>
+<body>
+    <h3>Xin chào quý khách</h3>
+    <p>Cảm ơn quý khách đã tạo tài khoản trên sàn giao dịch vận tải <a href="http://goixe.vn">goixe.vn</a>  . Dưới đây là thông tin đăng nhập của quý khách:</p>
+	<p>
+		<span>E-mail đăng nhập: </span> ${username}
+	</p>
+	<p> Vui lòng nhấp vào liên kết này để kích hoạt tài khoản: <a href="http://localhost:8080/account/active?key=1f4477bad7af3616c1f933a02bfabe4e-e1e12cb4a53228e81655b14fa6af9af9">Liên kết</a>
+	</p>
+	<p>Ban quản trị Goixe.vn, chân thành cảm ơn!</p>
+	<p>---------------------------------------</p>
+	<p>Mọi thắc mắc xin vui lòng email liên hệ hỗ trợ : info@goixe.vn</p>
+</body>
+</html>

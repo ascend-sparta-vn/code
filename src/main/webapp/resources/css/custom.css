@@ -1,0 +1,383 @@
+./* Add here all your css styles (customizations) */
+label{
+/* 	color: black; */
+    display: block;
+    margin-bottom: 6px;
+    line-height: 19px;
+    font-weight: 400;
+    color:inherit;
+}
+
+label.p-label-required:after {
+    content: '(*)' !important;
+    color: #F00;
+    margin-left: 3px;
+}
+
+.label-headline{
+	color: #0096F0;
+}
+
+.div-dotted{
+	border: 1px dotted #ccc;	
+}
+
+	
+
+.search-block h2 {
+	font-size: 24px;
+	text-align: left !important;
+	margin-bottom: 18px;
+	text-transform: uppercase;
+}
+
+table {
+	font-size:12px !important;
+}
+
+.message-register{
+	background-color: rgba(95, 182, 17, 0.72);
+	color: white;
+	border: 1px solid;
+    border-radius: 5px;
+    padding:10px;
+    margin-bottom: 200px;
+    margin-top: 50px;
+}
+
+.div-login{
+	padding-top: 50px;
+}
+
+.error-message{
+	color: red;
+}
+
+.btn-login{
+	width: 50%;
+	border-radius: 4px;
+	
+}
+
+#toast-container {
+	position: fixed;
+	z-index: 999999
+}
+
+#toast-container>div {
+	margin: 0 0 6px;
+	padding: 15px 15px 15px 50px;
+	width: 300px;
+	-webkit-border-radius: 3px;
+	-webkit-background-clip: padding-box;
+	-moz-border-radius: 3px;
+	-moz-background-clip: padding;
+	border-radius: 3px;
+	background-clip: padding-box;
+	background-position: 15px center;
+	background-repeat: no-repeat;
+	-webkit-box-shadow: 0 0 12px #999;
+	-moz-box-shadow: 0 0 12px #999;
+	box-shadow: 0 0 12px #999;
+	color: #fff;
+	zoom: 1;
+	filter: alpha(opacity = 80);
+	-webkit-opacity: .8;
+	-moz-opacity: .8;
+	opacity: .8
+}
+
+#toast-container>:hover {
+	-webkit-box-shadow: 0 0 12px #000;
+	-moz-box-shadow: 0 0 12px #000;
+	box-shadow: 0 0 12px #000;
+	zoom: 1;
+	filter: alpha(opacity = 100);
+	-webkit-opacity: 1;
+	-moz-opacity: 1;
+	opacity: 1;
+	cursor: pointer
+}
+
+#toast-container>.toast {
+	background-image: none !important
+}
+
+#toast-container>.toast:before {
+	position: fixed;
+	font-family: FontAwesome;
+	font-size: 24px;
+	line-height: 18px;
+	float: left;
+	color: #fff;
+	padding-right: .5em;
+	margin: auto .5em auto -1.5em
+}
+
+#toast-container.toast-top-full-width>div,#toast-container.toast-bottom-full-width>div
+	{
+	width: 96%;
+	margin: auto
+}
+
+.toast {
+	background-color: #030303
+}
+
+.toast-white {
+	background-color: #fff !important
+}
+
+.toast-snow {
+	background-color: #fbfbfb !important
+}
+
+.toast-whitesmoke {
+	background-color: #f5f5f5 !important
+}
+
+.toast-seashell {
+	background-color: #f3f3f3 !important
+}
+
+.toast-ivory {
+	background-color: #eee !important
+}
+
+.toast-platinum {
+	background-color: #e5e5e5 !important
+}
+
+.toast-lightgray {
+	background-color: #d0d0d0 !important
+}
+
+.toast-gray {
+	background-color: #ccc !important
+}
+
+.toast-darkgray {
+	background-color: #999 !important
+}
+
+.toast-silver {
+	background-color: #777 !important
+}
+
+.toast-sonic-silver {
+	background-color: #737373 !important
+}
+
+.toast-storm-cloud {
+	background-color: #666 !important
+}
+
+.toast-lightcarbon {
+	background-color: #555 !important
+}
+
+.toast-carbon {
+	background-color: #444 !important
+}
+
+.toast-slate-gray {
+	background-color: #333 !important
+}
+
+.toast-darkcarbon {
+	background-color: #262626 !important
+}
+
+.toast-blue {
+	background-color: #5db2ff !important
+}
+
+.toast-info {
+	background-color: #57b5e3 !important
+}
+
+.toast-sky {
+	background-color: #11a9cc !important
+}
+
+.toast-primary {
+	background-color: #4374e0 !important
+}
+
+.toast-blueberry {
+	background-color: #6f85bf !important
+}
+
+.toast-palegreen {
+	background-color: #a0d468 !important
+}
+
+.toast-success {
+	background-color: #53a93f !important
+}
+
+.toast-green {
+	background-color: #8cc474 !important
+}
+
+.toast-lightyellow {
+	background-color: #f6d52e !important
+}
+
+.toast-yellow {
+	background-color: #ffce55 !important
+}
+
+.toast-warning {
+	background-color: #f4b400 !important
+}
+
+.toast-gold {
+	background-color: #f9b256 !important
+}
+
+.toast-orange {
+	background-color: #fb6e52 !important
+}
+
+.toast-lightred {
+	background-color: #e46f61 !important
+}
+
+.toast-darkorange {
+	background-color: #ed4e2a !important
+}
+
+.toast-red {
+	background-color: #df5138 !important
+}
+
+.toast-danger {
+	background-color: #d73d32 !important
+}
+
+.toast-pink {
+	background-color: #e75b8d !important
+}
+
+.toast-darkpink {
+	background-color: #cc324b !important
+}
+
+.toast-magenta {
+	background-color: #bc5679 !important
+}
+
+.toast-purple {
+	background-color: #7e3794 !important
+}
+
+.toast-maroon {
+	background-color: #981b48 !important
+}
+
+@media all and (max-width:239px) {
+	#toast-container>div {
+		padding: 8px 8px 8px 50px;
+		width: 11em
+	}
+	#toast-container .toast-close-button {
+		right: -.2em;
+		top: -.2em
+	}
+}
+
+@media all and (min-width:240px) and (max-width:479px) {
+	#toast-container>div {
+		padding: 8px 8px 8px 50px;
+		width: 18em
+	}
+	#toast-container .toast-close-button {
+		right: -.2em;
+		top: -.2em
+	}
+}
+
+@media all and (min-width:480px) and (max-width:767px) {
+	#toast-container>div {
+		padding: 15px 15px 15px 50px;
+		width: 25em
+	}
+}
+
+.header-label {
+	color: white;
+    font-size: 15px;
+}
+
+/*show processing*/
+
+#loading-div-background-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    
+}
+
+#loading-div-background{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    z-index: 10000
+    
+}
+
+#loading-div{
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+    text-align: center;
+    color: #202020;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -100px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url("/css/pie/PIE.htc"); /* HANDLES IE */
+}
+
+.has-error-input {
+	background-color: #f8b2b2;
+}
+
+.link-hidden {
+	text-decoration: initial;
+    cursor: default;
+}
+
+/*show processing*/
+
+tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+    
+.dataTables_filter {
+   float: right;
+   text-align: right;
+}
+
+.breadcrumbs > .container {
+	margin-top:10px;
+}
+
+.realperson-challenge { display: inline-block }

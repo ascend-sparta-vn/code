@@ -1,0 +1,381 @@
+2017-08-07 10:04:04 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-07 10:04:13 INFO  WebStartListener:17 - STARTING...
+2017-08-07 10:04:13 INFO  WebStartListener:18 - Cache init
+2017-08-07 10:04:13 INFO  WebStartListener:21 - FINISH...
+2017-08-07 10:04:13 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-07 10:04:13 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-07 10:04:13 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-07 10:04:13 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-07 10:04:14 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-07 10:04:15 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-07 10:04:17 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-07 10:04:21 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-07 10:09:37 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 10:09:37 INFO  CommonController:82 - [Start] getListTruckType
+2017-08-07 10:09:37 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 10:09:37 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 10:09:37 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 10:09:37 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-07 10:09:37 INFO  CommonController:89 - [End] getListTruckType
+2017-08-07 10:09:37 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-07 10:09:37 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:09:37 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:09:37 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:09:37 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:09:37 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:09:37 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 10:09:37 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:09:37 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 10:09:37 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 10:09:37 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 10:09:37 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:09:37 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:09:37 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:09:37 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:09:37 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:09:37 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:09:50 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:09:50 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:09:50 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:09:50 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:09:54 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:09:54 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:09:54 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:09:54 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:11:06 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 10:11:06 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:11:06 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = 1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:11:06 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:11:06 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 10:11:06 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:11:08 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 10:11:08 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:11:08 INFO  TruckingRestController:88 - provinceTo = 2, provinceFrom = 1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:11:08 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:11:08 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 10:11:08 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:12:47 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:12:47 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:12:47 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:12:47 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 10:12:47 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 10:12:47 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 10:12:47 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 10:12:47 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-07 10:12:47 INFO  CommonController:82 - [Start] getListTruckType
+2017-08-07 10:12:47 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-07 10:12:47 INFO  CommonController:89 - [End] getListTruckType
+2017-08-07 10:12:47 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:12:47 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 10:12:47 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:12:47 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:12:47 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 10:12:47 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:12:47 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:12:47 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 10:12:47 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 10:12:47 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:12:47 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:12:47 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:12:47 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:04 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:04 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:04 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:04 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:06 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:06 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:06 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:06 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:07 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:07 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:07 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:07 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:08 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:08 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:08 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:08 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:08 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:08 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:08 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:08 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:09 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:09 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:09 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:09 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:10 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:10 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:10 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:10 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:11 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:11 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:11 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:11 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 10:13:15 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 10:13:15 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 10:13:15 INFO  TruckingRestController:92 - searching...
+2017-08-07 10:13:15 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 15:00:07 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-07 15:00:17 INFO  WebStartListener:17 - STARTING...
+2017-08-07 15:00:17 INFO  WebStartListener:18 - Cache init
+2017-08-07 15:00:17 INFO  WebStartListener:21 - FINISH...
+2017-08-07 15:00:17 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-07 15:00:18 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-07 15:00:18 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-07 15:00:18 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-07 15:00:18 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-07 15:00:19 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-07 15:00:21 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-07 15:00:25 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-07 15:07:29 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 15:07:29 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-07 15:07:29 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 15:07:29 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 15:07:29 INFO  CommonController:96 - [Start] getListDealType
+2017-08-07 15:07:29 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 15:07:29 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-07 15:07:29 INFO  CommonController:103 - [End] getListDealType
+2017-08-07 15:07:29 INFO  ShipmentRestController:61 - [Start] getListShipment
+2017-08-07 15:07:29 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 15:07:29 INFO  ShipmentRestController:85 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, goodsType=-1, fromDate=, postDate=
+2017-08-07 15:07:29 INFO  ShipmentRestController:89 - searching...
+2017-08-07 15:07:29 INFO  ShipmentRestController:61 - [Start] getListShipment
+2017-08-07 15:07:29 INFO  ShipmentRestController:85 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, goodsType=-1, fromDate=, postDate=
+2017-08-07 15:07:29 INFO  ShipmentRestController:89 - searching...
+2017-08-07 15:07:29 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 15:07:29 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 15:07:29 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 15:07:29 INFO  ShipmentRestController:61 - [Start] getListShipment
+2017-08-07 15:07:29 INFO  ShipmentRestController:85 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, goodsType=-1, fromDate=, postDate=
+2017-08-07 15:07:29 INFO  ShipmentRestController:89 - searching...
+2017-08-07 15:07:29 INFO  ShipmentRestController:95 - [End] getListShipment
+2017-08-07 15:07:29 INFO  ShipmentRestController:95 - [End] getListShipment
+2017-08-07 15:07:29 INFO  ShipmentRestController:95 - [End] getListShipment
+2017-08-07 15:22:42 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 15:22:42 INFO  CommonController:49 - [Start] getListProvince
+2017-08-07 15:22:42 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 15:22:42 INFO  CommonController:82 - [Start] getListTruckType
+2017-08-07 15:22:42 INFO  CommonController:61 - [End] getListProvince
+2017-08-07 15:22:42 INFO  CommonController:89 - [End] getListTruckType
+2017-08-07 15:22:42 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 15:22:42 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 15:22:42 INFO  TruckingRestController:92 - searching...
+2017-08-07 15:22:42 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-07 15:22:42 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-07 15:22:42 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 15:22:42 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 15:22:42 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 15:22:42 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 15:22:42 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 15:22:42 INFO  TruckingRestController:92 - searching...
+2017-08-07 15:22:42 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 15:22:42 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-07 15:22:42 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-07 15:22:42 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 15:22:42 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 15:22:42 INFO  TruckingRestController:92 - searching...
+2017-08-07 15:22:42 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 15:24:21 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 15:24:21 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 15:24:21 INFO  TruckingRestController:92 - searching...
+2017-08-07 15:24:21 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 15:24:23 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 15:24:23 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 15:24:23 INFO  TruckingRestController:92 - searching...
+2017-08-07 15:24:23 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 15:24:24 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 15:24:24 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 15:24:24 INFO  TruckingRestController:92 - searching...
+2017-08-07 15:24:24 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-07 15:24:26 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-07 15:24:26 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-07 15:24:26 INFO  TruckingRestController:92 - searching...
+2017-08-07 15:24:26 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-08 09:32:30 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-08 09:32:42 INFO  WebStartListener:17 - STARTING...
+2017-08-08 09:32:42 INFO  WebStartListener:18 - Cache init
+2017-08-08 09:32:42 INFO  WebStartListener:21 - FINISH...
+2017-08-08 09:32:44 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-08 09:32:45 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-08 09:32:45 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-08 09:32:45 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-08 09:32:45 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-08 09:32:47 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-08 09:32:50 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-08 09:32:55 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-08 09:47:02 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:47:02 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:47:02 INFO  CommonController:96 - [Start] getListDealType
+2017-08-08 09:47:02 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-08 09:47:02 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:47:02 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:47:02 INFO  CommonController:103 - [End] getListDealType
+2017-08-08 09:47:02 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-08 09:47:02 INFO  ShipmentRestController:61 - [Start] getListShipment
+2017-08-08 09:47:02 INFO  ShipmentRestController:61 - [Start] getListShipment
+2017-08-08 09:47:02 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:47:02 INFO  ShipmentRestController:85 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, goodsType=-1, fromDate=, postDate=
+2017-08-08 09:47:02 INFO  ShipmentRestController:89 - searching...
+2017-08-08 09:47:02 INFO  ShipmentRestController:85 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, goodsType=-1, fromDate=, postDate=
+2017-08-08 09:47:02 INFO  ShipmentRestController:89 - searching...
+2017-08-08 09:47:02 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-08 09:47:02 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:47:02 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-08 09:47:02 INFO  ShipmentRestController:61 - [Start] getListShipment
+2017-08-08 09:47:02 INFO  ShipmentRestController:85 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, goodsType=-1, fromDate=, postDate=
+2017-08-08 09:47:02 INFO  ShipmentRestController:89 - searching...
+2017-08-08 09:47:02 INFO  ShipmentRestController:95 - [End] getListShipment
+2017-08-08 09:47:02 INFO  ShipmentRestController:95 - [End] getListShipment
+2017-08-08 09:47:02 INFO  ShipmentRestController:95 - [End] getListShipment
+2017-08-08 09:49:08 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:49:08 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:49:08 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-08 09:49:08 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-08 09:49:08 INFO  TruckingRestController:92 - searching...
+2017-08-08 09:49:08 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:49:08 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:49:08 INFO  CommonController:82 - [Start] getListTruckType
+2017-08-08 09:49:08 INFO  CommonController:89 - [End] getListTruckType
+2017-08-08 09:49:08 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-08 09:49:08 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-08 09:49:08 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-08 09:49:08 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:49:08 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-08 09:49:08 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-08 09:49:08 INFO  TruckingRestController:92 - searching...
+2017-08-08 09:49:08 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-08 09:49:08 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-08 09:49:08 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:49:08 INFO  TruckingRestController:70 - [Start] getListTrucking
+2017-08-08 09:49:08 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-08 09:49:08 INFO  TruckingRestController:88 - provinceTo = -1, provinceFrom = -1, districtTo = -1, districtFrom = -1, truckType = -1goodsType=-1, fromDate=, postDate=
+2017-08-08 09:49:08 INFO  TruckingRestController:92 - searching...
+2017-08-08 09:49:08 INFO  TruckingRestController:106 - [End] getListTrucking
+2017-08-08 09:49:17 ERROR BaseController:64 - 
+java.lang.ClassCastException: java.lang.String cannot be cast to org.springframework.security.core.userdetails.UserDetails
+	at com.webtrucking.controller.BaseController.getCurrentAccount(BaseController.java:56)
+	at com.webtrucking.controller.TruckingController.detail(TruckingController.java:105)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:114)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:317)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:150)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:169)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:121)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:66)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:214)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:346)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:262)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:107)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:108)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:522)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:1110)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:785)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1425)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2017-08-08 09:49:18 INFO  TruckingRestController:192 - [Start] detail
+2017-08-08 09:49:18 INFO  TruckingRestController:201 - truckId=2
+2017-08-08 09:49:18 INFO  TruckingRestController:215 - [End] detail
+2017-08-08 09:49:25 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:49:25 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:49:25 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:49:25 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:49:25 INFO  CommonController:82 - [Start] getListTruckType
+2017-08-08 09:49:25 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-08 09:49:25 INFO  CommonController:89 - [End] getListTruckType
+2017-08-08 09:49:25 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-08 09:49:25 INFO  CommonController:96 - [Start] getListDealType
+2017-08-08 09:49:25 INFO  CommonController:103 - [End] getListDealType
+2017-08-08 09:49:25 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:49:25 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-08 09:49:25 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:49:25 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-08 09:49:34 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:49:34 INFO  CommonController:49 - [Start] getListProvince
+2017-08-08 09:49:34 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:49:34 INFO  CommonController:61 - [End] getListProvince
+2017-08-08 09:49:34 INFO  CommonController:82 - [Start] getListTruckType
+2017-08-08 09:49:34 INFO  CommonController:89 - [End] getListTruckType
+2017-08-08 09:49:34 INFO  CommonController:110 - [Start] getListGoodsType
+2017-08-08 09:49:34 INFO  CommonController:96 - [Start] getListDealType
+2017-08-08 09:49:34 INFO  CommonController:117 - [End] getListGoodsType
+2017-08-08 09:49:34 INFO  CommonController:103 - [End] getListDealType
+2017-08-08 09:49:34 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:49:34 INFO  CommonController:75 - [End] getListDistrictByProvinceId
+2017-08-08 09:49:34 INFO  CommonController:68 - [Start] getListDistrictByProvinceId
+2017-08-08 09:49:34 INFO  CommonController:75 - [End] getListDistrictByProvinceId

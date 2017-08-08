@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- Templates -->
+	<definition name="baseLayout" template="/WEB-INF/jsp/layout/base-layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+		<put-attribute name="left-profile-menu" value="" />
+	</definition>
+
+	<definition name="homepage" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/view/home.jsp" />
+	</definition>
+
+	<definition name="contact-us" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/view/contact-us.jsp" />
+	</definition>
+
+	<definition name="list-trucking" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/trucking/list-trucking.jsp" />
+	</definition>
+
+	<definition name="list-trucking1" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/trucking/list-trucking1.jsp" />
+	</definition>
+
+
+	<definition name="trucking.post" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/trucking/trucking-post.jsp" />
+	</definition>
+
+	<definition name="list-user" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/view/list-user.jsp" />
+	</definition>
+
+	<definition name="register" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/account/register.jsp" />
+	</definition>
+
+	<definition name="register.finish" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/account/register-finish.jsp" />
+	</definition>
+
+	<definition name="account.profile" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/account/account-profile.jsp" />
+	</definition>
+
+	<definition name="account.login" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/login/login.jsp" />
+	</definition>
+
+	<definition name="account.forgotPassword" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/login/forgot-password.jsp" />
+	</definition>
+
+	<definition name="account.resetPass.finish" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/login/reset-finish.jsp" />
+	</definition>
+
+	<definition name="account.active" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/account/account-active.jsp" />
+	</definition>
+
+	<definition name="account.changePassword" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/account/change-password.jsp" />
+	</definition>
+
+	<definition name="manage.goods" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/manage-goods.jsp" />
+	</definition>
+
+	<definition name="edit.goods" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/edit-goods.jsp" />
+	</definition>
+
+	<definition name="edit.goods.trucking" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/trucking/edit-goods-trucking.jsp" />
+	</definition>
+
+	<definition name="manage.goods.trucking" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/trucking/manage-goods-trucking.jsp" />
+	</definition>
+
+	<!-- TrungNQ -->
+	<definition name="trucking.detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/trucking/trucking-detail.jsp" />
+	</definition>
+	<definition name="member.list" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/member/member-list.jsp" />
+	</definition>
+	<definition name="member.detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/member/member-detail.jsp" />
+	</definition>
+	<!-- TrungNQ -->
+
+	<definition name="shipment.list1" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/list-shipment.jsp" />
+	</definition>
+	<definition name="shipment.list" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/list-shipment1.jsp" />
+	</definition>
+	<definition name="shipment.post" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/shipment-post.jsp" />
+	</definition>
+	<definition name="shipment.detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/shipment-detail.jsp" />
+	</definition>
+
+	<!-- ORDER  -->
+	<definition name="order-trucking" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-trucking.jsp" />
+	</definition>
+	<definition name="order-shipment" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-shipment.jsp" />
+	</definition>
+	<definition name="order-trucking-detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-trucking-detail.jsp" />
+	</definition>
+	<definition name="order-trucking-post" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-trucking-post.jsp" />
+	</definition>
+	<definition name="order-shipment-detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-shipment-detail.jsp" />
+	</definition>
+	<definition name="order-shipment-post" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-shipment-post.jsp" />
+	</definition>
+
+	<!-- ADMIN  -->
+	<definition name="admin.manage.user" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/manage-user.jsp" />
+	</definition>
+
+	<definition name="admin.manage.message" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/manage-message.jsp" />
+	</definition>
+
+	<definition name="listview" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/listview.jsp" />
+	</definition>
+
+	<definition name="about-us" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/view/about-us.jsp" />
+	</definition>
+
+	<definition name="legacy" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/view/legacy.jsp" />
+	</definition>
+
+	<definition name="auction.list" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/auction/listAuction.jsp" />
+	</definition>
+
+	<definition name="auction.detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/auction/auctionDetail.jsp" />
+	</definition>
+
+	<definition name="chat.list" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/account/chat-list.jsp" />
+	</definition>
+
+	<definition name="chat.detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/account/chat-detail.jsp" />
+	</definition>
+
+</tiles-definitions>
+
+		<!-- <include file="titles-defs-error.xml"/> -->

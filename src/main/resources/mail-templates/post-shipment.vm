@@ -1,0 +1,26 @@
+<html>
+<body>
+    <h3>Xin chào quý khách</h3>
+    <p>Quý khách vừa tạo thành công yêu cầu tìm người chở hàng</p>
+    <p>Thông tin lô hàng của quý khách : <p>
+    <p>Tên lô hàng :SHP ${shipment_name}
+    <p>Loại hàng hóa : ${shipment_type}
+    <p>Khối lượng hàng : ${shipment_weight}
+    <p>Đơn vị : ${shipment_unit}
+    
+    <p>Tỉnh thành phố đi : ${shipment_province_from} - Quận huyện đi ${shipment_district_from}</p>
+    <p>Tỉnh thành phố đến : ${shipment_provice_to} - Quận huyện đến ${shipment_district_to}</p>
+    <p>Địa chỉ đi : ${address_from}</p>
+    <p>Địa chỉ đến : ${address_to}</p>
+    <p>Ngày đi: ${created_date}</p>
+    <p>Ngày hết hiệu lực : ${expired_date}</p>
+    <p>Quãng đường: ${length} Km</p>
+    <p>Giá tiền: ${price}</p>
+    <p>Đơn vị: ${unit}</p>
+
+	<p>Quý khách nhấp vào liên kết này để xem thông tin chi tiết lô hàng : <a href="${urlShipmentDetail}">Chi tiết</a></p>
+	<p>Cảm ơn quý khách đã sử dụng dịch vụ!</p>
+	<p>---------------------------------------</p>
+	<p>Mọi thắc mắc xin vui lòng email liên hệ hỗ trợ : info@goixe.vn</p>
+</body>
+</html>

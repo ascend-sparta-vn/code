@@ -1,0 +1,15 @@
+<html>
+<body>
+    <h3>Xin chào quý khách</h3>
+    <p>Quý khách vừa thay đổi thành công mật khẩu </p> 
+	<p>
+		<span>Vào lúc : </span> <b> ${time} </b>
+	</p>
+	<p>
+		<span>E-mail đăng nhập: </span> <b> ${username} </b>
+	</p
+	<p>Ban quản trị Goixe.vn, chân thành cảm ơn!</p>
+	<p>---------------------------------------</p>
+	<p>Mọi thắc mắc xin vui lòng email liên hệ hỗ trợ : info@goixe.vn</p>
+</body>
+</html>
