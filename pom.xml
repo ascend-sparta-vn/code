@@ -8,11 +8,11 @@
 	<description>LapRapCua</description>
 	
 	<repositories>
-		<repository>
-		  <id>captcha</id>
-		  <name>BotDetect Captcha Repository</name>
-		  <url>https://git.captcha.com/maven.git/blob_plain/HEAD:/</url>
-		</repository>
+		<!--<repository>-->
+		  <!--<id>captcha</id>-->
+		  <!--<name>BotDetect Captcha Repository</name>-->
+		  <!--<url>https://git.captcha.com/maven.git/blob_plain/HEAD:/</url>-->
+		<!--</repository>-->
 		
 		<repository>
         <id>jitpack.io</id>
@@ -172,17 +172,17 @@
 		    <artifactId>jta</artifactId>
 		    <version>1.1</version>
 		</dependency>	
-		<dependency>
-		 	<groupId>net.tanesha.recaptcha4j</groupId>
-		     <artifactId>recaptcha4j</artifactId>
-		   <version>0.0.7</version>
-		</dependency>
+		<!--<dependency>-->
+		 	<!--<groupId>net.tanesha.recaptcha4j</groupId>-->
+		     <!--<artifactId>recaptcha4j</artifactId>-->
+		   <!--<version>0.0.7</version>-->
+		<!--</dependency>-->
 		
-		<dependency>
-		  <groupId>com.captcha</groupId>
-		  <artifactId>botdetect-jsp20</artifactId>
-		  <version>4.0.beta1</version>
-		</dependency>
+		<!--<dependency>-->
+		  <!--<groupId>com.captcha</groupId>-->
+		  <!--<artifactId>botdetect-jsp20</artifactId>-->
+		  <!--<version>4.0.beta1</version>-->
+		<!--</dependency>-->
 		<!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
 		  <!-- JSON Library -->
        <!-- http://mvnrepository.com/artifact/org.glassfish/javax.json -->
