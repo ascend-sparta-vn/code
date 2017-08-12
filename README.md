@@ -5,6 +5,6 @@
 2. Start the code
 > mvn spring-boot:run
 
-_Note: don't run in application running of IntelliJ_   
+_Note: don't run with default application-running-mode of IntelliJ_   
 
 # code
