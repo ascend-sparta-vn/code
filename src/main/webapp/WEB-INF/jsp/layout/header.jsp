@@ -42,7 +42,7 @@
 <!-- 						<li><a href="page_faq.html">Trợ giúp</a></li> -->
 						<li class="topbar-devider"></li>
 						
-						<sec:authorize access="hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')">
+						<sec:authorize access="hasAnyRole('ADMIN', 'CUSTOMER', 'PROVIDER', 'TRANSPORTER')">
 							<li class="">
 							<a >
 								<sec:authentication property="principal.username" />
@@ -104,7 +104,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li id="menu4-sub1"> 
-									<a href="/shipment/post"><spring:message code="homepage.postShipment"/></a>
+									<a href="/order/post"><spring:message code="homepage.postShipment"/></a>
 								</li>
 								<%--<li class="" id="menu4-sub2"> --%>
 									<%--<a href="/trucking/post"><spring:message code="homepage.postTrucking"/></a>--%>
