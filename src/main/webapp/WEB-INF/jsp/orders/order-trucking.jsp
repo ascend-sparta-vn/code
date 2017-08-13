@@ -19,7 +19,7 @@
 		</ul>
 	</div>
 </div>
-
+		
 <div class="container content profile">
 	<div class="row">
 		<!-- left menu account profile -->
@@ -155,8 +155,8 @@ $(document).ready(function(){
 		manager.init();
 		$('.datepicker').datepicker({format: 'dd/mm/yyyy', language: 'vi' });
 	});
-
-});
+	
+});	
 
 function deleteOrderTrucking(id) {
 	manager.deleteOrderTrucking(id);

@@ -1610,7 +1610,6 @@ function convertPrice(row){
     if(row == null || row =='') return '';
     var unit = '';
     if(row.priceUnit != null){
-        if(row.priceUnit == -1) return 'Không xác định';
         if(row.priceUnit == 1) unit = 'Tấn';
         else if(row.priceUnit == 2) unit = 'Khối';
         else if(row.priceUnit == 3) unit = 'Kg'

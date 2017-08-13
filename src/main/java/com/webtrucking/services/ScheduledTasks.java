@@ -1,7 +1,6 @@
 package com.webtrucking.services;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScheduledTasks {
 
-	static Logger log = LogManager.getLogger(ScheduledTasks.class);
+	static Logger log = Logger.getLogger(ScheduledTasks.class);
 	@Autowired
 	StatisticServices statisticServices;
 

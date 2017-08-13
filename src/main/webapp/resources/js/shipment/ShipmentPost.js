@@ -24,17 +24,17 @@ ShipmentPost.prototype.initSelection = function(){
 	var self = this;
 	$("#fromProvince").change(function(){
 		var frmProvince = $("#fromProvince").val();
-		getListDistrictByProvinceId(frmProvince, "#fromDistrict", null, jQuery.i18n.prop('district_from_choose'));
+		getListDistrictByProvinceId(frmProvince, "#fromDistrict");
 	});
 	
 	$("#toProvince").change(function(){
 		var toProvince = $("#toProvince").val();
-		getListDistrictByProvinceId(toProvince, "#toDistrict", null, jQuery.i18n.prop('district_from_choose'));
+		getListDistrictByProvinceId(toProvince, "#toDistrict");
 	});
 	
 	// init list provice and truck_type
-	getListProvince("#fromProvince", null, jQuery.i18n.prop('province_from_choose'));
-	getListProvince("#toProvince", null, jQuery.i18n.prop('province_to_choose'));
+	getListProvince("#fromProvince");
+	getListProvince("#toProvince");
 	getListTruckType("#truckType");
 	getListGoodsType("#goodsType");
 	getListDealType("#dealType");

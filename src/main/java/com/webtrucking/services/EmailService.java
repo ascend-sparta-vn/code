@@ -1,13 +1,13 @@
 package com.webtrucking.services;
 
-import java.io.StringWriter;
-import java.text.SimpleDateFormat;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.webtrucking.entity.District;
+import com.webtrucking.entity.OrdersShipment;
+import com.webtrucking.entity.Province;
+import com.webtrucking.entity.Shipment;
+import com.webtrucking.util.Common;
+import com.webtrucking.util.DateUtils;
+import com.webtrucking.util.IConstant;
+import org.apache.log4j.Logger;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,31 +17,21 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.webtrucking.dao.TruckDAO;
-import com.webtrucking.entity.District;
-import com.webtrucking.entity.OrdersShipment;
-import com.webtrucking.entity.OrdersTrucking;
-import com.webtrucking.entity.Province;
-import com.webtrucking.entity.Shipment;
-import com.webtrucking.entity.Truck;
-import com.webtrucking.entity.TruckInfoDetail;
-import com.webtrucking.util.Common;
-import com.webtrucking.util.DateUtils;
-import com.webtrucking.util.IConstant;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 
 @Service
 public class EmailService {
 
-	static Logger log = LogManager.getLogger(EmailService.class);
+	static Logger log = Logger.getLogger(EmailService.class);
 	private SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyyHHmmss_FULL_SLASH);
 	private JavaMailSender javaMailSender;
 
 	@Autowired
 	private VelocityEngine velocityEngine;
 	
-	@Autowired
-	private TruckDAO truckDAO;
-
 	@Autowired
 	public EmailService(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
@@ -64,111 +54,6 @@ public class EmailService {
 		javaMailSender.send(mimeMessage);
 		log.info("Email Sent!");
 
-	}
-	
-	@Async
-	public void createOrderTruckingNotifyEmail(String urlOrderDetail, OrdersTrucking order, String email) throws MailException, InterruptedException, MessagingException {
-		log.info("Sending email...");
-		
-		VelocityContext velocityContext = new VelocityContext();
-		velocityContext.put("urlOrderDetail", urlOrderDetail);
-		velocityContext.put("partner_id", IConstant.EMAIL_PREFIX.OWNER + order.getPartnerId());
-		velocityContext.put("event_id", order.getTruckInfo().getTruck().getTruckCode());
-//		velocityContext.put("event_id", IConstant.EMAIL_PREFIX.TRUCKING + order.getEventId());
-		velocityContext.put("quantity", order.getQuantity() + Common.convertWeighUnit(order.getUnit()));
-		velocityContext.put("expected_price", order.getExpectedPrice());
-		velocityContext.put("vat_fee", Common.convertIncludeFee(order.getVatFee()));
-		velocityContext.put("porter_fee", Common.convertIncludeFee(order.getPorterFee()));
-		velocityContext.put("shift_fee", order.getShiftFee());
-		velocityContext.put("description", order.getDescription());
-		velocityContext.put("order_type", Common.convertOrderType(order.getOrderType()));
-		velocityContext.put("transaction_type", Common.convertTransactionType(order.getTransactionType()));
-		velocityContext.put("created_date", sdf.format(order.getCreatedDate()));
-		
-		StringWriter stringWriter = new StringWriter();
-		velocityEngine.mergeTemplate("create-order-trucking.vm", "UTF-8", velocityContext, stringWriter);
-		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-		mimeMessageHelper.setTo(email);
-		mimeMessageHelper.setSubject("[ORD_" + order.getId() + "] Goixe.vn - Thông báo tạo yêu cầu về xe");
-		mimeMessageHelper.setText(stringWriter.toString(), true);
-		javaMailSender.send(mimeMessage);
-		log.info("Email Sent!");
-		
-	}
-	
-	@Async
-	public void createOwnerOrderTruckingNotifyEmail(String urlOrderDetail, OrdersTrucking order, String email) throws MailException, InterruptedException, MessagingException {
-		log.info("Sending email...");
-		
-		VelocityContext velocityContext = new VelocityContext();
-		velocityContext.put("urlOrderDetail", urlOrderDetail);
-		velocityContext.put("partner_id", IConstant.EMAIL_PREFIX.OWNER + order.getOwnerId());
-		velocityContext.put("event_id", order.getTruckInfo().getTruck().getTruckCode());
-//		velocityContext.put("event_id", IConstant.EMAIL_PREFIX.TRUCKING + order.getEventId());
-		velocityContext.put("quantity", order.getQuantity() + Common.convertWeighUnit(order.getUnit()));
-		velocityContext.put("expected_price", order.getExpectedPrice());
-		velocityContext.put("vat_fee", Common.convertIncludeFee(order.getVatFee()));
-		velocityContext.put("porter_fee", Common.convertIncludeFee(order.getPorterFee()));
-		velocityContext.put("shift_fee", order.getShiftFee());
-		velocityContext.put("description", order.getDescription());
-		velocityContext.put("order_type", Common.convertOrderType(order.getOrderType()));
-		velocityContext.put("transaction_type", Common.convertTransactionType(order.getTransactionType()));
-		velocityContext.put("created_date", sdf.format(order.getCreatedDate()));
-		
-		StringWriter stringWriter = new StringWriter();
-		velocityEngine.mergeTemplate("owner-order-trucking.vm", "UTF-8", velocityContext, stringWriter);
-		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-		mimeMessageHelper.setTo(email);
-		mimeMessageHelper.setSubject("[ORD_" + order.getId() + "] Goixe.vn - Thông báo nhận yêu cầu về xe");
-		mimeMessageHelper.setText(stringWriter.toString(), true);
-		javaMailSender.send(mimeMessage);
-		log.info("Email Sent!");
-		
-	}
-	
-	
-	@Async
-	public void createTruckingPostNotifyEmail(String urlTruckingDetail, TruckInfoDetail truckInfo) throws MailException, InterruptedException, MessagingException {
-		log.info("Sending email...");
-		Truck truck = truckDAO.findOne(truckInfo.getTruckId());
-		VelocityContext velocityContext = new VelocityContext();
-		velocityContext.put("urlTruckingDetail", urlTruckingDetail);
-		if(truck != null)
-			velocityContext.put("trucking_code", truck.getPlateNumber());
-		velocityContext.put("trucking_type", Common.convertGoodsType(truckInfo.getGoodsTypeId()));
-		velocityContext.put("goods_type", Common.convertGoodsType(truckInfo.getGoodsTypeId()));
-		velocityContext.put("trucking_weight", truckInfo.getWeight());
-		velocityContext.put("trucking_unit", Common.convertWeighUnit(truckInfo.getWeightUnit()));
-		
-		Province fromProvince = Common.getProvinceByDistrictId(truckInfo.getFromDistrict());
-		velocityContext.put("trucking_province_from", (fromProvince == null) ? "N/A" : fromProvince.getName());
-		District fromDistrict = Common.getDistrictById(truckInfo.getFromDistrict());
-		velocityContext.put("trucking_district_from", (fromDistrict == null) ? "N/A" : fromDistrict.getName());
-		Province toProvince = Common.getProvinceByDistrictId(truckInfo.getToDistrict());
-		velocityContext.put("trucking_provice_to", (toProvince == null) ? "N/A" : toProvince.getName());
-		District toDistrict = Common.getDistrictById(truckInfo.getToDistrict());
-		velocityContext.put("trucking_district_to", (toDistrict == null) ? "N/A" : toDistrict.getName());
-		velocityContext.put("address_from", truckInfo.getFromDetailAddress());
-		velocityContext.put("address_to", truckInfo.getToDetailAddress());
-		velocityContext.put("created_date", sdf.format(truckInfo.getCreatedDate()));
-		velocityContext.put("expired_date", sdf.format(truckInfo.getExpiredDate()));
-		velocityContext.put("length", truckInfo.getDistance());
-		velocityContext.put("price", truckInfo.getPrice());
-		velocityContext.put("unit", Common.convertPriceUnit(truckInfo.getPriceUnit()));
-		velocityContext.put("description", truckInfo.getDescription());
-		
-		StringWriter stringWriter = new StringWriter();
-		velocityEngine.mergeTemplate("post-trucking.vm", "UTF-8", velocityContext, stringWriter);
-		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-		mimeMessageHelper.setTo("trungnq2@elcom.com.vn");
-		mimeMessageHelper.setSubject("[TRK_" + truckInfo.getId() + "] Goixe.vn - Thông báo tạo mới xe chở hàng");
-		mimeMessageHelper.setText(stringWriter.toString(), true);
-		javaMailSender.send(mimeMessage);
-		log.info("Email Sent!");
-		
 	}
 	
 	@Async

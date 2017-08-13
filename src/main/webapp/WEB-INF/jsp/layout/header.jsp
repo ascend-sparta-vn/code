@@ -87,14 +87,14 @@
 						</li>
 
 						<li class="" id="menu2">
-							<a href="/shipment/list">
-								<spring:message code="homepage.listShipment"/>
+							<a href="/order/list">
+								<spring:message code="homepage.listOrder"/>
 							</a>
 						</li>
 						
 						<li class="" id="menu3">
-							<a href="/trucking/list-trucking">
-								<spring:message code="homepage.listTrucking"/>
+							<a href="/product/list">
+								<spring:message code="homepage.listProduct"/>
 							</a>
 						</li>
 						

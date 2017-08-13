@@ -1,17 +1,9 @@
 package com.webtrucking.entity;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -29,7 +21,7 @@ public class OrdersShipment {
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name="owner_id", nullable=true, updatable=false, insertable=false)
-	private Account account;
+	private User account;
 	
 	@Column(name="partner_id")
 	private Integer partnerId;
@@ -85,14 +77,6 @@ public class OrdersShipment {
 
 	public void setOwnerId(Integer ownerId) {
 		this.ownerId = ownerId;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	public Integer getEventId() {

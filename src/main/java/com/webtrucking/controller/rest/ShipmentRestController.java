@@ -1,44 +1,31 @@
 package com.webtrucking.controller.rest;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.webtrucking.controller.BaseController;
-import com.webtrucking.dao.AccountDAO;
 import com.webtrucking.dao.OrdersDAO;
 import com.webtrucking.dao.ShipmentDAO;
-import com.webtrucking.entity.Account;
-import com.webtrucking.entity.OrdersTrucking;
+import com.webtrucking.dao.userDAO;
 import com.webtrucking.entity.Shipment;
+import com.webtrucking.entity.User;
 import com.webtrucking.json.entity.AjaxResponseBody;
 import com.webtrucking.json.entity.SearchShipmentRequest;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.util.DateUtils;
 import com.webtrucking.util.IConstant;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("/rest_shipment")
 public class ShipmentRestController extends BaseController{
-	static Logger log = LogManager.getLogger(ShipmentRestController.class);
+	static Logger log = Logger.getLogger(ShipmentRestController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
 	
 	@Autowired
@@ -48,7 +35,7 @@ public class ShipmentRestController extends BaseController{
 	private OrdersDAO orderDAO;
 	
 	@Autowired
-	private AccountDAO accountDAO;
+	private userDAO userDAO;
 	
 	@Autowired
 	EmailService emailService;
@@ -134,12 +121,12 @@ public class ShipmentRestController extends BaseController{
 		if(orderId == null)
 			return new Shipment();
 		log.info("orderId=" + orderId);
-		OrdersTrucking order = orderDAO.findOne(orderId);
+//		OrdersTrucking order = orderDAO.findOne(orderId);
 		Shipment shipment = null;
-		if(order != null){
-			log.info("searching...");
-			shipment = shipmentDAO.findOne(order.getEventId());
-		}
+//		if(order != null){
+//			log.info("searching...");
+//			shipment = shipmentDAO.findOne(order.getEventId());
+//		}
 		log.info("[End] getShipmentByOrderId");
 		return shipment;
 	}
@@ -150,7 +137,7 @@ public class ShipmentRestController extends BaseController{
 		AjaxResponseBody response = new AjaxResponseBody();
 		try {
 			// get loggedd User
-			Account account = getCurrentAccount();
+			User account = getCurrentAccount();
 			// save shipment info detail
 			Shipment detail = new Shipment();
 			detail.setName(requestData.getName());
@@ -161,7 +148,6 @@ public class ShipmentRestController extends BaseController{
 			detail.setGoodsTypeId(requestData.getGoodsTypeId());
 			detail.setPrice(requestData.getPrice());
 			detail.setDescription(requestData.getDescription());
-			detail.setOwnerId(account.getId());
 			detail.setDealTypeId(requestData.getDealType());
 			detail.setStatus(IConstant.STATUS.SHIPMENT_UNACTIVE);
 			
@@ -195,7 +181,6 @@ public class ShipmentRestController extends BaseController{
 			shipmentDAO.save(detail);
 			// send email
 			String urlOrderDetail = env.getProperty("url.shipment.detail") + detail.getId();
-			emailService.createShipmentPostNotifyEmail(urlOrderDetail, detail);
 			response.setCode(IConstant.RESP_CODE.SUCCESS);
 			response.setMsg(getText("shipment.add.success"));
 			return response;
@@ -214,7 +199,7 @@ public class ShipmentRestController extends BaseController{
 		log.info("[Start] getGoods");
 		List<Shipment> list  = new ArrayList<Shipment>();
 		try {
-			Account account = getCurrentAccount();
+			User account = getCurrentAccount();
 			//check role
 			Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)
 					SecurityContextHolder.getContext().getAuthentication().getAuthorities();

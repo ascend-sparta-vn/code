@@ -97,11 +97,8 @@
 	</definition>
 	<!-- TrungNQ -->
 
-	<definition name="shipment.list1" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/shipment/list-shipment.jsp" />
-	</definition>
 	<definition name="shipment.list" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/shipment/list-shipment1.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/list-shipment.jsp" />
 	</definition>
 	<definition name="shipment.post" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/shipment/shipment-post.jsp" />
