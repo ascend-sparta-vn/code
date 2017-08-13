@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +37,7 @@ import com.webtrucking.util.IConstant;
 @Controller
 @RequestMapping("/admin")
 public class AdminController extends BaseController {
-	static Logger log = Logger.getLogger(AdminController.class);
+	static Logger log = LogManager.getLogger(AdminController.class);
 	
 	@Autowired
 	private AccountDAO accountDAO;

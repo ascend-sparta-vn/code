@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +42,7 @@ import com.webtrucking.util.IConstant;
 @RestController
 @RequestMapping("/rest_order")
 public class OrderRestController extends BaseController{
-	static Logger log = Logger.getLogger(OrderRestController.class);
+	static Logger log = LogManager.getLogger(OrderRestController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
 	
 	@Autowired

@@ -7,7 +7,8 @@ import javax.mail.MessagingException;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.Environment;
@@ -30,7 +31,7 @@ import com.webtrucking.util.IConstant;
 
 @Service
 public class AccountService implements ApplicationListener<AuthenticationSuccessEvent>{
-	static Logger log = Logger.getLogger(AccountService.class);
+	static Logger log = LogManager.getLogger(AccountService.class);
 	@Autowired
 	AccountDAO accountDAO;
 	

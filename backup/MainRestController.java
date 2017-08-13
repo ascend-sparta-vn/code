@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +38,7 @@ import com.webtrucking.util.ListUtil;
 @RestController
 @RequestMapping("/rest")
 public class MainRestController {
-	static Logger log = Logger.getLogger(MainRestController.class);
+	static Logger log = LogManager.getLogger(MainRestController.class);
 	@Autowired
 	PhuKienDAO phuKienDAO;
 

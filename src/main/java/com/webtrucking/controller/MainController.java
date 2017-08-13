@@ -4,7 +4,8 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ import com.webtrucking.util.IConstant;
  */
 @Controller
 public class MainController {
-	static Logger log = Logger.getLogger(MainController.class);
+	static Logger log = LogManager.getLogger(MainController.class);
 	
 	@Autowired
 	LocationServices ls;

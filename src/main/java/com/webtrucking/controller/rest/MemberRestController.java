@@ -3,7 +3,8 @@ package com.webtrucking.controller.rest;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ import com.webtrucking.json.entity.SearchMemberRequest;
 @RestController
 @RequestMapping("/member_rest")
 public class MemberRestController {
-	static Logger log = Logger.getLogger(MemberRestController.class);
+	static Logger log = LogManager.getLogger(MemberRestController.class);
 	
 	
 	@Autowired

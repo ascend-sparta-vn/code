@@ -7,7 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -55,7 +56,7 @@ public class TruckingController extends BaseController{
 	private TruckTypeDAO truckTypeDAO;
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddmmYY_NO_SLASH);
-	static Logger log = Logger.getLogger(TruckingController.class);
+	static Logger log = LogManager.getLogger(TruckingController.class);
 	@RequestMapping("/list-trucking1")
 	public String listTrucking(Map<String, Object> model) {	
 		model.put("listProvince", CacheUtil.listProvinceCache.get("listProvince"));

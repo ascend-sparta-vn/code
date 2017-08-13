@@ -3,7 +3,8 @@ package com.webtrucking.controller.rest;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ import com.webtrucking.util.CacheUtil;
 @RestController
 @RequestMapping("/rest")
 public class CommonController {
-	static Logger log = Logger.getLogger(CommonController.class);
+	static Logger log = LogManager.getLogger(CommonController.class);
 	
 	@Autowired
 	private TruckTypeDAO truckTypeDAO;

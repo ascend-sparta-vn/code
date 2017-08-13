@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,7 +26,7 @@ import com.webtrucking.util.IConstant;
 
 @Service("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
-	static Logger log = Logger.getLogger(MyUserDetailsService.class);
+	static Logger log = LogManager.getLogger(MyUserDetailsService.class);
 	//get user from the database, via Hibernate
 	@Autowired
 	private AccountDAO accountDAO;

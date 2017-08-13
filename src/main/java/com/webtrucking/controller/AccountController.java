@@ -1,14 +1,24 @@
 package com.webtrucking.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.webtrucking.dao.AccountDAO;
+import com.webtrucking.dao.AccountDetailDAO;
+import com.webtrucking.dao.ProvinceDAO;
+import com.webtrucking.dao.UserRoleDAO;
+import com.webtrucking.entity.Account;
+import com.webtrucking.entity.AccountDetail;
+import com.webtrucking.entity.Province;
+import com.webtrucking.entity.UserRole;
+import com.webtrucking.json.entity.AccountInfo;
+import com.webtrucking.json.entity.AjaxResponseBody;
+import com.webtrucking.json.entity.ChangePassRequest;
+import com.webtrucking.json.entity.MessageInfo;
+import com.webtrucking.services.AccountService;
+import com.webtrucking.services.EmailService;
+import com.webtrucking.util.Common;
+import com.webtrucking.util.IConstant;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
@@ -27,24 +37,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.webtrucking.dao.AccountDAO;
-import com.webtrucking.dao.AccountDetailDAO;
-import com.webtrucking.dao.ProvinceDAO;
-import com.webtrucking.dao.UserRoleDAO;
-import com.webtrucking.entity.Account;
-import com.webtrucking.entity.AccountDetail;
-import com.webtrucking.entity.Province;
-import com.webtrucking.entity.UserRole;
-import com.webtrucking.json.entity.AccountInfo;
-import com.webtrucking.json.entity.AjaxResponseBody;
-import com.webtrucking.json.entity.ChangePassRequest;
-import com.webtrucking.json.entity.MessageInfo;
-import com.webtrucking.services.AccountService;
-import com.webtrucking.services.EmailService;
-import com.webtrucking.util.Common;
-import com.webtrucking.util.IConstant;
-import com.webtrucking.util.VerifyUtils;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by thanhnv on 16/09/16.
@@ -54,7 +51,7 @@ import com.webtrucking.util.VerifyUtils;
 @Transactional
 @PropertySource("classpath:application.properties")
 public class AccountController extends BaseController {
-	static Logger log = Logger.getLogger(AccountController.class);
+	static Logger log = LogManager.getLogger(AccountController.class);
 	@Autowired
 	private Environment env;
 

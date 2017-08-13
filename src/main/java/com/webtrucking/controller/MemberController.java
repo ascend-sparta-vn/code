@@ -2,7 +2,8 @@ package com.webtrucking.controller;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	static Logger log = Logger.getLogger(MemberController.class);
+	static Logger log = LogManager.getLogger(MemberController.class);
 	@RequestMapping("/list-commodity")
 	public String listTrucking(Map<String, Object> model) {	
 		return "member.list";

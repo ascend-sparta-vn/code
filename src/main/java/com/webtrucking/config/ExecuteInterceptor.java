@@ -6,7 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +25,7 @@ import com.webtrucking.json.entity.LeftFilterEntity;
 @Service
 public class ExecuteInterceptor extends HandlerInterceptorAdapter{
 
-	static Logger log = Logger.getLogger(ExecuteInterceptor.class);
+	static Logger log = LogManager.getLogger(ExecuteInterceptor.class);
 	
 	@Autowired
 	private TruckInfoDetailDAO truckInfoDetailDAO;

@@ -6,7 +6,8 @@ import java.text.SimpleDateFormat;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ import com.webtrucking.util.IConstant;
 @Service
 public class EmailService {
 
-	static Logger log = Logger.getLogger(EmailService.class);
+	static Logger log = LogManager.getLogger(EmailService.class);
 	private SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyyHHmmss_FULL_SLASH);
 	private JavaMailSender javaMailSender;
 

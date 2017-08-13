@@ -8,7 +8,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import com.webtrucking.util.DateUtils;
 
 @Service
 public class LocationServices {
-	static Logger log = Logger.getLogger(LocationServices.class);
+	static Logger log = LogManager.getLogger(LocationServices.class);
 	
 	@Autowired
 	Environment env;

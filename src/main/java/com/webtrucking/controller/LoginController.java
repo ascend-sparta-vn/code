@@ -5,7 +5,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +22,7 @@ import com.webtrucking.util.IConstant;
  */
 @Controller
 public class LoginController extends BaseController {
-	static Logger log = Logger.getLogger(LoginController.class);
+	static Logger log = LogManager.getLogger(LoginController.class);
 	@RequestMapping("/")
 	public String defaultUrl(Map<String, Object> model) {	
 //		try {
