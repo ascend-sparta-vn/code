@@ -1,0 +1,7 @@
+
+.idea
+.bin
+log
+README.md
+*.log
+target
