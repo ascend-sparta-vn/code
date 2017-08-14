@@ -1,22 +1,23 @@
 package com.webtrucking.entity;
 
-import java.util.Collection;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+import java.util.Collection;
+
 public class SecurityUser extends User {
 
-    private Account account;
+    private User account;
 
-	public Account getAccount() {
+	public User getAccount() {
 		return account;
 	}
 
 
-	public void setAccount(Account account) {
+	public void setAccount(User account) {
 		this.account = account;
-	}
+	}
+
 
 	public SecurityUser(String username, String password, boolean enabled,
 			boolean accountNonExpired, boolean credentialsNonExpired,

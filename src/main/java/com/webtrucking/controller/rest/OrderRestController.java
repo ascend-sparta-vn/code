@@ -1,70 +1,41 @@
 package com.webtrucking.controller.rest;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.webtrucking.controller.BaseController;
-import com.webtrucking.dao.AccountDAO;
-import com.webtrucking.dao.OrdersShipmentDAO;
-import com.webtrucking.dao.OrdersTruckingDAO;
+import com.webtrucking.dao.OrdersDAO;
 import com.webtrucking.dao.ShipmentDAO;
-import com.webtrucking.dao.TruckDAO;
-import com.webtrucking.dao.TruckInfoDetailDAO;
-import com.webtrucking.dao.UserRoleDAO;
-import com.webtrucking.entity.Account;
-import com.webtrucking.entity.OrdersShipment;
-import com.webtrucking.entity.OrdersTrucking;
+import com.webtrucking.dao.userDAO;
 import com.webtrucking.entity.Shipment;
-import com.webtrucking.entity.TruckInfoDetail;
-import com.webtrucking.entity.UserRole;
+import com.webtrucking.entity.User;
 import com.webtrucking.json.entity.AjaxResponseBody;
-import com.webtrucking.json.entity.OrderRequest;
-import com.webtrucking.json.entity.SearchOrderingRequest;
+import com.webtrucking.json.entity.SearchShipmentRequest;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.util.DateUtils;
 import com.webtrucking.util.IConstant;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
-@RequestMapping("/rest_order")
+@RequestMapping("/rest_shipment")
 public class OrderRestController extends BaseController{
-	static Logger log = LogManager.getLogger(OrderRestController.class);
+	static Logger log = Logger.getLogger(ProductRestController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
-	
-	@Autowired
-	private TruckDAO truckDAO;
-	
-	@Autowired
-	private AccountDAO accountDAO;
-	
-	@Autowired
-	private OrdersTruckingDAO ordersTruckingDAO;
-	
-	@Autowired
-	private OrdersShipmentDAO ordersShipmentDAO;
 	
 	@Autowired
 	private ShipmentDAO shipmentDAO;
 	
 	@Autowired
-	private TruckInfoDetailDAO truckInfoDAO;
+	private OrdersDAO orderDAO;
 	
 	@Autowired
-	private UserRoleDAO userRoleDAO;
+	private userDAO userDAO;
 	
 	@Autowired
 	EmailService emailService;
@@ -72,329 +43,185 @@ public class OrderRestController extends BaseController{
 	@Autowired
 	private Environment env;
 	
-	@RequestMapping("/getListOrderShipment")
+	@RequestMapping("/getListShipment")
 	@ResponseBody
-	public List<OrdersShipment> getListOrderShipment(@RequestBody SearchOrderingRequest requestData) throws JsonProcessingException {
-		log.info("[Start] getListOrderShipment");
-		List<OrdersShipment> list  = new ArrayList<OrdersShipment>();
+	public Map<String, Object> getListShipment(@RequestBody SearchShipmentRequest requestData) throws JsonProcessingException {
+		log.info("[Start] getListShipment");
+		Map<String, Object> model = new HashMap<String, Object>();
+		List<Shipment> list  = new ArrayList<Shipment>();
 		Integer provinceTo = requestData.getToProvince();
 		Integer provinceFrom = requestData.getFromProvince();
-		int orderType = requestData.getOrderType();
+		Integer districtTo = requestData.getToDistrict();
+		Integer districtFrom = requestData.getFromDistrict();
 		int goodsType = requestData.getGoodsTypeId();
 		String fromDate = requestData.getStartDate();
 		String postDate = requestData.getPostDate();
-		Account account = getCurrentAccount();
+		Integer pageSize = requestData.getPageSize();
+		Integer currentPage = requestData.getCurrentPage();
+		if (currentPage == null) currentPage = 1;
+		if (pageSize == null) pageSize = 10;
+		Integer start = (currentPage -1) * pageSize;
+		Integer end = currentPage * pageSize;
+		Integer total = shipmentDAO.countResult(provinceTo, provinceFrom, districtTo
+				, districtFrom, goodsType, fromDate, postDate);
+		if(total != null) {
+			model.put("total", total);
+		} else {
+			model.put("total", 0);
+		}
+		
 		log.info("provinceTo = " + provinceTo + ", provinceFrom = " + provinceFrom + ""
-						+ ", orderType = " + orderType + "goodsType=" + goodsType + 
+				+ ", districtTo = " + districtTo + ", districtFrom = " + districtFrom + ""
+						+ ", goodsType=" + goodsType + 
 						", fromDate=" + fromDate + ", postDate=" + postDate);
 		log.info("searching...");
-		list = ordersShipmentDAO.searchShipmentOrders(provinceTo, provinceFrom, goodsType, fromDate, postDate, orderType, account.getId());
-		log.info("[End] getListOrderShipment");
-		return list;
-	}
-	
-	@RequestMapping("/getListOrderTrucking")
-	@ResponseBody
-	public List<OrdersTrucking> getListOrderTrucking(@RequestBody SearchOrderingRequest requestData) throws JsonProcessingException {
-		log.info("[Start] getListOrderTrucking");
-		List<OrdersTrucking> list  = new ArrayList<OrdersTrucking>();
-		Integer provinceTo = requestData.getToProvince();
-		Integer provinceFrom = requestData.getFromProvince();
-		int truckType = requestData.getTruckType();
-		int orderType = requestData.getOrderType();
-		String fromDate = requestData.getStartDate();
-		String postDate = requestData.getPostDate();
-		Account account = getCurrentAccount();
-		if(account == null){
-			return list;
-		}
-		log.info("provinceTo = " + provinceTo + ", provinceFrom = " + provinceFrom + ""
-				+ ",truckType=" + truckType + 
-				", fromDate=" + fromDate + ", postDate=" + postDate);
-		log.info("searching...");
-		list = ordersTruckingDAO.searchTruckingOrders(provinceTo, provinceFrom, truckType, fromDate, postDate, orderType, account.getId());
-		log.info("[End] getListOrderTrucking");
-		return list;
-	}
-	
-	
-	@RequestMapping("/getTruckingById")
-	public TruckInfoDetail getTruckingById(@RequestParam(value="truckId") Integer truckId) throws JsonProcessingException {
-		log.info("[Start] detail");
-		if(truckId == null)
-			return new TruckInfoDetail();
-		TruckInfoDetail truck = null;
-		log.info("truckId=" + truckId);
-		log.info("searching...");
 		
-//		truck = truckInfoDetailDAO.findOne(truckId);
+		list = shipmentDAO.searchShipment(provinceTo, provinceFrom, districtTo
+				, districtFrom, goodsType, fromDate, postDate, start, end);
+		model.put("listShipments", list);
 		
-		log.info("[End] detail");
-		return truck;
+		log.info("[End] getListShipment");
+		return model;
 	}
 	
-	@RequestMapping("/addShipmentOrder")
+	@RequestMapping("/getShipmentById")
 	@ResponseBody
-	public AjaxResponseBody addShipmentOrder(@RequestBody OrderRequest req){
-		AjaxResponseBody response = new AjaxResponseBody();
-		try {
-			log.info("[START] addShipmentOrder");
-			// get loggedd User
-			Account account = getCurrentAccount();
-			OrdersShipment order = new OrdersShipment();
-			order.setOwnerId(account.getId());
-			Integer _eventId = req.getEventId();
-			if(_eventId != null){
-				Shipment shipment = shipmentDAO.findOne(_eventId);
-				if(shipment != null){
-					order.setPartnerId(req.getPartnerId());
-					order.setEventId(_eventId);
-					order.setOrderType(req.getOrderType());
-					order.setQuantity(req.getQuantity());
-					order.setUnit(req.getUnit());
-					order.setExpectedPrice(req.getExpectedPrice());
-					order.setVatFee(req.getVatFee());
-					order.setPorterFee(req.getPorterFee());
-					order.setShiftFee(req.getShiftFee());
-					order.setCreatedDate(new Date());
-//					order.setTransactionType(req.getTransactionType());
-					order.setDescription(req.getDescription());
-					
-					ordersShipmentDAO.save(order);
-					response.setCode(IConstant.RESP_CODE.SUCCESS);
-					response.setMsg(getText("order.add.success"));
-					// send email to sender
-					String urlOrderDetail = env.getProperty("url.order.shipment.detail") + order.getId();
-					emailService.createOrderShipmentNotifyEmail(urlOrderDetail, order, account.getUsername());
-					// send email to owner
-					Account owner = accountDAO.findOne(shipment.getOwnerId());
-					emailService.createOwnerOrderShipmentNotifyEmail(urlOrderDetail, order, owner.getUsername());
-					
-					return response;
-				}else{
-					// shipment is not exist
-					response.setCode(IConstant.RESP_CODE.FAIL);
-					response.setMsg(getText("shipment.exist.not"));
-					return response;
-				}
-			}else{
-				response.setCode(IConstant.RESP_CODE.FAIL);
-				response.setMsg(getText("shipment.exist.not"));
-				return response;
-			}
-		} catch (Exception e) {
-			response.setCode(IConstant.RESP_CODE.FAIL);
-			log.error("[EXCEPTION] addShipmentOrder");
+	public Map<String, Object> getShipmentById(@RequestParam(value="shipId") Integer shipId) throws JsonProcessingException {
+		log.info("[Start] getShipmentById");
+		Map<String, Object> model = new HashMap<String, Object>();
+		if(shipId == null){
+			model.put("shipment", null);
+			model.put("prevShipment", null);
+			model.put("nextShipment", null);
+			return model;
 		}
-		log.info("[END] addShipmentOrder");
-		return response;
-	}
-	
-	@RequestMapping("/addTruckingOrder")
-	@ResponseBody
-	public AjaxResponseBody addTruckingOrder(@RequestBody OrderRequest req){
-		AjaxResponseBody response = new AjaxResponseBody();
-		try {
-			log.info("[START] addTruckingOrder");
-			// get loggedd User
-			Account account = getCurrentAccount();
-			OrdersTrucking order = new OrdersTrucking();
-			order.setOwnerId(account.getId());
-			Integer _eventId = req.getEventId();
-			if(_eventId != null){
-				TruckInfoDetail truckInfo = truckInfoDAO.findOne(_eventId);
-				if(truckInfo != null){
-					order.setPartnerId(truckInfo.getTruck().getOwnerTruckId());
-					order.setEventId(_eventId);
-					order.setOrderType(req.getOrderType());
-					order.setQuantity(req.getQuantity());
-					order.setUnit(req.getUnit());
-					order.setExpectedPrice(req.getExpectedPrice());
-					order.setVatFee(req.getVatFee());
-					order.setPorterFee(req.getPorterFee());
-					order.setShiftFee(req.getShiftFee());
-					order.setDescription(req.getDescription());
-//					order.setTransactionType(req.getTransactionType());
-					order.setCreatedDate(new Date());
-					order.setTruckInfo(truckInfo);
-					
-					ordersTruckingDAO.save(order);
-					response.setCode(IConstant.RESP_CODE.SUCCESS);
-					response.setMsg(getText("order.add.success"));
-					// send email
-					String urlOrderDetail = env.getProperty("url.order.trucking.detail") + order.getId();
-					emailService.createOrderTruckingNotifyEmail(urlOrderDetail, order, account.getUsername());
-					// send email to owner
-					Account owner = accountDAO.findOne(truckInfo.getTruck().getOwnerTruckId());
-					emailService.createOwnerOrderTruckingNotifyEmail(urlOrderDetail, order, owner.getUsername());
-					
-					return response;
-				}else{
-					// shipment is not exist
-					response.setCode(IConstant.RESP_CODE.FAIL);
-					response.setMsg(getText("trucking.exist.not"));
-					return response;
-				}
-			}else{
-				response.setCode(IConstant.RESP_CODE.FAIL);
-				response.setMsg(getText("trucking.exist.not"));
-				return response;
-			}
-			
-		} catch (Exception e) {
-			response.setCode(IConstant.RESP_CODE.FAIL);
-			response.setMsg(getText("system.error"));
-			log.error("[EXCEPTION] addTruckingOrder", e);
-		}
-		log.info("[END] addTruckingOrder");
-		return response;
-	}
-	
-	@RequestMapping("/getOrderTruckingDetailByOrderId")
-	@ResponseBody
-	public Map<String, Object> getOrderTruckingDetailByOrderId(@RequestParam(value="orderId") Integer orderId) throws JsonProcessingException {
-		log.info("[Start] getOrderTruckingDetailByOrderId");
-		if(orderId == null)
-			return null;
-		log.info("orderId=" + orderId);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		OrdersTrucking order = ordersTruckingDAO.findOne(orderId);
-		map.put("order", order);
-		TruckInfoDetail truckInfo = null;
-		if(order != null){
-			truckInfo = truckInfoDAO.findOne(order.getEventId());
-			map.put("truckInfo", truckInfo);
-		}
-		log.info("[End] getOrderTruckingDetailByOrderId");
-		return map;
-	}
-	
-	@RequestMapping("/getOrderShipmentDetailByOrderId")
-	@ResponseBody
-	public Map<String, Object> getOrderShipmentDetailByOrderId(@RequestParam(value="orderId") Integer orderId) throws JsonProcessingException {
-		log.info("[Start] getOrderShipmentDetailByOrderId");
-		if(orderId == null)
-			return null;
-		log.info("orderId=" + orderId);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		OrdersShipment order = ordersShipmentDAO.findOne(orderId);
-		map.put("order", order);
 		Shipment shipment = null;
-		if(order != null){
-			shipment = shipmentDAO.findOne(order.getEventId());
-			map.put("shipment", shipment);
+		log.info("shipId=" + shipId);
+		shipment = shipmentDAO.findOne(shipId);
+		List<Object[]> prevNextShipmentId = shipmentDAO.getPrevNextShipmentId(shipId);
+		Integer prevId = null;
+		Integer nextId = null;
+		if(prevNextShipmentId != null && prevNextShipmentId.size() > 0){
+			prevId = (Integer) prevNextShipmentId.get(0)[0];
+			nextId = (Integer) prevNextShipmentId.get(0)[1];
 		}
-		log.info("[End] getOrderShipmentDetailByOrderId");
-		return map;
-	}
-	
-	@RequestMapping("/deleteOrderTrucking")
-	@ResponseBody
-	public AjaxResponseBody deleteOrderTrucking(@RequestBody Integer orderId) {
-		log.info("[Start] deleteOrderTrucking ");
-		AjaxResponseBody reponseBody = new AjaxResponseBody();
-		OrdersTrucking order = ordersTruckingDAO.findOne(orderId);
-		try {
-			if(order == null){
-				// order is not exist
-				reponseBody.setCode(IConstant.RESP_CODE.FAIL);
-				reponseBody.setMsg(getText("order.exits.not"));
-			}
-			// check permission
-			if(checkPermissionOrderTrucking(order)){
-				// to delete
-				ordersTruckingDAO.delete(orderId);
-				reponseBody.setCode(IConstant.RESP_CODE.SUCCESS);
-				reponseBody.setMsg(getText("delete.success"));
-			}else{
-				// account do not have permission
-				reponseBody.setCode(IConstant.RESP_CODE.FAIL);
-				reponseBody.setMsg(getText("403.error"));
-			}
 		
-		} catch (Exception e) {
-			log.error("", e);
-			reponseBody.setCode(IConstant.RESP_CODE.FAIL);
-			reponseBody.setMsg(getText("delete.fail"));
-		}
-		log.info("[End] deleteOrderTrucking ");
-		return reponseBody;
+		model.put("shipment", shipment);
+		model.put("prevShipment", prevId);
+		model.put("nextShipment", nextId);
+		
+		log.info("[End] getShipmentById");
+		return model;
 	}
 	
-	@RequestMapping("/deleteOrderShipment")
+	@RequestMapping("/getShipmentByOrderId")
 	@ResponseBody
-	public AjaxResponseBody deleteOrderShipment(@RequestBody Integer orderId) {
-		log.info("[Start] deleteOrderShipment ");
-		AjaxResponseBody reponseBody = new AjaxResponseBody();
-		OrdersShipment order = ordersShipmentDAO.findOne(orderId);
-		try {
-			if(order == null){
-				// order is not exist
-				reponseBody.setCode(IConstant.RESP_CODE.FAIL);
-				reponseBody.setMsg(getText("order.exits.not"));
-			}
-			// check permission
-			if(checkPermissionOrderShipment(order)){
-				// to delete
-				ordersShipmentDAO.delete(orderId);
-				reponseBody.setCode(IConstant.RESP_CODE.SUCCESS);
-				reponseBody.setMsg(getText("delete.success"));
-			}else{
-				// account do not have permission
-				reponseBody.setCode(IConstant.RESP_CODE.FAIL);
-				reponseBody.setMsg(getText("403.error"));
-			}
-			
-		} catch (Exception e) {
-			log.error("", e);
-			reponseBody.setCode(IConstant.RESP_CODE.FAIL);
-			reponseBody.setMsg(getText("delete.fail"));
-		}
-		log.info("[End] deleteOrderShipment ");
-		return reponseBody;
+	public Shipment getShipmentByOrderId(@RequestParam(value="orderId") Integer orderId) throws JsonProcessingException {
+		log.info("[Start] getShipmentByOrderId");
+		if(orderId == null)
+			return new Shipment();
+		log.info("orderId=" + orderId);
+//		OrdersTrucking order = orderDAO.findOne(orderId);
+		Shipment shipment = null;
+//		if(order != null){
+//			log.info("searching...");
+//			shipment = shipmentDAO.findOne(order.getEventId());
+//		}
+		log.info("[End] getShipmentByOrderId");
+		return shipment;
 	}
 	
-	public boolean checkPermissionOrderShipment(OrdersShipment order) {
-		boolean isValid = false;
+	@RequestMapping("/addShipmentPost")
+	@ResponseBody
+	public AjaxResponseBody addShipmentPost(@RequestBody SearchShipmentRequest requestData){
+		AjaxResponseBody response = new AjaxResponseBody();
 		try {
-			Account account = getCurrentAccount();
+			// get loggedd User
+			User account = getCurrentAccount();
+			// save shipment info detail
+			Shipment detail = new Shipment();
+			detail.setName(requestData.getName());
+			Integer nextId = getNextAutoIncreamentShipment();
+			detail.setCode(IConstant.EMAIL_PREFIX.SHIPMENT + (IConstant.CFG_VALUE.TRUCK_CODE + nextId));
+			detail.setFromDistrict(requestData.getFromDistrict());
+			detail.setToDistrict(requestData.getToDistrict());
+			detail.setGoodsTypeId(requestData.getGoodsTypeId());
+			detail.setPrice(requestData.getPrice());
+			detail.setDescription(requestData.getDescription());
+			detail.setDealTypeId(requestData.getDealType());
+			detail.setStatus(IConstant.STATUS.SHIPMENT_UNACTIVE);
 			
-			if(account == null) return false;
-			// check is role owner
-			if(order.getOwnerId().intValue() == account.getId()){
-				return true;
+			String startDate = requestData.getStartDate();
+			if(startDate != null && !startDate.isEmpty()){
+				startDate = requestData.getStartDate();
+				detail.setStartDate(sdf.parse(startDate));
 			}
-			// check is role admin
-			UserRole role = userRoleDAO.findByUser(account);
-    		if(role!=null && IConstant.ROLE.ROLE_ADMIN.equalsIgnoreCase(role.getRole())){
-    			return true;
-    		}
+			
+//			String postDate = requestData.getPostDate();
+//			if(postDate != null && !postDate.isEmpty()){
+//				detail.setPostDate(sdf.parse(postDate));
+//			}
+			detail.setPostDate(new Date());
+			// approve date
+			String expireDate = requestData.getExpiredDate();
+			if(expireDate != null && !expireDate.isEmpty()){
+				detail.setExpiredDate(sdf.parse(expireDate));
+				detail.setFinishDate(sdf.parse(expireDate));
+			}
+			detail.setAgency(requestData.getAgency());
+			// tracking_trip
+			detail.setCreatedDate(new Date());
+			detail.setWeight(requestData.getWeight());
+			detail.setFromDetailAddress(requestData.getFromDetailAddress());
+			detail.setToDetailAddress(requestData.getToDetailAddress());
+			detail.setDistance(requestData.getDistance());
+			detail.setWeightUnit(requestData.getWeightUnit());
+			detail.setPriceUnit(requestData.getPriceUnit());
+			
+			shipmentDAO.save(detail);
+			// send email
+			String urlOrderDetail = env.getProperty("url.shipment.detail") + detail.getId();
+			response.setCode(IConstant.RESP_CODE.SUCCESS);
+			response.setMsg(getText("shipment.add.success"));
+			return response;
 		} catch (Exception e) {
-			log.error("", e);
+			response.setCode(IConstant.RESP_CODE.FAIL);
+			response.setMsg(getText("shipment.add.fail"));
 		}
-		return isValid;
+		
+		return response;
 	}
 	
-	public boolean checkPermissionOrderTrucking(OrdersTrucking order) {
-		boolean isValid = false;
+	@RequestMapping("/getGoods")
+	@ResponseBody
+	@SuppressWarnings("unchecked")
+	public List<Shipment> getGoods() throws JsonProcessingException {
+		log.info("[Start] getGoods");
+		List<Shipment> list  = new ArrayList<Shipment>();
 		try {
-			Account account = getCurrentAccount();
+			User account = getCurrentAccount();
+			//check role
+			Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)
+					SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+			Iterator iterator = authorities.iterator();
+			boolean isAdmin = false;
+			while (iterator.hasNext()) {
+				SimpleGrantedAuthority authority = (SimpleGrantedAuthority)  iterator.next();
+				if(authority.getAuthority().equals(IConstant.ROLE.ROLE_ADMIN)) {
+					isAdmin = true;
+				} 
+			}
+			if(isAdmin) {
+				list = (List<Shipment>) shipmentDAO.findAll();
+			} else {
+				list = shipmentDAO.getGoodsByOwner(account.getId());
+			}
 			
-			if(account == null) return false;
-			// check is role owner
-			if(order.getOwnerId().intValue() == account.getId()){
-				return true;
-			}
-			// check is role admin
-			UserRole role = userRoleDAO.findByUser(account);
-			if(role!=null && IConstant.ROLE.ROLE_ADMIN.equalsIgnoreCase(role.getRole())){
-				return true;
-			}
 		} catch (Exception e) {
-			log.error("", e);
+			log.error("Can not get goods by account", e);
 		}
-		return isValid;
+		
+		log.info("[End] getListShipment");
+		return list;
 	}
 }

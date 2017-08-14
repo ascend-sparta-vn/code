@@ -3,15 +3,14 @@ package com.webtrucking.services;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.webtrucking.util.CacheUtil;
 
 @Component
 public class WebStartListener implements ServletContextListener {
-	static Logger log = LogManager.getLogger(WebStartListener.class);
+	static Logger log = Logger.getLogger(WebStartListener.class);
 	
 	@Override
     public void contextInitialized(ServletContextEvent event) {
