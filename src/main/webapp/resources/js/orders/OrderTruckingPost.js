@@ -284,7 +284,7 @@ OrderTruckingPost.prototype.initSelection = function(){
 	});
 	// add post data
 	$("#addPostBtn").click(function() {
-		var action = '/rest_order/addTruckingOrder';
+		var action = '/rest_product/addTruckingOrder';
 		bootbox.confirm({
 			message : jQuery.i18n.prop('order.cofirm.post'),
 			size: "small",

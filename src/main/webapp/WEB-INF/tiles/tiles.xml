@@ -6,7 +6,7 @@
 	<!-- Templates -->
 	<definition name="baseLayout" template="/WEB-INF/jsp/layout/base-layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />
+		<!--<put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />-->
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
 		<put-attribute name="left-profile-menu" value="" />
@@ -18,19 +18,6 @@
 
 	<definition name="contact-us" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/view/contact-us.jsp" />
-	</definition>
-
-	<definition name="list-trucking" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/trucking/list-trucking.jsp" />
-	</definition>
-
-	<definition name="list-trucking1" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/trucking/list-trucking1.jsp" />
-	</definition>
-
-
-	<definition name="trucking.post" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/trucking/trucking-post.jsp" />
 	</definition>
 
 	<definition name="list-user" extends="baseLayout">
@@ -69,26 +56,7 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/account/change-password.jsp" />
 	</definition>
 
-	<definition name="manage.goods" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/shipment/manage-goods.jsp" />
-	</definition>
-
-	<definition name="edit.goods" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/shipment/edit-goods.jsp" />
-	</definition>
-
-	<definition name="edit.goods.trucking" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/trucking/edit-goods-trucking.jsp" />
-	</definition>
-
-	<definition name="manage.goods.trucking" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/trucking/manage-goods-trucking.jsp" />
-	</definition>
-
 	<!-- TrungNQ -->
-	<definition name="trucking.detail" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/trucking/trucking-detail.jsp" />
-	</definition>
 	<definition name="member.list" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/member/member-list.jsp" />
 	</definition>
@@ -97,14 +65,17 @@
 	</definition>
 	<!-- TrungNQ -->
 
-	<definition name="shipment.list" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/shipment/list-shipment.jsp" />
+	<definition name="product.list" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/product/list-product.jsp" />
 	</definition>
-	<definition name="shipment.post" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/shipment/shipment-post.jsp" />
+	<definition name="product.post" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/product/product-post.jsp" />
 	</definition>
-	<definition name="shipment.detail" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/shipment/shipment-detail.jsp" />
+	<definition name="product.detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/product/product-detail.jsp" />
+	</definition>
+	<definition name="product.checkout" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/product/product-checkout.jsp" />
 	</definition>
 
 	<!-- ORDER  -->
@@ -134,10 +105,6 @@
 
 	<definition name="admin.manage.message" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/manage-message.jsp" />
-	</definition>
-
-	<definition name="listview" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/listview.jsp" />
 	</definition>
 
 	<definition name="about-us" extends="baseLayout">
