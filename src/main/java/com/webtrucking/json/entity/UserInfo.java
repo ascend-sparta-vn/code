@@ -1,15 +1,5 @@
 package com.webtrucking.json.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.webtrucking.entity.Account;
-import com.webtrucking.entity.UserRole;
-import com.webtrucking.util.DateUtils;
-import com.webtrucking.util.IConstant;
-
 public class UserInfo {
 	
 	private Integer id;
@@ -78,24 +68,6 @@ public class UserInfo {
 		super();
 	}
 	
-	public UserInfo(Account account) {
-		this.id = account.getId();
-		this.username = account.getUsername();
-		this.password = account.getPassword();
-		if(account.getStatus() == IConstant.ACCOUNT.ACTIVE) {
-			this.enabled = true;
-		} else {
-			this.enabled = false;
-		}
-		this.createdDate = DateUtils.getDateStringInformat(account.getCreatedDate(), DateUtils.ddMMyyyyHHmmss_FULL_SLASH);
-		this.lastSignInDate = DateUtils.getDateStringInformat(account.getLastSignInDate(), DateUtils.ddMMyyyyHHmmss_FULL_SLASH);
-		List<UserRole> listR = new ArrayList<UserRole>(account.getUserRole());
-		String a = "";
-		for(UserRole role : listR) {
-			a += role.getRole() + ",";
-		}
-		this.listRole = StringUtils.substringBeforeLast(a, ",");
-	}
 	public Integer getId() {
 		return id;
 	}

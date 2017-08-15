@@ -1,17 +1,7 @@
 package com.webtrucking.entity;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "shipment")
@@ -25,17 +15,8 @@ public class Shipment {
 	@Column(name="owner_id")
 	private Integer ownerId;
 	
-	@ManyToOne
-	@JoinColumn(name = "owner_id", nullable = true, insertable=false, updatable=false)
-	@JsonIgnore
-	private Account owner;
-	
 	@Column(name="deal_type_id")
 	private Integer dealTypeId;
-	
-	@ManyToOne
-	@JoinColumn(name = "deal_type_id", nullable = true, insertable=false, updatable=false)
-	private DealType dealType;
 	
 	@Column(name = "name", nullable = false, length = 255)
 	private String name;
@@ -45,11 +26,7 @@ public class Shipment {
 	
 	@Column(name="goods_type_id")
 	private Integer goodsTypeId;
-	
-	@ManyToOne
-	@JoinColumn(name = "goods_type_id", nullable = true, insertable=false, updatable=false)
-	private GoodsType goodsType;
-	
+
 	@Column(name="from_district")
 	private Integer fromDistrict;
 	
@@ -112,15 +89,12 @@ public class Shipment {
 	@Column(name="status")
 	private Integer status;
 	
-	public Shipment(Integer id, Account owner, DealType dealType, String name, GoodsType goodsType, String fromAddress,
-			String toAddress, Date startDate, Date finishDate, Double distance, String description, Double weight,
-			Integer price, String agency, Date postDate, Date approveDate, Date expiredDate) {
+	public Shipment(Integer id, String name, String fromAddress,
+                    String toAddress, Date startDate, Date finishDate, Double distance, String description, Double weight,
+                    Integer price, String agency, Date postDate, Date approveDate, Date expiredDate) {
 		super();
 		this.id = id;
-		this.owner = owner;
-		this.dealType = dealType;
 		this.name = name;
-		this.goodsType = goodsType;
 		this.startDate = startDate;
 		this.finishDate = finishDate;
 		this.distance = distance;
@@ -144,36 +118,12 @@ public class Shipment {
 		this.id = id;
 	}
 
-	public Account getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Account owner) {
-		this.owner = owner;
-	}
-
-	public DealType getDealType() {
-		return dealType;
-	}
-
-	public void setDealType(DealType dealType) {
-		this.dealType = dealType;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public GoodsType getGoodsType() {
-		return goodsType;
-	}
-
-	public void setGoodsType(GoodsType goodsType) {
-		this.goodsType = goodsType;
 	}
 
 	public Date getStartDate() {

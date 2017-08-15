@@ -54,14 +54,10 @@ public interface ShipmentDAO extends CrudRepository<Shipment, Integer>{
 	
 	
 	@Query(value="SELECT a.* FROM shipment a"
-			+ " WHERE status = 1 and a.owner_id = :ownerId"
+			+ " WHERE a.owner_id = :ownerId"
 			, nativeQuery=true)
 	List<Shipment> getGoodsByOwner(
 			@Param("ownerId") Integer ownerId);
-
-	@Query(value="SELECT count(*) FROM shipment WHERE STATUS = 1 AND goods_type_id = :goodsTypeId"
-			, nativeQuery=true)
-	Integer countByGoodsTypeId(@Param("goodsTypeId") Integer goodsTypeId);
 	
 	@Query(value="SELECT (SELECT id FROM shipment WHERE id < :shipmentId and status =1 ORDER BY id DESC LIMIT 1) prevId, "
 			+ "(SELECT id FROM shipment WHERE id > :shipmentId and status =1 ORDER BY id ASC LIMIT 1) nextId FROM shipment"
