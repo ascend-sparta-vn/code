@@ -164,7 +164,7 @@ OrderShipmentPost.prototype.initSelection = function(){
 	
 	// add post data
 	$("#addPostBtn").click(function() {
-		var action = '/rest_order/addShipmentOrder';
+		var action = '/rest_product/addShipmentOrder';
 		bootbox.confirm({
 			message : jQuery.i18n.prop('order.cofirm.post'),
 			size: "small",

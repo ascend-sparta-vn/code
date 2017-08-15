@@ -51,7 +51,7 @@ public class OrderController extends BaseController{
 		} else {
 			model.put("size", 10);
 		}
-		return "shipment.list";
+		return "product.list";
 	}
 
 	@RequestMapping("/post")
