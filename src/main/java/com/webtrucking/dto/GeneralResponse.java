@@ -7,18 +7,29 @@ import java.io.Serializable;
 public class GeneralResponse<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @JsonProperty("status")
-    private ResponseStatus status;
+    @JsonProperty("status_code")
+    private String statusCode;
+
+    @JsonProperty("status_message")
+    private String statusMessage;
 
     @JsonProperty("data")
     private T data;
 
-    public ResponseStatus getStatus() {
-        return status;
+    public String getStatusCode() {
+        return statusCode;
     }
 
-    public void setStatus(ResponseStatus status) {
-        this.status = status;
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
     }
 
     public T getData() {
@@ -32,7 +43,8 @@ public class GeneralResponse<T> implements Serializable {
     @Override
     public String toString() {
         return "GeneralResponse{" +
-                "status=" + status +
+                "statusCode=" + statusCode +
+                "statusMessage=" + statusMessage +
                 ", data=" + data +
                 '}';
     }

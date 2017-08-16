@@ -1,7 +1,7 @@
 package com.webtrucking.controller.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.webtrucking.dao.userDAO;
+import com.webtrucking.dao.UserDAO;
 import com.webtrucking.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class MemberRestController {
 	static Logger log = Logger.getLogger(MemberRestController.class);
 	
 	@Autowired
-	private userDAO userDAO;
+	private UserDAO userDAO;
 
 	@RequestMapping("/check-account-exist")
 	@ResponseBody
