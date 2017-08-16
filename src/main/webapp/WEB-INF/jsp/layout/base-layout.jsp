@@ -40,6 +40,8 @@
 	<link rel="stylesheet" href="/resources/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/plugins/parallax-slider/css/parallax-slider.css">
 	<link rel="stylesheet" href="/resources/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+	<link rel="stylesheet" href="/resources/js/plugins/masterslider/style/masterslider.css">
+	<link rel='stylesheet' href="/resources/js/plugins/masterslider/skins/default/style.css">
 	
 	
 	<link rel="stylesheet" href="/resources/plugins/datatable/new/dataTables.bootstrap.css">
@@ -103,6 +105,9 @@
 	<script type="text/javascript" src="/resources/js/plugins/owl-carousel.js"></script>
 	<script type="text/javascript" src="/resources/js/plugins/style-switcher.js"></script>
 	<script type="text/javascript" src="/resources/js/plugins/parallax-slider.js"></script>
+	<!-- Master Slider -->
+	<script type="text/javascript" src="/resources/js/plugins/masterslider/masterslider.js"></script>
+	<script type="text/javascript" src="/resources/js/plugins/masterslider/jquery.easing.min.js"></script>
 	
 	<script type="text/javascript" src="/resources/plugins/datatable/new/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="/resources/plugins/datatable/new/dataTables.bootstrap.min.js"></script>

@@ -22,7 +22,7 @@ OrderShipmentManager.prototype.init = function(){
 OrderShipmentManager.prototype.initDataTable = function(){
 	var self = this;
 	var dataReq = self.getPostSearchData();
-	var url = '/rest_order/getListOrderShipment';
+	var url = '/rest_product/getListOrderShipment';
 	var table = $("#orderShipmentTable").dataTable();
 	table.fnDestroy();
 	var t = $('#orderShipmentTable').DataTable({
@@ -178,7 +178,7 @@ OrderShipmentManager.prototype.deleteOrderShipment = function(id) {
 	        	$.ajax({
 	        		type : "POST",
 	        		contentType : "application/json",
-	        		url : "/rest_order/deleteOrderShipment",
+	        		url : "/rest_oprodu/deleteOrderShipment",
 	        		data : JSON.stringify(id),
 	        		dataType : 'json',
 	        		//timeout : 30000,

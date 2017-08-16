@@ -23,7 +23,7 @@ OrderTruckingManager.prototype.init = function(){
 OrderTruckingManager.prototype.initDataTable = function(){
 	var self = this;
 	var dataReq = self.getPostSearchData();
-	var url = '/rest_order/getListOrderTrucking';
+	var url = '/rest_product/getListOrderTrucking';
 	var table = $("#orderTruckingTable").dataTable();
 	table.fnDestroy();
 	var t = $('#orderTruckingTable').DataTable({
@@ -160,7 +160,7 @@ OrderTruckingManager.prototype.deleteOrderTrucking = function(id) {
 	        	$.ajax({
 	        		type : "POST",
 	        		contentType : "application/json",
-	        		url : "/rest_order/deleteOrderTrucking",
+	        		url : "/rest_product/deleteOrderTrucking",
 	        		data : JSON.stringify(id),
 	        		dataType : 'json',
 	        		//timeout : 30000,

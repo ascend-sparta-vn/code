@@ -59,6 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		/*product manager*/
 		http.authorizeRequests().antMatchers("/product/*").permitAll();
+		http.authorizeRequests().antMatchers("/rest_product/*").permitAll();
 
 		// Khi ngư�?i dùng đã login, với vai trò XX.
 		// Nhưng truy cập vào trang yêu cầu vai trò YY,

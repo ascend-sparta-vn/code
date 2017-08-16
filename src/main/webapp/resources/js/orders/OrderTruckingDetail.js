@@ -231,7 +231,7 @@ OrderTruckingDetail.prototype.initDataGrid = function(orderId){
 	self.clearTableData();
 	// get data truck detail
 	if(orderId == null || orderId == '') return;
-	var url = "/rest_order/getOrderTruckingDetailByOrderId?orderId=" + orderId;
+	var url = "/rest_product/getOrderTruckingDetailByOrderId?orderId=" + orderId;
 	$.ajax({
 		type : "GET",
 		url : url,

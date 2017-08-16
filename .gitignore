@@ -4,4 +4,4 @@
 log
 README.md
 *.log
-target
+target/

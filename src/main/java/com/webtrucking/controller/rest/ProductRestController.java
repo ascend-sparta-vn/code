@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
-@RequestMapping("/rest_order")
+@RequestMapping("/rest_product")
 public class ProductRestController extends BaseController{
 	static Logger log = Logger.getLogger(ProductRestController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
