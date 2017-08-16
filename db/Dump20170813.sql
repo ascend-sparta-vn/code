@@ -401,6 +401,29 @@ INSERT INTO `user` VALUES (1,'admin','admin@onmart.com','123456','19008686',NULL
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
+/*
+-- Query: SELECT * FROM trucking.api_configuration
+-- Date: 2017-08-16 15:17
+*/
+CREATE TABLE `api_configuration` (
+  `api_id` int(11) NOT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  `url` varchar(200) DEFAULT NULL,
+  `request` varchar(1000) DEFAULT NULL,
+  `response` varchar(1000) DEFAULT NULL,
+  `method` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`api_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT ignore INTO `api_configuration` (`api_id`,`name`,`url`,`request`,`response`,`method`) VALUES (1,'1.1.Call get OTP register API\n','http://localhost:5678/hackathon/v1/wallet/register/get-otp/976686535',NULL,'{ \"status_code\": \"200\", \"status_message\": \"success\", \"data\": { \"mobile_number\": \"${mobile_number}\", \"otp_reference\": \"${otp_reference}\" } }\n','GET');
+INSERT ignore INTO `api_configuration` (`api_id`,`name`,`url`,`request`,`response`,`method`) VALUES (2,'1.2.Call confirm OTP register API\n','http://localhost:5678/hackathon/v1/wallet/register/confirm-otp','{ \"otp_code\" : \"#otp_code#\", \"otp_reference\" : \"#otp_reference#\", \"mobile_number\" : \"#mobile_number#\" }\n','{ \"status_code\": \"200\", \"status_message\": \"success\", \"data\": { \"token\": \"#token#\", \"otp_result\": #otp_result# } } \n','POST');
+INSERT ignore INTO `api_configuration` (`api_id`,`name`,`url`,`request`,`response`,`method`) VALUES (3,'1.3.Call create profile API\n','http://localhost:5678/hackathon/v1/wallet/register/create-profile','{ \"thai_id\": \"#thai_id#\", \"first_name\": \"#first_name#\", \"last_name\": \"#last_name#\", \"postal_code\": \"#postal_code#\", \"mobile_number\": \"#mobile_number#\", \"device_os\": \"#device_os#\", \"password\": \"#password#\", \"email\": \"#email#\", \"address\": \"#address#\", \"occupation\": \"#occupation#\" }\n','{ \"status_code\": \"200\", \"status_message\": \"success\", \"data\": { \"mobile_number\": \"0050000002\", \"email\": \"ascender@gmail.com\", \"thai_id\": \"3231744035655\", \"password\": \"\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"address\": \"89 AIA Dindang, Bangkok\", \"postal_code\": \"10400\", \"occupation\": \"แม่บ้าน\", \"channel_id\": 46, \"error_message\": null } }\n','POST');
+INSERT ignore INTO `api_configuration` (`api_id`,`name`,`url`,`request`,`response`,`method`) VALUES (4,'2.1.Sign-In Wallet account API\n','http://localhost:5678/hackathon/v1/wallet/sign-in','{ \"username\":\"#username#\", \"password\":\"#password#\" }\n','{ \"status_code\":\"200\", \"status_message\":\"success\", \"data\":{ \"occupation\":\"occupation\", \"birthdate\":\"19910920\", \"tmn_id\":\"tmn.99999999999\", \"mobile_number\":\"0999999999\", \"profile_image_status\":\"false\", \"current_balance\":\"999999.99\", \"lastname_en\":\"Skywalker\", \"has_password\":true, \"access_token\":\"ef2d69fe-49c7-4b30-9a1e-d9b5ab0a6b41\", \"title\":\"นาย\", \"thai_id\":\"9999999999999\", \"profile_type\":\"consumer\", \"firstname_en\":\"Anakin\", \"address_list\":[ { \"address\":\"999 ประเวศ ประเวศ\", \"province\":\"กทม\", \"postal_code\":\"10200\", \"address_id\":137592 }, { \"address\":\"998\", \"province\":\"กรุงเทพมหานคร\", \"postal_code\":\"10310\", \"address_id\":139680 } ], \"image_url\":\"https://s3-ap-southeast-1.amazonaws.com/profile-images-alpha/tmn.10000001502_0764636f833343859fe6e1086022455b.jpg\", \"fullname\":\"Anakin Skywalker\", \"force_kyc\":false, \"email\":\"anakin.sky@ascendcorp.com\", \"kyc_verify_status\":true, \"has_pin\":true } }\n','POST');
+INSERT ignore INTO `api_configuration` (`api_id`,`name`,`url`,`request`,`response`,`method`) VALUES (5,'2.2. Sign-Out Wallet account API\n','http://localhost:5678/hackathon/v1/wallet/sign-out',NULL,'{ \"status_code\": \"200\", \"status_message\": \"success\", \"data\": { \"message\": \"Sign out is successful\" } }\n','POST');
+INSERT ignore INTO `api_configuration` (`api_id`,`name`,`url`,`request`,`response`,`method`) VALUES (6,'3.1. Get user profile\n','http://localhost:5678/hackathon/v1/wallet/user/profile?device_os=%s&app_version=%s',NULL,'{ \"status_code\": \"200\", \"status_message\": \"success\", \"data\": { \"occupation\": \"พนักงานเอกชน\", \"birthdate\": \"19820118\", \"tmn_id\": \"tmn.10000001502\", \"mobile_number\": \"0909038288\", \"profile_image_status\": \"false\", \"current_balance\": \"10059.5\", \"lastname_en\": \"Terakamjay\", \"has_password\": true, \"access_token\": null, \"title\": \"นาย\", \"thai_id\": \"3209900453291\", \"profile_type\": \"consumer\", \"firstname_en\": \"Norawich\", \"address_list\": [ { \"address\": \"address ดินแดง ดินแดง\", \"province\": \"กรุงเทพมหานคร\", \"postal_code\": \"10400\", \"address_id\": 137592 }, { \"address\": \"18\", \"province\": \"กรุงเทพมหานคร\", \"postal_code\": \"10310\", \"address_id\": 139680 } ], \"image_url\": \"https://s3-ap-southeast-1.amazonaws.com/profile-images-alpha/tmn.10000001502_0764636f833343859fe6e1086022455b.jpg\", \"fullname\": \"นรวิช ธีระกำจาย\", \"force_kyc\": false, \"email\": \"user1.test.v1@gmail.com\", \"kyc_verify_status\": true, \"has_pin\": true } }\n','GET');
+INSERT ignore INTO `api_configuration` (`api_id`,`name`,`url`,`request`,`response`,`method`) VALUES (7,'3.2. Get user balance\n','http://localhost:5678/hackathon/v1/wallet/user/balance?device_os=ios&app_version=2.0',NULL,'{ \"status_code\": \"200\", \"status_message\": \"success\", \"data\": { \"current_balance\": \"10059.50\" } }\n','GET');
+
 --
 -- Table structure for table `wallet`
 --
