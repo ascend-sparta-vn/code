@@ -126,7 +126,7 @@
                                     <dd>
                                         <section>
                                             <label class="input">
-                                                <i class="icon-append fa fa-envelope"></i>
+                                                <i class="icon-append fa fa-lock"></i>
                                                 <input type="email" placeholder="Email address" name="email">
                                                 <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
                                             </label>
@@ -226,83 +226,55 @@
                                 </div>
                                 
                                 <div id="payment_by_ascend_wallet">
-                                    <div class="row margin-bottom-20">
-                                        <div class="col-sm-6 sm-margin-bottom-20">
-                                            <div class="profile-blog">
-                                                <img class="rounded-x" src="assets/img/testimonials/img1.jpg" alt="">
-                                                <div class="name-location">
-                                                    <strong>Mikel Andrews</strong>
-                                                    <span><i class="fa fa-map-marker"></i><a href="#">California,</a> <a href="#">US</a></span>
-                                                </div>
-                                                <div class="clearfix margin-bottom-20"></div>
-                                                <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                                                <hr>
-                                                <ul class="list-inline share-list">
-                                                    <li><i class="fa fa-bell"></i><a href="#">12 Notifications</a></li>
-                                                    <li><i class="fa fa-group"></i><a href="#">54 Followers</a></li>
-                                                    <li><i class="fa fa-share"></i><a href="#">Share</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <div class="profile-blog">
-                                                <img class="rounded-x" src="assets/img/testimonials/user.jpg" alt="">
-                                                <div class="name-location">
-                                                    <strong>Natasha Kolnikova</strong>
-                                                    <span><i class="fa fa-map-marker"></i><a href="#">Moscow,</a> <a href="#">Russia</a></span>
-                                                </div>
-                                                <div class="clearfix margin-bottom-20"></div>
-                                                <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                                                <hr>
-                                                <ul class="list-inline share-list">
-                                                    <li><i class="fa fa-bell"></i><a href="#">37 Notifications</a></li>
-                                                    <li><i class="fa fa-group"></i><a href="#">46 Followers</a></li>
-                                                    <li><i class="fa fa-share"></i><a href="#">Share</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div><!--/end row-->
+                                   <div id="wallet_list"></div>
                                     
-                                    <div class="row margin-bottom-20">
-                                        <div class="col-sm-6 sm-margin-bottom-20">
-                                            <div class="profile-blog">
-                                                <img class="rounded-x" src="assets/img/testimonials/img2.jpg" alt="">
-                                                <div class="name-location">
-                                                    <strong>Sasha Elli</strong>
-                                                    <span><i class="fa fa-map-marker"></i><a href="#">California,</a> <a href="#">US</a></span>
+                                    <button type="button" class="btn-u btn-u-default btn-block text-center" data-toggle="modal" data-target="#responsive">Create new wallet</button>
+                                    <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" style="margin: 120px auto;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel4">Wallet information</h4>
                                                 </div>
-                                                <div class="clearfix margin-bottom-20"></div>
-                                                <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                                                <hr>
-                                                <ul class="list-inline share-list">
-                                                    <li><i class="fa fa-bell"></i><a href="#">3 Notifications</a></li>
-                                                    <li><i class="fa fa-group"></i><a href="#">25 Followers</a></li>
-                                                    <li><i class="fa fa-share"></i><a href="#">Share</a></li>
-                                                </ul>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p><input class="form-control wl_firstname" placeholder="First name" type="text" /></p>
+                                                            <p><input class="form-control wl_email" placeholder="Email" type="text" /></p>
+                                                            <p><input class="form-control wl_occupation" placeholder="Occupation" type="text" /></p>
+                                                            <p><input class="form-control wl_password" placeholder="Password" type="password" /></p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p><input class="form-control wl_lastname" placeholder="Last name" type="text" /></p>
+                                                            <p><input class="form-control wl_mobile" placeholder="Mobile number" type="text" /></p>
+                                                            <p><input class="form-control wl_postalcode" placeholder="Postal code" type="text" /></p>
+                                                            <p><input class="form-control wl_citizenid" placeholder="Citizen id" type="text" /></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                       <div class="col-md-12">
+                                                           <p><input class="form-control wl_address" placeholder="Address" type="text" /></p>
+                                                       </div>
+                                                    </div>
+                                                    
+                                                    <div id="modal_otp_zone">
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="control-label" for="otp">Email</label>
+                                                                <p><input class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
+                                                            </div>
+                                                        </div>    
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn-u btn-u-primary">Save changes</button>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-sm-6">
-                                            <div class="profile-blog">
-                                                <img class="rounded-x" src="assets/img/testimonials/img3.jpg" alt="">
-                                                <div class="name-location">
-                                                    <strong>Frank Heller</strong>
-                                                    <span><i class="fa fa-map-marker"></i><a href="#">Moscow,</a> <a href="#">Russia</a></span>
-                                                </div>
-                                                <div class="clearfix margin-bottom-20"></div>
-                                                <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                                                <hr>
-                                                <ul class="list-inline share-list">
-                                                    <li><i class="fa fa-bell"></i><a href="#">7 Notifications</a></li>
-                                                    <li><i class="fa fa-group"></i><a href="#">77 Followers</a></li>
-                                                    <li><i class="fa fa-share"></i><a href="#">Share</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div><!--/end row-->
-                                    
-                                    <button type="button" class="btn-u btn-u-default btn-block text-center">Load More</button>
+                                    </div>
                                 </div>
                                 <!--End Checkout-Form-->
                             </form>
