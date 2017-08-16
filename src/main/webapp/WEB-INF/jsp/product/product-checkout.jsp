@@ -3,6 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<link rel='stylesheet' href="/resources/js/plugins/utils/jquery-step/custom-jquery.steps.css">
+
 <div class="breadcrumbs">
 	<div class="container">
 		<h1 class="pull-left"><spring:message code="shipment.detail"/></h1>
@@ -422,6 +424,8 @@
 <script src="/resources/js/plugins/utils/slider/master-slider-showcase2.js"></script>
 <script src="/resources/js/plugins/utils/slider/style-switcher.js"></script>
 <script src="/resources/js/plugins/utils/slider/owl-carousel.js"></script>
+<script src="/resources/js/plugins/utils/jquery-step/jquery.steps.js"></script>
+<script src="/resources/js/plugins/utils/jquery-step/stepWizard.js"></script>
 <script>
     var manager = new ProductDetail();
     $(document).ready(function(){
