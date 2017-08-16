@@ -1,15 +1,13 @@
 function AccountManager() {
 	
 }
+
 AccountManager.prototype.init = function(){
 	var self = this;
 	self.initButtonClick();
 	self.initViewMode();
-	
-	//check message
-	if ($("#result").val() != '') {
-		showMessage($("#resultMessage").val(), $("#result").val());
-	}
+
+    self.displayPaymentMethod();
 }
 
 /*
@@ -100,8 +98,25 @@ AccountManager.prototype.initButtonClick = function(){
 	$("#btn-comeback").click(function() {
 		window.history.back();
 	});
-	
+
+    // Kai added
+    $('.payment_method').change(() => {
+        this.displayPaymentMethod();
+    });
 }
+
+AccountManager.prototype.displayPaymentMethod = function(){
+    if ($('.ascend_wallet').is(':checked'))
+        $('#payment_by_visa_master').hide();
+    else
+        $('#payment_by_visa_master').show();
+    
+    if ($('.visa_card').is(':checked'))
+        $('#payment_by_ascend_wallet').hide();
+    else
+        $('#payment_by_ascend_wallet').show();
+}
+
 AccountManager.prototype.refreshForm = function(){
 	$("input").val('');
 }
