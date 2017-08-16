@@ -64,6 +64,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Product</th>
+                                                    <th>Unit</th>
                                                     <th>Price</th>
                                                     <th>Qty</th>
                                                     <th>Total</th>
@@ -185,10 +186,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-sm-4 no-col-space control-label">CSC</label>
+                                                                    <label class="col-sm-4 no-col-space control-label">CVC</label>
                                                                     <div class="col-sm-8 input-small-field">
                                                                         <input type="text" name="number" placeholder="" class="form-control required">
-                                                                        <a href="#">What's this?</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -261,8 +261,7 @@
                     <!--/end container-->
                 </div>
                 <!--=== End Shop Suvbscribe ===-->
-
-
+                
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD18tbGrjpouvZTjOXNtXxCdJdFwUI09iY&callback=initialize"></script>
                 <script src="/resources/js/product/ProductCheckout.js"></script>
                 <script src="/resources/js/plugins/utils/slider/master-slider-showcase2.js"></script>
@@ -282,5 +281,4 @@
                         StepWizard.initStepWizard();
                         MasterSliderShowcase2.initMasterSliderShowcase2();
                     });
-
                 </script>

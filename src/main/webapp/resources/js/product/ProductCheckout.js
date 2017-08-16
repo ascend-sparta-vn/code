@@ -58,20 +58,8 @@ function ProductList() {
     this.totalAmount = 0;
 }
 
-//init
 ProductList.prototype.init = function () {
     var self = this;
-
-    $("li .active").removeClass("active");
-    $("#menu4").addClass("active");
-
-
-    // get warningid from link
-    // var param = getSearchParameters();
-    // if(param != null & param != ''){
-    // 	self.currentParamId = param;
-    // 	self.initDataGrid(param);
-    // }
 
     this.displayProducts();
 }
@@ -127,16 +115,23 @@ ProductList.prototype.calculateTotalAmount = function () {
     return totalAmount;
 }
 
-ProductList.prototype.displayTotalAmount = function() {
+ProductList.prototype.displayTotalAmount = function () {
     this.totalAmount = this.subTotalAmount + this.shipmentFee - this.couponValue;
-    
+
     $('.sub_total_cost').html(`${VND} ${this.subTotalAmount}`);
     $('.shipment_cost').html(`${VND} ${this.shipmentFee}`);
     $('.total_cost').html(`${VND} ${this.totalAmount}`);
 }
 
+ProductList.prototype.removeProduct = function(productId){
+    _.remove(this.listProduct, (item) => {
+        return item.product_id == productId
+    });
+    
+    this.displayProducts();
+}
+
 ProductList.prototype.displayProducts = function () {
-    // console.log("Im displaying the seleted products" + productId);
     var container = $('.product-list-table');
     container.empty();
 
@@ -150,21 +145,26 @@ ProductList.prototype.displayProducts = function () {
 										<span>${product.product_provider}</span>
 									</div>
 								</td>
+                                <td>${product.unit}</td>
 								<td>${VND} ${product.price}</td>
 								<td>
 									<button type='button' class="quantity-button" name='subtract' onclick='javascript: productList.subtractQuantity(${product.product_id});'>-</button>
 									<input type='text' class="quantity-field product_${product.product_id}" name='qty1' value="${product.quantity}" id='qty1'/>
 									<button type='button' class="quantity-button" name='add' onclick='javascript: productList.addQuantity(${product.product_id});'>+</button>
 								</td>
-								<td class="shop-red total product_${product.product_id}">${VND} ${product.price * product.quantity}</td>
+								<td class="shop-red total product_${product.product_id}">
+                                    ${VND} ${product.price * product.quantity}
+                                </td>
 								<td>
-									<button type="button" class="close"><span>&times;</span><span class="sr-only">Close</span></button>
+								    <button type="button" class="close" onclick='javascript: productList.removeProduct(${product.product_id});'>
+                                        <span>&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
 								</td>
 							</tr>`;
         container.append(productItem);
     }
 
     this.subTotalAmount = this.calculateTotalAmount();
-    
     this.displayTotalAmount();
 }
