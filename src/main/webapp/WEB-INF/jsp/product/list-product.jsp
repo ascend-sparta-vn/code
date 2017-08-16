@@ -192,34 +192,37 @@
 			</div><!--/end result category-->
 
 			<div class="filter-results">
+
 				<div class="row illustration-v2 margin-bottom-30">
-					<div class="col-md-4">
-						<div class="product-img product-img-brd">
-							<a href="/product/detail/1"><img class="full-width img-responsive" src="/resources/img/shop/05.jpg" alt=""></a>
-							<a class="product-review" href="/product/detail/1">Quick review</a>
-							<a class="add-to-cart" href="/product/checkout/add/1"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-						</div>
-						<div class="product-description product-description-brd margin-bottom-30">
-							<div class="overflow-h margin-bottom-5">
-								<div class="pull-left">
-									<h4 class="title-price"><a href="#">Double-breasted</a></h4>
-									<span class="gender text-uppercase">Men</span>
-									<span class="gender">Suits - Blazers</span>
-								</div>
-								<div class="product-price">
-									<span class="title-price">$95.00</span>
-								</div>
+					<c:forEach items="${listProduct}" var="item">
+						<div class="col-md-4">
+							<div class="product-img product-img-brd">
+								<a href="/product/detail/${item.id}"><img class="full-width img-responsive" src="/resources/img/shop/05.jpg" alt=""></a>
+								<a class="product-review" href="/product/detail/${item.id}">Quick review</a>
+								<a class="add-to-cart" onclick="addToCart(${item.id})" style="cursor: pointer"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 							</div>
-							<ul class="list-inline product-ratings">
-								<li><i class="rating-selected fa fa-star"></i></li>
-								<li><i class="rating-selected fa fa-star"></i></li>
-								<li><i class="rating-selected fa fa-star"></i></li>
-								<li><i class="rating fa fa-star"></i></li>
-								<li><i class="rating fa fa-star"></i></li>
-								<li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-							</ul>
+							<div class="product-description product-description-brd margin-bottom-30">
+								<div class="overflow-h margin-bottom-5">
+									<div class="pull-left">
+										<h4 class="title-price"><a href="#">${item.name}</a></h4>
+										<span class="gender text-uppercase">Men</span>
+										<span class="gender">Suits - Blazers</span>
+									</div>
+									<div class="product-price">
+										<span class="title-price">${item.price}</span>
+									</div>
+								</div>
+								<ul class="list-inline product-ratings">
+									<li><i class="rating-selected fa fa-star"></i></li>
+									<li><i class="rating-selected fa fa-star"></i></li>
+									<li><i class="rating-selected fa fa-star"></i></li>
+									<li><i class="rating fa fa-star"></i></li>
+									<li><i class="rating fa fa-star"></i></li>
+									<li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
+								</ul>
+							</div>
 						</div>
-					</div>
+					</c:forEach>
 				</div>
 
 			</div><!--/end filter resilts-->
@@ -227,8 +230,8 @@
 			<div class="text-center">
 				<ul class="pagination pagination-v2">
 					<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-					<li><a href="#">1</a></li>
-					<li class="active"><a href="#">2</a></li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
 					<li><a href="#">3</a></li>
 					<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 				</ul>
@@ -245,11 +248,7 @@
 <script src="/resources/js/product/ProductDetail.js"></script>
 <script type="text/javascript" src="/resources/js/locales/bootstrap-datepicker.vi.js"  charset="UTF-8"></script>
 <script>
-    var shipmentManager = new ShipmentManager();
-
-    <c:forEach items="${listProvince}" var="province">
-    shipmentManager.initProvince('${province.id}', '${province.name}');
-    </c:forEach>
+    var manager = new ProductManager();
 
     $(document).ready(function() {
         $('.datepicker').datepicker({
@@ -257,13 +256,13 @@
             language : 'vi'
         });
         getResource(function(){
-            shipmentManager.init();
+            manager.init();
         });
     });
-    function filterType(goodsTypeId, type) {
-        shipmentManager.filter(goodsTypeId, type);
-        $("html, body").animate({ scrollTop: 200 }, "slow");
-    }
+
+    function addToCart(productId){
+        manager.addToCart(productId);
+	}
 </script>
 
 <style>

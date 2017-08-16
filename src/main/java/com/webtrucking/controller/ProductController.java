@@ -44,27 +44,28 @@ public class ProductController extends BaseController{
 		return "product.detail";
 	}
 
-	@RequestMapping("/checkout/{orderId}")
-	public String checkout(Map<String, Object> model, @PathVariable(value = "orderId") Integer orderId) {
-
-
-		return "product.checkout";
-	}
-	@RequestMapping(value = "/checkout/add/{productId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cart/add/{productId}", method = RequestMethod.GET)
+	@ResponseBody
 	public void addCheckout(@PathVariable(value = "productId") Integer productId) {
 
 		// get current userId login
 		String username = getCurrentUsername();
 
-		// put listProductId to webapp cache
+		// put listProductId to web-app cache
 		if(productId != null){
 			List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
-			if(listProductId != null){
+			if(listProductId == null || listProductId.size() < 1){
 				listProductId = new ArrayList<>();
 			}
 			listProductId.add(productId);
 			CacheUtil.listCheckoutByCustomer.put(username, listProductId);
 		}
 
+	}
+	@RequestMapping("/checkout/{orderId}")
+	public String checkout(Map<String, Object> model, @PathVariable(value = "orderId") Integer orderId) {
+
+
+		return "product.checkout";
 	}
 }

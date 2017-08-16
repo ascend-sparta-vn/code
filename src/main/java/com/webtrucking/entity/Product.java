@@ -63,6 +63,8 @@ public class Product implements Serializable {
     @Column(name = "last_updated_timestamp")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedTimestamp;
+    @Column(name = "name")
+    private String name;
 
     public Product() {
     }
@@ -164,6 +166,14 @@ public class Product implements Serializable {
 
     public void setLastUpdatedTimestamp(Date lastUpdatedTimestamp) {
         this.lastUpdatedTimestamp = lastUpdatedTimestamp;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -57,12 +57,12 @@ public class BaseController {
 	}
 
 	public String getCurrentUsername(){
-        String username = "";
+        String username = "admin";
         try{
-            UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			if(userDetail != null){
-				username = userDetail.getUsername();
-            }
+//            UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//			if(userDetail != null){
+//				username = userDetail.getUsername();
+//            }
         }catch(Exception e){
             log.error(e);
         }
