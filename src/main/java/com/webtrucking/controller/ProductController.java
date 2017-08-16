@@ -37,7 +37,10 @@ public class ProductController extends BaseController{
 		return "product.list";
 	}
 	@RequestMapping("/detail/{productId}")
-	public String detail(Map<String, Object> model, @PathVariable(value = "productId") Integer productId) {
+	public String detail(Model model, @PathVariable(value = "productId") Long productId) {
+
+		Product product = productDAO.findOne(productId);
+		model.addAttribute("product", product);
 		return "product.detail";
 	}
 
