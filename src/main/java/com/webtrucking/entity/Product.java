@@ -20,7 +20,7 @@ public class Product {
 	private Integer providerId;
 
 	@Column(name = "amount")
-	private Double amount;
+	private Integer amount;
 
 	@Column(name = "price")
 	private Double price;
@@ -67,11 +67,11 @@ public class Product {
 		this.providerId = providerId;
 	}
 
-	public Double getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Double amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
