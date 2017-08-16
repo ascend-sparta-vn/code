@@ -26,8 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author vuquocdat
  */
 @Entity
-@Table(name = "product")
-public class Product implements Serializable {
+@Table(name = "order")
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,28 +35,17 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "img_url")
-    private String imgUrl;
-    @Column(name = "provider_id")
-    private Integer providerId;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "amount")
-    private BigDecimal amount;
-    @Basic(optional = false)
-    @Column(name = "price")
-    private int price;
-    @Column(name = "description")
-    private String description;
     @Column(name = "status")
-    private Boolean status;
+    private boolean status;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "total_amount")
+    private BigDecimal totalAmount;
+    @Column(name = "state")
+    private Boolean state;
     @Basic(optional = false)
-    @Column(name = "imported_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date importedDate;
-    @Column(name = "expired_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date expiredDate;
+    @Column(name = "user_id")
+    private int userId;
     @Column(name = "created_timestamp")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdTimestamp;
@@ -64,18 +53,17 @@ public class Product implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedTimestamp;
 
-    public Product() {
+    public Order() {
     }
 
-    public Product(Integer id) {
+    public Order(Integer id) {
         this.id = id;
     }
 
-    public Product(Integer id, BigDecimal amount, int price, Date importedDate) {
+    public Order(Integer id, boolean status, int userId) {
         this.id = id;
-        this.amount = amount;
-        this.price = price;
-        this.importedDate = importedDate;
+        this.status = status;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -86,68 +74,36 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
-    public Integer getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(Integer providerId) {
-        this.providerId = providerId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Boolean getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public Date getImportedDate() {
-        return importedDate;
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setImportedDate(Date importedDate) {
-        this.importedDate = importedDate;
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public Date getExpiredDate() {
-        return expiredDate;
+    public Boolean getState() {
+        return state;
     }
 
-    public void setExpiredDate(Date expiredDate) {
-        this.expiredDate = expiredDate;
+    public void setState(Boolean state) {
+        this.state = state;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getCreatedTimestamp() {
@@ -176,10 +132,10 @@ public class Product implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
+        if (!(object instanceof Order)) {
             return false;
         }
-        Product other = (Product) object;
+        Order other = (Order) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -188,7 +144,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "javaapplication1.Product[ id=" + id + " ]";
+        return "javaapplication1.Order[ id=" + id + " ]";
     }
     
 }

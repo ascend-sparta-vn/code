@@ -106,9 +106,9 @@
 								<li id="menu4-sub1"> 
 									<a href="/order/post"><spring:message code="homepage.postShipment"/></a>
 								</li>
-								<%--<li class="" id="menu4-sub2"> --%>
-									<%--<a href="/trucking/post"><spring:message code="homepage.postTrucking"/></a>--%>
-								<%--</li>--%>
+								<li class="" id="menu4-sub2">
+									<a href="/shipment/list">Shipment list</a>
+								</li>
 							</ul>
 						</li>
 						

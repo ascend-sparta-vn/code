@@ -15,7 +15,7 @@
 </div>
 <br/>
 
-<%--Shop Product--%>
+<%--Shop Product_bk--%>
 <div class="shop-product">
 	<!-- Breadcrumbs v5 -->
 	<div class="container">
@@ -52,7 +52,7 @@
 
 			<div class="col-md-6">
 				<div class="shop-product-heading">
-					<h2>Corinna Foley</h2>
+					<h2>${ product.name}</h2>
 					<ul class="list-inline shop-product-social">
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -141,12 +141,12 @@
 		</div><!--/end row-->
 	</div>
 </div>
-<!--=== End Shop Product ===-->
+<!--=== End Shop Product_bk ===-->
 
 <%--Description item--%>
 
 <div class="content-md container">
-	<!--=== Product Service ===-->
+	<!--=== Product_bk Service ===-->
 	<div class="tab-v6">
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
@@ -266,7 +266,7 @@
 
 <%--Description item--%>
 
-<%--Related Product--%>
+<%--Related Product_bk--%>
 
 <div class="container">
 	<div class="heading heading-v1 margin-bottom-20">
@@ -350,7 +350,7 @@
 	</div>
 </div>
 
-<%--Related Product--%>
+<%--Related Product_bk--%>
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD18tbGrjpouvZTjOXNtXxCdJdFwUI09iY&callback=initialize"></script>

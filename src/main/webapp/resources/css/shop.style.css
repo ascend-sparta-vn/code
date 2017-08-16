@@ -159,7 +159,7 @@ li:first-child {
 .illustration-v1.illustration-img1 {
 	width: 100%;
 	overflow: hidden;
-	background-image: url(../img/blog/07.jpg);
+	/*background-image: url(../img/blog/07.jpg);*/
 	transition: all 0.3s ease-in-out;
 }
 
@@ -205,7 +205,7 @@ li:first-child {
 .illustration-v1.illustration-img2 {
 	width: 100%;
 	overflow: hidden;
-	background-image: url(../img/blog/08.jpg);
+	/*background-image: url(../img/blog/08.jpg);*/
 	transition: all 0.3s ease-in-out;
 }
 
@@ -356,7 +356,7 @@ li:first-child {
 	visibility: visible;
 }
 
-/*List Product Description*/
+/*List Product_bk Description*/
 .list-product-description {
 	padding: 20px 10px;
 }
@@ -373,7 +373,7 @@ li:first-child {
 	}
 }
 
-/*Product Description*/
+/*Product_bk Description*/
 .product-description {
 	padding: 10px;
 	overflow: hidden;
@@ -428,7 +428,7 @@ li:first-child {
 	overflow: hidden;
 }
 
-/*Product Description v2*/
+/*Product_bk Description v2*/
 .product-description-v2 .title-price {
 	color: #687074;
 	font-size: 18px;
@@ -544,15 +544,15 @@ li:first-child {
 }
 
 .illustration-v3.illustration-img1 {
-	background-image: url(../img/blog/13.jpg);
+	/*background-image: url(../img/blog/13.jpg);*/
 }
 
 .illustration-v3.illustration-img2 {
-	background-image: url(../img/blog/14.jpg);
+	/*background-image: url(../img/blog/14.jpg);*/
 }
 
 .illustration-v3.illustration-img3 {
-	background-image: url(../img/blog/15.jpg);
+	/*background-image: url(../img/blog/15.jpg);*/
 }
 
 .illustration-v3.illustration-img1:hover,
@@ -591,7 +591,7 @@ li:first-child {
 ------------------------------------*/
 .twitter-block {
 	padding: 25px 0 75px;
-	background: url(../img/twitter-bg.jpg) repeat;
+	/*background: url(../img/twitter-bg.jpg) repeat;*/
 }
 
 /*Heading*/
@@ -659,7 +659,7 @@ li:first-child {
 	bottom: -50px;
 }
 
-/*Product Service
+/*Product_bk Service
 ------------------------------------*/
 .product-service .product-service-heading {
 	padding: 10px 0;
@@ -706,7 +706,7 @@ li:first-child {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url(../img/collection-bg.jpg);
+	/*background-image: url(../img/collection-bg.jpg);*/
 }
 
 .collection-banner:before {
@@ -1028,7 +1028,7 @@ li:first-child {
 	font-weight: 200;
 }
 
-/*Shop Product
+/*Shop Product_bk
 ------------------------------------*/
 .shop-product {
 	background: #f8f8f8;
@@ -1043,7 +1043,7 @@ li:first-child {
 	text-transform: uppercase;
 }
 
-/*Shp Product Title*/
+/*Shp Product_bk Title*/
 .shop-product .shop-product-heading {
 	overflow: hidden;
 	margin-bottom: 12px;
@@ -1066,7 +1066,7 @@ li:first-child {
 	text-decoration: none;
 }
 
-/*Product Ratings*/
+/*Product_bk Ratings*/
 .shop-product .product-review-list {
 	margin-left: 20px;
 }
@@ -1081,7 +1081,7 @@ li:first-child {
 	color: #3498db;
 }
 
-/*Shop Product Prices*/
+/*Shop Product_bk Prices*/
 .shop-product .shop-product-prices li:first-child {
 	padding-left: 0;
 }
@@ -1105,7 +1105,7 @@ li:first-child {
 	position: relative;
 }
 
-/*Shop Product Title*/
+/*Shop Product_bk Title*/
 .shop-product h3.shop-product-title {
 	color: #555;
 	font-size: 14px;
@@ -1113,7 +1113,7 @@ li:first-child {
 	text-transform: uppercase;
 }
 
-/*Product Size*/
+/*Product_bk Size*/
 .shop-product .product-size input {
 	left: -9999px;
 	position: absolute;
@@ -1148,7 +1148,7 @@ li:first-child {
 	border-color: #3498db;
 }
 
-/*Product Color*/
+/*Product_bk Color*/
 .shop-product .product-color input {
 	left: -9999px;
 	position: absolute;
@@ -1189,7 +1189,7 @@ li:first-child {
 	border: 2px solid #3498db;
 }
 
-/*Product Quantity*/
+/*Product_bk Quantity*/
 .shop-product .product-quantity {
 	float: left;
 	margin-right: 30px;
@@ -1303,7 +1303,7 @@ li:first-child {
 	color: #777;
 }
 
-/*Product Comment*/
+/*Product_bk Comment*/
 .product-comment {
 	padding: 20px;
 	border: 1px solid #f0f0f0;
@@ -1661,7 +1661,7 @@ li:first-child {
 	padding: 0 19px 0 11px;
 }
 
-/*Product Color List*/
+/*Product_bk Color List*/
 .product-color-list {
 	margin-bottom: 0;
 	text-align: center;
@@ -1938,7 +1938,7 @@ li:first-child {
 	color: #c9253c;
 }
 
-/*Product In Table*/
+/*Product_bk In Table*/
 .shopping-cart .product-in-table {
 	text-align: left !important;
 }
