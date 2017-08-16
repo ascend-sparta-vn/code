@@ -56,6 +56,7 @@
 							<li><a href="/login"><spring:message code="homepage.login"/></a></li>
 							<li class="topbar-devider"></li>
 							<li><a href="/account/register"><spring:message code="homepage.register"/></a></li>
+							<li><a href="/product/checkout/">Cart</a></li>
 						</sec:authorize>
 						
 					</ul>

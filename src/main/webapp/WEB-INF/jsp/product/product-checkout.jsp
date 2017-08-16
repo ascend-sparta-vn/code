@@ -72,6 +72,36 @@
                                             </thead>
                                             <tbody class="product-list-table">
                                                 <!-- Add no items sign here -->
+                                                <c:forEach items="${listProduct}" var="product">
+
+                                                    <tr>
+                                                        <td class="product-in-table">
+                                                            <img class="img-responsive" src=${product.imgUrl} alt="">
+                                                            <div class="product-it-in">
+                                                                <h3>${product.name}</h3>
+                                                                <span>${product.providerId}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>Unit</td>
+                                                        <td>${VND} ${product.price}</td>
+                                                        <td>
+                                                            <button type='button' class="quantity-button" name='subtract' onclick='javascript: productList.subtractQuantity(${product.id});'>-</button>
+                                                            <input type='text' class="quantity-field product_${product.id}" name='qty1' value="2" id='qty1'/>
+                                                            <button type='button' class="quantity-button" name='add' onclick='javascript: productList.addQuantity(${product.id});'>+</button>
+                                                        </td>
+                                                        <td class="shop-red total product_${product.id}">
+                                                                ${VND} ${product.price * 2}
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="close" onclick='javascript: productList.removeProduct(${product.id});'>
+                                                                <span>&times;</span>
+                                                                <span class="sr-only">Close</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                </c:forEach>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -273,6 +303,7 @@
                 <script>
                     var productList = new ProductList();
                     $(document).ready(function() {
+                        productList.listProduct.push(${listProduct});
                         getResource(function() {
                             productList.init();
                         });

@@ -30,7 +30,7 @@
 					<div class="panel-heading">
 						<h2 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-								Brands
+								Goods Type
 								<i class="fa fa-angle-down"></i>
 							</a>
 						</h2>
@@ -89,7 +89,7 @@
 					<div class="panel-heading">
 						<h2 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-								Brands
+								Provider
 								<i class="fa fa-angle-down"></i>
 							</a>
 						</h2>
@@ -151,7 +151,7 @@
 			<div class="row margin-bottom-5">
 				<div class="col-sm-4 result-category">
 					<h2>Men</h2>
-					<small class="shop-bg-red badge-results">45 Results</small>
+					<small class="shop-bg-red badge-results">3 Results</small>
 				</div>
 				<div class="col-sm-8">
 					<ul class="list-inline clear-both">

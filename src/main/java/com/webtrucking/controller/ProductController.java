@@ -37,17 +37,18 @@ public class ProductController extends BaseController{
 		return "product.list";
 	}
 	@RequestMapping("/detail/{productId}")
-	public String detail(Model model, @PathVariable(value = "productId") Long productId) {
+	public String detail(Model model, @PathVariable(value = "productId") Integer productId) {
 
-//		Product product = productDAO.findOne(productId);
-//		model.addAttribute("product", product);
+		Product product = productDAO.findOne(productId);
+		model.addAttribute("product", product);
 		return "product.detail";
 	}
 
 	@RequestMapping(value = "/cart/add/{productId}", method = RequestMethod.GET)
 	@ResponseBody
-	public void addCheckout(@PathVariable(value = "productId") Integer productId) {
+	public Integer addCheckout(@PathVariable(value = "productId") Integer productId) {
 
+		Integer responseCode = 0;
 		// get current userId login
 		String username = getCurrentUsername();
 
@@ -59,13 +60,25 @@ public class ProductController extends BaseController{
 			}
 			listProductId.add(productId);
 			CacheUtil.listCheckoutByCustomer.put(username, listProductId);
+			responseCode = 1;
 		}
+		return responseCode;
 
 	}
-	@RequestMapping("/checkout/{orderId}")
-	public String checkout(Map<String, Object> model, @PathVariable(value = "orderId") Integer orderId) {
-
-
+	@RequestMapping("/checkout/")
+	public String checkout(Model model) {
+		List<Product> listProductCheckout = new ArrayList<>();
+		String username = getCurrentUsername();
+		List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
+		if(listProductId != null){
+			for(Integer id : listProductId){
+				Product prd = productDAO.findOne(id);
+				if(prd != null){
+					listProductCheckout.add(prd);
+				}
+			}
+		}
+		model.addAttribute("listProduct", listProductCheckout);
 		return "product.checkout";
 	}
 }

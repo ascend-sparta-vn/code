@@ -19,10 +19,14 @@ ProductManager.prototype.addToCart = function (productId){
         url : url,
         success : function(response) {
             console.log('success');
-            showMessage('add product to successfull', "success");
+            if(response == 1)
+                showMessage('add product to successfull', "success");
+            else
+                showMessage('add product to failed', "error");
         },
         error : function(e) {
             console.log("ERROR addToCart: ", e);
+            showMessage('Contact to admin to resolve this problem', "error");
         },
         done : function(e) {
             console.log("DONE");
