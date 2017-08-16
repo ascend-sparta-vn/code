@@ -1,12 +1,17 @@
 package com.webtrucking.controller;
 
-import com.webtrucking.util.CacheUtil;
+import com.webtrucking.dao.ProductDAO;
+import com.webtrucking.entity.Product;
+import com.webtrucking.util.Common;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,21 +22,18 @@ import java.util.Map;
 public class ProductController extends BaseController{
 	static Logger log = Logger.getLogger(ProductController.class);
 
+
+	@Autowired
+	ProductDAO productDAO;
+
 	@RequestMapping("/list")
-	public String list(Map<String, Object> model,
+	public String list(Model model,
 								@RequestParam(required = false) Integer page,
 								@RequestParam(required = false) Integer size) {
-		model.put("listProvince", CacheUtil.listProvinceCache.get("listProvince"));
-		if(page != null) {
-			model.put("currentPage", page);
-		} else {
-			model.put("currentPage", 1);
-		}
-		if(size != null) {
-			model.put("size", size);
-		} else {
-			model.put("size", 10);
-		}
+
+		List<Product> listProduct = Common.toList(productDAO.findAll());
+
+		model.addAttribute("listProduct", listProduct);
 		return "product.list";
 	}
 	@RequestMapping("/detail/{productId}")
@@ -41,6 +43,9 @@ public class ProductController extends BaseController{
 
 	@RequestMapping("/checkout/{orderId}")
 	public String checkout(Map<String, Object> model, @PathVariable(value = "orderId") Integer orderId) {
+
+
+
 		return "product.checkout";
 	}
 }
