@@ -1,14 +1,13 @@
 package com.webtrucking.util;
 
-import java.util.List;
+import com.webtrucking.entity.District;
+import com.webtrucking.entity.Province;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-
-import com.webtrucking.entity.District;
-import com.webtrucking.entity.Province;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Common {
 
@@ -219,6 +218,19 @@ public class Common {
 			hash = ((hash << 5) + hash) + value.charAt(i);
 		}
 		return String.valueOf(hash);
+	}
+
+	public static <E> List<E> toList(Iterable<E> iterable) {
+		if(iterable == null || iterable instanceof List) {
+			return (List<E>) iterable;
+		}
+		ArrayList<E> list = new ArrayList<E>();
+		if(iterable != null) {
+			for(E e: iterable) {
+				list.add(e);
+			}
+		}
+		return list;
 	}
 	
 }
