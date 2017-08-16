@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.webtrucking.controller.BaseController;
 import com.webtrucking.dao.OrdersShipmentDAO;
 import com.webtrucking.dao.ShipmentDAO;
-import com.webtrucking.dao.userDAO;
+import com.webtrucking.dao.UserDAO;
 import com.webtrucking.entity.OrdersShipment;
 import com.webtrucking.entity.Shipment;
 import com.webtrucking.entity.User;
@@ -29,7 +29,7 @@ public class ProductRestController extends BaseController{
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
 	
 	@Autowired
-	private userDAO userDAO;
+	private UserDAO userDAO;
 	
 	@Autowired
 	private OrdersShipmentDAO ordersShipmentDAO;

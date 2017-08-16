@@ -1,6 +1,7 @@
 package com.webtrucking.controller;
 
 import com.webtrucking.dao.ShipmentDAO;
+import com.webtrucking.dao.UserDAO;
 import com.webtrucking.entity.Shipment;
 import com.webtrucking.entity.User;
 import com.webtrucking.json.entity.AjaxResponseBody;
@@ -31,7 +32,7 @@ public class OrderController extends BaseController{
 	private ShipmentDAO shipmentDAO;
 
 	@Autowired
-	private com.webtrucking.dao.userDAO userDAO;
+	private UserDAO userDAO;
 
 	static Logger log = Logger.getLogger(OrderController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);

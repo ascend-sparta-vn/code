@@ -1,0 +1,98 @@
+2017-08-10 16:45:24 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-10 16:45:28 INFO  WebStartListener:17 - STARTING...
+2017-08-10 16:45:28 INFO  WebStartListener:18 - Cache init
+2017-08-10 16:45:28 INFO  WebStartListener:21 - FINISH...
+2017-08-10 16:45:29 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-10 16:45:29 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-10 16:45:29 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-10 16:45:29 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-10 16:45:29 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-10 16:45:30 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-10 16:45:32 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-10 16:45:34 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-10 21:39:23 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-10 21:39:30 INFO  WebStartListener:17 - STARTING...
+2017-08-10 21:39:30 INFO  WebStartListener:18 - Cache init
+2017-08-10 21:39:30 INFO  WebStartListener:21 - FINISH...
+2017-08-10 21:39:30 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-10 21:39:30 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-10 21:39:30 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-10 21:39:30 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-10 21:39:31 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-10 21:39:32 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-10 21:39:34 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-10 21:39:37 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-10 21:56:00 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-10 21:56:06 INFO  WebStartListener:17 - STARTING...
+2017-08-10 21:56:06 INFO  WebStartListener:18 - Cache init
+2017-08-10 21:56:06 INFO  WebStartListener:21 - FINISH...
+2017-08-10 21:56:07 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-10 21:56:07 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-10 21:56:07 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-10 21:56:07 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-10 21:56:07 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-10 21:56:08 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-10 21:56:09 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-10 21:56:12 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-11 10:23:29 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-11 10:23:35 INFO  WebStartListener:17 - STARTING...
+2017-08-11 10:23:35 INFO  WebStartListener:18 - Cache init
+2017-08-11 10:23:35 INFO  WebStartListener:21 - FINISH...
+2017-08-11 10:23:35 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-11 10:23:35 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-11 10:23:35 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-11 10:23:35 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-11 10:23:36 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-11 10:23:37 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-11 10:23:39 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-11 10:23:42 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-12 09:28:52 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-12 09:29:02 INFO  WebStartListener:17 - STARTING...
+2017-08-12 09:29:02 INFO  WebStartListener:18 - Cache init
+2017-08-12 09:29:02 INFO  WebStartListener:21 - FINISH...
+2017-08-12 09:29:03 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-12 09:29:04 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-12 09:29:04 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-12 09:29:04 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-12 09:29:04 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-12 09:29:06 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-12 09:29:08 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-12 09:29:12 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-12 09:40:55 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-12 09:40:59 INFO  WebStartListener:17 - STARTING...
+2017-08-12 09:40:59 INFO  WebStartListener:18 - Cache init
+2017-08-12 09:40:59 INFO  WebStartListener:21 - FINISH...
+2017-08-12 09:41:00 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-12 09:41:00 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-12 09:41:00 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-12 09:41:00 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-12 09:41:00 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-12 09:41:01 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-12 09:41:03 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-12 09:41:07 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-08-12 09:52:51 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2017-08-12 09:52:57 INFO  WebStartListener:17 - STARTING...
+2017-08-12 09:52:57 INFO  WebStartListener:18 - Cache init
+2017-08-12 09:52:57 INFO  WebStartListener:21 - FINISH...
+2017-08-12 09:52:57 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-08-12 09:52:57 INFO  Version:37 - HHH000412: Hibernate Core {5.0.9.Final}
+2017-08-12 09:52:57 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-12 09:52:57 INFO  Environment:317 - HHH000021: Bytecode provider name : javassist
+2017-08-12 09:52:58 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-12 09:52:59 INFO  Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-08-12 09:53:00 INFO  SchemaValidator:69 - HHH000229: Running schema validator
+2017-08-12 09:53:03 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory

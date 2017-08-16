@@ -1,12 +1,13 @@
 package com.webtrucking.controller;
 
+import com.webtrucking.client.TmnWalletClient;
 import com.webtrucking.dao.ProvinceDAO;
 import com.webtrucking.dao.UserDAO;
 import com.webtrucking.entity.Province;
 import com.webtrucking.json.entity.AccountInfo;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.services.UserService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,11 +31,11 @@ import java.util.List;
  * Created by thanhnv on 16/09/16.
  */
 @Controller
-@RequestMapping("/account")
+@RequestMapping("/test")
 @Transactional
 @PropertySource("classpath:application.properties")
-public class UserController extends BaseController {
-	static Logger log = Logger.getLogger(UserController.class);
+public class TestController extends BaseController {
+	static org.apache.logging.log4j.Logger log = LogManager.getLogger(TestController.class);
 	@Autowired
 	private Environment env;
 
@@ -52,12 +54,16 @@ public class UserController extends BaseController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register(Model model) {
-		List<Province> provinces = (List<Province>) provinceDAO.findAll();
-		model.addAttribute("provinces", provinces);
-		model.addAttribute("site_key", env.getProperty("site.verify.site_key"));
-		return "register";
+	@Autowired
+	private TmnWalletClient tmnWalletClient;
+
+	@RequestMapping(value = "/api/{api_name}", method = RequestMethod.GET)
+	public String register(@PathVariable("api_name") String apiName) {
+		if (apiName == null || apiName.equals("1"))
+			log.info("GetOTP: {}",tmnWalletClient.getOtp("976686535").toString());
+			log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles("futoken","ios","2.0").toString());
+
+			return "register";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
