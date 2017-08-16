@@ -1,7 +1,7 @@
 package com.webtrucking.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.webtrucking.dao.userDAO;
+import com.webtrucking.dao.UserDAO;
 import com.webtrucking.entity.User;
 import com.webtrucking.json.entity.UserInfo;
 import com.webtrucking.services.UserService;
@@ -28,7 +28,7 @@ public class AdminController extends BaseController {
 	static Logger log = Logger.getLogger(AdminController.class);
 	
 	@Autowired
-	private userDAO userDAO;
+	private UserDAO userDAO;
 	
 	@Autowired
 	private UserService userService;
