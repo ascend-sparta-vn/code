@@ -1,7 +1,7 @@
 package com.webtrucking.services;
 
 import com.webtrucking.dao.ForgotPasswordDAO;
-import com.webtrucking.dao.userDAO;
+import com.webtrucking.dao.UserDAO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserService implements ApplicationListener<AuthenticationSuccessEvent>{
 	static Logger log = Logger.getLogger(UserService.class);
 	@Autowired
-	userDAO userDAO;
+    UserDAO userDAO;
 	
 	@Autowired
 	private ForgotPasswordDAO forgotPasswordDAO;
@@ -27,11 +27,11 @@ public class UserService implements ApplicationListener<AuthenticationSuccessEve
 	
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
        String userName = ((UserDetails) event.getAuthentication().getPrincipal()).getUsername();
-//       List<Account_bk> listAccount = userDAO.findAccountByUsername(userName);
+//       List<Account_bk> listAccount = UserDAO.findAccountByUsername(userName);
 //       if(listAccount != null && listAccount.size() > 0 ) {
 //    	   Account_bk account = listAccount.get(0);
 //    	   account.setLastSignInDate(new Date());
-//           userDAO.save(account);
+//           UserDAO.save(account);
 //       }
        
     }

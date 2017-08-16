@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface userDAO extends CrudRepository<User, Integer>{
+public interface UserDAO extends CrudRepository<User, Integer>{
 	public List<User> findAccountByUsername(@Param("username") String username);
 	public List<User> findAccountByUsernameAndStatus(@Param("username") String username, @Param("status") Integer status);
 

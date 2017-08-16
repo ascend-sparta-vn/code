@@ -1,7 +1,7 @@
 package com.webtrucking.services;
 
 
-import com.webtrucking.dao.userDAO;
+import com.webtrucking.dao.UserDAO;
 import com.webtrucking.util.IConstant;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	static Logger log = Logger.getLogger(MyUserDetailsService.class);
 	//get user from the database, via Hibernate
 	@Autowired
-	private userDAO userDAO;
+	private UserDAO userDAO;
 
 	@Transactional(readOnly=true)
 	@Override
