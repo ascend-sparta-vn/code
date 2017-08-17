@@ -12,6 +12,11 @@
 		<put-attribute name="left-profile-menu" value="" />
 	</definition>
 
+	<definition name="loginLayout" template="/WEB-INF/jsp/layout/login-layout.jsp">
+		<!--<put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />-->
+		<put-attribute name="body" value="" />
+	</definition>
+
 	<definition name="homepage" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/view/home.jsp" />
 	</definition>
@@ -36,7 +41,7 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/account/account-profile.jsp" />
 	</definition>
 
-	<definition name="account.login" extends="baseLayout">
+	<definition name="account.login" extends="loginLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/login/login.jsp" />
 	</definition>
 
@@ -141,6 +146,11 @@
 
 	<definition name="chat.detail" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/account/chat-detail.jsp" />
+	</definition>
+
+	<!-- nichol -->
+	<definition name="shipment.list" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/shipment/list-shipment.jsp" />
 	</definition>
 
 </tiles-definitions>

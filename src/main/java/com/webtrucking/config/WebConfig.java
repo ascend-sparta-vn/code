@@ -51,13 +51,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 @Override
 	 public void addViewControllers(ViewControllerRegistry registry) {
 	    registry.addViewController("/login").setViewName("login");
+	    registry.addViewController("/").setViewName("homepage");
 	 }
 	 
 	 //Configuration for language
 	 @Bean
 	 public LocaleResolver localeResolver() {
 		 SessionLocaleResolver resolver = new SessionLocaleResolver();
-		 resolver.setDefaultLocale(new Locale("vi"));
+		 resolver.setDefaultLocale(new Locale("en"));
 		 return resolver;
 	 }
 	 
