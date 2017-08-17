@@ -1,13 +1,7 @@
 package com.webtrucking.controller;
 
-import com.webtrucking.dao.DeliveryDAO;
-import com.webtrucking.dao.OrdersDAO;
-import com.webtrucking.dao.ShipmentDAO;
-import com.webtrucking.dao.UserDAO;
-import com.webtrucking.entity.DeliveryOrder;
-import com.webtrucking.entity.Order;
-import com.webtrucking.entity.Shipment;
-import com.webtrucking.entity.User;
+import com.webtrucking.dao.*;
+import com.webtrucking.entity.*;
 import com.webtrucking.json.entity.AjaxResponseBody;
 import com.webtrucking.json.entity.SearchShipmentRequest;
 import com.webtrucking.util.CacheUtil;
@@ -43,6 +37,12 @@ public class OrderController extends BaseController{
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private PaymenetHistoryDAO paymentHistoryDAO;
+
+	@Autowired
+	private WalletDAO walletDAO;
 
 	static Logger log = Logger.getLogger(OrderController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
@@ -80,6 +80,22 @@ public class OrderController extends BaseController{
 		}
 		ordersDAO.save(order);
 		return order;
+	}
+
+
+	@RequestMapping("/detail/{orderId}")
+	public String detail(Model model, @PathVariable(value = "orderId") Integer orderId) {
+		Order order = ordersDAO.findOne(orderId);
+		model.addAttribute("order", order);
+
+		PaymentHistory payment = new PaymentHistory();
+		List<PaymentHistory> listPayment = paymentHistoryDAO.findByOrderId(orderId);
+		if (!listPayment.isEmpty()) {
+			payment = listPayment.get(0);
+			Wallet wallet = walletDAO.findOne(payment.getWalletId());
+			model.addAttribute("wallet", wallet);
+		}
+		return "order.detail";
 	}
 
 	@RequestMapping("/post")
