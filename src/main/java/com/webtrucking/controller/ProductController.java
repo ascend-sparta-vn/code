@@ -65,7 +65,7 @@ public class ProductController extends BaseController{
 		return responseCode;
 
 	}
-	@RequestMapping("/checkout/")
+	@RequestMapping("/checkout")
 	public String checkout(Model model) {
 		List<Product> listProductCheckout = new ArrayList<>();
 		String username = getCurrentUsername();
