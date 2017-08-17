@@ -3,6 +3,7 @@ package com.webtrucking.util;
 import com.webtrucking.entity.District;
 import com.webtrucking.entity.Province;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.Authentication;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -231,6 +232,27 @@ public class Common {
 			}
 		}
 		return list;
+	}
+
+	public static String getReturnPage(Authentication authen) {
+		String username = "";
+		if(authen != null) {
+			username = authen.getName();
+			switch (username) {
+				case "admin":
+					return "order.list";
+				case "customer":
+					return "product.list";
+				case "provider":
+					return "provider_product.list";
+				case "transporter":
+					return "shipment.list";
+				default:
+					return "account.login";
+			}
+		}
+
+		return "hompage";
 	}
 	
 }
