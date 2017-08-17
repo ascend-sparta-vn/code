@@ -1,8 +1,14 @@
+const WALLET_CREATE_MODE_START = 0;
+const WALLET_CREATE_MODE_WAIT_OTP = 1;
+const WALLET_CREATE_MODE_WAIT_PROFILE = 2;
+
 function AccountManager() {
 	this.walletList = [
         { thai_id: "3231744035655", first_name: "Ascend", last_name: "Hackathon", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", address: "89 AIA Dindang, Bangkok", occupation: "developer"},
         { thai_id: "3231744035657", first_name: "Tulu", last_name: "Tran", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", "address": "89 AIA Dindang, Bangkok", occupation: "developer"}
     ];
+    
+    this.createMode = WALLET_CREATE_MODE_START;
 }
 
 AccountManager.prototype.init = function(){
@@ -12,6 +18,7 @@ AccountManager.prototype.init = function(){
 
     self.displayPaymentMethod();
     self.displayWallets();
+
 }
 
 /*
@@ -174,32 +181,93 @@ AccountManager.prototype.refreshForm = function(){
 	$("input").val('');
 }
 
+AccountManager.prototype.initWalletCreateZone = function(){
+    
+}
+
 AccountManager.prototype.createWalletProfile = function(){
-    const URL = '/wallet/create_wallet';
-    
-    var request = {
-        first_name: $('.wl_firstname').val(),
-        last_name: $('.wl_lastname').val(),
-        email: $('.wl_email').val()
-    };
-    console.log(request);
-    
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: URL,
-        dataType: 'json',
-        data : JSON.stringify(request),
-        success: () => {
-            console.log("Success");
-        },
-        error: () => {
-            console.log("Error");
-        },
-        done: () => {
-            console.log("Done");
+    function toggleInputs(disable) {
+        if (disable) {
+            $('.wl_firstname').attr('disabled','disabled');
+            $('.wl_lastname').attr('disabled','disabled');
+            $('.wl_email').attr('disabled','disabled');
+            $('.wl_mobile').attr('disabled','disabled');
+            $('.wl_occupation').attr('disabled','disabled');
+            $('.wl_postalcode').attr('disabled','disabled');
+            $('.wl_password').attr('disabled','disabled');
+            $('.wl_citizenid').attr('disabled','disabled');
+            $('.wl_address').attr('disabled','disabled');
+        } else {
+            $('.wl_firstname').removeAttr('disabled');
+            $('.wl_lastname').removeAttr('disabled');
+            $('.wl_email').removeAttr('disabled');
+            $('.wl_mobile').removeAttr('disabled');
+            $('.wl_occupation').removeAttr('disabled');
+            $('.wl_postalcode').removeAttr('disabled');
+            $('.wl_password').removeAttr('disabled');
+            $('.wl_citizenid').removeAttr('disabled');
+            $('.wl_address').removeAttr('disabled');
         }
-    });
+    }
+    
+    if (this.createMode == WALLET_CREATE_MODE_START) {
+        const mobile_number = $('.wl_mobile').val();
+        const URL = `/wallet/get_otp/${mobile_number}`;
+        console.log(URL);
+        
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: URL,
+            dataType: 'json',
+            success: () => {
+                console.log("Success");
+            },
+            error: () => {
+                console.log("Error");
+            },
+            done: () => {
+                console.log("Done");
+            }
+        });
+        
+        $('.btn-create-wallet').html('Confirm OTP');
+        toggleInputs(true);
+        this.createMode = WALLET_CREATE_MODE_WAIT_OTP;
+    } else if (this.createMode == WALLET_CREATE_MODE_WAIT_OTP) {
+        const URL = '/wallet/create_wallet';
+
+        var request = {
+            first_name: $('.wl_firstname').val(),
+            last_name: $('.wl_lastname').val(),
+            email: $('.wl_email').val(),
+            mobile_number: $('.wl_mobile').val(),
+            occupation: $('.wl_occupation').val(),
+            postal_code: $('.wl_postalcode').val(),
+            password: $('.wl_password').val(),
+            thai_id: $('.wl_citizenid').val(),
+            address: $('.wl_address').val(),
+            otp: $('.wl_otp').val()
+        };
+        console.log(request);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: URL,
+            dataType: 'json',
+            data : JSON.stringify(request),
+            success: () => {
+                toggleInputs(false);
+            },
+            error: () => {
+                toggleInputs(false);
+            },
+            done: () => {
+                toggleInputs(false);
+            }
+        });
+    }
 
 //    var post = {};
 //    post.order_id = order_id;

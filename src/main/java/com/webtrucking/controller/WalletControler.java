@@ -23,7 +23,7 @@ public class WalletControler extends BaseController {
 	@Autowired
 	private TmnWalletClient tmnWalletClient;
 
-    @RequestMapping(value = "/get_otp/{mobile_number}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get_otp/{mobileNumber}", method = RequestMethod.GET)
     public String register(@PathVariable String mobileNumber) {
         log.info("Mobile number {}", mobileNumber);
         log.info("GetOTP: {}", tmnWalletClient.getOtp(mobileNumber).toString());
