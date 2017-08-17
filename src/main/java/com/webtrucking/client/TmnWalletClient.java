@@ -2,6 +2,7 @@ package com.webtrucking.client;
 
 import com.webtrucking.client.constant.ApiIDs;
 import com.webtrucking.dao.ApiConfigurationDAO;
+import com.webtrucking.dto.GeneralResponse;
 import com.webtrucking.entity.ApiConfiguration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,8 +22,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.JsonValue;
-import javax.json.stream.JsonParser;
 import java.io.StringReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -96,7 +95,7 @@ public class TmnWalletClient implements BeanPostProcessor
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.CONFIRM_OTP.getId()).getMethod());
         String endpoint = apiConfigurations.get(ApiIDs.CONFIRM_OTP.getId()).getUrl();
-        return callApi(endpoint, method, headerMap, null);
+        return callApi(endpoint, method, headerMap, requestMap);
     }
 
     public Map createProfile(String token, Map requestMap) {
@@ -110,7 +109,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map signIn(String username, String password) {
-
+        init();
         Map<String, Object> headerMap = new HashMap<>();
 
         Map<String, Object> requestMap = new HashMap<>();
@@ -144,17 +143,120 @@ public class TmnWalletClient implements BeanPostProcessor
         String endpoint = String.format(apiConfigurations.get(ApiIDs.GET_USER_PROFILE.getId()).getUrl(), deviceOS, appVersion);
         return callApi(endpoint, method, headerMap, null);
     }
-//
-//    public Map getUserProfiles(String token, String deviceOS, String appVersion) {
-//
-//        Map<String, Object> headerMap = new HashMap<>();
-//        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
-//        headerMap.put("token", token);
-//
-//        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.CONFIRM_OTP.getId()).getMethod());
-//        String endpoint = String.format(apiConfigurations.get(ApiIDs.CONFIRM_OTP.getId()).getUrl(), deviceOS, appVersion);
-//        return callApi(endpoint, method, headerMap, null);
-//    }
+
+    public Map getUserBalance(String token, String deviceOS, String appVersion) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_USER_BALANCE.getId()).getMethod());
+        String endpoint = String.format(apiConfigurations.get(ApiIDs.GET_USER_BALANCE.getId()).getUrl(), deviceOS, appVersion);
+        return callApi(endpoint, method, headerMap, null);
+    }
+
+    public Map toup(String mobileNo, String amount) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("mobile_number", mobileNo);
+        requestMap.put("amount", amount);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.TOPUP_MONEY_TO_WALLET.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.TOPUP_MONEY_TO_WALLET.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, requestMap);
+    }
+
+    public Map draftTransaction(String token, String mobileNo, String amount) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("mobileNumber", mobileNo);
+        requestMap.put("amount", amount);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.DRAFT_TRANS.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.DRAFT_TRANS.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, requestMap);
+    }
+
+    public Map sendOtpTransfer(String token, String draftTransId, String personalMessage) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+        headerMap.put("draft-transaction-id", draftTransId);
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("personalMessage", personalMessage);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.OTP_TRANSFER.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.OTP_TRANSFER.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, requestMap);
+    }
+
+    public Map confirmOtpTransfer(String token, String draftTransId, String mobileNo, String otpRefCode, String otpString) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+        headerMap.put("draft-transaction-id", draftTransId);
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("mobile_number", mobileNo);
+        requestMap.put("otp_ref_code", otpRefCode);
+        requestMap.put("otp_string", otpString);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.CONFIRM_OTP_TRANSFER.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.CONFIRM_OTP_TRANSFER.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, requestMap);
+    }
+
+    public Map getTransferStatus(String token, String draftTransId) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+        headerMap.put("draft-transaction-id", draftTransId);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_TRANSFER_STATUS.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.GET_TRANSFER_STATUS.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, null);
+    }
+
+    public Map getTransferDetails(String token, String draftTransId) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+        headerMap.put("draft-transaction-id", draftTransId);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_TRANSFER_DETAILS.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.GET_TRANSFER_DETAILS.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, null);
+    }
+
+    public Map payAtRetail(String token) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.PAY_BARCODE_AT_RETAIL.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.PAY_BARCODE_AT_RETAIL.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, null);
+    }
+
+    public Map listAllTransactions(String token) {
+
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
+        headerMap.put("token", token);
+
+        HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_ALL_PAYMENT_HISTORY.getId()).getMethod());
+        String endpoint = apiConfigurations.get(ApiIDs.GET_ALL_PAYMENT_HISTORY.getId()).getUrl();
+        return callApi(endpoint, method, headerMap, null);
+    }
 
     private Map callApi(String endpoint, HttpMethod method, Map<String, Object> headerMap, Map<String, Object> requestMap) {
 
@@ -167,17 +269,19 @@ public class TmnWalletClient implements BeanPostProcessor
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
         HttpEntity<?> requestEntity = new HttpEntity<>(requestMap, httpHeaders);
         log.info("Sending data to tmn wallet portal with endpoint {}", endpoint);
-        log.info("Sending data to tmn wallet portal with request {}", requestEntity);
+        log.info("Sending data to tmn wallet portal with request {}, method {}", requestEntity, method);
         ResponseEntity<String> responseEntity = restTemplate().exchange(endpoint,
                 method, requestEntity, new ParameterizedTypeReference<String>() {
                 });
         log.info("response data: {}", responseEntity.getBody());
         String result = responseEntity.getBody();
-        JsonObject jsonResult = jsonFromString(result);
-        Set<String> iterator = jsonResult.keySet();
+        JsonObject jsonResult = jsonFromString(String.valueOf(result.toString()));
+        String data = String.valueOf(jsonResult.get("data"));
+        JsonObject dataJson = jsonFromString(data);
+        Set<String> iterator = dataJson.keySet();
         Map<String, Object> response = new HashMap<>();
         for (String key: iterator) {
-            response.put(key, jsonResult.get(key));
+            response.put(key, dataJson.get(key));
         }
         log.info("Received data from tmn wallet portal with response {}", responseEntity.getBody());
         return response;
@@ -192,7 +296,7 @@ public class TmnWalletClient implements BeanPostProcessor
         return object;
     }
 
-    private static Map<String, Object> mapFromJsonString(String jsonObjectStr) {
+    public static Map<String, Object> mapFromJsonString(String jsonObjectStr) {
 
         JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr));
         JsonObject jsonResult = jsonReader.readObject();

@@ -1,8 +1,8 @@
-function ShipmentManager() {
+function ShipmentManager1() {
     this.listProvince = [];
 }
 //init
-ShipmentManager.prototype.init = function(){
+ShipmentManager1.prototype.init = function(){
     var self = this;
 
     $("li .active").removeClass("active");
@@ -46,102 +46,7 @@ ShipmentManager.prototype.init = function(){
 /**
  * @Todo: init table here
  */
-ShipmentManager.prototype.initDataTable = function(param){
-//	var self = this;
-////	var data = self.getPostSearchData();
-//	var data = {};
-//	var url = '/rest_trucking/getListTrucking';
-//	if(param == null || param.fromProvince == null){
-//		data = self.getPostSearchData();
-//	}
-//	else{
-//		data = param;
-//	}
-//	var table = $("#shipmentTable").dataTable();
-//	table.fnDestroy();
-//	var url = "/rest_shipment/getListShipment" ;
-//	var t = $('#shipmentTable').DataTable({
-//		"columns": [
-//			 { "data": "id"},
-////			 { "data": "code"},
-//			 {"render": function ( data, type, row ) {
-//				 return self.generateLabel(row.code);
-//             }},
-//			 { "data": "name"},
-//			 {"render": function ( data, type, row ) {
-//            	 return self.convertProvinceDistrict(row.fromDisTrictObj);
-//             }},
-//             {"render": function ( data, type, row ) {
-//            	 return self.convertProvinceDistrict(row.toDisTrictObj);
-//             }},
-//             { "data": "goodsType.name"},
-//             {"render": function ( data, type, row ) {
-//            	 return convertWeight(row);
-//             }},
-//             {"render": function ( data, type, row ) {
-//            	 return convertPrice(row);
-//             }},
-////             {"render": function ( data, type, row ) {
-////                 return getDateFromLongValue(row.startDate);
-////             }},
-//             {"render": function ( data, type, row ) {
-//                 return getDateFromLongValue(row.expiredDate);
-//             }},
-//             {"render": function ( data, type, row ) {
-//                 return self.generateLink(row);
-//             }}
-//         ],
-//         "columnDefs": [
-//                        { "width": "5%", "targets":  0,  "orderable":false},
-//                        { "width": "10%", "targets": 1,  "orderable":false},
-//                        { "width": "12%", "targets": 2,  "orderable":true},
-//                        { "width": "13%", "targets": 3,  "orderable":true},
-//                        { "width": "10%", "targets": 4,  "orderable":false},
-//                        { "width": "10%", "targets": 5,  "orderable":false},
-//                        { "width": "10%", "targets": 6,  "orderable":true},
-//                        { "width": "10%", "targets": 7,  "orderable":true},
-//                        { "width": "10%", "targets": 8,  "orderable":true},
-//                        { "width": "5%", "targets":  9,  "orderable":false},
-//                      ],
-//          "ajax": {
-//              "url": url,
-//              "type": "POST",
-//              "data": function () {
-//                  return JSON.stringify(data);
-//              },
-//              "contentType": "application/json",
-//              "dataSrc": ""
-//          },
-//         "aaSorting": [[7, 'desc']],
-//         "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-//         "fnInitComplete": function(oSettings, json) {
-//			self.listUser = json;
-//			console.log(json);
-//         },
-//         "language" : {
-//				"paginate" : {
-//					"previous" : JQUERY_DATA_TABLE.LANGUAGE.PREVIOUS_PAGE,
-//					"next" : JQUERY_DATA_TABLE.LANGUAGE.NEXT_PAGE,
-//
-//				},
-//				"sZeroRecords": JQUERY_DATA_TABLE.LANGUAGE.SZERORECORDS,
-//				"sInfoFiltered": "",
-//				"processing":     JQUERY_DATA_TABLE.LANGUAGE.PROCESSING,
-//				"search": "",
-//				"sLengthMenu": "_MENU_",
-//				"info": "",
-//				"infoEmpty":JQUERY_DATA_TABLE.LANGUAGE.INFOEMPTY
-//			},
-//         "iDisplayLength": 50,
-//         "searching" : true,
-//         dom: 'Bfrtip'
-//     });
-//
-//	t.on( 'order.dt search.dt', function () {
-//	    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-//	        cell.innerHTML = i+1;
-//	    } );
-//	} ).draw();
+ShipmentManager1.prototype.initDataTable = function(param){
 
     var self = this;
     self.initDataContent();
@@ -150,7 +55,7 @@ ShipmentManager.prototype.initDataTable = function(param){
 /**
  * @Todo: init search content
  */
-ShipmentManager.prototype.initDataContent = function(param) {
+ShipmentManager1.prototype.initDataContent = function(param) {
     console.log("initDataContent");
 
     var self = this;
@@ -172,16 +77,6 @@ ShipmentManager.prototype.initDataContent = function(param) {
         data : JSON.stringify(data),
         dataType : 'json',
         success : function(response) {
-//			console.log(response);
-//			var a = [];
-//			var listTrucking = response.listTrucking;
-//			for(var i = 0; i< 12; i++) {
-//				for(var j = 0 ; j < listTrucking.length; j++) {
-//					a.push(listTrucking[j]);
-//				}
-//			}
-//			response.listTrucking = a;
-//			response.total = a.length;
             response.listShipments = filterListShipment(response.listShipments, self.listGoodsType, "goodsType");
             response.listShipments = filterListShipment(response.listShipments, self.listTruckType, "truckType");
 
@@ -198,7 +93,7 @@ ShipmentManager.prototype.initDataContent = function(param) {
 
 };
 
-ShipmentManager.prototype.firePaging = function(total){
+ShipmentManager1.prototype.firePaging = function(total){
     $("#totalResult").html(total);
     var currentPage = Number($("#currentPage").val());
     var next = currentPage + 1;
@@ -207,9 +102,12 @@ ShipmentManager.prototype.firePaging = function(total){
     var numberOfPage = total / pageSize;
     if(numberOfPage < 1) numberOfPage = 1;
 
+    var page_first = jQuery.i18n.prop('NEXT_PAGE');
+    var page_last = jQuery.i18n.prop('PREVIOUS_PAGE');
+
     var pageContainer = $('#pagingContent');
     pageContainer.empty();
-    pageContainer.append('<li><a href="./list?page=1&size='+pageSize+'">Trang đầu</a></li>');
+    pageContainer.append('<li><a href="./list?page=1&size='+pageSize+'">'+ page_first +'</a></li>');
     if((numberOfPage > 1) && (previous > 0)) {
         pageContainer.append('<li><a href="./list?page='+previous+'&size='+pageSize+'"><i class="fa fa-angle-left"></i></a></li>');
     }
@@ -225,12 +123,12 @@ ShipmentManager.prototype.firePaging = function(total){
 
         pageContainer.append('<li><a href="./list?page='+next+'&size='+pageSize+'"><i class="fa fa-angle-right"></i></a></li>');
     }
-    pageContainer.append('<li><a href="./list?page='+(Math.floor(numberOfPage))+'&size='+pageSize+'">Trang cuối</a></li>');
+    pageContainer.append('<li><a href="./list?page='+(Math.floor(numberOfPage))+'&size='+pageSize+'">'+ page_last +'</a></li>');
 
     if(total == 0) pageContainer.empty();
 }
 
-ShipmentManager.prototype.fireContentData = function(listShipment){
+ShipmentManager1.prototype.fireContentData = function(listShipment){
     var self = this;
     //draw list data
     $("#contentData").empty();
@@ -239,23 +137,23 @@ ShipmentManager.prototype.fireContentData = function(listShipment){
         var divContainer = $('<div class="list-product-description product-description-brd margin-bottom-30"></div>');
         var row = $('<div class="row"/>');
 
-		/*
-		 * draw left column
-		 */
+        /*
+         * draw left column
+         */
         var leftRow = $('<div class="col-sm-4" style="border-right: 1px solid #eee; margin-top: 5px"/>');
         var leftRowChild = $('<div class="overflow-h margin-bottom-5" />')
 
         var left_ul = $('<ul class="list-inline overflow-h"/>');
         var left_li1 = $('<li><h4 class="title-price"><a href="shop-ui-inner.html"><code>'+shipment.code+'</code></a></h4></li>');
-        var left_li2 = $('<li class="pull-right" style="margin-top:8px;"><span>Ngày đi: '+convertLongDate(shipment.startDate)+'</span></li>');
+        var left_li2 = $('<li class="pull-right" style="margin-top:8px;"><span>'+ jQuery.i18n.prop('view_departure_time') +': '+convertLongDate(shipment.startDate)+'</span></li>');
         var left_li3 = $('<li><h4 class="title-price" style="font-weight:bold"><a href="shop-ui-inner.html">'+shipment.name+'</a></h4></li>');
         left_ul.append(left_li1);
         left_ul.append(left_li2);
         left_ul.append(left_li3);
 
         var left_div = $('<div class="margin-bottom-10"/>');
-        var left_span1 = $('<span class="label label-sea"><i class="fa fa-truck"></i> '+ shipment.dealType+'</span>');
-        var left_span2 = $('<span class="label label-default" style="margin-left:3px;"><i class="fa fa-dropbox"></i>	'+shipment.goodsType+'</span>');
+        var left_span1 = $('<span class="label label-sea"><i class="fa fa-truck"></i> '+shipment.dealType.name+'</span>');
+        var left_span2 = $('<span class="label label-default" style="margin-left:3px;"><i class="fa fa-dropbox"></i>	'+shipment.goodsType.name+'</span>');
         left_div.append(left_span1);
         left_div.append(left_span2);
 
@@ -264,9 +162,9 @@ ShipmentManager.prototype.fireContentData = function(listShipment){
         leftRow.append(leftRowChild);
         row.append(leftRow);
 
-		/*
-		 * draw right column
-		 */
+        /*
+         * draw right column
+         */
         var rightRow = $('<div class="col-sm-8 product-description"/>');
         var rightRowChild = $('<div class="overflow-h margin-bottom-5"/>');
 
@@ -274,14 +172,16 @@ ShipmentManager.prototype.fireContentData = function(listShipment){
         right_ul.append('<li><h4 class="title-price" style="font-weight:bold"><span>'+self.convertProvinceDistrict(shipment.fromDisTrictObj)+'</span> -&gt; <span>'+self.convertProvinceDistrict(shipment.toDisTrictObj)+'</span></h4></li>');
 
         var right_div1 = $('<div class="margin-bottom-10">');
-        right_div1.append('<sptan class="title-price margin-right-10">Giá tiền: </span>');
+        right_div1.append('<sptan class="title-price margin-right-10">'+ jQuery.i18n.prop('view_price') +': </span>');
         right_div1.append('<span class="title-price line-red">'+convertPrice(shipment)+'</span>');
 
         var right_div2 = $('<div class="margin-bottom-10">');
-        right_div2.append('<span class="title-price margin-right-10">Khối lượng hàng: </span> <span class="title-price line-red">'+convertWeight(shipment)+'</span>');
+        right_div2.append('<span class="title-price margin-right-10">'+ jQuery.i18n.prop('view_weight') +': </span> <span class="title-price line-red">'+convertWeight(shipment)+'</span>');
 
-        var right_paragraph = $('<p class="margin-bottom-20">Mô tả : '+shipment.description+'</p>');
-        var btn = $('<button type="button" class="btn btn-sm btn-u-sea-shop btn-primary" onclick="window.location.href=\'./detail?'+shipment.id+'\'">Xem chi tiết</button>');
+        var view_detail = jQuery.i18n.prop('view_detail');
+
+        var right_paragraph = $('<p class="margin-bottom-20">'+ jQuery.i18n.prop('view_description') +': '+shipment.description+'</p>');
+        var btn = $('<button type="button" class="btn btn-sm btn-u-sea-shop btn-primary" onclick="window.location.href=\'./detail?'+shipment.id+'\'">'+ view_detail +'</button>');
 
         rightRowChild.append(right_ul);
         rightRowChild.append(right_div1);
@@ -304,7 +204,7 @@ ShipmentManager.prototype.fireContentData = function(listShipment){
 };
 
 
-ShipmentManager.prototype.getPostSearchData = function() {
+ShipmentManager1.prototype.getPostSearchData = function() {
     var obj = {};
     obj["toProvince"] = $("#provinceTo").val() || '-1';
     obj["fromProvince"] = $("#provinceFrom").val() || '-1';
@@ -321,7 +221,7 @@ ShipmentManager.prototype.getPostSearchData = function() {
 /**
  * @Todo: init button here
  */
-ShipmentManager.prototype.initButtonClick = function() {
+ShipmentManager1.prototype.initButtonClick = function() {
     var self = this;
     $("#addUserBtn").click(function() {
         bootbox.dialog({
@@ -376,7 +276,7 @@ ShipmentManager.prototype.initButtonClick = function() {
 };
 
 
-ShipmentManager.prototype.getUserByUserName = function(username){
+ShipmentManager1.prototype.getUserByUserName = function(username){
     var self = this;
     var obj = null;
     if (self.listUser && self.listUser.length > 0){
@@ -387,13 +287,13 @@ ShipmentManager.prototype.getUserByUserName = function(username){
     }
 };
 
-ShipmentManager.prototype.initSelectAction = function(data) {
+ShipmentManager1.prototype.initSelectAction = function(data) {
     //load list province
     var self = this;
 //	getListProvince("#provinceTo");
 //	getListProvince("#provinceFrom");
 //	getListGoodsType("#goodsType");
-//     getListDealType("#dealType");
+    getListDealType("#dealType");
 
 //	if(data != null && data.toProvince != null){
 //		getListProvince("#provinceTo", data.toProvince);
@@ -422,16 +322,16 @@ ShipmentManager.prototype.initSelectAction = function(data) {
         getListProvince("#provinceFrom",null, jQuery.i18n.prop('province_from_choose'));
     }
 
-    // if(data != null && data.goodsTypeId != null)
-    //     getListGoodsType("#goodsType", data.goodsTypeId);
-    // else
-    //     getListGoodsType("#goodsType");
-    // if(data != null && data.startDate != null){
-    //     $("#fromDate").datepicker({
-    //         format: 'dd/mm/yyyy',
-    //         autoclose: true
-    //     }).datepicker("update", data.startDate);
-    // }
+    if(data != null && data.goodsTypeId != null)
+        getListGoodsType("#goodsType", data.goodsTypeId);
+    else
+        getListGoodsType("#goodsType");
+    if(data != null && data.startDate != null){
+        $("#fromDate").datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true
+        }).datepicker("update", data.startDate);
+    }
 
     $("#provinceTo").change(function(){
         getListDistrictByProvinceId($("#provinceTo").val(), "#districtTo", null,jQuery.i18n.prop('district_to_choose') );
@@ -462,25 +362,25 @@ ShipmentManager.prototype.initSelectAction = function(data) {
     });
 };
 
-ShipmentManager.prototype.generateLink = function(row){
+ShipmentManager1.prototype.generateLink = function(row){
     var str ="";
     var id = row.id;
     var editLink = '<a href="./detail?'+id+'" class="skin-text-color"><i class="fa fa-info-circle fa-lg" style="color: #0096F0"></i></a>'
-        + '&nbsp <a href="/trucking/list-trucking?fromProvince='+row.fromDisTrictObj.provinceId+ '&toProvince='+ row.toDisTrictObj.provinceId
-        + '&goodsTypeId=' + row.goodsType.id + '&startDate=' + getDateFromLongValue(row.startDate) + '" style="color: #090"><i class="fa fa-search fa-lg"></i></a>'
-    ;
+            + '&nbsp <a href="/trucking/list-trucking?fromProvince='+row.fromDisTrictObj.provinceId+ '&toProvince='+ row.toDisTrictObj.provinceId
+            + '&goodsTypeId=' + row.goodsType.id + '&startDate=' + getDateFromLongValue(row.startDate) + '" style="color: #090"><i class="fa fa-search fa-lg"></i></a>'
+        ;
     str += editLink;
     return str;
 };
 
-ShipmentManager.prototype.generateLabel = function(code){
+ShipmentManager1.prototype.generateLabel = function(code){
     var str ="";
     var editLink = '<code>'+code+' </code>';
     str += editLink;
     return str;
 };
 
-ShipmentManager.prototype.initProvince = function(id, name) {
+ShipmentManager1.prototype.initProvince = function(id, name) {
     var self = this;
     var obj = {};
     obj.id = id;
@@ -488,7 +388,7 @@ ShipmentManager.prototype.initProvince = function(id, name) {
     self.listProvince.push(obj);
 }
 
-ShipmentManager.prototype.clearSearchForm = function(){
+ShipmentManager1.prototype.clearSearchForm = function(){
     var self = this;
     $("#provinceFrom").val('-1');
     $("#provinceTo").val('-1');
@@ -501,14 +401,14 @@ ShipmentManager.prototype.clearSearchForm = function(){
     self.initDataTable();
 };
 
-ShipmentManager.prototype.convertProvinceDistrict = function(districtObj){
+ShipmentManager1.prototype.convertProvinceDistrict = function(districtObj){
     var self = this;
     var districtName = districtObj.name || '';
     var province = self.getProvinceId(districtObj.provinceId) || '';
     return province.name + ', ' + districtName;
 
 };
-ShipmentManager.prototype.getProvinceId = function(id){
+ShipmentManager1.prototype.getProvinceId = function(id){
     var self = this;
     var obj = {};
     if (self.listProvince && self.listProvince.length > 0){
@@ -529,18 +429,19 @@ function convert2TruckingReq(row){
     return JSON.stringify(req);
 }
 
-ShipmentManager.prototype.filter = function(id, type) {
+ShipmentManager1.prototype.filter = function(id, type) {
     var self = this;
     if(type == 'goodsType') {
         self.listGoodsType = [];
         //for het danh sach goodstype
         //lay danh sach filter
         $('input', '#collapseTwo').each(function () {
-            console.log($(this));
+            //console.log($(this));
             if($(this).prop('checked')==true) {
                 self.listGoodsType.push($(this).attr("id"));
             }
         });
+
         self.initDataContent();
     } else if(type == 'truckType') {
         self.listTruckType = [];
