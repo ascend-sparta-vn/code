@@ -168,18 +168,19 @@
                 directionsDisplay.setDirections(response);
                 var myRoute = response.routes[0].legs[0];
                 console.log("LEGS LENGTH: " + response.routes[0].legs.length);
-//                for(var i = 0; i < myRoute.steps.length; i ++) {
-//                    console.log('STEP: ' + i);
-//                    var endLocation = myRoute.steps[i].end_location;
-//                    var marker = new google.maps.Marker({
-//                        position: endLocation,
-//                        map: self.mapPlanning
-//                    });
-//                }
                 var stepNValue = myRoute.steps[myRoute.steps.length - 5].end_location;
+//                var currentLocationImage = '<%= request.getContextPath() %>' + '/resources/img/currentlocation.png';
+                var image = {
+                    url: 'https://maps.google.com/mapfiles/kml/shapes/library_maps.png',
+                };
                 var marker = new google.maps.Marker({
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 10
+                    },
                     position: stepNValue,
-                    map: self.mapPlanning
+                    map: self.mapPlanning,
+                    icon: image
                 });
             }
         });
