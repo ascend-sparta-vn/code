@@ -50,6 +50,7 @@
 							<ul class="languages hoverSelectorBlock">
 								<li><a href="/logout"><spring:message code="homepage.logout"/></a></li>
 								<li><a href="/account/account-profile"><spring:message code="homepage.account"/></a></li>
+								<li><a href="/product/checkout">My Cart</a></li>
 							</ul>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
@@ -106,9 +107,6 @@
 								<li id="menu4-sub1"> 
 									<a href="/order/post"><spring:message code="homepage.postShipment"/></a>
 								</li>
-								<%--<li class="" id="menu4-sub2"> --%>
-									<%--<a href="/trucking/post"><spring:message code="homepage.postTrucking"/></a>--%>
-								<%--</li>--%>
 							</ul>
 						</li>
 						

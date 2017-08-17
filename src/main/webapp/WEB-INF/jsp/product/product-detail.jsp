@@ -34,16 +34,14 @@
 					<!-- Master Slider -->
 					<div class="master-slider ms-skin-default" id="masterslider">
 						<div class="ms-slide">
-							<img class="ms-brd" src="/resources/js/plugins/masterslider/style/blank.gif" data-src="/resources/img/blog/29.jpg" alt="lorem ipsum dolor sit">
-							<img class="ms-thumb" src="/resources/img/thumb/thumb1.jpg" alt="thumb">
+							<img class="ms-brd" src="http://agraria.pe/uploads/images/2016/08/Bananas-Ecuador.jpg" alt="lorem ipsum dolor sit">
 						</div>
 						<div class="ms-slide">
-							<img src="/resources/js/plugins/masterslider/style/blank.gif" data-src="/resources/img/blog/29.jpg" alt="lorem ipsum dolor sit">
-							<img class="ms-thumb" src="/resources/img/thumb/thumb1.jpg" alt="thumb">
+							<img src="http://static.gulfnews.com/polopoly_fs/1.1830509!/image/1369208826.jpg_gen/derivatives/box_620347/1369208826.jpg">
+
 						</div>
 						<div class="ms-slide">
-							<img src="/resources/js/plugins/masterslider/style/blank.gif" data-src="/resources/img/blog/29.jpg" alt="lorem ipsum dolor sit">
-							<img class="ms-thumb" src="/resources/img/thumb/thumb1.jpg" alt="thumb">
+							<img src="http://www.coliman.com/eng/wp-content/uploads/2017/05/coliman-57.jpg" alt="lorem ipsum dolor sit">
 						</div>
 					</div>
 					<!-- End Master Slider -->
@@ -52,7 +50,7 @@
 
 			<div class="col-md-6">
 				<div class="shop-product-heading">
-					<h2>Corinna Foley</h2>
+					<h2>Banana - from Happy </h2>
 					<ul class="list-inline shop-product-social">
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -72,49 +70,17 @@
 					</li>
 				</ul><!--/end shop product ratings-->
 
-				<p>Integer <strong>dapibus ut elit</strong> non volutpat. Integer auctor purus a lectus suscipit fermentum. Vivamus lobortis nec erat consectetur elementum.</p><br>
+				<p>This product is banana from <a href="#">Happy farm</a>. Please scroll down to the bottom of the page for more information.</p><br>
 
 				<ul class="list-inline shop-product-prices margin-bottom-30">
-					<li class="shop-red">$57.00</li>
-					<li class="line-through">$70.00</li>
-					<li><small class="shop-bg-red time-day-left">4 days left</small></li>
+					<li class="shop-red">$${product.price}/kg</li>
 				</ul><!--/end shop product prices-->
 
-				<h3 class="shop-product-title">Size</h3>
-				<ul class="list-inline product-size margin-bottom-30">
-					<li>
-						<input type="radio" id="size-1" name="size">
-						<label for="size-1">S</label>
-					</li>
-					<li>
-						<input type="radio" id="size-2" name="size">
-						<label for="size-2">M</label>
-					</li>
-					<li>
-						<input type="radio" id="size-3" name="size" checked>
-						<label for="size-3">L</label>
-					</li>
-					<li>
-						<input type="radio" id="size-4" name="size">
-						<label for="size-4">XL</label>
-					</li>
-				</ul><!--/end product size-->
-
-				<h3 class="shop-product-title">Color</h3>
-				<ul class="list-inline product-color margin-bottom-30">
-					<li>
-						<input type="radio" id="color-1" name="color">
-						<label class="color-one" for="color-1"></label>
-					</li>
-					<li>
-						<input type="radio" id="color-2" name="color" checked>
-						<label class="color-two" for="color-2"></label>
-					</li>
-					<li>
-						<input type="radio" id="color-3" name="color">
-						<label class="color-three" for="color-3"></label>
-					</li>
-				</ul><!--/end product color-->
+				<div class= "margin-bottom-40">
+					<h3 class="shop-product-title">Quantity Left</h3>
+					<input type='text' class="quantity-field" value=${product.amount}/>
+				</div>
+				<!--/end product Quantity Left-->
 
 				<h3 class="shop-product-title">Quantity</h3>
 				<div class="margin-bottom-40">
@@ -136,7 +102,7 @@
 						<a href="#">Add to Compare</a>
 					</li>
 				</ul>
-				<p class="wishlist-category"><strong>Categories:</strong> <a href="#">Clothing,</a> <a href="#">Shoes</a></p>
+				<p class="wishlist-category"><strong>Categories:</strong> <a href="#">Vegetable,</a> <a href="#">Happy Farm</a></p>
 			</div>
 		</div><!--/end row-->
 	</div>
@@ -158,35 +124,47 @@
 			<div class="tab-pane fade in active" id="description">
 				<div class="row">
 					<div class="col-md-7">
-						<p>Morbi non semper est, eget tincidunt turpis. Vivamus sollicitudin sodales nisi, et venenatis turpis Vivamus sollicitudin ultricies eget. Fusce vitae neque blandit lectus faucibus aliquet nec vel ipsum. Integer mattis lacinia felis vel sollicitudin molestie.</p><br>
-
-						<h3 class="heading-md margin-bottom-20">Specifies</h3>
+						<p class="margin-bottom-40"><strong>About provider: </strong> This is the best farm in Ha Noi that provides organic vegetable for about 10000 house hold in the city. They can produce 1 ton of organic vegetable per day. <a href="#">Visit farm</a></p><br>
+						<h3 class="heading-md">Product Information</h3>
+						<p><strong>About the product:</strong> Banana is a very good food for health.</p>
+						<p><strong>Planting Date:</strong> 8 August 2017</p>
+						<p><strong>Haversting Date:</strong> 15 August 2017</p>
+						<p><strong>Expriation Date:</strong> 22 August 2017</p>
+						<p><strong>Properties of banana from Happy farm:</strong></p>
 						<div class="row">
 							<div class="col-sm-6">
 								<ul class="list-unstyled specifies-list">
-									<li><i class="fa fa-caret-right"></i>Brand Name: <span>Lacoste</span></li>
-									<li><i class="fa fa-caret-right"></i>Technics: <span>Computer</span> Knitted</li>
-									<li><i class="fa fa-caret-right"></i>Sleeve Length: <span>Full</span></li>
-									<li><i class="fa fa-caret-right"></i>Sleeve Style: <span>Regular</span></li>
-									<li><i class="fa fa-caret-right"></i>Pattern Type: <span>PAID</span></li>
-									<li><i class="fa fa-caret-right"></i>Style: <span>Casual</span></li>
+									<li><i class="fa fa-caret-right"></i>Water: <span>74.2 gr</span></li>
+									<li><i class="fa fa-caret-right"></i>Energy: <span>92 kcal</span> Knitted</li>
+									<li><i class="fa fa-caret-right"></i>Fat: <span>0.48 gr</span></li>
+									<li><i class="fa fa-caret-right"></i>Protein: <span>1.03 gr</span></li>
+									<li><i class="fa fa-caret-right"></i>Carbonhydrates Type: <span>23.43 gr</span></li>
+									<li><i class="fa fa-caret-right"></i>Fiber: <span>2.4 gr</span></li>
+									<li><i class="fa fa-caret-right"></i>Potassium: <span>396 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Phosphorus: <span>20 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Iron: <span>0.31 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Sodium: <span>1 mg</span></li>
 								</ul>
 							</div>
 							<div class="col-sm-6">
 								<ul class="list-unstyled specifies-list">
-									<li><i class="fa fa-caret-right"></i>Material: <span>Cotton,Nylon</span></li>
-									<li><i class="fa fa-caret-right"></i>Item Type: <span>Pullovers</span></li>
-									<li><i class="fa fa-caret-right"></i>Thickness: <span>Thin</span></li>
-									<li><i class="fa fa-caret-right"></i>Model Number: <span>TM-11013 </span></li>
-									<li><i class="fa fa-caret-right"></i>Gender: <span>Men</span></li>
-									<li><i class="fa fa-caret-right"></i>MATERIAL: <span>80%COTTON+10%NYLON</span></li>
+									<li><i class="fa fa-caret-right"></i>Magnesium: <span>29 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Calcium: <span>6 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Zinc: <span>0.16 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Selenium: <span>1.1 mg </span></li>
+									<li><i class="fa fa-caret-right"></i>Vitamin C: <span>9.1 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Vitamin A: <span>81 lU</span></li>
+									<li><i class="fa fa-caret-right"></i>Vitamin B1 (Thiamin): <span>0.045 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Vitamin B2 (Riboflamin): <span>0.1 mg </span></li>
+									<li><i class="fa fa-caret-right"></i>Vitamin E: <span>0.27 mg</span></li>
+									<li><i class="fa fa-caret-right"></i>Niacin: <span>0.54 mg</span></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-5">
 						<div class="responsive-video">
-							<iframe src="//player.vimeo.com/video/72343553" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+							<iframe src="https://www.youtube.com/embed/prfEeJEamco" frameborder="0" width='500px' height='300px' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 						</div>
 					</div>
 				</div>
@@ -197,10 +175,10 @@
 			<div class="tab-pane fade" id="reviews">
 				<div class="product-comment margin-bottom-40">
 					<div class="product-comment-in">
-						<img class="product-comment-img rounded-x" src="/resources/img/shop/05.jpg" alt="">
+						<img class="product-comment-img rounded-x" src="http://agraria.pe/uploads/images/2016/08/Bananas-Ecuador.jpg" width="20px" height="15px" alt="">
 						<div class="product-comment-dtl">
 							<h4>Mickel <small>22 days ago</small></h4>
-							<p>I like the green colour, it's very likeable and reminds me of Hollister. A little loose though but I am very skinny</p>
+							<p>I like this shop because of the fresh vegetable. i also like this website cause i can order the organic food very easily.</p>
 							<ul class="list-inline product-ratings">
 								<li class="reply"><a href="#">Reply</a></li>
 								<li class="pull-right">
@@ -222,21 +200,21 @@
 						<div class="margin-bottom-30">
 							<label class="label-v2">Name</label>
 							<label class="input">
-								<input type="text" name="name" id="name">
+								<input type="text" name="name" id="name" size="50">
 							</label>
 						</div>
 
 						<div class="margin-bottom-30">
 							<label class="label-v2">Email</label>
 							<label class="input">
-								<input type="email" name="email" id="email">
+								<input type="email" name="email" id="email" size="50">
 							</label>
 						</div>
 
 						<div class="margin-bottom-30">
 							<label class="label-v2">Review</label>
 							<label class="textarea">
-								<textarea rows="7" name="message" id="message"></textarea>
+								<textarea rows="7" name="message" id="message" size="50"></textarea>
 							</label>
 						</div>
 					</fieldset>
@@ -271,7 +249,6 @@
 <div class="container">
 	<div class="heading heading-v1 margin-bottom-20">
 		<h2>Product you may like</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio elit, ultrices vel cursus sed, placerat ut leo. Phasellus in magna erat. Etiam gravida convallis augue non tincidunt. Nunc lobortis dapibus neque quis lacinia. Nam dapibus tellus sit amet odio venenatis</p>
 	</div>
 
 	<div class="illustration-v2 margin-bottom-60">
@@ -282,11 +259,11 @@
 
 		<ul class="list-inline owl-slider-v4">
 			<li class="item">
-				<a href="#"><img class="img-responsive" src="/resources/img/shop/05.jpg" alt=""></a>
+				<a href="#"><img class="img-responsive" src="http://imavex.vo.llnwd.net/o18/clients/urbanfarm/images/Fruit/Seascape-Strawberry-Plants.jpg" alt="" width="200px" heigth="150px"></a>
 				<div class="product-description-v2">
 					<div class="margin-bottom-5">
-						<h4 class="title-price"><a href="#">Double-breasted</a></h4>
-						<span class="title-price">$95.00</span>
+						<h4 class="title-price text-center"><a href="#">Organic Strawberry - from Happy farm</a></h4>
+						<span class="title-price">$10.00/kg</span>
 					</div>
 					<ul class="list-inline product-ratings">
 						<li><i class="rating-selected fa fa-star"></i></li>
@@ -298,12 +275,11 @@
 				</div>
 			</li>
 			<li class="item">
-				<a href="#"><img class="img-responsive" src="/resources/img/shop/05.jpg" alt=""></a>
+				<a href="#"><img class="img-responsive" src="http://pull01.thefruitcompany.netdna-cdn.com/media/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/o/r/organic-cherries_4.jpg" alt="" width="200px" heigth="150px"></a>
 				<div class="product-description-v2">
 					<div class="margin-bottom-5">
-						<h4 class="title-price"><a href="#">Double-breasted</a></h4>
-						<span class="title-price">$60.00</span>
-						<span class="title-price line-through">$95.00</span>
+						<h4 class="title-price"><a href="#">Cherry - from Happy Farm</a></h4>
+						<span class="title-price">$15.00/kg</span>
 					</div>
 					<ul class="list-inline product-ratings">
 						<li><i class="rating-selected fa fa-star"></i></li>
@@ -315,11 +291,11 @@
 				</div>
 			</li>
 			<li class="item">
-				<a href="#"><img class="img-responsive" src="/resources/img/shop/05.jpg" alt=""></a>
+				<a href="#"><img class="img-responsive" src="http://foodservice.treetop.com/Assets/Images/Products/Juice/bg/bg-apples-04.jpg" alt="" width="200px" heigth="150px"></a>
 				<div class="product-description-v2">
 					<div class="margin-bottom-5">
-						<h4 class="title-price"><a href="#">Double-breasted</a></h4>
-						<span class="title-price">$95.00</span>
+						<h4 class="title-price"><a href="#">Apple - from Happy Farm</a></h4>
+						<span class="title-price">$7.00/kg</span>
 					</div>
 					<ul class="list-inline product-ratings">
 						<li><i class="rating-selected fa fa-star"></i></li>
@@ -331,11 +307,11 @@
 				</div>
 			</li>
 			<li class="item">
-				<a href="#"><img class="img-responsive" src="/resources/img/shop/05.jpg" alt=""></a>
+				<a href="#"><img class="img-responsive" src="http://media.bizwebmedia.net/sites/123330/data/Upload/2016/5/untitled_1(13).jpg" alt="" width="200px" heigth="150px"></a>
 				<div class="product-description-v2">
 					<div class="margin-bottom-5">
-						<h4 class="title-price"><a href="#">Double-breasted</a></h4>
-						<span class="title-price">$95.00</span>
+						<h4 class="title-price"><a href="#">Water melon - from Monday </a></h4>
+						<span class="title-price">$1.50/kg</span>
 					</div>
 					<ul class="list-inline product-ratings">
 						<li><i class="rating-selected fa fa-star"></i></li>
@@ -369,5 +345,4 @@
         StyleSwitcher.initStyleSwitcher();
         MasterSliderShowcase2.initMasterSliderShowcase2();
     });
-
 </script>

@@ -22,7 +22,6 @@
 				</sec:authorize>
 				
 					
-
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						
 						<li class="list-group-item" id = 'profile-menu-1'>
@@ -33,24 +32,6 @@
 							<a href="/account/change-password"><i class="fa fa-lock"></i> <spring:message code="leftmenu.changePassword"/></a>
 						</li>
 						
-						<li class="list-group-item" id = 'profile-menu-3'>
-							<a href="/trucking/post"><i class="fa fa-pencil-square-o"></i> <spring:message code="leftmenu.postTrucking"/></a>
-						</li>
-						<li class="list-group-item" id = 'profile-menu-4'>
-							<a href="/shipment/post"><i class="fa fa-pencil-square-o"></i> <spring:message code="leftmenu.postShipment"/></a>
-						</li>
-						<li class="list-group-item" id = 'profile-menu-5'>
-							<a href="/trucking/manage-trucking"><i class="fa fa-truck"></i> <spring:message code="leftmenu.manageTrucking"/></a>
-						</li>
-						<li class="list-group-item" id = 'profile-menu-6'>
-							<a href="/shipment/manage-goods"><i class="fa fa-cubes"></i><spring:message code="leftmenu.manageShipment"/></a>
-						</li>
-						<li class="list-group-item" id = 'profile-menu-7'>
-							<a href="/order/trucking/"><i class="fa fa-phone"></i> <spring:message code="leftmenu.truckingRequest"/></a>
-						</li>
-						<li class="list-group-item" id = 'profile-menu-8'>
-							<a href="/order/shipment/"><i class="fa fa-phone"></i> <spring:message code="leftmenu.shipmentRequest"/></a>
-						</li>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<li class="list-group-item" id = 'profile-menu-9'>
 								<a href="/admin/manage-user"><i class="fa fa-users"></i> <spring:message code="leftmenu.manageUser"/></a>
