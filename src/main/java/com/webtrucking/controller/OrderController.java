@@ -51,15 +51,14 @@ public class OrderController extends BaseController{
 	public String listOrder(Model model,
 								@RequestParam(required = false) Integer page,
 								@RequestParam(required = false) Integer size) {
-		Integer userType = 1;
-		Integer userId = 1;
+		User currentUser = getCurrentAccount();
 		List<Order> listOrder = new ArrayList<>();
-		if(userType == 1) {
+		if(currentUser.getUserType() == 1) {
 			listOrder = ordersDAO.findAllByOrderByCreatedTimestamp();
-		} else if(userType == 2) {
-			listOrder = ordersDAO.findByUserIdOrderByCreatedTimestamp(userId);
+		} else if(currentUser.getUserType() == 2) {
+			listOrder = ordersDAO.findByUserIdOrderByCreatedTimestamp(currentUser.getId());
 		}
-		model.addAttribute("userType", userType);
+		model.addAttribute("userType", currentUser.getUserType());
 		model.addAttribute("listOrder", listOrder);
 		model.addAttribute("listDeliver", userDAO.findAllByUserType(4));
 		return "order.list";
@@ -81,7 +80,6 @@ public class OrderController extends BaseController{
 		ordersDAO.save(order);
 		return order;
 	}
-
 
 	@RequestMapping("/detail/{orderId}")
 	public String detail(Model model, @PathVariable(value = "orderId") Integer orderId) {
