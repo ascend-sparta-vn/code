@@ -270,7 +270,7 @@
                                                 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn-u btn-u-primary" onclick="javascript: accountManager.createWalletProfile()">Save changes</button>
+                                                    <button type="button" class="btn-u btn-u-primary" onclick="javascript: accountManager.createWalletProfile()">Create wallet</button>
                                                 </div>
                                             </div>
                                         </div>

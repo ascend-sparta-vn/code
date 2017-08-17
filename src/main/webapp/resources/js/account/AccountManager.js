@@ -175,7 +175,53 @@ AccountManager.prototype.refreshForm = function(){
 }
 
 AccountManager.prototype.createWalletProfile = function(){
-    console.log("Hello moto");
+    const URL = '/wallet/create_wallet';
+    
+    var request = {
+        first_name: $('.wl_firstname').val(),
+        last_name: $('.wl_lastname').val(),
+        email: $('.wl_email').val()
+    };
+    console.log(request);
+    
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: URL,
+        dataType: 'json',
+        data : JSON.stringify(request),
+        success: () => {
+            console.log("Success");
+        },
+        error: () => {
+            console.log("Error");
+        },
+        done: () => {
+            console.log("Done");
+        }
+    });
+
+//    var post = {};
+//    post.order_id = order_id;
+//    post.user_id = obj.value;
+//
+//    var url = '/order/deliverorder?order_id=' + order_id + '&user_id=' + obj.value;
+//    $.ajax({
+//        type : "POST",
+//        contentType : "application/json",
+//        url : url,
+//        dataType : 'json',
+//        success : function(response) {
+//            $('#td_' + order_id).html('Delivering');
+//        },
+//        error : function(e) {
+//            showMessage('ERROR: /order/deliverorder', 'error');
+//            console.log("ERROR deliverorder: ", e);
+//        },
+//        done : function(e) {
+//            console.log("DONE");
+//        }
+//    });
 }
 
 AccountManager.prototype.validate = function(updateFlag){
