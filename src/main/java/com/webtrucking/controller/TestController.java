@@ -26,6 +26,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by thanhnv on 16/09/16.
@@ -57,15 +58,41 @@ public class TestController extends BaseController {
 	@Autowired
 	private TmnWalletClient tmnWalletClient;
 
-	@RequestMapping(value = "/api/{api_name}", method = RequestMethod.GET)
-	public String register(@PathVariable("api_name") String apiName) {
-		if (apiName == null || apiName.equals("1"))
+	@RequestMapping(value = "/getotp", method = RequestMethod.GET)
+	public String getotp() {
 			log.info("GetOTP: {}",tmnWalletClient.getOtp("976686535").toString());
-			log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles("futoken","ios","2.0").toString());
 
-			return "register";
+		return "register";
 	}
-	
+
+	@RequestMapping(value = "/getuserprofile", method = RequestMethod.GET)
+	public String getProfile() {
+		log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles("futoken","ios","2.0").toString());
+		String input = "{ \"thai_id\": \"3231744035655\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"postal_code\": \"10400\", \"mobile_number\": \"0050000001\", \"device_os\": \"android\", \"password\": \"Welcome1234\", \"email\": \"ascender@gmail.com\", \"address\": \"89 AIA Dindang, Bangkok\", \"occupation\": \"แม่บ้าน\" }\n";
+		Map inputMap = TmnWalletClient.mapFromJsonString(input);
+		log.info("GetUserProfile: {}",tmnWalletClient.createProfile("futoken",inputMap));
+
+		return "register";
+	}
+
+	@RequestMapping(value = "/createprofile", method = RequestMethod.GET)
+	public String createProfile() {
+		String input = "{ \"thai_id\": \"3231744035655\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"postal_code\": \"10400\", \"mobile_number\": \"0050000001\", \"device_os\": \"android\", \"password\": \"Welcome1234\", \"email\": \"ascender@gmail.com\", \"address\": \"89 AIA Dindang, Bangkok\", \"occupation\": \"แม่บ้าน\" }\n";
+		Map inputMap = TmnWalletClient.mapFromJsonString(input);
+		log.info("GetUserProfile: {}",tmnWalletClient.createProfile("futoken",inputMap));
+
+		return "register";
+	}
+
+	@RequestMapping(value = "/api/confirmOtp", method = RequestMethod.GET)
+	public String confirmOtp() {
+		String input = "{ \"thai_id\": \"3231744035655\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"postal_code\": \"10400\", \"mobile_number\": \"0050000001\", \"device_os\": \"android\", \"password\": \"Welcome1234\", \"email\": \"ascender@gmail.com\", \"address\": \"89 AIA Dindang, Bangkok\", \"occupation\": \"แม่บ้าน\" }\n";
+		Map inputMap = TmnWalletClient.mapFromJsonString(input);
+		log.info("GetUserProfile: {}",tmnWalletClient.confirmOtp("futoken","otpref","976686535"));
+
+		return "register";
+	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPost(Model model, HttpServletRequest request,
 			@ModelAttribute AccountInfo accountInfo) throws AddressException, MessagingException {
