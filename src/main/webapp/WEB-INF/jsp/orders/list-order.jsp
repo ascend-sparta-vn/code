@@ -221,9 +221,9 @@
 									</c:if>
 
 								</td>
-								<td id="td_${item.id}">
+								<td <c:if test="$em.status == 3}"> style="color:" </c:if>  id="td_${item.id}" >
 									<c:if test="${item.status == 1}">
-										Wait for delivering
+										Wait for deliveringgreen
 									</c:if>
 									<c:if test="${item.status == 2}">
 										Delivering
