@@ -4,64 +4,68 @@
 
 const VND = '&#x20ab;';
 
-function ProductList() {
-    this.listProduct = [
-        {
-            product_id: '1',
-            url: '/resources/img/thumb/thumb1.jpg',
-            product_name: 'Red hot chilli',
-            unit: 'gram',
-            product_provider: 'Tulu farm',
-            price: 30000,
-            quantity: 2
-        },
-        {
-            product_id: '2',
-            url: '/resources/img/thumb/thumb1.jpg',
-            product_name: 'Red hot chilli',
-            unit: 'kg',
-            product_provider: 'Tulu farm',
-            price: 40000,
-            quantity: 2
-        },
-        {
-            product_id: '3',
-            url: '/resources/img/thumb/thumb1.jpg',
-            product_name: 'Red hot chilli',
-            unit: 'kg',
-            product_provider: 'Tulu farm',
-            price: 50000,
-            quantity: 2
-        },
-        {
-            product_id: '4',
-            url: '/resources/img/thumb/thumb1.jpg',
-            product_name: 'Red hot chilli',
-            unit: 'kg',
-            product_provider: 'Tulu farm',
-            price: 25000,
-            quantity: 2
-        },
-        {
-            product_id: '5',
-            url: '/resources/img/thumb/thumb1.jpg',
-            product_name: 'Red hot chilli',
-            unit: 'kg',
-            product_provider: 'Tulu farm',
-            price: 25300,
-            quantity: 2
-        }
-    ];
-    this.subTotalAmount = 0;
-    this.shipmentFee = 0;
-    this.couponValue = 0;
-    this.totalAmount = 0;
+function ProductList(){
+    this.listProduct = [];
 }
+
+// function ProductList() {
+//     this.listProduct = [
+//         {
+//             product_id: '1',
+//             url: '/resources/img/thumb/thumb1.jpg',
+//             product_name: 'Red hot chilli',
+//             unit: 'gram',
+//             product_provider: 'Tulu farm',
+//             price: 30000,
+//             quantity: 2
+//         },
+//         {
+//             product_id: '2',
+//             url: '/resources/img/thumb/thumb1.jpg',
+//             product_name: 'Red hot chilli',
+//             unit: 'kg',
+//             product_provider: 'Tulu farm',
+//             price: 40000,
+//             quantity: 2
+//         },
+//         {
+//             product_id: '3',
+//             url: '/resources/img/thumb/thumb1.jpg',
+//             product_name: 'Red hot chilli',
+//             unit: 'kg',
+//             product_provider: 'Tulu farm',
+//             price: 50000,
+//             quantity: 2
+//         },
+//         {
+//             product_id: '4',
+//             url: '/resources/img/thumb/thumb1.jpg',
+//             product_name: 'Red hot chilli',
+//             unit: 'kg',
+//             product_provider: 'Tulu farm',
+//             price: 25000,
+//             quantity: 2
+//         },
+//         {
+//             product_id: '5',
+//             url: '/resources/img/thumb/thumb1.jpg',
+//             product_name: 'Red hot chilli',
+//             unit: 'kg',
+//             product_provider: 'Tulu farm',
+//             price: 25300,
+//             quantity: 2
+//         }
+//     ];
+//     this.subTotalAmount = 0;
+//     this.shipmentFee = 0;
+//     this.couponValue = 0;
+//     this.totalAmount = 0;
+// }
 
 ProductList.prototype.init = function () {
     var self = this;
 
-    this.displayProducts();
+    // this.displayProducts();
 }
 
 ProductList.prototype.subtractQuantity = function (productId) {
