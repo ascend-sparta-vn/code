@@ -197,6 +197,7 @@ DROP TABLE IF EXISTS `payment_history`;
 CREATE TABLE `payment_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
   `wallet_id` int(11) NOT NULL,
   `total_amount` decimal(25,5) NOT NULL,
   `status` tinyint(1) NOT NULL,
