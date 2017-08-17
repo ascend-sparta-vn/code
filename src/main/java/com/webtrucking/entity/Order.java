@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author vuquocdat
  */
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
