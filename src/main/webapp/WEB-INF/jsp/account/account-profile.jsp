@@ -43,7 +43,7 @@
                             <dl class="dl-horizontal">
                                 <dt><strong>Your name </strong></dt>
                                 <dd>
-                                    Edward Rooster
+                                    ${currentUser.username}
                                     <span>
                                         <a class="pull-right" href="#">
                                             <i class="fa fa-pencil"></i>
@@ -51,29 +51,10 @@
                                     </span>
                                 </dd>
                                 <hr>
-                                <dt><strong>Your ID </strong></dt>
+
+                                <dt><strong>Email </strong></dt>
                                 <dd>
-                                    FKJ-032440
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Company name </strong></dt>
-                                <dd>
-                                    Htmlstream
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Primary Email Address </strong></dt>
-                                <dd>
-                                    edward-rooster@gmail.com
+                                    ${currentUser.email}
                                     <span>
                                         <a class="pull-right" href="#">
                                             <i class="fa fa-pencil"></i>
@@ -83,27 +64,7 @@
                                 <hr>
                                 <dt><strong>Phone Number </strong></dt>
                                 <dd>
-                                    (304) 33-2867-499
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Office Number </strong></dt>
-                                <dd>
-                                    (304) 44-9810-296
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Address </strong></dt>
-                                <dd>
-                                    California, US
+                                    ${currentUser.mobileNumber}
                                     <span>
                                         <a class="pull-right" href="#">
                                             <i class="fa fa-pencil"></i>

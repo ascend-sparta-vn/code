@@ -1,8 +1,10 @@
 package com.webtrucking.controller;
 
+import com.google.gson.Gson;
 import com.webtrucking.client.TmnWalletClient;
 import com.webtrucking.dao.ProvinceDAO;
 import com.webtrucking.dao.UserDAO;
+import com.webtrucking.entity.ApiConfiguration;
 import com.webtrucking.entity.Province;
 import com.webtrucking.json.entity.AccountInfo;
 import com.webtrucking.services.EmailService;
@@ -22,11 +24,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.StringReader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by thanhnv on 16/09/16.
@@ -58,16 +66,23 @@ public class TestController extends BaseController {
 	@Autowired
 	private TmnWalletClient tmnWalletClient;
 
-	@RequestMapping(value = "/getotp", method = RequestMethod.GET)
-	public String getotp() {
-			log.info("GetOTP: {}",tmnWalletClient.getOtp("976686535").toString());
+	@RequestMapping(value = "/getotp/{mobileNo}", method = RequestMethod.GET)
+	public String getotp(@PathVariable("mobileNo") String mobileNo) {
+			log.info("GetOTP: {}",tmnWalletClient.getOtp(mobileNo).toString());
 
 		return "register";
 	}
 
-	@RequestMapping(value = "/getuserprofile", method = RequestMethod.GET)
-	public String getProfile() {
-		log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles("futoken","ios","2.0").toString());
+	@RequestMapping(value = "/buildinput", method = RequestMethod.GET)
+	public String getotp() {
+		tmnWalletClient.init();
+		buildAllMapInput();
+		return "register";
+	}
+
+	@RequestMapping(value = "/getuserprofile/{token}/{deviceos}/{appversion}", method = RequestMethod.GET)
+	public String getProfile(@PathVariable String token, @PathVariable String deviceos, @PathVariable String appversion) {
+		log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles(token,deviceos,appversion).toString());
 		String input = "{ \"thai_id\": \"3231744035655\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"postal_code\": \"10400\", \"mobile_number\": \"0050000001\", \"device_os\": \"android\", \"password\": \"Welcome1234\", \"email\": \"ascender@gmail.com\", \"address\": \"89 AIA Dindang, Bangkok\", \"occupation\": \"แม่บ้าน\" }\n";
 		Map inputMap = TmnWalletClient.mapFromJsonString(input);
 		log.info("GetUserProfile: {}",tmnWalletClient.createProfile("futoken",inputMap));
@@ -149,7 +164,60 @@ public class TestController extends BaseController {
 		}
 		
 	}
-	
 
+	public String mapToJsonString(Map inputMap) {
+		Gson gson = new Gson();
+		String json = gson.toJson(inputMap);
+		System.out.println(json);
+		return json;
+	}
+
+	public static Map<String, Object> mapFromJsonString(String jsonObjectStr) {
+
+		JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr));
+		JsonObject jsonResult = jsonReader.readObject();
+		jsonReader.close();
+		Set<String> iterator = jsonResult.keySet();
+		Map<String, Object> response = new HashMap<>();
+		for (String key: iterator) {
+			response.put(key, jsonResult.get(key));
+		}
+		return response;
+	}
+
+	private static JsonObject jsonFromString(String jsonObjectStr) {
+
+		JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr));
+		JsonObject object = jsonReader.readObject();
+		jsonReader.close();
+
+		return object;
+	}
+
+	public void buildMapInput(String result) {
+		JsonObject dataJson = jsonFromString(String.valueOf(result.toString()));
+		Set<String> iterator = dataJson.keySet();
+		Map<String, Object> response = new HashMap<>();
+		System.out.println("Map<String, Object> requestMap = new HashMap<>();");
+		for (String key: iterator) {
+			response.put(key, dataJson.get(key));
+			System.out.println("requestMap.put(\""+key+"\","+ dataJson.get(key)+")");
+		}
+	}
+
+	public void buildAllMapInput() {
+		Map<Integer, ApiConfiguration> a = tmnWalletClient.getApiConfigurations();
+		String request;
+		String name;
+		for (ApiConfiguration apiConfig: a.values()
+			 ) {
+			request = apiConfig.getRequest();
+			name = apiConfig.getName();
+			if (request != null && !request.isEmpty()) {
+				log.info("------- Build input for api name: {} -----", name);
+				buildMapInput(request);
+			}
+		}
+	}
 
 }
