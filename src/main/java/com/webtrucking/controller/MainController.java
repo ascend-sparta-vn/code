@@ -32,6 +32,18 @@ public class MainController {
 		if(authen != null){
 			username = authen.getName();
 			log.info("username:" + username);
+			switch (username) {
+				case "admin":
+					return "order.list";
+				case "customer":
+					return "product.list";
+				case "provider":
+					return "auction.list";
+				case "transporter":
+					return "auction.list";
+				default:
+					return "account.login";
+			}
 		}
 
 		return "homepage";
