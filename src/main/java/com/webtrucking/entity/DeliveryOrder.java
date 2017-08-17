@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.webtrucking.entity;
 
+
+
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -26,23 +22,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author vuquocdat
  */
 @Entity
-@Table(name = "order")
-public class Order implements Serializable {
+@Table(name = "delivery_order")
+@XmlRootElement
+public class DeliveryOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "status")
-    private boolean status;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "total_amount")
-    private BigDecimal totalAmount;
-    @Column(name = "state")
-    private Boolean state;
+    @Column(name = "order_id")
+    private int orderId;
     @Basic(optional = false)
     @Column(name = "user_id")
     private int userId;
@@ -53,16 +45,21 @@ public class Order implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedTimestamp;
 
-    public Order() {
+    public DeliveryOrder() {
     }
 
-    public Order(Integer id) {
+    public DeliveryOrder(Integer orderId, Integer userId) {
+        this.orderId = orderId;
+        this.userId = userId;
+    }
+
+    public DeliveryOrder(Integer id) {
         this.id = id;
     }
 
-    public Order(Integer id, boolean status, int userId) {
+    public DeliveryOrder(Integer id, int orderId, int userId) {
         this.id = id;
-        this.status = status;
+        this.orderId = orderId;
         this.userId = userId;
     }
 
@@ -74,28 +71,12 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public boolean getStatus() {
-        return status;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public Boolean getState() {
-        return state;
-    }
-
-    public void setState(Boolean state) {
-        this.state = state;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public int getUserId() {
@@ -132,10 +113,10 @@ public class Order implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof DeliveryOrder)) {
             return false;
         }
-        Order other = (Order) object;
+        DeliveryOrder other = (DeliveryOrder) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -144,6 +125,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "javaapplication1.Order[ id=" + id + " ]";
+        return "javaapplication1.DeliveryOrder[ id=" + id + " ]";
     }
+
 }

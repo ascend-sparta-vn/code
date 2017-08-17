@@ -27,11 +27,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "order_item")
+<<<<<<< HEAD
+=======
+@XmlRootElement
+>>>>>>> master
 public class OrderItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+>>>>>>> master
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;

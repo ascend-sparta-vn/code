@@ -1,7 +1,11 @@
 package com.webtrucking.controller;
 
+import com.webtrucking.dao.DeliveryDAO;
+import com.webtrucking.dao.OrdersDAO;
 import com.webtrucking.dao.ShipmentDAO;
 import com.webtrucking.dao.UserDAO;
+import com.webtrucking.entity.DeliveryOrder;
+import com.webtrucking.entity.Order;
 import com.webtrucking.entity.Shipment;
 import com.webtrucking.entity.User;
 import com.webtrucking.json.entity.AjaxResponseBody;
@@ -11,6 +15,8 @@ import com.webtrucking.util.DateUtils;
 import com.webtrucking.util.IConstant;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,9 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by sonph on 16/09/16.
@@ -32,27 +36,39 @@ public class OrderController extends BaseController{
 	private ShipmentDAO shipmentDAO;
 
 	@Autowired
+	OrdersDAO ordersDAO;
+
+	@Autowired
+	DeliveryDAO deliveryDAO;
+
 	private UserDAO userDAO;
 
 	static Logger log = Logger.getLogger(OrderController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
 
 	@RequestMapping("/list")
-	public String listTrucking1(Map<String, Object> model,
+	public String listOrder(Model model,
 								@RequestParam(required = false) Integer page,
 								@RequestParam(required = false) Integer size) {
-		model.put("listProvince", CacheUtil.listProvinceCache.get("listProvince"));
-		if(page != null) {
-			model.put("currentPage", page);
-		} else {
-			model.put("currentPage", 1);
+		Integer userType = 1;
+		Integer userId = 1;
+		List<Order> listOrder = new ArrayList<>();
+		if(userType == 1) {
+			listOrder = ordersDAO.findByUserIdOrderByCreatedTimestamp(userId);
+		} else if(userType == 2) {
+			listOrder = ordersDAO.findAllByOrderByCreatedTimestamp();
 		}
-		if(size != null) {
-			model.put("size", size);
-		} else {
-			model.put("size", 10);
-		}
-		return "product.list";
+		model.addAttribute("listOrder", listOrder);
+		model.addAttribute("listDeliver", userDAO.findAllByUserType(4));
+		return "order.list";
+	}
+
+	@RequestMapping(value = "/deliverorder", method = RequestMethod.POST)
+	public String deliverOrder(@RequestParam(name = "order_id") Integer orderId,
+											   @RequestParam(name = "user_id") Integer userId) {
+		DeliveryOrder deliveryOrder = new DeliveryOrder(orderId, userId);
+		deliveryDAO.save(deliveryOrder);
+		return "order.assign";
 	}
 
 	@RequestMapping("/post")

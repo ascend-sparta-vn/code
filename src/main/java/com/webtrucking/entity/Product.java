@@ -200,5 +200,4 @@ public class Product implements Serializable {
     public String toString() {
         return "javaapplication1.Product[ id=" + id + " ]";
     }
-    
 }
