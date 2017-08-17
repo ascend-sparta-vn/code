@@ -155,14 +155,28 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">
-                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                                    <i class="fa fa-paypal"></i> Pay with Ascend wallet
+                                                                <a data-toggle="collapse" data-parent="#accordion" href="#ascend_payment">
+                                                                    <img src="/resources/img/icons/ascend.png" style="max-height: 24px; max-width: 24px;"/> Pay with Ascend wallet
                                                                 </a>
                                                             </h4>
                                                         </div>
-                                                        <div id="collapseTwo" class="panel-collapse collapse in">
-                                                            <div class="content margin-left-10">
-                                                                <a href="#"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal"></a>
+                                                        <div id="ascend_payment" class="panel-collapse collapse in">
+                                                            <div class="panel-body cus-form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-4 no-col-space control-label">Mobile number</label>
+                                                                    <div class="col-sm-4">
+                                                                        <input type="text" class="form-control required" name="cardholder" placeholder="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-4 no-col-space control-label">Password</label>
+                                                                    <div class="col-sm-4">
+                                                                        <input type="password" class="form-control required" name="cardholder" placeholder="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group margin-left-20">
+                                                                    <a href="#" data-toggle="modal" data-target="#responsive">Create new Ascend wallet if you don't have any</a>   
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -170,12 +184,12 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">
-                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                                <a data-toggle="collapse" data-parent="#accordion" href="#visa_payment">
                                                                     <i class="fa fa-credit-card"></i> Credit or Debit Card
                                                                 </a>
                                                             </h4>
                                                         </div>
-                                                        <div id="collapseOne" class="panel-collapse collapse">
+                                                        <div id="visa_payment" class="panel-collapse collapse">
                                                             <div class="panel-body cus-form-horizontal">
                                                                 <div class="form-group">
                                                                     <label class="col-sm-4 no-col-space control-label">Cardholder Name</label>
@@ -284,6 +298,55 @@
                     <!--/end container-->
                 </div>
                 <!--=== End Shop Suvbscribe ===-->
+                
+                <!--=== Modals ===-->
+                <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="margin: 120px auto;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel4">Wallet information</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><input class="form-control wl_firstname" placeholder="First name" type="text" /></p>
+                                        <p><input class="form-control wl_email" placeholder="Email" type="text" /></p>
+                                        <p><input class="form-control wl_occupation" placeholder="Occupation" type="text" /></p>
+                                        <p><input class="form-control wl_password" placeholder="Password" type="password" /></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><input class="form-control wl_lastname" placeholder="Last name" type="text" /></p>
+                                        <p><input class="form-control wl_mobile" placeholder="Mobile number" type="text" /></p>
+                                        <p><input class="form-control wl_postalcode" placeholder="Postal code" type="text" /></p>
+                                        <p><input class="form-control wl_citizenid" placeholder="Citizen id" type="text" /></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                   <div class="col-md-12">
+                                       <p><input class="form-control wl_address" placeholder="Address" type="text" /></p>
+                                   </div>
+                                </div>
+
+                                <div id="modal_otp_zone">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="otp">Email</label>
+                                            <p><input class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn-u btn-u-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--=== End modals ===-->
                 
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD18tbGrjpouvZTjOXNtXxCdJdFwUI09iY&callback=initialize"></script>
                 <script src="/resources/js/product/ProductCheckout.js"></script>

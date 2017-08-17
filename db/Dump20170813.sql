@@ -230,12 +230,13 @@ CREATE TABLE `product` (
   `price` int(11) NOT NULL,
   `description` varchar(1024) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0',
-  `imported_date` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `imported_date` timestamp(6) NULL DEFAULT NULL,
   `expired_date` timestamp(6) NULL DEFAULT NULL,
   `created_timestamp` timestamp(6) NULL DEFAULT NULL,
   `last_updated_timestamp` timestamp(6) NULL DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

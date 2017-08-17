@@ -166,8 +166,8 @@
                                 <!--Checkout-Form-->
                                 <section>
                                     <div class="inline-group">
-                                        <label class="radio"><input type="radio" name="radio-inline" class="payment_method ascend_wallet"><i class="rounded-x"></i>Ascend wallet</label>
-                                        <label class="radio"><input type="radio" checked="" name="radio-inline" class="payment_method visa_card"><i class="rounded-x"></i>Visa</label>
+                                        <label class="radio"><input type="radio" name="radio-inline" class="payment_method ascend_wallet" checked=""><i class="rounded-x"></i>Ascend wallet</label>
+                                        <label class="radio"><input type="radio" name="radio-inline" class="payment_method visa_card"><i class="rounded-x"></i>Visa</label>
                                         <label class="radio"><input type="radio" name="radio-inline" class="payment_method master_card"><i class="rounded-x"></i>MasterCard</label>
                                     </div>
                                 </section>
