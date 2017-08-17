@@ -1,8 +1,14 @@
+const WALLET_CREATE_MODE_START = 0;
+const WALLET_CREATE_MODE_WAIT_OTP = 1;
+const WALLET_CREATE_MODE_WAIT_PROFILE = 2;
+
 function AccountManager() {
 	this.walletList = [
         { thai_id: "3231744035655", first_name: "Ascend", last_name: "Hackathon", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", address: "89 AIA Dindang, Bangkok", occupation: "developer"},
         { thai_id: "3231744035657", first_name: "Tulu", last_name: "Tran", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", "address": "89 AIA Dindang, Bangkok", occupation: "developer"}
     ];
+    
+    this.createMode = WALLET_CREATE_MODE_START;
 }
 
 AccountManager.prototype.init = function(){
@@ -12,6 +18,7 @@ AccountManager.prototype.init = function(){
 
     self.displayPaymentMethod();
     self.displayWallets();
+
 }
 
 /*
@@ -148,7 +155,6 @@ AccountManager.prototype.initButtonClick = function(){
 		window.history.back();
 	});
 
-    // Kai added
     $('.payment_method').change(() => {
         this.displayPaymentMethod();
     });
@@ -164,10 +170,142 @@ AccountManager.prototype.displayPaymentMethod = function(){
         $('#payment_by_ascend_wallet').hide();
     else
         $('#payment_by_ascend_wallet').show();
+    
+    if ($('.master_card').is(':checked'))
+        $('#payment_by_ascend_wallet').hide();
+    else
+        $('#payment_by_ascend_wallet').show();
 }
 
 AccountManager.prototype.refreshForm = function(){
 	$("input").val('');
+}
+
+AccountManager.prototype.initWalletCreateZone = function(){
+    
+}
+
+AccountManager.prototype.createWalletProfile = function(){
+    
+    function toggleInputs(disable) {
+        if (disable) {
+            $('.wl_firstname').attr('disabled','disabled');
+            $('.wl_lastname').attr('disabled','disabled');
+            $('.wl_email').attr('disabled','disabled');
+            $('.wl_mobile').attr('disabled','disabled');
+            $('.wl_occupation').attr('disabled','disabled');
+            $('.wl_postalcode').attr('disabled','disabled');
+            $('.wl_password').attr('disabled','disabled');
+            $('.wl_citizenid').attr('disabled','disabled');
+            $('.wl_address').attr('disabled','disabled');
+        } else {
+            $('.wl_firstname').removeAttr('disabled');
+            $('.wl_lastname').removeAttr('disabled');
+            $('.wl_email').removeAttr('disabled');
+            $('.wl_mobile').removeAttr('disabled');
+            $('.wl_occupation').removeAttr('disabled');
+            $('.wl_postalcode').removeAttr('disabled');
+            $('.wl_password').removeAttr('disabled');
+            $('.wl_citizenid').removeAttr('disabled');
+            $('.wl_address').removeAttr('disabled');
+        }
+    }
+    
+    function confirmOtp(obj, successFunc){
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: '/wallet/confirm_otp',
+            dataType: 'text',
+            data: JSON.stringify(obj),
+            success: (response) => {
+                //console.log(response);
+                successFunc(response);
+            },
+            error: (error) => {
+                console.log(error);
+            },
+            done: () => {
+                console.log("Done");
+            }
+        });
+    }
+    
+    if (this.createMode == WALLET_CREATE_MODE_START) {
+        const mobile_number = $('.wl_mobile').val();
+        const URL = `/wallet/get_otp/${mobile_number}`;
+        
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: URL,
+            dataType: 'text',
+            success: (response) => {
+                var resp = JSON.parse(response);
+                
+                this.otp_reference = resp.otp_reference;
+                this.mobile_number = resp.mobile_number;
+                
+                $('.wl_otp').val(resp.otp_reference);
+            },
+            error: (error) => {
+                console.log(error);
+            },
+            done: () => {
+                console.log("Done");
+            }
+        });
+        
+        $('.btn-create-wallet').html('Confirm OTP');
+        toggleInputs(true);
+        this.createMode = WALLET_CREATE_MODE_WAIT_OTP;
+    } else if (this.createMode == WALLET_CREATE_MODE_WAIT_OTP) {
+        const URL = '/wallet/create_wallet';
+
+        var request = {
+            first_name: $('.wl_firstname').val(),
+            last_name: $('.wl_lastname').val(),
+            email: $('.wl_email').val(),
+            mobile_number: $('.wl_mobile').val(),
+            occupation: $('.wl_occupation').val(),
+            postal_code: $('.wl_postalcode').val(),
+            password: $('.wl_password').val(),
+            thai_id: $('.wl_citizenid').val(),
+            address: $('.wl_address').val(),
+            otp: $('.wl_otp').val()
+        };
+        
+        confirmOtp({
+            mobile_number: this.mobile_number,
+            otp_reference: this.otp_reference
+        }, (response) => {
+            var token = JSON.parse(response);
+            
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: URL,
+                headers: token,
+                dataType: 'json',
+                data : JSON.stringify(request),
+                success: (resp) => {
+                    this.walletList.push(resp);
+                    
+                    toggleInputs(false);
+                    this.displayWallets();
+                    
+                    $('#create_wallet_modal .btn-close').trigger('click');
+                    $('.modal-backdrop').hide();
+                },
+                error: () => {
+                    toggleInputs(false);
+                },
+                done: () => {
+                    toggleInputs(false);
+                }
+            });
+        });
+    }
 }
 
 AccountManager.prototype.validate = function(updateFlag){

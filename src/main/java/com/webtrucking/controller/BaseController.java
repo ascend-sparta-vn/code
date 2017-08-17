@@ -59,10 +59,7 @@ public class BaseController {
 	public String getCurrentUsername(){
         String username = "admin";
         try{
-//            UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			if(userDetail != null){
-//				username = userDetail.getUsername();
-//            }
+//        	this.inMemoryUserDetailsManager.
         }catch(Exception e){
             log.error(e);
         }
