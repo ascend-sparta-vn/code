@@ -156,8 +156,8 @@
 				<div class="col-sm-8">
 					<ul class="list-inline clear-both">
 						<li class="grid-list-icons">
-							<a href="shop-ui-filter-list.html"><i class="fa fa-th-list"></i></a>
-							<a href="shop-ui-filter-grid.html"><i class="fa fa-th"></i></a>
+							<a href="#"><i class="fa fa-th-list"></i></a>
+							<a href="#"><i class="fa fa-th"></i></a>
 						</li>
 						<li class="sort-list-btn">
 							<h3>Sort By :</h3>

@@ -81,4 +81,9 @@ public class ProductController extends BaseController{
 		model.addAttribute("listProduct", listProductCheckout);
 		return "product.checkout";
 	}
+	@RequestMapping("/invoice")
+	public String invoice(Model model) {
+
+		return "product.invoice";
+	}
 }
