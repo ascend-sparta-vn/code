@@ -1,5 +1,8 @@
 function AccountManager() {
-	
+	this.walletList = [
+        { thai_id: "3231744035655", first_name: "Ascend", last_name: "Hackathon", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", address: "89 AIA Dindang, Bangkok", occupation: "developer"},
+        { thai_id: "3231744035657", first_name: "Tulu", last_name: "Tran", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", "address": "89 AIA Dindang, Bangkok", occupation: "developer"}
+    ];
 }
 
 AccountManager.prototype.init = function(){
@@ -8,6 +11,7 @@ AccountManager.prototype.init = function(){
 	self.initViewMode();
 
     self.displayPaymentMethod();
+    self.displayWallets();
 }
 
 /*
@@ -22,6 +26,51 @@ AccountManager.prototype.initViewMode = function(){
 		$('.form-group button').hide();
 	}
 };
+
+AccountManager.prototype.displayWallets = function(){
+    var walletListZone = $('#wallet_list');
+    
+    var left = '', right = '';
+    walletListZone.empty();
+    
+    for (index in this.walletList){
+        var wallet = this.walletList[index];
+        
+        var walletDom = `<div class="col-sm-6 sm-margin-bottom-20">
+                        <div class="profile-blog">
+                            <img class="rounded-x" src="/resources/img/icons/ascend.png" alt="">
+                            <div class="name-location">
+                                <strong>${wallet.first_name + ' ' + wallet.last_name}</strong>
+                                <span><i class="fa fa-map-marker"></i><a href="#">${wallet.address},</a></span>
+                            </div>
+                            <div class="clearfix margin-bottom-20"></div>
+                            
+                            <ul class="list-inline share-list">
+                                <li><i class="fa fa-phone"></i><span>${wallet.mobile_number}</span></li>
+                                <li><i class="fa fa-envelope"></i><span>${wallet.email}</span></li>
+                            </ul>
+                            <div class="clearfix margin-bottom-20"></div>
+                        </div>
+                    </div>`;
+        if (index % 2 == 1) {
+            right = walletDom;
+            var row = `<div class="row margin-bottom-20">${left}${right}</div><hr>`
+            walletListZone.append(row);
+            
+            left = '';
+            right = '';
+        } else {
+            left = walletDom;
+        }
+    }
+    
+    if (left.length) {
+        var row = `<div class="row margin-bottom-20">${left}</div><hr>`
+        walletListZone.append(row);
+        
+        left = '';
+    }
+}
 
 AccountManager.prototype.initButtonClick = function(){
 	var self = this;
