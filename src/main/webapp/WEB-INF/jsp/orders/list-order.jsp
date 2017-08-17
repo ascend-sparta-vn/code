@@ -181,6 +181,7 @@
 								<th>DELIVER</th>
 								<th>STATUS</th>
 								<th>TRACKING</th>
+								<th>VIEW </th>
 							</tr>
 							</thead>
 							<tbody>
@@ -205,15 +206,22 @@
 									</c:forEach>
 								</td>
 								<td>
-
-									<select id="deliverId">
-										<c:forEach items="${listDeliver}" var="item" varStatus="myIndex">
-										<option value="${item.id}">${item.username}</option>
-										</c:forEach>
-									</select>
+									<c:if test="${userType == 1}">
+										<select id="deliverId" onchange="assignToOrder(this, ${item.id}); ">
+											<option value="-1"> --Select-- </option>
+											<c:forEach items="${listDeliver}" var="deliver" varStatus="myIndex">
+												<option value="${deliver.id}" <c:if test="${item.currentDeliverId == deliver.id}"> selected </c:if>  >
+														${deliver.username}
+												</option>
+											</c:forEach>
+										</select>
+									</c:if>
+									<c:if test="${userType == 2}">
+										${item.currentDeliverName}
+									</c:if>
 
 								</td>
-								<td>
+								<td id="td_${item.id}">
 									<c:if test="${item.status == 1}">
 										Wait for delivering
 									</c:if>
@@ -223,9 +231,9 @@
 									<c:if test="${item.status == 3}">
 										Complete
 									</c:if>
-										${item.user.username}
 								</td>
 								<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</button></td>
+								<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Detail </button></td>
 							</tr>
 							</c:forEach>
 							</tbody>
@@ -248,6 +256,33 @@
 <%--<script src="/resources/js/shipment/ShipmentDetail.js"></script>--%>
 <script type="text/javascript" src="/resources/js/locales/bootstrap-datepicker.vi.js"  charset="UTF-8"></script>
 <script>
+
+	function assignToOrder(obj, order_id) {
+
+		var post = {};
+		post.order_id = order_id;
+		post.user_id = obj.value;
+
+		var url = '/order/deliverorder?order_id=' + order_id + '&user_id=' + obj.value;
+		$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : url,
+			dataType : 'json',
+			success : function(response) {
+				$('#td_' + order_id).html('Delivering');
+			},
+			error : function(e) {
+				showMessage('ERROR: /order/deliverorder', 'error');
+				console.log("ERROR deliverorder: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+		});
+
+	}
+
 	var shipmentManager1 = new ShipmentManager1();
 
 	<c:forEach items="${listOrder}" var="province">
