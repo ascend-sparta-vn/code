@@ -27,322 +27,265 @@
 	<div class="row">
 		<%@include file="/WEB-INF/jsp/account/left-profile.jsp"%>
 
-		<!-- Profile Content -->
-		<div class="col-md-9">
-			<div class="tag-box tag-box-v3 form-page">
-	<div class="headline">
-		<h2 class="label-headline"><spring:message code="general.information"/></h2>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-			<label for="member_type" class="p-label-required"><spring:message code="email"/></label>
-				<div class="input-group ">
-				  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope-o"></i></span>
-				  <input id="email" maxlength="50" readonly="readonly" value="${account.username}" name = "email" type="text" class="form-control" placeholder="<spring:message code="email"/>" aria-describedby="sizing-addon1">
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="title"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-					  <select name = "memberSex" class="form-control" id="memberSex">
-					  	<c:choose>
-							<c:when test="${accountDetail.gender == 1}">
-								<option selected="selected" value="1"><spring:message code="mr"/></option>
-					  			<option value="2"><spring:message code="mrs"/></option>
-							</c:when>
-							<c:otherwise>
-								<option  value="1"><spring:message code="mr"/></option>
-					  			<option selected="selected" value="2"><spring:message code="mrs"/></option>
-							</c:otherwise>
-						</c:choose>
-					  </select>
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="first.name"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-					  <input maxlength="50" id="last-name" value="${accountDetail.lastName}" name="firstname" type="text" class="form-control" placeholder="<spring:message code="first.name"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class="p-label-required"><spring:message code="last.name"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-					  <input maxlength="50" id="firstname" value = "${accountDetail.firstName}" name="lastName" type="text" class="form-control" placeholder="<spring:message code="last.name"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class="p-label-required"><spring:message code="tel"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-					  <input maxlength="50" value="${accountDetail.phoneNumber}" id = "mobile-number" name="mobileNumber" type="text" class="form-control" placeholder="<spring:message code="tel"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class="p-label-required"><spring:message code="address"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker"></i></span>
-					  <input maxlength="50" value="${accountDetail.address}" name="address" id = "address" type="text" class="form-control" placeholder="<spring:message code="address"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class="p-label-required"><spring:message code="province"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user-secret"></i></span>
-					  <select id = "province" name = "province" class="form-control">
-					  	<option value="-1"></option>
-					  	<c:forEach items="${provinces}" var="province">
-					  		<c:choose>
-					  			<c:when test="${accountDetail.provinceId == province.id}">
-					  				<option selected="selected" value="${province.id}">${province.name}</option>
-					  			</c:when>
-					  			<c:otherwise>
-					  				<option value="${province.id}">${province.name}</option>
-					  			</c:otherwise> 
-					  		</c:choose>
-					  		
-					  		
-						</c:forEach>	
-					  </select>
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="kind.of.goods.trading"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-cubes"></i></span>
-					  <select id="goodType" class="form-control">
-					  	<c:choose>
-					  			<c:when test="${accountDetail.goodsTrading == '1'}">
-					  				<option selected="selected" value="1">Loại hàng hóa sản xuất</option>
-									<option value="0">Loại hàng hóa thương mại</option>
-					  			</c:when>
-					  			<c:otherwise>
-					  				<option value="1">Loại hàng hóa sản xuất</option>
-									<option  selected="selected" value="0">Loại hàng hóa thương mại</option>
-					  			</c:otherwise>
-					  		</c:choose>
-					  </select>
-					
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-8">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="transport.requirement.monthly"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-truck"></i></span>
-					  <input maxlength="50" id="weighPerMonth" value="${accountDetail.transportRequirementMonthly}" type="number" name="weighPerMonth" class="form-control" placeholder="<spring:message code="transport.requirement.monthly.placeholder"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="competence.intro"/></label>
-				<textarea name="description" id="description" class="form-control" rows="5">${accountDetail.competenceIntro}</textarea>
-			</div>
-		</div>
-	</div>
-	
-	<div class="headline">
-		<h2 class = "label-headline"><spring:message code="if.enterprise"/></h2>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="company.name"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" value="${accountDetail.companyName}" name="companyName" id = "company-name" type="text" class="form-control" placeholder="<spring:message code="company.name"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-8">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="company.address"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-building-o"></i></span>
-					  <input maxlength="50" value="${accountDetail.companyAdress}" id = "company-address" name = "companyAddress" type="text" class="form-control" placeholder="<spring:message code="company.address"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="year.establisment"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="start-year" value="${accountDetail.companyStartYear}" name="startYear" type="text" class="form-control" placeholder="<spring:message code="year.establisment"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="number.of.employee"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="total-employee" value="${accountDetail.companyEmployeeTotal}" name="totalEmployee" type="text" class="form-control" placeholder="<spring:message code="number.of.employee"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="ISO.obtain"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <select id="company-iso" name="companyIso" name="member_type" class="form-control">
-					  		<c:choose>
-					  			<c:when test="${accountDetail.companyIso == 1}">
-					  				<option selected="selected" value="1">Có</option>
-									<option value="0">Không</option>
-					  			</c:when>
-					  			<c:otherwise>
-					  				<option value="1">Có</option>
-									<option  selected="selected" value="0">Không</option>
-					  			</c:otherwise>
-					  		</c:choose>
-						</select>
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="status"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="company-role" value="${accountDetail.companyRole}" name="companyRole" type="text" class="form-control" placeholder="<spring:message code="status"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="director"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="director-name" value="${accountDetail.companyDirectorName}"  name="directorName" type="text" class="form-control" placeholder="<spring:message code="director"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="vat"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="tax-code" value="${accountDetail.companyTaxCode}" name="taxCode" type="text" class="form-control" placeholder="<spring:message code="vat"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="tel"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-					  <input maxlength="50" id="company-phone-number" value="${accountDetail.companyPhoneNumber}" name="companyPhoneNumber" type="text" class="form-control" placeholder="<spring:message code="tel"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="fax"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-fax"></i></span>
-					  <input maxlength="50" id="company-fax" value="${accountDetail.companyFax}" name="companyFax" type="text" class="form-control" placeholder="<spring:message code="fax"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="business.registration.no"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="paper-number" value="${accountDetail.companyBussinessLicense}" name="paperNumber" type="text" class="form-control" placeholder="<spring:message code="business.registration.no"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="headline">
-		<h2 class = "label-headline"><spring:message code="payment.info"/></h2>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="bank.account.name"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="account-bank-name" value="${accountDetail.accountBankName}" name="accountBankName" type="text" class="form-control" placeholder="<spring:message code="bank.account.name"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="account.number"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="account-bank-number" value="${accountDetail.accountBankNumber}" name="accountBankNumber" type="text" class="form-control" placeholder="<spring:message code="account.number"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="form-group">
-				<label for="member_type" class=""><spring:message code="bank.name"/></label>
-					<div class="input-group ">
-					  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-edit"></i></span>
-					  <input maxlength="50" id="banking-name" value="${accountDetail.bankName}" name="bankingName" type="text" class="form-control" placeholder="<spring:message code="bank.name"/>" aria-describedby="sizing-addon1">
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	<div class="row">
-		<div class="col-sm-12 text-left">
-			<div class="form-group"><button id="btn-update-account" class="btn btn-primary"><spring:message code="accept"/></button></div>
-		</div>
-	</div>
-			</div>
-		</div>
+        <div class="col-md-9">
+            <div class="profile-body margin-bottom-20">
+                <div class="tab-v1">
+                    <ul class="nav nav-justified nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#profile">Edit Profile</a></li>
+                        <li><a data-toggle="tab" href="#passwordTab">Change Password</a></li>
+                        <li><a data-toggle="tab" href="#payment">Payment Options</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="profile" class="profile-edit tab-pane fade in active">
+                            <h2 class="heading-md">Manage your Name, ID and Email Addresses.</h2>
+                            <p>Below are the name and email addresses on file for your account.</p>
+                            <br>
+                            <dl class="dl-horizontal">
+                                <dt><strong>Your name </strong></dt>
+                                <dd>
+                                    Edward Rooster
+                                    <span>
+                                        <a class="pull-right" href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </span>
+                                </dd>
+                                <hr>
+                                <dt><strong>Your ID </strong></dt>
+                                <dd>
+                                    FKJ-032440
+                                    <span>
+                                        <a class="pull-right" href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </span>
+                                </dd>
+                                <hr>
+                                <dt><strong>Company name </strong></dt>
+                                <dd>
+                                    Htmlstream
+                                    <span>
+                                        <a class="pull-right" href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </span>
+                                </dd>
+                                <hr>
+                                <dt><strong>Primary Email Address </strong></dt>
+                                <dd>
+                                    edward-rooster@gmail.com
+                                    <span>
+                                        <a class="pull-right" href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </span>
+                                </dd>
+                                <hr>
+                                <dt><strong>Phone Number </strong></dt>
+                                <dd>
+                                    (304) 33-2867-499
+                                    <span>
+                                        <a class="pull-right" href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </span>
+                                </dd>
+                                <hr>
+                                <dt><strong>Office Number </strong></dt>
+                                <dd>
+                                    (304) 44-9810-296
+                                    <span>
+                                        <a class="pull-right" href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </span>
+                                </dd>
+                                <hr>
+                                <dt><strong>Address </strong></dt>
+                                <dd>
+                                    California, US
+                                    <span>
+                                        <a class="pull-right" href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </span>
+                                </dd>
+                                <hr>
+                            </dl>
+                            <button type="button" class="btn-u btn-u-default">Cancel</button>
+                            <button type="button" class="btn-u">Save Changes</button>
+                        </div>
+
+                        <div id="passwordTab" class="profile-edit tab-pane fade">
+                            <h2 class="heading-md">Manage your Security Settings</h2>
+                            <p>Change your password.</p>
+                            <br>
+                            <form class="sky-form" id="sky-form4" action="#">
+                                <dl class="dl-horizontal">
+                                    <dt>Old password</dt>
+                                    <dd>
+                                        <section>
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                <input type="email" placeholder="Email address" name="email">
+                                                <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                            </label>
+                                        </section>
+                                    </dd>
+                                    <dt>Enter your password</dt>
+                                    <dd>
+                                        <section>
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                <input type="password" id="password" name="password" placeholder="Password">
+                                                <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                            </label>
+                                        </section>
+                                    </dd>
+                                    <dt>Confirm Password</dt>
+                                    <dd>
+                                        <section>
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                <input type="password" name="passwordConfirm" placeholder="Confirm password">
+                                                <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                            </label>
+                                        </section>
+                                    </dd>
+                                </dl>
+                                <button type="button" class="btn-u btn-u-default">Cancel</button>
+                                <button class="btn-u" type="submit">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <div id="payment" class="profile-edit tab-pane fade">
+                            <h2 class="heading-md">Manage your Payment Settings</h2>
+                            <p>Below are the payment options for your account.</p>
+                            <br>
+                            <form class="sky-form" id="sky-form" action="#">
+                                <!--Checkout-Form-->
+                                <section>
+                                    <div class="inline-group">
+                                        <label class="radio"><input type="radio" name="radio-inline" class="payment_method ascend_wallet"><i class="rounded-x"></i>Ascend wallet</label>
+                                        <label class="radio"><input type="radio" checked="" name="radio-inline" class="payment_method visa_card"><i class="rounded-x"></i>Visa</label>
+                                        <label class="radio"><input type="radio" name="radio-inline" class="payment_method master_card"><i class="rounded-x"></i>MasterCard</label>
+                                    </div>
+                                </section>
+                                
+                                <div id="payment_by_visa_master">
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" name="name" placeholder="Name on card">
+                                        </label>
+                                    </section>
+
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label class="input">
+                                                <input type="text" name="card" id="card" placeholder="Card number">
+                                            </label>
+                                        </section>
+                                        <section class="col col-2">
+                                            <label class="input">
+                                                <input type="text" name="cvv" id="cvv" placeholder="CVV2">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    
+                                    <div class="row">
+                                    <label class="label col col-4">Expiration date</label>
+                                        <section class="col col-5">
+                                            <label class="select">
+                                                <select name="month">
+                                                    <option disabled="" selected="" value="0">Month</option>
+                                                    <option value="1">January</option>
+                                                    <option value="1">February</option>
+                                                    <option value="3">March</option>
+                                                    <option value="4">April</option>
+                                                    <option value="5">May</option>
+                                                    <option value="6">June</option>
+                                                    <option value="7">July</option>
+                                                    <option value="8">August</option>
+                                                    <option value="9">September</option>
+                                                    <option value="10">October</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">December</option>
+                                                </select>
+                                                <i></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-3">
+                                            <label class="input">
+                                                <input type="text" placeholder="Year" id="year" name="year">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    
+                                    <button type="button" class="btn-u btn-u-default">Cancel</button>
+                                    <button class="btn-u" type="submit">Save Changes</button>
+                                </div>
+                                
+                                <div id="payment_by_ascend_wallet">
+                                   <div id="wallet_list"></div>
+                                    
+                                    <button type="button" class="btn-u btn-u-default btn-block text-center" data-toggle="modal" data-target="#responsive">Create new wallet</button>
+                                    <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" style="margin: 120px auto;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel4">Wallet information</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p><input class="form-control wl_firstname" placeholder="First name" type="text" /></p>
+                                                            <p><input class="form-control wl_email" placeholder="Email" type="text" /></p>
+                                                            <p><input class="form-control wl_occupation" placeholder="Occupation" type="text" /></p>
+                                                            <p><input class="form-control wl_password" placeholder="Password" type="password" /></p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p><input class="form-control wl_lastname" placeholder="Last name" type="text" /></p>
+                                                            <p><input class="form-control wl_mobile" placeholder="Mobile number" type="text" /></p>
+                                                            <p><input class="form-control wl_postalcode" placeholder="Postal code" type="text" /></p>
+                                                            <p><input class="form-control wl_citizenid" placeholder="Citizen id" type="text" /></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                       <div class="col-md-12">
+                                                           <p><input class="form-control wl_address" placeholder="Address" type="text" /></p>
+                                                       </div>
+                                                    </div>
+                                                    
+                                                    <div id="modal_otp_zone">
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="control-label" for="otp">Email</label>
+                                                                <p><input class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
+                                                            </div>
+                                                        </div>    
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn-u btn-u-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Checkout-Form-->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 		<!-- End Profile Content -->
-	</div>
+    </div>
 </div>
 
 <!-- Modal -->

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.webtrucking.controller.BaseController;
 import com.webtrucking.dao.OrdersDAO;
 import com.webtrucking.dao.ShipmentDAO;
-import com.webtrucking.dao.userDAO;
+import com.webtrucking.dao.UserDAO;
 import com.webtrucking.entity.Shipment;
 import com.webtrucking.entity.User;
 import com.webtrucking.json.entity.AjaxResponseBody;
@@ -35,7 +35,7 @@ public class OrderRestController extends BaseController{
 	private OrdersDAO orderDAO;
 	
 	@Autowired
-	private userDAO userDAO;
+	private UserDAO userDAO;
 	
 	@Autowired
 	EmailService emailService;

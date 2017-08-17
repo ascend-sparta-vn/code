@@ -1,15 +1,17 @@
 function AccountManager() {
-	
+	this.walletList = [
+        { thai_id: "3231744035655", first_name: "Ascend", last_name: "Hackathon", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", address: "89 AIA Dindang, Bangkok", occupation: "developer"},
+        { thai_id: "3231744035657", first_name: "Tulu", last_name: "Tran", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", "address": "89 AIA Dindang, Bangkok", occupation: "developer"}
+    ];
 }
+
 AccountManager.prototype.init = function(){
 	var self = this;
 	self.initButtonClick();
 	self.initViewMode();
-	
-	//check message
-	if ($("#result").val() != '') {
-		showMessage($("#resultMessage").val(), $("#result").val());
-	}
+
+    self.displayPaymentMethod();
+    self.displayWallets();
 }
 
 /*
@@ -24,6 +26,51 @@ AccountManager.prototype.initViewMode = function(){
 		$('.form-group button').hide();
 	}
 };
+
+AccountManager.prototype.displayWallets = function(){
+    var walletListZone = $('#wallet_list');
+    
+    var left = '', right = '';
+    walletListZone.empty();
+    
+    for (index in this.walletList){
+        var wallet = this.walletList[index];
+        
+        var walletDom = `<div class="col-sm-6 sm-margin-bottom-20">
+                        <div class="profile-blog">
+                            <img class="rounded-x" src="/resources/img/icons/ascend.png" alt="">
+                            <div class="name-location">
+                                <strong>${wallet.first_name + ' ' + wallet.last_name}</strong>
+                                <span><i class="fa fa-map-marker"></i><a href="#">${wallet.address},</a></span>
+                            </div>
+                            <div class="clearfix margin-bottom-20"></div>
+                            
+                            <ul class="list-inline share-list">
+                                <li><i class="fa fa-phone"></i><span>${wallet.mobile_number}</span></li>
+                                <li><i class="fa fa-envelope"></i><span>${wallet.email}</span></li>
+                            </ul>
+                            <div class="clearfix margin-bottom-20"></div>
+                        </div>
+                    </div>`;
+        if (index % 2 == 1) {
+            right = walletDom;
+            var row = `<div class="row margin-bottom-20">${left}${right}</div><hr>`
+            walletListZone.append(row);
+            
+            left = '';
+            right = '';
+        } else {
+            left = walletDom;
+        }
+    }
+    
+    if (left.length) {
+        var row = `<div class="row margin-bottom-20">${left}</div><hr>`
+        walletListZone.append(row);
+        
+        left = '';
+    }
+}
 
 AccountManager.prototype.initButtonClick = function(){
 	var self = this;
@@ -100,8 +147,25 @@ AccountManager.prototype.initButtonClick = function(){
 	$("#btn-comeback").click(function() {
 		window.history.back();
 	});
-	
+
+    // Kai added
+    $('.payment_method').change(() => {
+        this.displayPaymentMethod();
+    });
 }
+
+AccountManager.prototype.displayPaymentMethod = function(){
+    if ($('.ascend_wallet').is(':checked'))
+        $('#payment_by_visa_master').hide();
+    else
+        $('#payment_by_visa_master').show();
+    
+    if ($('.visa_card').is(':checked'))
+        $('#payment_by_ascend_wallet').hide();
+    else
+        $('#payment_by_ascend_wallet').show();
+}
+
 AccountManager.prototype.refreshForm = function(){
 	$("input").val('');
 }

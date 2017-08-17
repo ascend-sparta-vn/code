@@ -1,6 +1,6 @@
 package com.webtrucking.controller.rest;
 
-import com.webtrucking.dao.userDAO;
+import com.webtrucking.dao.UserDAO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,6 @@ public class CustomerRestController {
 	
 	
 	@Autowired
-	private userDAO userDAO;
+	private UserDAO userDAO;
 	
 }
