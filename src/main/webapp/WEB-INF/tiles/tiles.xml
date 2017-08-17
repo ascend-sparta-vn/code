@@ -79,6 +79,11 @@
 	</definition>
 
 	<!-- ORDER  -->
+
+	<definition name="order.list" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/list-order.jsp" />
+	</definition>
+
 	<definition name="order-trucking" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-trucking.jsp" />
 	</definition>

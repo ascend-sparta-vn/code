@@ -10,4 +10,6 @@ public interface userDAO extends CrudRepository<User, Integer>{
 	public List<User> findAccountByUsername(@Param("username") String username);
 	public List<User> findAccountByUsernameAndStatus(@Param("username") String username, @Param("status") Integer status);
 
+	public List<User> findAllByUserType(@Param("userType") Integer userType);
+
 }
