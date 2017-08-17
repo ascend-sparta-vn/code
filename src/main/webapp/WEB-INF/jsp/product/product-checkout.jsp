@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <br/>
-
+<c:set var="amoutTotal" value="${0}" />
                 <!--=== Breadcrumbs v4 ===-->
                 <div class="breadcrumbs-v4">
                     <div class="container">
@@ -72,8 +72,9 @@
                                             </thead>
                                             <tbody class="product-list-table">
                                                 <!-- Add no items sign here -->
-                                                <c:forEach items="${listProduct}" var="product">
 
+                                                <c:forEach items="${listProduct}" var="product">
+                                                    <c:set var="amoutTotal" value="${amoutTotal + product.price * 1}" />
                                                     <tr>
                                                         <td class="product-in-table">
                                                             <img class="img-responsive" src=${product.imgUrl} alt="">
@@ -85,15 +86,15 @@
                                                         <td>Unit</td>
                                                         <td>${VND} ${product.price}</td>
                                                         <td>
-                                                            <button type='button' class="quantity-button" name='subtract' onclick='javascript: productList.subtractQuantity(${product.id});'>-</button>
-                                                            <input type='text' class="quantity-field product_${product.id}" name='qty1' value="2" id='qty1'/>
-                                                            <button type='button' class="quantity-button" name='add' onclick='javascript: productList.addQuantity(${product.id});'>+</button>
+                                                            <button type='button' class="quantity-button" name='subtract'>-</button>
+                                                            <input type='text' class="quantity-field product_${product.id}" name='qty1' value="1" id='qty1'/>
+                                                            <button type='button' class="quantity-button" name='add'>+</button>
                                                         </td>
                                                         <td class="shop-red total product_${product.id}">
-                                                                ${VND} ${product.price * 2}
+                                                                ${VND} ${product.price * 1}
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="close" onclick='javascript: productList.removeProduct(${product.id});'>
+                                                            <button type="button" class="close" >
                                                                 <span>&times;</span>
                                                                 <span class="sr-only">Close</span>
                                                             </button>
@@ -131,14 +132,6 @@
                                                 </div>
                                                 <input id="shippingAddress" type="text" placeholder="Address Line 1" name="address1" class="form-control">
                                                 <input id="shippingAddress2" type="text" placeholder="Address Line 2" name="address2" class="form-control">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <input id="city2" type="text" placeholder="City" name="city" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <input id="zip2" type="text" placeholder="Zip/Postal Code" name="zip" class="form-control">
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -244,20 +237,20 @@
                                                 <li>
                                                     <h4>Subtotal:</h4>
                                                     <div class="total-result-in">
-                                                        <span class="sub_total_cost">$ 1280.00</span>
+                                                        <span class="sub_total_cost">$ ${amoutTotal}</span>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <h4>Shipping:</h4>
                                                     <div class="total-result-in">
-                                                        <span class="shipment_cost text-right">- - - -</span>
+                                                        <span class="shipment_cost text-right">$ 0</span>
                                                     </div>
                                                 </li>
                                                 <li class="divider"></li>
                                                 <li class="total-price">
                                                     <h4>Total:</h4>
                                                     <div class="total-result-in">
-                                                        <span class="total_cost">$ 1280.00</span>
+                                                        <span class="total_cost">$ ${amoutTotal}</span>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -303,7 +296,7 @@
                 <script>
                     var productList = new ProductList();
                     $(document).ready(function() {
-                        productList.listProduct.push(${listProduct});
+                        <%--productList.listProduct.push(${listProduct});--%>
                         getResource(function() {
                             productList.init();
                         });
