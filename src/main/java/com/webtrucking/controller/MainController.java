@@ -2,6 +2,7 @@ package com.webtrucking.controller;
 
 import com.webtrucking.util.IConstant;
 import org.apache.log4j.Logger;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +21,19 @@ public class MainController {
 	static Logger log = Logger.getLogger(MainController.class);
 	
 	@RequestMapping(value = "/homepage", method = RequestMethod.GET)
-	public String homepage(ModelMap model) {
+	public String homepage(HttpServletRequest request, ModelMap model, Authentication authen) {
 		//29B09678;29B60651;29B06316;29B15993;29B02520;29B14874;19N2885
 //		LocationTrackingObject object = ls.getCurrentLocation("29B096378");
 //		if(object != null) {
 //			System.out.println(object.getLat
 //					() + ", " + object.getLng());
 //		}
+		String username = "";
+		if(authen != null){
+			username = authen.getName();
+			log.info("username:" + username);
+		}
+
 		return "homepage";
 	}
 	
