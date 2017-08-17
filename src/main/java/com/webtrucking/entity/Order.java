@@ -41,6 +41,11 @@ public class Order implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastUpdatedTimestamp;
 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "delivery_order",
+			joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+	private Set<User> delivers;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -66,6 +71,27 @@ public class Order implements Serializable {
 		this.userId = userId;
 	}
 
+	public Set<User> getDelivers() {
+		return delivers;
+	}
+
+	public void setDelivers(Set<User> delivers) {
+		this.delivers = delivers;
+	}
+
+	public Integer getCurrentDeliverId() {
+		if (this.delivers != null && !this.delivers.isEmpty()) {
+			return this.delivers.iterator().next().getId();
+		}
+		return -1;
+	}
+
+	public String getCurrentDeliverName() {
+		if (this.delivers != null && !this.delivers.isEmpty()) {
+			return this.delivers.iterator().next().getUsername();
+		}
+		return "";
+	}
 
 	public User getUser() {
 		return user;

@@ -41,6 +41,7 @@ public class OrderController extends BaseController{
 	@Autowired
 	DeliveryDAO deliveryDAO;
 
+	@Autowired
 	private UserDAO userDAO;
 
 	static Logger log = Logger.getLogger(OrderController.class);
@@ -54,21 +55,30 @@ public class OrderController extends BaseController{
 		Integer userId = 1;
 		List<Order> listOrder = new ArrayList<>();
 		if(userType == 1) {
-			listOrder = ordersDAO.findByUserIdOrderByCreatedTimestamp(userId);
-		} else if(userType == 2) {
 			listOrder = ordersDAO.findAllByOrderByCreatedTimestamp();
+		} else if(userType == 2) {
+			listOrder = ordersDAO.findByUserIdOrderByCreatedTimestamp(userId);
 		}
+		model.addAttribute("userType", userType);
 		model.addAttribute("listOrder", listOrder);
 		model.addAttribute("listDeliver", userDAO.findAllByUserType(4));
 		return "order.list";
 	}
 
 	@RequestMapping(value = "/deliverorder", method = RequestMethod.POST)
-	public String deliverOrder(@RequestParam(name = "order_id") Integer orderId,
+	@ResponseBody
+	public Order deliverOrder(@RequestParam(name = "order_id") Integer orderId,
 											   @RequestParam(name = "user_id") Integer userId) {
-		DeliveryOrder deliveryOrder = new DeliveryOrder(orderId, userId);
-		deliveryDAO.save(deliveryOrder);
-		return "order.assign";
+		Order order = ordersDAO.findOne(orderId);
+		if(userId == -1) {
+			order.setStatus(1);
+		} else {
+			DeliveryOrder deliveryOrder = new DeliveryOrder(orderId, userId);
+			deliveryDAO.save(deliveryOrder);
+			order.setStatus(2);
+		}
+		ordersDAO.save(order);
+		return order;
 	}
 
 	@RequestMapping("/post")
