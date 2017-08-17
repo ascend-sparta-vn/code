@@ -83,6 +83,10 @@
 
 	<!-- ORDER  -->
 
+	<definition name="order.detail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/orders/order-detail.jsp" />
+	</definition>
+
 	<definition name="order.list" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/jsp/orders/list-order.jsp" />
 	</definition>
