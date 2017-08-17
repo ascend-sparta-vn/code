@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -325,5 +326,17 @@ public class TmnWalletClient implements BeanPostProcessor
             chars[2 * i + 1] = HEX_CHARS[buf[i] & 0x0F];
         }
         return new String(chars);
+    }
+
+    public ApiConfigurationDAO getApiConfigurationDAO() {
+        return apiConfigurationDAO;
+    }
+
+    public Map<Integer, String> getApiUrls() {
+        return apiUrls;
+    }
+
+    public Map<Integer, ApiConfiguration> getApiConfigurations() {
+        return apiConfigurations;
     }
 }

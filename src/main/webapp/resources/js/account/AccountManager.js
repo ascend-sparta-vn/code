@@ -289,8 +289,13 @@ AccountManager.prototype.createWalletProfile = function(){
                 dataType: 'json',
                 data : JSON.stringify(request),
                 success: (resp) => {
-                    console.log(resp);
+                    this.walletList.push(resp);
+                    
                     toggleInputs(false);
+                    this.displayWallets();
+                    
+                    $('#create_wallet_modal .btn-close').trigger('click');
+                    $('.modal-backdrop').hide();
                 },
                 error: () => {
                     toggleInputs(false);
