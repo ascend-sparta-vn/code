@@ -19,9 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sonph on 09/12/16.
- */
 @Controller
 @RequestMapping("/admin")
 public class AdminController extends BaseController {
