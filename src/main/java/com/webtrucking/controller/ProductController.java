@@ -2,15 +2,15 @@ package com.webtrucking.controller;
 
 import com.webtrucking.dao.ProductDAO;
 import com.webtrucking.entity.Product;
+import com.webtrucking.util.CacheUtil;
 import com.webtrucking.util.Common;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,15 +37,48 @@ public class ProductController extends BaseController{
 		return "product.list";
 	}
 	@RequestMapping("/detail/{productId}")
-	public String detail(Map<String, Object> model, @PathVariable(value = "productId") Integer productId) {
+	public String detail(Model model, @PathVariable(value = "productId") Integer productId) {
+
+		Product product = productDAO.findOne(productId);
+		model.addAttribute("product", product);
 		return "product.detail";
 	}
 
-	@RequestMapping("/checkout/{orderId}")
-	public String checkout(Map<String, Object> model, @PathVariable(value = "orderId") Integer orderId) {
+	@RequestMapping(value = "/cart/add/{productId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Integer addCheckout(@PathVariable(value = "productId") Integer productId) {
 
+		Integer responseCode = 0;
+		// get current userId login
+		String username = getCurrentUsername();
 
+		// put listProductId to web-app cache
+		if(productId != null){
+			List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
+			if(listProductId == null || listProductId.size() < 1){
+				listProductId = new ArrayList<>();
+			}
+			listProductId.add(productId);
+			CacheUtil.listCheckoutByCustomer.put(username, listProductId);
+			responseCode = 1;
+		}
+		return responseCode;
 
+	}
+	@RequestMapping("/checkout")
+	public String checkout(Model model) {
+		List<Product> listProductCheckout = new ArrayList<>();
+		String username = getCurrentUsername();
+		List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
+		if(listProductId != null){
+			for(Integer id : listProductId){
+				Product prd = productDAO.findOne(id);
+				if(prd != null){
+					listProductCheckout.add(prd);
+				}
+			}
+		}
+		model.addAttribute("listProduct", listProductCheckout);
 		return "product.checkout";
 	}
 }

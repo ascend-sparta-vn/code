@@ -181,6 +181,7 @@
 								<th>DELIVER</th>
 								<th>STATUS</th>
 								<th>TRACKING</th>
+								<th>VIEW </th>
 							</tr>
 							</thead>
 							<tbody>
@@ -232,6 +233,7 @@
 									</c:if>
 								</td>
 								<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</button></td>
+								<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Detail </button></td>
 							</tr>
 							</c:forEach>
 							</tbody>
