@@ -1,12 +1,16 @@
 package com.webtrucking.controller;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.webtrucking.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -70,5 +74,35 @@ public class LoginController extends BaseController {
 					userDetails.isCredentialsNonExpired() &&
 					userDetails.isEnabled();
 		}
+	}
+
+	private String getReturnPage() {
+
+		User account = getCurrentAccount();
+		if(account != null) {
+			Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)
+					SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+			Iterator iterator = authorities.iterator();
+
+			while (iterator.hasNext()) {
+				SimpleGrantedAuthority authority = (SimpleGrantedAuthority)  iterator.next();
+				String roleName = authority.getAuthority();
+
+				switch (roleName) {
+					case IConstant.ROLE.ROLE_ADMIN:
+						return "auction.list";
+					case IConstant.ROLE.ROLE_CLIENT:
+						return "product.list";
+					case IConstant.ROLE.ROLE_SHIPMENT_OWNER:
+						return "auction.list";
+					case IConstant.ROLE.ROLE_VEHICLE_OWNER:
+						return "auction.list";
+					default: return "homepage";
+				}
+			}
+		}
+
+		return "homepage";
 	}
 }
