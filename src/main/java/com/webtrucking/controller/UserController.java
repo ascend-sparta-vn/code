@@ -3,6 +3,7 @@ package com.webtrucking.controller;
 import com.webtrucking.dao.ProvinceDAO;
 import com.webtrucking.dao.UserDAO;
 import com.webtrucking.entity.Province;
+import com.webtrucking.entity.User;
 import com.webtrucking.json.entity.AccountInfo;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.services.UserService;
@@ -99,7 +100,7 @@ public class UserController extends BaseController {
 	public String viewAccountProfile(Model model) {
 		List<Province> provinces = (List<Province>) provinceDAO.findAll();
 		model.addAttribute("provinces", provinces);
-		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
 		if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString().equals("anonymousUser")) {
 			UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //			List<Account_bk> accounts = UserDAO.findAccountByUsername(userDetail.getUsername());
@@ -109,7 +110,10 @@ public class UserController extends BaseController {
 //				AccountDetail accountDetail = accountDetailDAO.findOne(account.getAccountDetailId());
 //				model.addAttribute("accountDetail", accountDetail);
 //			}
-					
+
+			User currentUser = getCurrentAccount();
+			model.addAttribute("currentUser", currentUser);
+
 			return "account.profile";
 		} else {
 			return "account.login";
