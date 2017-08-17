@@ -42,9 +42,11 @@ public class LoginController extends BaseController {
 	@RequestMapping("/login")
 	public String login(Map<String, Object> model) {
     try {
-		boolean isValid = validLogin();
-		if(isValid) return "homepage";
-		else return "account.login";
+		if(isValidLogin()) {
+			return getReturnPage();
+		} else {
+			return "account.login";
+		}
 	} catch (Exception e) {
 		log.error("", e);
 		return "account.login";
@@ -61,7 +63,7 @@ public class LoginController extends BaseController {
 	    return "account.login";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
 	}
 	
-	private boolean validLogin() {
+	private boolean isValidLogin() {
 	    // This function does a check to ascertain the validity of the logged in user
 	    // You may also consider evaluating userDetails.getAuthorities()
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -90,19 +92,19 @@ public class LoginController extends BaseController {
 				String roleName = authority.getAuthority();
 
 				switch (roleName) {
-					case IConstant.ROLE.ROLE_ADMIN:
-						return "auction.list";
-					case IConstant.ROLE.ROLE_CLIENT:
+					case "ADMIN":
+						return "order.list";
+					case "CUSTOMER":
 						return "product.list";
-					case IConstant.ROLE.ROLE_SHIPMENT_OWNER:
+					case "PROVIDER":
 						return "auction.list";
-					case IConstant.ROLE.ROLE_VEHICLE_OWNER:
+					case "TRANSPORTER":
 						return "auction.list";
-					default: return "homepage";
+					default: return "account.login";
 				}
 			}
 		}
 
-		return "homepage";
+		return "account.login";
 	}
 }
