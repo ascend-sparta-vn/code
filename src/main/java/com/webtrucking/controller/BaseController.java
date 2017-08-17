@@ -19,16 +19,16 @@ import java.util.Locale;
 public class BaseController {
 
 	static Logger log = Logger.getLogger(BaseController.class);
-	
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Autowired
 	private UserDAO userDAO;
 
 	@Autowired
 	private ShipmentDAO shipmentDAO;
-	
+
 	/*
 	 * to get message from language file properties like struts2
 	 */
@@ -40,12 +40,12 @@ public class BaseController {
 	            new Object [] {"test"}, "default", currentLocale);
 	        return message;
 	}
-	
+
 	public User getCurrentAccount() {
 		try {
 			UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			List<Account_bk> accounts = UserDAO.findAccountByUsername(userDetail.getUsername());
-//			Account_bk account = null;
+//			List<User> accounts = userDAO.findAccountByUsername(userDetail.getUsername());
+//			User account = null;
 //			if(accounts != null && accounts.size() > 0){
 //				account = accounts.get(0);
 //			}
@@ -55,6 +55,19 @@ public class BaseController {
 		}
 		return null;
 	}
+
+	public String getCurrentUsername(){
+        String username = "admin";
+        try{
+//            UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//			if(userDetail != null){
+//				username = userDetail.getUsername();
+//            }
+        }catch(Exception e){
+            log.error(e);
+        }
+        return username;
+    }
 
 	public Integer getNextAutoIncreamentShipment(){
 		Integer nextId = -1;
@@ -66,9 +79,9 @@ public class BaseController {
 		}
 		return nextId;
 	}
-	
+
 	public Pageable createPageRequest(Integer page, Integer size, String sortedField) {
 		return new PageRequest(page, size, Sort.Direction.DESC, sortedField);
 	}
-	
+
 }
