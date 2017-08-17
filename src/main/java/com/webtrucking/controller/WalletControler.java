@@ -1,16 +1,28 @@
 package com.webtrucking.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.webtrucking.client.TmnWalletClient;
+import com.webtrucking.controller.domain.WalletCreateProfileDTO;
+import com.webtrucking.controller.domain.WalletOtpDTO;
+import com.webtrucking.controller.domain.WalletTokenDTO;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -23,22 +35,69 @@ public class WalletControler extends BaseController {
 	@Autowired
 	private TmnWalletClient tmnWalletClient;
 
-    @RequestMapping(value = "/get_otp/{mobileNumber}", method = RequestMethod.GET)
-    public String register(@PathVariable String mobileNumber) {
-        log.info("Mobile number {}", mobileNumber);
-        log.info("GetOTP: {}", tmnWalletClient.getOtp(mobileNumber).toString());
-        //log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles("futoken","ios","2.0").toString());
+    @RequestMapping(value = "/get_otp/{mobileNumber}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<WalletOtpDTO> getOtp(@PathVariable String mobileNumber) throws JsonProcessingException {
+        log.info("===== Start get otp for mobile number {}", mobileNumber);
 
-        return "register";
+		Map otp = tmnWalletClient.getOtp(mobileNumber);
+		String number = otp.get("mobile_number").toString();
+		String otpReference = otp.get("otp_reference").toString();
+
+		WalletOtpDTO walletOtpDTO = new WalletOtpDTO(number, otpReference);
+
+		log.info("===== End get otp for mobile number {}", mobileNumber);
+
+		return new ResponseEntity<WalletOtpDTO>(walletOtpDTO, HttpStatus.OK);
     }
 
-	@RequestMapping(value = "/create_wallet", method = RequestMethod.POST)
-	public String register(@RequestBody Map<String, Object> requests) {
-		log.info("Mobile number {}", requests);
-		//log.info("GetOTP: {}", tmnWalletClient.getOtp(mobileNumber).toString());
-		//log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles("futoken","ios","2.0").toString());
+	@RequestMapping(value = "/confirm_otp", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<WalletTokenDTO> confirmOtp(@RequestBody WalletOtpDTO otpDTO) {
+		log.info("===== Start confirm otp for mobile number {}", otpDTO.getOtpReference());
 
-		return "register";
+		// TODO hardcode otp_code to 900531
+		Map map = tmnWalletClient.confirmOtp("900531", otpDTO.getMobileNumber(), otpDTO.getOtpReference());
+		WalletTokenDTO walletToken = new WalletTokenDTO();
+		walletToken.setToken(map.get("token").toString());
+
+		log.info("===== End confirm otp for mobile number {}", otpDTO.getOtpReference());
+
+		return new ResponseEntity<WalletTokenDTO>(walletToken, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/create_wallet", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<WalletCreateProfileDTO> createWallet(@RequestBody WalletCreateProfileDTO walletCreateProfileDTO, @RequestHeader HttpHeaders headers) {
+		List<String> token = headers.get("token");
+
+		log.info("Token {}", token);
+		log.info("Mobile number {}", walletCreateProfileDTO);
+
+		Map<String, String> requests = new HashMap<>();
+		requests.put("thai_id", walletCreateProfileDTO.getThaiId());
+		requests.put("first_name", walletCreateProfileDTO.getFirstName());
+		requests.put("last_name", walletCreateProfileDTO.getLastName());
+		requests.put("postal_code", walletCreateProfileDTO.getPostalCode());
+		requests.put("mobile_number", walletCreateProfileDTO.getMobileNumber());
+		requests.put("password", walletCreateProfileDTO.getPassword());
+		requests.put("email", walletCreateProfileDTO.getEmail());
+		requests.put("address", walletCreateProfileDTO.getAddress());
+		requests.put("occupation", walletCreateProfileDTO.getOccupation());
+
+		Map profile = tmnWalletClient.createProfile(token.get(0), requests);
+		WalletCreateProfileDTO resp = new WalletCreateProfileDTO();
+		resp.setThaiId(profile.get("thai_id").toString());
+		resp.setFirstName(profile.get("first_name").toString());
+		resp.setLastName(profile.get("last_name").toString());
+		resp.setPostalCode(profile.get("postal_code").toString());
+		resp.setMobileNumber(profile.get("mobile_number").toString());
+		resp.setPassword(profile.get("password").toString());
+		resp.setEmail(profile.get("email").toString());
+		resp.setAddress(profile.get("address").toString());
+		resp.setOccupation(profile.get("occupation").toString());
+		resp.setErrorMessage(profile.get("error_message").toString());
+
+		return new ResponseEntity<WalletCreateProfileDTO>(resp, HttpStatus.OK);
+	}
 }

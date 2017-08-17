@@ -186,6 +186,7 @@ AccountManager.prototype.initWalletCreateZone = function(){
 }
 
 AccountManager.prototype.createWalletProfile = function(){
+    
     function toggleInputs(disable) {
         if (disable) {
             $('.wl_firstname').attr('disabled','disabled');
@@ -210,21 +211,45 @@ AccountManager.prototype.createWalletProfile = function(){
         }
     }
     
+    function confirmOtp(obj, successFunc){
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: '/wallet/confirm_otp',
+            dataType: 'text',
+            data: JSON.stringify(obj),
+            success: (response) => {
+                //console.log(response);
+                successFunc(response);
+            },
+            error: (error) => {
+                console.log(error);
+            },
+            done: () => {
+                console.log("Done");
+            }
+        });
+    }
+    
     if (this.createMode == WALLET_CREATE_MODE_START) {
         const mobile_number = $('.wl_mobile').val();
         const URL = `/wallet/get_otp/${mobile_number}`;
-        console.log(URL);
         
         $.ajax({
             type: "GET",
             contentType: "application/json",
             url: URL,
-            dataType: 'json',
-            success: () => {
-                console.log("Success");
+            dataType: 'text',
+            success: (response) => {
+                var resp = JSON.parse(response);
+                
+                this.otp_reference = resp.otp_reference;
+                this.mobile_number = resp.mobile_number;
+                
+                $('.wl_otp').val(resp.otp_reference);
             },
-            error: () => {
-                console.log("Error");
+            error: (error) => {
+                console.log(error);
             },
             done: () => {
                 console.log("Done");
@@ -249,47 +274,33 @@ AccountManager.prototype.createWalletProfile = function(){
             address: $('.wl_address').val(),
             otp: $('.wl_otp').val()
         };
-        console.log(request);
-
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: URL,
-            dataType: 'json',
-            data : JSON.stringify(request),
-            success: () => {
-                toggleInputs(false);
-            },
-            error: () => {
-                toggleInputs(false);
-            },
-            done: () => {
-                toggleInputs(false);
-            }
+        
+        confirmOtp({
+            mobile_number: this.mobile_number,
+            otp_reference: this.otp_reference
+        }, (response) => {
+            var token = JSON.parse(response);
+            
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: URL,
+                headers: token,
+                dataType: 'json',
+                data : JSON.stringify(request),
+                success: (resp) => {
+                    console.log(resp);
+                    toggleInputs(false);
+                },
+                error: () => {
+                    toggleInputs(false);
+                },
+                done: () => {
+                    toggleInputs(false);
+                }
+            });
         });
     }
-
-//    var post = {};
-//    post.order_id = order_id;
-//    post.user_id = obj.value;
-//
-//    var url = '/order/deliverorder?order_id=' + order_id + '&user_id=' + obj.value;
-//    $.ajax({
-//        type : "POST",
-//        contentType : "application/json",
-//        url : url,
-//        dataType : 'json',
-//        success : function(response) {
-//            $('#td_' + order_id).html('Delivering');
-//        },
-//        error : function(e) {
-//            showMessage('ERROR: /order/deliverorder', 'error');
-//            console.log("ERROR deliverorder: ", e);
-//        },
-//        done : function(e) {
-//            console.log("DONE");
-//        }
-//    });
 }
 
 AccountManager.prototype.validate = function(updateFlag){
