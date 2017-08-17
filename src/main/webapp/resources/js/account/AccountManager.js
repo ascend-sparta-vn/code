@@ -148,7 +148,6 @@ AccountManager.prototype.initButtonClick = function(){
 		window.history.back();
 	});
 
-    // Kai added
     $('.payment_method').change(() => {
         this.displayPaymentMethod();
     });
@@ -164,10 +163,19 @@ AccountManager.prototype.displayPaymentMethod = function(){
         $('#payment_by_ascend_wallet').hide();
     else
         $('#payment_by_ascend_wallet').show();
+    
+    if ($('.master_card').is(':checked'))
+        $('#payment_by_ascend_wallet').hide();
+    else
+        $('#payment_by_ascend_wallet').show();
 }
 
 AccountManager.prototype.refreshForm = function(){
 	$("input").val('');
+}
+
+AccountManager.prototype.createWalletProfile = function(){
+    console.log("Hello moto");
 }
 
 AccountManager.prototype.validate = function(updateFlag){
