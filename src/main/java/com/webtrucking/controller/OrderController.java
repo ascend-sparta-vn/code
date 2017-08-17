@@ -72,6 +72,7 @@ public class OrderController extends BaseController{
 		Order order = ordersDAO.findOne(orderId);
 		if(userId == -1) {
 			order.setStatus(1);
+			deliveryDAO.deleteByOrderId(orderId);
 		} else {
 			DeliveryOrder deliveryOrder = new DeliveryOrder(orderId, userId);
 			deliveryDAO.save(deliveryOrder);

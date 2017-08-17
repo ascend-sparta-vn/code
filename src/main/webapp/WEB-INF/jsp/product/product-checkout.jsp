@@ -333,7 +333,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="control-label" for="otp">Email</label>
-                                            <p><input class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
+                                            <p><input id="otp" class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
                                         </div>
                                     </div>    
                                 </div>

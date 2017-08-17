@@ -104,8 +104,8 @@
 								<spring:message code="homepage.post"/>
 							</a>
 							<ul class="dropdown-menu">
-								<li id="menu4-sub1"> 
-									<a href="/order/post"><spring:message code="homepage.postShipment"/></a>
+								<li id="menu4-sub1">
+									<a href="#"><spring:message code="homepage.postShipment"/></a>
 								</li>
 							</ul>
 						</li>
