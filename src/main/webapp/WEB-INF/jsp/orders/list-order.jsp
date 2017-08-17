@@ -223,6 +223,7 @@
 									<c:if test="${item.status == 3}">
 										Complete
 									</c:if>
+										${item.user.username}
 								</td>
 								<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</button></td>
 							</tr>
