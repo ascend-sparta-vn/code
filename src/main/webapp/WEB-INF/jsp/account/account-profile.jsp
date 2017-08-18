@@ -131,6 +131,7 @@
                                         <label class="radio"><input type="radio" name="radio-inline" class="payment_method visa_card"><i class="rounded-x"></i>Visa</label>
                                         <label class="radio"><input type="radio" name="radio-inline" class="payment_method master_card"><i class="rounded-x"></i>MasterCard</label>
                                     </div>
+                                    <hr>
                                 </section>
                                 
                                 <div id="payment_by_visa_master">
@@ -237,7 +238,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="control-label" for="otp">Email</label>
-                            <p><input class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
+                            <p><input id="otp" class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
                         </div>
                     </div>    
                 </div>
