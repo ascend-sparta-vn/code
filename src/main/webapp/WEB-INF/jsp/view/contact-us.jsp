@@ -11,10 +11,10 @@
 <!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left"><spring:message code="contactUs.header"/></h1>
+				<h1 class="pull-left">Contact Us</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="index.html"><spring:message code="contactUs.homepage"/></a></li>
-					<li class="active"><spring:message code="contactUs.header"/></li>
+					<li><a href="index.html">Home Page</a></li>
+					<li class="active">Contact Us</li>
 				</ul>
 			</div>
 		</div><!--/breadcrumbs-->
@@ -82,23 +82,22 @@
 					<!-- Contacts -->
 					<div class="headline"><h2><spring:message code="contactUs.Address"/></h2></div>
 					<ul class="list-unstyled who margin-bottom-30">
-						<li><a href="#"><i class="fa fa-home"></i>25B, Thanh Xuân Bắc, Hà Nội</a></li>
-						<li><a href="#"><i class="fa fa-envelope"></i>info@goixe.vn</a></li>
-						<li><a href="#"><i class="fa fa-phone"></i>043.1233456 </a></li>
-						<li><a href="#"><i class="fa fa-globe"></i>http://goixe.vn</a></li>
+						<li><a href="#"><i class="fa fa-home"></i>Song Hong Building 156 Thai Ha Street</a></li>
+						<li><a href="#"><i class="fa fa-envelope"></i>info@onmart.vn</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i>024 6668888</a></li>
+						<li><a href="#"><i class="fa fa-globe"></i>http://onmart.vn</a></li>
 					</ul>
 
 					<!-- Business Hours -->
 					<div class="headline"><h2><spring:message code="contactUs.bussinessHour"/></h2></div>
 					<ul class="list-unstyled margin-bottom-30">
 						<li><strong><spring:message code="contactUs.weekDay"/></strong> : <spring:message code="contactUs.bussinessHourDetail"/></li>
-						<li><strong><spring:message code="contactUs.staturday"/></strong> : <spring:message code="contactUs.staturdayDetail"/></li>
-						<li><strong><spring:message code="contactUs.sunday"/></strong> : <spring:message code="contactUs.sundayDetail"/></li>
+						<li><strong>Saturday and Sunday</strong> : <spring:message code="contactUs.staturdayDetail"/></li>
 					</ul>
 
 					<!-- Why we are? -->
 					<div class="headline"><h2><spring:message code="contactUs.whyWeAre"/></h2></div>
-					<p><spring:message code="contactUs.reasonHeader"/></p>
+					<p>Onmart.vn committed companions and bring many benefits to customers</p>
 					<ul class="list-unstyled">
 						<li><i class="fa fa-check color-green"></i> <spring:message code="contactUs.reason1"/></li>
 						<li><i class="fa fa-check color-green"></i> <spring:message code="contactUs.reason2"/></li>
