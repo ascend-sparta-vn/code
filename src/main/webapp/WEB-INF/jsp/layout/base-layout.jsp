@@ -21,6 +21,7 @@
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="/resources/img/logoOnmart.jpg">
 
+
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
@@ -188,7 +189,8 @@
 	<!-- reCAPTCHA with Vietnamese language -->
 <!-- 	<script src='https://www.google.com/recaptcha/api.js?hl=vi'></script> -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-	
+
+	<div class="modal"><!-- Place at bottom of page --></div>
 </body>
 </html>
 

@@ -91,7 +91,7 @@
 							</li>
 						</sec:authorize>
 
-						<sec:authorize access="hasAnyRole('ADMIN', '')">
+						<sec:authorize access="hasAnyRole('ADMIN', 'CUSTOMER')">
 							<li class="" id="menu2">
 								<a href="/order/list">
 									<spring:message code="homepage.listOrder"/>

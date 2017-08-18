@@ -21,6 +21,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="/resources/img/logoOnmart.jpg">
 
+
     <!-- Web Fonts -->
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
