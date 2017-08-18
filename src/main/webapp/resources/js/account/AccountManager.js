@@ -7,8 +7,7 @@ function AccountManager() {
         { thai_id: "3231744035655", first_name: "Ascend", last_name: "Hackathon", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", address: "89 AIA Dindang, Bangkok", occupation: "developer"},
         { thai_id: "3231744035657", first_name: "Tulu", last_name: "Tran", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", "address": "89 AIA Dindang, Bangkok", occupation: "developer"}
     ];
-    
-    this.createMode = WALLET_CREATE_MODE_START;
+
 }
 
 AccountManager.prototype.init = function(){
@@ -18,7 +17,8 @@ AccountManager.prototype.init = function(){
 
     self.displayPaymentMethod();
     self.displayWallets();
-
+    
+    this.createMode = WALLET_CREATE_MODE_START;
 }
 
 /*
@@ -43,20 +43,19 @@ AccountManager.prototype.displayWallets = function(){
     for (index in this.walletList){
         var wallet = this.walletList[index];
         
-        var walletDom = `<div class="col-sm-6 sm-margin-bottom-20">
+        var walletDom = `<div class="col-sm-6 sm-margin-bottom-10">
                         <div class="profile-blog">
                             <img class="rounded-x" src="/resources/img/icons/ascend.png" alt="">
                             <div class="name-location">
                                 <strong>${wallet.first_name + ' ' + wallet.last_name}</strong>
                                 <span><i class="fa fa-map-marker"></i><a href="#">${wallet.address},</a></span>
                             </div>
-                            <div class="clearfix margin-bottom-20"></div>
+                            <div class="clearfix"></div>
                             
                             <ul class="list-inline share-list">
                                 <li><i class="fa fa-phone"></i><span>${wallet.mobile_number}</span></li>
                                 <li><i class="fa fa-envelope"></i><span>${wallet.email}</span></li>
                             </ul>
-                            <div class="clearfix margin-bottom-20"></div>
                         </div>
                     </div>`;
         if (index % 2 == 1) {
@@ -180,8 +179,7 @@ AccountManager.prototype.initWalletCreateZone = function(){
     
 }
 
-AccountManager.prototype.createWalletProfile = function(){
-    
+AccountManager.prototype.createWalletProfile = function(){    
     function toggleInputs(disable) {
         if (disable) {
             $('.wl_firstname').attr('disabled','disabled');
@@ -226,6 +224,8 @@ AccountManager.prototype.createWalletProfile = function(){
         });
     }
     
+    toggleInputs(false);
+
     if (this.createMode == WALLET_CREATE_MODE_START) {
         const mobile_number = $('.wl_mobile').val();
         const URL = `/wallet/get_otp/${mobile_number}`;
@@ -289,14 +289,19 @@ AccountManager.prototype.createWalletProfile = function(){
                     toggleInputs(false);
                     this.displayWallets();
                     
-                    $('#create_wallet_modal .btn-close').trigger('click');
+                    $('.btn-close').trigger('click');
                     $('.modal-backdrop').hide();
+                    
+                    showMessage('You have successfully created new wallet', "success");
+                    this.createMode = WALLET_CREATE_MODE_START;
                 },
                 error: () => {
                     toggleInputs(false);
+                    this.createMode = WALLET_CREATE_MODE_START;
                 },
                 done: () => {
                     toggleInputs(false);
+                    this.createMode = WALLET_CREATE_MODE_START;
                 }
             });
         });

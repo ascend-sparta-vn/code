@@ -332,16 +332,16 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="control-label" for="otp">Email</label>
-                                            <p><input id="otp" class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
+                                            <label class="control-label" for="otp">OTP</label>
+                                            <p><input id="otp" class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
                                         </div>
                                     </div>    
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn-u btn-u-primary">Save changes</button>
+                                <button type="button" class="btn-u btn-u-default btn-close" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn-u btn-u-primary btn-create-wallet" onclick="javascript: productList.createWalletProfile()">Create wallet</button>
                             </div>
                         </div>
                     </div>
