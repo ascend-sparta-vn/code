@@ -166,15 +166,10 @@ AccountManager.prototype.displayPaymentMethod = function(){
     else
         $('#payment_by_visa_master').show();
     
-    if ($('.visa_card').is(':checked'))
+    if ($('.visa_card').is(':checked') || $('.master_card').is(':checked'))
         $('#payment_by_ascend_wallet').hide();
     else
-        $('#payment_by_ascend_wallet').show();
-    
-    if ($('.master_card').is(':checked'))
-        $('#payment_by_ascend_wallet').hide();
-    else
-        $('#payment_by_ascend_wallet').show();
+        $('#payment_by_ascend_wallet').show();    
 }
 
 AccountManager.prototype.refreshForm = function(){

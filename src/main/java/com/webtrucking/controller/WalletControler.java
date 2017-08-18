@@ -1,11 +1,14 @@
 package com.webtrucking.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
 import com.webtrucking.client.TmnWalletClient;
 import com.webtrucking.controller.domain.WalletCreateProfileDTO;
 import com.webtrucking.controller.domain.WalletOtpDTO;
 import com.webtrucking.controller.domain.WalletTokenDTO;
+import com.webtrucking.util.JsonMapConverter;
 import org.apache.logging.log4j.LogManager;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
@@ -71,8 +74,7 @@ public class WalletControler extends BaseController {
 	public ResponseEntity<WalletCreateProfileDTO> createWallet(@RequestBody WalletCreateProfileDTO walletCreateProfileDTO, @RequestHeader HttpHeaders headers) {
 		List<String> token = headers.get("token");
 
-		log.info("Token {}", token);
-		log.info("Mobile number {}", walletCreateProfileDTO);
+		log.info("===== Start create profile. Token {}", token);
 
 		Map<String, String> requests = new HashMap<>();
 		requests.put("thai_id", walletCreateProfileDTO.getThaiId());
@@ -98,6 +100,22 @@ public class WalletControler extends BaseController {
 		resp.setOccupation(profile.get("occupation").toString());
 		resp.setErrorMessage(profile.get("error_message").toString());
 
+		log.info("===== End create profile. Token {}", token);
 		return new ResponseEntity<WalletCreateProfileDTO>(resp, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/sign_in", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String createWallet(@RequestBody Map<String, String> requests) {
+		log.info("===== Start sign in wallet {}", requests);
+
+		String userName = requests.get("username").toString();
+		String password = requests.get("password").toString();
+
+		Map profile = tmnWalletClient.signIn(userName, password);
+		JSONObject jsonObject = JsonMapConverter.toJson(profile);
+
+		log.info("===== End sign in wallet");
+    	return jsonObject.toString();
 	}
 }
