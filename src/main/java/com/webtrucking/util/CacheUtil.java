@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import com.webtrucking.entity.CheckoutProduct;
 import com.webtrucking.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ import com.webtrucking.entity.Province;
 public class CacheUtil {
     public static HashMap<String, List<Province>> listProvinceCache = new HashMap<String, List<Province>>();
     public static HashMap<String, List<District>> listDistrictCache = new HashMap<String, List<District>>();
-    public static HashMap<String, List<Integer>> listCheckoutByCustomer = new HashMap<String, List<Integer>>();
+    public static HashMap<String, List<CheckoutProduct>> listCheckoutByCustomer = new HashMap<String, List<CheckoutProduct>>();
 
     @Autowired
     private ProvinceDAO provinceDAO;
