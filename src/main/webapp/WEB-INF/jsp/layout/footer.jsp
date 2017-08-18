@@ -90,7 +90,7 @@
                   </div>
                   <div class="col-md-6">
                      <a href="index.html">
-                        <img class="pull-right" id="logo-footer" src="/resources/img/logo_goixe.png" alt="">
+                        <img class="pull-right" id="logo-footer" src="/resources/img/product/logo2.png" height="50px" width="90px" alt="">
                      </a>
                   </div>
                </div>

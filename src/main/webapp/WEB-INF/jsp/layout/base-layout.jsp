@@ -10,7 +10,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>Goixe.vn - Sàn giao dịch vận tải</title>
+	<title>Onmart.vn - Online Organic Food Deliver</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -19,7 +19,7 @@
 	<meta name="author" content="">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="/resources/img/logo_goixe.png">
+	<link rel="shortcut icon" href="/resources/img/product/logo2.png">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>

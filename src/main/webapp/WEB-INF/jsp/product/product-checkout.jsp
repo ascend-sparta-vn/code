@@ -16,11 +16,11 @@
                                     <spring:message code="homepage" />
                                 </a>
                             </li>
-                            <li class="active">
-                                <a href="/shipment/list">
-                                    <spring:message code="shipment.list" />
-                                </a>
-                            </li>
+                            <%--<li class="active">--%>
+                                <%--<a href="/shipment/list">--%>
+                                    <%--<spring:message code="shipment.list" />--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
                             <li class="active">
                                 <a href="#">
                                     <spring:message code="shipment.detail" />
@@ -34,8 +34,8 @@
                 <!--=== Breadcrumbs v4 ===-->
                 <div class="breadcrumbs-v4">
                     <div class="container">
-                        <span class="page-name">Check Out</span>
-                        <h1>Maecenas <span class="shop-green">enim</span> sapien</h1>
+                        <span class="page-name">Shopping </span>
+                        <h1>Your <span class="shop-green">Cart</span></h1>
                         <ul class="breadcrumb-v4-in">
                             <li><a href="index.html">Home</a></li>
                             <li><a href="">Product</a></li>
@@ -111,7 +111,7 @@
                                 <div class="header-tags">
                                     <div class="overflow-h">
                                         <h2>Billing info</h2>
-                                        <p>Shipping and address infot</p>
+                                        <p>Shipping and address info</p>
                                         <i class="rounded-x fa fa-home"></i>
                                     </div>
                                 </div>

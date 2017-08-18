@@ -260,13 +260,12 @@
          <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
          <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
       </div>
-
-      <ul class="list-inline owl-slider-v4">
-         <li class="item">
-            <a href="#"><img class="img-responsive" src="http://imavex.vo.llnwd.net/o18/clients/urbanfarm/images/Fruit/Seascape-Strawberry-Plants.jpg" alt="" width="200px" heigth="150px"></a>
+      <div class="row">
+         <div class="col-md-3">
+            <a href="#"><img class="img-responsive" src="http://imavex.vo.llnwd.net/o18/clients/urbanfarm/images/Fruit/Seascape-Strawberry-Plants.jpg" style="height:230px" alt="" ></a>
             <div class="product-description-v2">
                <div class="margin-bottom-5">
-                  <h4 class="title-price text-center"><a href="#">Organic Strawberry - from Happy farm</a></h4>
+                  <h4 class="title-price text-center"><a href="#">Strawberry - from Happy farm</a></h4>
                   <span class="title-price">$10.00/kg</span>
                </div>
                <ul class="list-inline product-ratings">
@@ -277,9 +276,9 @@
                   <li><i class="rating fa fa-star"></i></li>
                </ul>
             </div>
-         </li>
-         <li class="item">
-            <a href="#"><img class="img-responsive" src="http://pull01.thefruitcompany.netdna-cdn.com/media/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/o/r/organic-cherries_4.jpg" alt="" width="200px" heigth="150px"></a>
+         </div>
+         <div class="col-md-3">
+            <a href="#"><img class="img-responsive" src="http://pull01.thefruitcompany.netdna-cdn.com/media/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/o/r/organic-cherries_4.jpg" alt="" style="height:230px"></a>
             <div class="product-description-v2">
                <div class="margin-bottom-5">
                   <h4 class="title-price"><a href="#">Cherry - from Happy Farm</a></h4>
@@ -293,9 +292,9 @@
                   <li><i class="rating fa fa-star"></i></li>
                </ul>
             </div>
-         </li>
-         <li class="item">
-            <a href="#"><img class="img-responsive" src="http://foodservice.treetop.com/Assets/Images/Products/Juice/bg/bg-apples-04.jpg" alt="" width="200px" heigth="150px"></a>
+         </div>
+         <div class="col-md-3">
+            <a href="#"><img class="img-responsive" src="http://foodservice.treetop.com/Assets/Images/Products/Juice/bg/bg-apples-04.jpg" alt="" style="height:230px"></a>
             <div class="product-description-v2">
                <div class="margin-bottom-5">
                   <h4 class="title-price"><a href="#">Apple - from Happy Farm</a></h4>
@@ -309,9 +308,9 @@
                   <li><i class="rating fa fa-star"></i></li>
                </ul>
             </div>
-         </li>
-         <li class="item">
-            <a href="#"><img class="img-responsive" src="http://media.bizwebmedia.net/sites/123330/data/Upload/2016/5/untitled_1(13).jpg" alt="" width="200px" heigth="150px"></a>
+         </div>
+         <div class="col-md-3">
+            <a href="#"><img class="img-responsive" src="http://media.bizwebmedia.net/sites/123330/data/Upload/2016/5/untitled_1(13).jpg" alt="" style="height:230px"></a>
             <div class="product-description-v2">
                <div class="margin-bottom-5">
                   <h4 class="title-price"><a href="#">Water melon - from Monday </a></h4>
@@ -325,8 +324,75 @@
                   <li><i class="rating fa fa-star"></i></li>
                </ul>
             </div>
-         </li>
-      </ul>
+         </div>
+      </div>
+
+      <%--<ul class="list-inline owl-slider-v4">--%>
+         <%--<li class="item">--%>
+            <%--<a href="#"><img class="img-responsive" src="http://imavex.vo.llnwd.net/o18/clients/urbanfarm/images/Fruit/Seascape-Strawberry-Plants.jpg" alt="" width="200px" heigth="150px"></a>--%>
+            <%--<div class="product-description-v2">--%>
+               <%--<div class="margin-bottom-5">--%>
+                  <%--<h4 class="title-price text-center"><a href="#">Organic Strawberry - from Happy farm</a></h4>--%>
+                  <%--<span class="title-price">$10.00/kg</span>--%>
+               <%--</div>--%>
+               <%--<ul class="list-inline product-ratings">--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+               <%--</ul>--%>
+            <%--</div>--%>
+         <%--</li>--%>
+         <%--<li class="item">--%>
+            <%--<a href="#"><img class="img-responsive" src="http://pull01.thefruitcompany.netdna-cdn.com/media/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/o/r/organic-cherries_4.jpg" alt="" width="200px" heigth="150px"></a>--%>
+            <%--<div class="product-description-v2">--%>
+               <%--<div class="margin-bottom-5">--%>
+                  <%--<h4 class="title-price"><a href="#">Cherry - from Happy Farm</a></h4>--%>
+                  <%--<span class="title-price">$15.00/kg</span>--%>
+               <%--</div>--%>
+               <%--<ul class="list-inline product-ratings">--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+               <%--</ul>--%>
+            <%--</div>--%>
+         <%--</li>--%>
+         <%--<li class="item">--%>
+            <%--<a href="#"><img class="img-responsive" src="http://foodservice.treetop.com/Assets/Images/Products/Juice/bg/bg-apples-04.jpg" alt="" width="200px" heigth="150px"></a>--%>
+            <%--<div class="product-description-v2">--%>
+               <%--<div class="margin-bottom-5">--%>
+                  <%--<h4 class="title-price"><a href="#">Apple - from Happy Farm</a></h4>--%>
+                  <%--<span class="title-price">$7.00/kg</span>--%>
+               <%--</div>--%>
+               <%--<ul class="list-inline product-ratings">--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+               <%--</ul>--%>
+            <%--</div>--%>
+         <%--</li>--%>
+         <%--<li class="item">--%>
+            <%--<a href="#"><img class="img-responsive" src="http://media.bizwebmedia.net/sites/123330/data/Upload/2016/5/untitled_1(13).jpg" alt="" width="200px" heigth="150px"></a>--%>
+            <%--<div class="product-description-v2">--%>
+               <%--<div class="margin-bottom-5">--%>
+                  <%--<h4 class="title-price"><a href="#">Water melon - from Monday </a></h4>--%>
+                  <%--<span class="title-price">$1.50/kg</span>--%>
+               <%--</div>--%>
+               <%--<ul class="list-inline product-ratings">--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating-selected fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+                  <%--<li><i class="rating fa fa-star"></i></li>--%>
+               <%--</ul>--%>
+            <%--</div>--%>
+         <%--</li>--%>
+      <%--</ul>--%>
    </div>
 </div>
 
