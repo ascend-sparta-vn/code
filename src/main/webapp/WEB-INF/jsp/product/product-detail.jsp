@@ -91,7 +91,7 @@
                   <input type='text' class="quantity-field" name='qty' value="1" id='qty'/>
                   <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'>+</button>
                </form>
-               <button type="button" onclick="addToCart(${product.id})" class="btn-u btn-u-sea-shop btn-u-lg">Add to Cart</button>
+               <button type="button" onclick="addToCart(${product.id}, $('#qty').val())" class="btn-u btn-u-sea-shop btn-u-lg">Add to Cart</button>
             </div><!--/end product quantity-->
             </div>
                 </div>
@@ -417,7 +417,7 @@
         MasterSliderShowcase2.initMasterSliderShowcase2();
     });
 
-    function addToCart(productId){
-        manager.addToCart(productId);
+    function addToCart(productId, quantity){
+        manager.addToCart(productId, quantity);
     }
 </script>

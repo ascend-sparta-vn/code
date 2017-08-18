@@ -5,6 +5,8 @@
  */
 package com.webtrucking.entity;
 
+import org.springframework.data.annotation.Transient;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -65,6 +67,17 @@ public class Product implements Serializable {
     private Date lastUpdatedTimestamp;
     @Column(name = "name")
     private String name;
+
+    @javax.persistence.Transient
+    private Integer quantity;
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public Product() {
     }

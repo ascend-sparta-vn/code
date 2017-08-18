@@ -100,9 +100,9 @@ ProductDetail.prototype.initDataGrid = function(shipId){
 }
 
 
-ProductDetail.prototype.addToCart = function (productId){
+ProductDetail.prototype.addToCart = function (productId, quantity){
 
-    var url = "/product/cart/add/" + productId;
+    var url = "/product/cart/add/" + productId + '/' + quantity;
     $.ajax({
         type : "GET",
         url : url,

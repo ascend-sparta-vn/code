@@ -11,9 +11,9 @@ ProductManager.prototype.init = function(){
 
 }
 
-ProductManager.prototype.addToCart = function (productId){
+ProductManager.prototype.addToCart = function (productId, quantity){
 
-    var url = "/product/cart/add/" + productId;
+    var url = "/product/cart/add/" + productId +'/'+quantity;
     $.ajax({
         type : "GET",
         url : url,

@@ -26,6 +26,7 @@ var StepWizard = function () {
                         return form.valid();
                     },
                     onFinishing: function (event, currentIndex) {
+                        console.log("finishing");
                         form.validate().settings.ignore = ":disabled";
                         return form.valid();
                     },
