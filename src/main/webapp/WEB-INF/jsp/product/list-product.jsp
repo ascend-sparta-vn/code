@@ -199,7 +199,7 @@
                      <div class="product-img product-img-brd">
                         <a href="/product/detail/${item.id}"><img class="full-width img-responsive" src=${item.imgUrl} style="height:230px" alt=""></a>
                         <a class="product-review" href="/product/detail/${item.id}">Quick review</a>
-                        <a class="add-to-cart" onclick="addToCart(${item.id})" style="cursor: pointer"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <a class="add-to-cart" onclick="addToCart(${item.id}, 1)" style="cursor: pointer"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                      </div>
                      <div class="product-description product-description-brd margin-bottom-30">
                         <div class="overflow-h margin-bottom-5">
@@ -260,8 +260,8 @@
         });
     });
 
-    function addToCart(productId){
-        manager.addToCart(productId);
+    function addToCart(productId, quantity){
+        manager.addToCart(productId, quantity);
    }
 </script>
 

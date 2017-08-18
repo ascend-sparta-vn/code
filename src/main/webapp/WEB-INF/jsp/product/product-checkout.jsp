@@ -74,7 +74,7 @@
                                                 <!-- Add no items sign here -->
 
                                                 <c:forEach items="${listProduct}" var="product">
-                                                    <c:set var="amoutTotal" value="${amoutTotal + product.price * 1}" />
+                                                    <c:set var="amoutTotal" value="${amoutTotal + product.price * product.quantity}" />
                                                     <tr>
                                                         <td class="product-in-table">
                                                             <img class="img-responsive" src=${product.imgUrl} alt="">
@@ -86,15 +86,15 @@
                                                         <td>Unit</td>
                                                         <td>${VND} ${product.price}</td>
                                                         <td>
-                                                            <button type='button' class="quantity-button" name='subtract'>-</button>
-                                                            <input type='text' class="quantity-field product_${product.id}" name='qty1' value="1" id='qty1'/>
-                                                            <button type='button' class="quantity-button" name='add'>+</button>
+                                                            <%--<button type='button' class="quantity-button" name='subtract'>-</button>--%>
+                                                            <input type='text' disabled class="quantity-field product_${product.id}" name='qty1' value="${product.quantity}" id='qty1'/>
+                                                            <%--<button type='button' class="quantity-button" name='add'>+</button>--%>
                                                         </td>
                                                         <td class="shop-red total product_${product.id}">
-                                                                ${VND} ${product.price * 1}
+                                                                ${VND} ${product.price * product.quantity}
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="close" >
+                                                            <button type="button" class="close" onclick="removeProductCheckout(${product.id})">
                                                                 <span>&times;</span>
                                                                 <span class="sr-only">Close</span>
                                                             </button>
@@ -368,4 +368,30 @@
                         StepWizard.initStepWizard();
                         MasterSliderShowcase2.initMasterSliderShowcase2();
                     });
+
+                    function removeProductCheckout(productId){
+                        var url = "/product/cart/remove/" + productId;
+                        $.ajax({
+                            type : "GET",
+                            url : url,
+                            success : function(response) {
+                                console.log('success');
+                                if(response == 1){
+//                                    showMessage('remove product in Cart successfull', "success");
+                                    location.reload();
+                                }
+
+                            else
+                                showMessage('remove product in Cart failed', "error");
+                            },
+                            error : function(e) {
+                                console.log("ERROR remove in Cart: ", e);
+                                showMessage('Contact to admin to resolve this problem', "error");
+                            },
+                            done : function(e) {
+                                console.log("DONE");
+                            }
+                        });
+                    }
+
                 </script>
