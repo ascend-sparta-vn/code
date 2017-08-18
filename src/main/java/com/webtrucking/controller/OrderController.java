@@ -1,13 +1,7 @@
 package com.webtrucking.controller;
 
-import com.webtrucking.dao.DeliveryDAO;
-import com.webtrucking.dao.OrdersDAO;
-import com.webtrucking.dao.ShipmentDAO;
-import com.webtrucking.dao.UserDAO;
-import com.webtrucking.entity.DeliveryOrder;
-import com.webtrucking.entity.Order;
-import com.webtrucking.entity.Shipment;
-import com.webtrucking.entity.User;
+import com.webtrucking.dao.*;
+import com.webtrucking.entity.*;
 import com.webtrucking.json.entity.AjaxResponseBody;
 import com.webtrucking.json.entity.SearchShipmentRequest;
 import com.webtrucking.util.CacheUtil;
@@ -44,6 +38,12 @@ public class OrderController extends BaseController{
 	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
+	private PaymenetHistoryDAO paymentHistoryDAO;
+
+	@Autowired
+	private WalletDAO walletDAO;
+
 	static Logger log = Logger.getLogger(OrderController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DateUtils.ddMMyyyy_SLASH);
 
@@ -51,15 +51,14 @@ public class OrderController extends BaseController{
 	public String listOrder(Model model,
 								@RequestParam(required = false) Integer page,
 								@RequestParam(required = false) Integer size) {
-		Integer userType = 1;
-		Integer userId = 1;
+		User currentUser = getCurrentAccount();
 		List<Order> listOrder = new ArrayList<>();
-		if(userType == 1) {
+		if(currentUser.getUserType() == 1) {
 			listOrder = ordersDAO.findAllByOrderByCreatedTimestamp();
-		} else if(userType == 2) {
-			listOrder = ordersDAO.findByUserIdOrderByCreatedTimestamp(userId);
+		} else if(currentUser.getUserType() == 2) {
+			listOrder = ordersDAO.findByUserIdOrderByCreatedTimestamp(currentUser.getId());
 		}
-		model.addAttribute("userType", userType);
+		model.addAttribute("userType", currentUser.getUserType());
 		model.addAttribute("listOrder", listOrder);
 		model.addAttribute("listDeliver", userDAO.findAllByUserType(4));
 		return "order.list";
@@ -80,6 +79,21 @@ public class OrderController extends BaseController{
 		}
 		ordersDAO.save(order);
 		return order;
+	}
+
+	@RequestMapping("/detail/{orderId}")
+	public String detail(Model model, @PathVariable(value = "orderId") Integer orderId) {
+		Order order = ordersDAO.findOne(orderId);
+		model.addAttribute("order", order);
+
+		PaymentHistory payment = new PaymentHistory();
+		List<PaymentHistory> listPayment = paymentHistoryDAO.findByOrderId(orderId);
+		if (!listPayment.isEmpty()) {
+			payment = listPayment.get(0);
+			Wallet wallet = walletDAO.findOne(payment.getWalletId());
+			model.addAttribute("wallet", wallet);
+		}
+		return "order.detail";
 	}
 
 	@RequestMapping("/post")

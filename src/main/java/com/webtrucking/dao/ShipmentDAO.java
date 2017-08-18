@@ -32,6 +32,10 @@ public interface ShipmentDAO extends CrudRepository<Shipment, Integer>{
 			@Param("toDate") String toDate, 
 			@Param("start") Integer start, 
 			@Param("end") Integer end);
+
+	List<Shipment> getShipmentByOwnerId(
+			@Param("ownerId") Integer ownerId);
+
 	
 	@Query(value="SELECT count(*) FROM shipment a"
 			+ " WHERE (a.from_district IN (SELECT b.id FROM district b WHERE b.province_id = :provinceFrom) OR (:provinceFrom = -1))"

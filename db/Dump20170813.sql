@@ -97,15 +97,15 @@ INSERT INTO `forgot_password` VALUES (10,23,'hongson890@gmail.com','2d50afa6c2e2
 UNLOCK TABLES;
 
 --
--- Table structure for table `order`
+-- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL,
+  `status` int(1) NOT NULL,
   `total_amount` decimal(25,5) DEFAULT NULL,
   `state` tinyint(1) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
@@ -119,9 +119,9 @@ CREATE TABLE `order` (
 -- Dumping data for table `order`
 --
 
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -197,6 +197,7 @@ DROP TABLE IF EXISTS `payment_history`;
 CREATE TABLE `payment_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
   `wallet_id` int(11) NOT NULL,
   `total_amount` decimal(25,5) NOT NULL,
   `status` tinyint(1) NOT NULL,

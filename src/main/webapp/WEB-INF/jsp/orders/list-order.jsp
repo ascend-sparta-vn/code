@@ -24,32 +24,6 @@
 <div class="search-block">
 	<div class="container">
 		<div>
-
-			<!-- 				advanced search -->
-			<%--<table>--%>
-
-				<%--<thead>--%>
-					<%--STT--%>
-				<%--</thead>--%>
-				<%--<thead>--%>
-					<%--ORDER--%>
-				<%--</thead>--%>
-				<%--<thead>--%>
-					<%--PRODUCT--%>
-				<%--</thead>--%>
-				<%--<thead>--%>
-					<%--DELIVER--%>
-				<%--</thead>--%>
-				<%--<thead>--%>
-					<%--STATUS--%>
-				<%--</thead>--%>
-				<%--<thead>--%>
-					<%--TRACKING--%>
-				<%--</thead>--%>
-			<%--</table>--%>
-
-
-
 			<div class="row" id="advanceSearchBox" style="display: none">
 				<div class="col-sm-3">
 					<div class="form-group">
@@ -254,7 +228,12 @@
 									</c:if>
 								</td>
 								<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</button></td>
-								<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Detail </button></td>
+								<td>
+									<button class="btn btn-info btn-xs" id="viewOrderDetail" type="button"
+											onclick="location.href= '/order/detail/${item.id}'">
+										Detail
+									</button>
+								</td>
 							</tr>
 							</c:forEach>
 							</tbody>
@@ -302,6 +281,12 @@
 			}
 		});
 
+	}
+
+	function viewOrderDetail(orderId) {
+		var url = '/order/detail/' + orderId;
+		$.get(url, function (data, status) {
+		});
 	}
 
 	var shipmentManager1 = new ShipmentManager1();

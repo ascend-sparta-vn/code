@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.webtrucking.util.Common;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +24,7 @@ import com.webtrucking.util.IConstant;
 public class LoginController extends BaseController {
 	static Logger log = Logger.getLogger(LoginController.class);
 	@RequestMapping("/")
-	public String defaultUrl(Map<String, Object> model) {
+	public String defaultUrl(Map<String, Object> model, Authentication authen) {
 //		try {
 //			boolean isValid = validLogin();
 //			if(isValid) return "homepage";
@@ -32,7 +33,8 @@ public class LoginController extends BaseController {
 //			log.error("", e);
 //			return "login";
 //		}
-		return "homepage";
+
+		return Common.getReturnPage(authen);
 	}
 
 	@RequestMapping("/login")

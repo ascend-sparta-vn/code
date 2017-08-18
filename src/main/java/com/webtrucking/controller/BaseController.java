@@ -43,26 +43,27 @@ public class BaseController {
 
 	public User getCurrentAccount() {
 		try {
-			UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			List<User> accounts = userDAO.findAccountByUsername(userDetail.getUsername());
-//			User account = null;
-//			if(accounts != null && accounts.size() > 0){
-//				account = accounts.get(0);
-//			}
-//			return account;
+			//UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			List<User> accounts = userDAO.findByUsername(user.getUsername());
+			User account = null;
+			if(accounts != null && accounts.size() > 0){
+				account = accounts.get(0);
+			}
+			return account;
 		} catch (Exception e) {
 			log.error("", e);
 		}
 		return null;
 	}
 
+
+
 	public String getCurrentUsername(){
-        String username = "admin";
+        String username = "";
         try{
-//            UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			if(userDetail != null){
-//				username = userDetail.getUsername();
-//            }
+			org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			username = user.getUsername();
         }catch(Exception e){
             log.error(e);
         }
