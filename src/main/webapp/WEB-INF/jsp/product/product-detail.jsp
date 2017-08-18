@@ -79,7 +79,7 @@
                 <div class="row margin-bottom-40">
             <div class="col-md-4">
                <h3 class="shop-product-title">Quantity Left</h3>
-               <input type='text' class="quantity-field" value=${product.amount}/>
+               <input type='text' class="quantity-field" value= "${product.amount}" id="amount"/>
             </div>
             <!--/end product Quantity Left-->
 
@@ -87,7 +87,7 @@
             <h3 class="shop-product-title">Quantity</h3>
             <div style="display:inline">
                <form name="f1" class="product-quantity sm-margin-bottom-20">
-                  <button type='button' class="quantity-button" name='subtract' onclick='javascript: subtractQty();' value='-'>-</button>
+                  <button type='button' class="quantity-button" name='subtract' onclick='subtractQty();' value='-'>-</button>
                   <input type='text' class="quantity-field" name='qty' value="1" id='qty'/>
                   <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'>+</button>
                </form>
@@ -351,6 +351,15 @@
     });
 
     function addToCart(productId){
-        manager.addToCart(productId);
+        var quantity = document.getElementById('qty').value;
+        manager.addToCart(productId, quantity);
     }
+
+   function subtractQty() {
+      if(document.getElementById('qty').value !== '0') {
+         document.getElementById('qty').value = document.getElementById('qty').value - 1;
+         //document.getElementById('amount').value = parseInt(document.getElementById('amount').value) + 1;
+      }
+
+   }
 </script>

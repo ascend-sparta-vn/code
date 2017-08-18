@@ -74,24 +74,23 @@
                                                 <!-- Add no items sign here -->
 
                                                 <c:forEach items="${listProduct}" var="product">
-                                                    <c:set var="amoutTotal" value="${amoutTotal + product.price * 1}" />
+                                                    <c:set var="amoutTotal" value="${amoutTotal + product.price * product.quantity}" />
                                                     <tr>
                                                         <td class="product-in-table">
                                                             <img class="img-responsive" src=${product.imgUrl} alt="">
                                                             <div class="product-it-in">
                                                                 <h3>${product.name}</h3>
-                                                                <span>${product.providerId}</span>
                                                             </div>
                                                         </td>
                                                         <td>Unit</td>
-                                                        <td>${VND} ${product.price}</td>
+                                                        <td id="price_${product.id}">${product.price}</td>
                                                         <td>
-                                                            <button type='button' class="quantity-button" name='subtract'>-</button>
-                                                            <input type='text' class="quantity-field product_${product.id}" name='qty1' value="1" id='qty1'/>
-                                                            <button type='button' class="quantity-button" name='add'>+</button>
+                                                            <button type='button' class="quantity-button" name='subtract' onclick="addQuantity('${product.id}', -1); " >-</button>
+                                                            <input type='text' class="quantity-field product_${product.id}" name='qty1' value="${product.quantity}" id='qty_${product.id}'/>
+                                                            <button type='button' class="quantity-button" name='add' onclick="addQuantity('${product.id}', 1);" >+</button>
                                                         </td>
-                                                        <td class="shop-red total product_${product.id}">
-                                                                ${VND} ${product.price * 1}
+                                                        <td class="shop-red total product_${product.id}" id="tdTotal_${product.id}">
+                                                                ${VND} ${product.price * product.quantity}
                                                         </td>
                                                         <td>
                                                             <button type="button" class="close" >
@@ -251,20 +250,20 @@
                                                 <li>
                                                     <h4>Subtotal:</h4>
                                                     <div class="total-result-in">
-                                                        <span class="sub_total_cost">$ ${amoutTotal}</span>
+                                                        $ <span class="sub_total_cost" id="span_amountTotal">${amoutTotal}</span>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <h4>Shipping:</h4>
                                                     <div class="total-result-in">
-                                                        <span class="shipment_cost text-right">$ 0</span>
+                                                        $<span class="shipment_cost text-right"> 0</span>
                                                     </div>
                                                 </li>
                                                 <li class="divider"></li>
                                                 <li class="total-price">
                                                     <h4>Total:</h4>
                                                     <div class="total-result-in">
-                                                        <span class="total_cost">$ ${amoutTotal}</span>
+                                                        $ <span class="total_cost" id="total_cost">${amoutTotal}</span>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -357,6 +356,39 @@
                 <script src="/resources/js/plugins/utils/jquery-step/stepWizard.js"></script>
                 <script src="/resources/js/lodash.js"></script>
                 <script>
+                    function addQuantity(productId, quantity) {
+                        var price_ = document.getElementById('price_' + productId);
+                        var qty_ = document.getElementById('qty_' + productId);
+                        var tdTotal_ = document.getElementById('tdTotal_' + productId);
+
+                        qty_.value  = parseInt(qty_.value) + parseInt(quantity);
+                        tdTotal_.innerHTML = parseInt(tdTotal_.innerHTML) + parseInt(price_.innerHTML) * parseInt(quantity);
+
+                        var span_amountTotal = document.getElementById('span_amountTotal');
+                        var total_cost = document.getElementById('total_cost');
+                        span_amountTotal.innerHTML = parseInt(span_amountTotal.innerHTML) + parseInt(price_.innerHTML) * quantity;
+                        total_cost.innerHTML  = span_amountTotal.innerHTML;
+                        var post = {};
+
+                        var url = '/product/cart/add/' + productId + '/' + quantity;
+                        $.ajax({
+                            type : "GET",
+                            contentType : "application/json",
+                            url : url,
+                            dataType : 'json',
+                            success : function(response) {
+                                //$('#td_' + order_id).html('Delivering');
+                            },
+                            error : function(e) {
+                                showMessage('ERROR: /product/cart/add/', 'error');
+                                console.log("ERROR /product/cart/add/: ", e);
+                            },
+                            done : function(e) {
+                                console.log("DONE");
+                            }
+                        });
+
+                    }
                     var productList = new ProductList();
                     $(document).ready(function() {
                         <%--productList.listProduct.push(${listProduct});--%>

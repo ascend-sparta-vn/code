@@ -1,10 +1,12 @@
 package com.webtrucking.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.webtrucking.util.CacheUtil;
 import com.webtrucking.util.Common;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
@@ -51,6 +53,9 @@ public class LoginController extends BaseController {
 
 	@RequestMapping(value="/logout")
 	public String logoutPage (Model model, HttpServletRequest request, HttpServletResponse response) {
+
+		CacheUtil.listProductAdd = new HashMap<>();
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null){
 			new SecurityContextLogoutHandler().logout(request, response, auth);

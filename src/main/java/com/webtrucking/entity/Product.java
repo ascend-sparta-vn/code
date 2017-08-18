@@ -66,6 +66,8 @@ public class Product implements Serializable {
     @Column(name = "name")
     private String name;
 
+    private transient Integer quantity;
+
     public Product() {
     }
 
@@ -78,6 +80,20 @@ public class Product implements Serializable {
         this.amount = amount;
         this.price = price;
         this.importedDate = importedDate;
+    }
+
+    public Product(Integer id, Integer quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
+
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Integer getId() {
@@ -175,6 +191,7 @@ public class Product implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 
     @Override
     public int hashCode() {

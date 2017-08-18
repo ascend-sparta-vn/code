@@ -13,7 +13,7 @@ ProductManager.prototype.init = function(){
 
 ProductManager.prototype.addToCart = function (productId){
 
-    var url = "/product/cart/add/" + productId;
+    var url = "/product/cart/add/" + productId + '/1';
     $.ajax({
         type : "GET",
         url : url,

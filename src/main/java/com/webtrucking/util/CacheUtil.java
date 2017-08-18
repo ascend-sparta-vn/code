@@ -3,6 +3,7 @@ package com.webtrucking.util;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -24,6 +25,7 @@ public class CacheUtil {
     public static HashMap<String, List<Province>> listProvinceCache = new HashMap<String, List<Province>>();
     public static HashMap<String, List<District>> listDistrictCache = new HashMap<String, List<District>>();
     public static HashMap<String, List<Integer>> listCheckoutByCustomer = new HashMap<String, List<Integer>>();
+    public static HashMap<Integer, Product> listProductAdd = new HashMap<Integer, Product>();
 
     @Autowired
     private ProvinceDAO provinceDAO;

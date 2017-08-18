@@ -44,9 +44,9 @@ public class ProductController extends BaseController{
 		return "product.detail";
 	}
 
-	@RequestMapping(value = "/cart/add/{productId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cart/add/{productId}/{quantity}", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer addCheckout(@PathVariable(value = "productId") Integer productId) {
+	public Integer addCheckout(@PathVariable(value = "productId") Integer productId, @PathVariable(value = "quantity") Integer quantity) {
 
 		Integer responseCode = 0;
 		// get current userId login
@@ -62,22 +62,42 @@ public class ProductController extends BaseController{
 			CacheUtil.listCheckoutByCustomer.put(username, listProductId);
 			responseCode = 1;
 		}
+		if(CacheUtil.listProductAdd.containsKey(productId)) {
+
+			CacheUtil.listProductAdd.get(productId).setQuantity(CacheUtil.listProductAdd.get(productId).getQuantity() + quantity);
+		} else {
+			CacheUtil.listProductAdd.put(productId, new Product(productId, quantity));
+		}
+
 		return responseCode;
 
 	}
 	@RequestMapping("/checkout")
 	public String checkout(Model model) {
 		List<Product> listProductCheckout = new ArrayList<>();
-		String username = getCurrentUsername();
-		List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
-		if(listProductId != null){
-			for(Integer id : listProductId){
-				Product prd = productDAO.findOne(id);
-				if(prd != null){
-					listProductCheckout.add(prd);
-				}
-			}
+//		String username = getCurrentUsername();
+//		List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
+//		if(listProductId != null){
+//			for(Integer id : listProductId){
+//				Product prd = productDAO.findOne(id);
+//				if(prd != null){
+//					listProductCheckout.add(prd);
+//				}
+//			}
+//		}
+
+		listProductCheckout = new ArrayList<>();
+		for (Map.Entry<Integer, Product> entry : CacheUtil.listProductAdd.entrySet()) {
+			Product prd = productDAO.findOne(entry.getKey());
+			Product product  = entry.getValue();
+			product.setName(prd.getName());
+			product.setAmount(prd.getAmount());
+			product.setPrice(prd.getPrice());
+			product.setImgUrl(prd.getImgUrl());
+
+			listProductCheckout.add(product);
 		}
+
 		model.addAttribute("listProduct", listProductCheckout);
 		return "product.checkout";
 	}
