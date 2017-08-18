@@ -7,10 +7,10 @@
 
 <div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left">Về công ty</h1>
+				<h1 class="pull-left">About us</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="/">Trang chủ</a></li>
-					<li class="active">Về công ty</li>
+					<li><a href="/">Homepage</a></li>
+					<li class="active">About us</li>
 				</ul>
 			</div><!--/container-->
 		</div>
@@ -18,25 +18,25 @@
 <div class="container content">
 			<div class="row margin-bottom-40">
 				<div class="col-md-6 md-margin-bottom-40">
-					<p>Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals. It works on all major web browsers, tablets and phone. Lorem sequat ipsum dolor lorem sit amet, consectetur adipiscing dolor elit. Unify is an incredibly beautiful responsive Bootstrap Template for It works on all major web.</p>
+					<p>Onmart is a company leading the food organic providing in Viet Nam, and will be in SEA. User can easily order and check their orders by mobile or web app.</p>
 					<ul class="list-unstyled">
-						<li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida</li>
-						<li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
-						<li><i class="fa fa-check color-green"></i> Responsive Bootstrap Template</li>
-						<li><i class="fa fa-check color-green"></i> Elit non mi porta gravida</li>
-						<li><i class="fa fa-check color-green"></i> Award winning digital agency</li>
+						<li><i class="fa fa-check color-green"></i> Easily</li>
+						<li><i class="fa fa-check color-green"></i> Convinient</li>
+						<li><i class="fa fa-check color-green"></i> Reliation</li>
+						<li><i class="fa fa-check color-green"></i> Quickly</li>
+						<li><i class="fa fa-check color-green"></i> Trusting</li>
 					</ul><br>
 
 					<!-- Blockquotes -->
 					<blockquote class="hero-unify">
 						<p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why.</p>
-						<small>CEO Jack Bour</small>
+						<small>CEO Sparta</small>
 					</blockquote>
 				</div>
 
 				<div class="col-md-6 md-margin-bottom-40">
 					<div class="responsive-video">
-						<iframe src="http://player.vimeo.com/video/9679622" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+						<iframe src="https://www.youtube.com/embed/GhIZWhJtY8w" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 					</div>
 				</div>
 			</div><!--/row-->
