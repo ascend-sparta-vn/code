@@ -10,10 +10,10 @@
 <div class="breadcrumbs">
 	<div class="container">
 		<h1 class="pull-left"><spring:message code="sign.in"/></h1>
-		<ul class="pull-right breadcrumb">
+		<%--ul class="pull-right breadcrumb">
 			<li><a href="/"><spring:message code="homepage"/></a></li>
 			<li class="active"><spring:message code="sign.in"/></li>
-		</ul>
+		</ul--%>
 	</div>
 </div>
 <div class="container content-sm">

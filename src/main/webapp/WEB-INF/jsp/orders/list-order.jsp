@@ -12,11 +12,11 @@
 <input type="hidden" id="size" value="${size}" />
 <div class="breadcrumbs-v4">
 	<div class="container">
-		<span class="page-name">Tìm kiếm</span>
-		<h1>Danh sách <span class="shop-blue">Hàng vận chuyển</span> </h1>
+		<span class="page-name">Searching</span>
+		<h1>List of <span class="shop-blue">Order</span> </h1>
 		<ul class="breadcrumb-v4-in">
-			<li><a href="index.html">Trang chủ</a></li>
-			<li class="active shop-blue">Hàng vận chuyển</li>
+			<li><a href="index.html">Homepage</a></li>
+			<li class="active shop-blue">Order List</li>
 		</ul>
 	</div><!--/end container-->
 </div>
@@ -33,6 +33,7 @@
 							<select id="districtFrom" class="form-control">
 								<option value="-1" selected="selected"><spring:message code="district.from.choose"/></option>
 							</select>
+
 						</div>
 					</div>
 				</div>
@@ -79,8 +80,6 @@
 	<div class="row">
 		<div class="col-md-3 filter-by-block md-margin-bottom-60">
 			<h1></h1>
-
-
 			<div class="panel-group" id="accordion-v2">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -91,31 +90,53 @@
 							</a>
 						</h2>
 					</div>
-					<div id="collapseTwo" class="panel-collapse collapse in">
+					<div id="collapseOne" class="panel-collapse collapse in">
 						<div class="panel-body">
 							<ul class="list-unstyled checkbox-list">
-								<c:forEach var="item" items="${listGoods}">
-									<li>
-										<label class="checkbox">
-											<input id="${item.id}" type="checkbox" name="checkbox" onclick="filterType(${item.id}, 'goodsType')">
-											<i></i>
-												${item.filter}
-											<small><a href="#">(${item.quantity})</a></small>
-										</label>
-									</li>
-								</c:forEach>
+								<li>
+									<label class="checkbox">
+										<input type="checkbox" name="checkbox" checked />
+										<i></i>
+										Delevering
+										<small><a href="#">(23)</a></small>
+									</label>
+								</li>
+								<li>
+									<label class="checkbox">
+										<input type="checkbox" name="checkbox" checked />
+										<i></i>
+										Complete
+										<small><a href="#">(4)</a></small>
+									</label>
+								</li>
 							</ul>
 						</div>
 					</div>
+					<%--<div id="collapseTwo" class="panel-collapse collapse in">--%>
+						<%--<div class="panel-body">--%>
+							<%--<ul class="list-unstyled checkbox-list">--%>
+								<%--<c:forEach var="item" items="${listGoods}">--%>
+									<%--<li>--%>
+										<%--<label class="checkbox">--%>
+											<%--<input id="${item.id}" type="checkbox" name="checkbox" onclick="filterType(${item.id}, 'goodsType')">--%>
+											<%--<i></i>--%>
+												<%--${item.filter}--%>
+											<%--<small><a href="#">(${item.quantity})</a></small>--%>
+										<%--</label>--%>
+									<%--</li>--%>
+								<%--</c:forEach>--%>
+							<%--</ul>--%>
+						<%--</div>--%>
+					<%--</div>--%>
 				</div>
 			</div>
-			<button id="resetButton" type="button" class="btn-u btn-brd btn-brd-hover btn-u-lg btn-u-sea-shop btn-block"></button>
+			<%--<button id="resetButton" type="button" class="btn-u btn-brd btn-brd-hover btn-u-lg btn-u-sea-shop btn-block"></button>--%>
 		</div>
 
 		<div class="col-md-9">
 			<div class="row margin-bottom-5">
 				<div class="col-sm-6 result-category">
-					<h2> List Order </h2>
+					<h2> List of Order </h2>
 					<small class="shop-bg-red badge-results" id="totalResult">${listOrder.size()}</small>
 				</div>
 				<div class="col-sm-6">

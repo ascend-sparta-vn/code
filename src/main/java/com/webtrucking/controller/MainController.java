@@ -1,5 +1,6 @@
 package com.webtrucking.controller;
 
+import com.webtrucking.util.Common;
 import com.webtrucking.util.IConstant;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
@@ -28,13 +29,8 @@ public class MainController {
 //			System.out.println(object.getLat
 //					() + ", " + object.getLng());
 //		}
-		String username = "";
-		if(authen != null){
-			username = authen.getName();
-			log.info("username:" + username);
-		}
 
-		return "homepage";
+		return Common.getReturnPage(authen);
 	}
 	
 	@RequestMapping(value = "/list-user", method = RequestMethod.GET)

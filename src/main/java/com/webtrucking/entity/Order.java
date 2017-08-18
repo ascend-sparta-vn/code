@@ -81,7 +81,7 @@ public class Order implements Serializable {
 	public void setDelivers(Set<User> delivers) {
 		this.delivers = delivers;
 	}
-
+/**/
 	public Integer getCurrentDeliverId() {
 		if (this.delivers != null && !this.delivers.isEmpty()) {
 			return this.delivers.iterator().next().getId();
