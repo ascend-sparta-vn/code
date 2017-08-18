@@ -1,11 +1,14 @@
 package com.webtrucking.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
 import com.webtrucking.client.TmnWalletClient;
 import com.webtrucking.controller.domain.WalletCreateProfileDTO;
 import com.webtrucking.controller.domain.WalletOtpDTO;
 import com.webtrucking.controller.domain.WalletTokenDTO;
+import com.webtrucking.util.JsonMapConverter;
 import org.apache.logging.log4j.LogManager;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
@@ -71,8 +74,7 @@ public class WalletControler extends BaseController {
 	public ResponseEntity<WalletCreateProfileDTO> createWallet(@RequestBody WalletCreateProfileDTO walletCreateProfileDTO, @RequestHeader HttpHeaders headers) {
 		List<String> token = headers.get("token");
 
-		log.info("Token {}", token);
-		log.info("Mobile number {}", walletCreateProfileDTO);
+		log.info("===== Start create profile. Token {}", token);
 
 		Map<String, String> requests = new HashMap<>();
 		requests.put("thai_id", walletCreateProfileDTO.getThaiId());
@@ -98,6 +100,117 @@ public class WalletControler extends BaseController {
 		resp.setOccupation(profile.get("occupation").toString());
 		resp.setErrorMessage(profile.get("error_message").toString());
 
+		log.info("===== End create profile. Token {}", token);
 		return new ResponseEntity<WalletCreateProfileDTO>(resp, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/sign_in", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String createWallet(@RequestBody Map<String, String> requests) {
+		log.info("===== Start sign in wallet {}", requests);
+
+		String userName = requests.get("username").toString();
+		String password = requests.get("password").toString();
+
+		Map profile = tmnWalletClient.signIn(userName, password);
+		JSONObject jsonObject = JsonMapConverter.toJson(profile);
+
+		log.info("===== End sign in wallet");
+    	return jsonObject.toString();
+	}
+
+	@RequestMapping(value = "/draft_transaction", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String draftTransaction(@RequestBody Map<String, String> requests) {
+		log.info("===== Start draft transaction {}", requests);
+
+		String token = requests.get("token").toString();
+		String amount = requests.get("amount").toString();
+		String mobileNumber = requests.get("mobile_number").toString();
+
+		Map draftTransaction = tmnWalletClient.draftTransaction(token, mobileNumber, amount);
+		JSONObject jsonObject = JsonMapConverter.toJson(draftTransaction);
+
+		log.info("===== End draft transaction");
+		return jsonObject.toString();
+	}
+
+	@RequestMapping(value = "/get_otp_transfer", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String getOtpTransfer(@RequestBody Map<String, String> requests) {
+		log.info("===== Start get otp transfer {}", requests);
+
+		String accessToken = requests.get("token").toString();
+		String draftTransactionId = requests.get("draft_transaction_id").toString();
+		String personalMessage = requests.get("personal_message").toString();
+
+		Map result = tmnWalletClient.sendOtpTransfer(accessToken, draftTransactionId, personalMessage);
+		JSONObject jsonObject = JsonMapConverter.toJson(result);
+
+		log.info("===== End get otp transfer");
+		return jsonObject.toString();
+	}
+
+	@RequestMapping(value = "/confirm_otp_transfer", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String confirmOtpTransfer(@RequestBody Map<String, String> requests) {
+		log.info("===== Start confirm otp transfer {}", requests);
+
+		String accessToken = requests.get("token").toString();
+		String draftTransactionId = requests.get("transaction_id").toString();
+		String mobileNumber = requests.get("mobile_number").toString();
+		String otpRefCode = requests.get("otp_ref_code").toString();
+		String otpString = requests.get("otp_string").toString();
+
+		Map result = tmnWalletClient.confirmOtpTransfer(accessToken, draftTransactionId, mobileNumber, otpRefCode, otpString);
+		JSONObject jsonObject = JsonMapConverter.toJson(result);
+
+		log.info("===== End confirm otp transfer");
+		return jsonObject.toString();
+	}
+
+	@RequestMapping(value = "/get_transfer_status", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String getTransferStatus(@RequestBody Map<String, String> requests) {
+		log.info("===== Start get transfer status {}", requests);
+
+		String accessToken = requests.get("token").toString();
+		String transactionId = requests.get("transaction_id").toString();
+
+		Map result = tmnWalletClient.getTransferStatus(accessToken, transactionId);
+		JSONObject jsonObject = JsonMapConverter.toJson(result);
+
+		log.info("===== Start get transfer status");
+		return jsonObject.toString();
+	}
+
+	@RequestMapping(value = "/get_transfer_detail", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String getTransferDetail(@RequestBody Map<String, String> requests) {
+		log.info("===== Start get transfer detail {}", requests);
+
+		String accessToken = requests.get("token").toString();
+		String transactionId = requests.get("transaction_id").toString();
+
+		Map result = tmnWalletClient.getTransferDetails(accessToken, transactionId);
+		JSONObject jsonObject = JsonMapConverter.toJson(result);
+
+		log.info("===== Start get transfer detail");
+		return jsonObject.toString();
+	}
+
+	@RequestMapping(value = "/get_user_balance", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	@ResponseBody
+	public String getUserBalance(@RequestBody Map<String, String> requests) {
+		log.info("===== Start get user balance {}", requests);
+
+		String accessToken = requests.get("token").toString();
+
+		// TODO hardcode deviceOs = "ios", appVersion = "2.0"
+		Map result = tmnWalletClient.getUserBalance(accessToken, "ios", "2.0");
+		JSONObject jsonObject = JsonMapConverter.toJson(result);
+
+		log.info("===== Start get user balance");
+		return jsonObject.toString();
 	}
 }

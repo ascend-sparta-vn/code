@@ -404,6 +404,7 @@
 <script src="/resources/js/plugins/utils/slider/master-slider-showcase2.js"></script>
 <script src="/resources/js/plugins/utils/slider/style-switcher.js"></script>
 <script src="/resources/js/plugins/utils/slider/owl-carousel.js"></script>
+<script src="/resources/js/plugins/utils/form/product-quantity.js"></script>
 <script>
     var manager = new ProductDetail();
     $(document).ready(function(){

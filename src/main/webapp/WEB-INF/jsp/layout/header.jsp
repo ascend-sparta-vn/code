@@ -48,10 +48,13 @@
 								<sec:authentication property="principal.username" />
 							</a>
 							<ul class="languages hoverSelectorBlock">
-								<li style="margin-bottom:20px"><a href="/logout"><spring:message code="homepage.logout"/></a></li>
-								<li style="margin-bottom:20px"><a href="/account/account-profile"><spring:message code="homepage.account"/></a></li>
-								<li style="height:30px"><a href="/product/checkout">My Cart</a></li>
+								<li><a href="/logout"><spring:message code="homepage.logout"/></a></li>
+								<li><a href="/account/account-profile"><spring:message code="homepage.account"/></a></li>
+
 							</ul>
+						</sec:authorize>
+						<sec:authorize access="hasAnyRole('ADMIN', 'CUSTOMER')">
+							<li><a href="/product/checkout"> | <i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li><a href="/login"><spring:message code="homepage.login"/></a></li>
