@@ -82,7 +82,7 @@
 					<!-- Contacts -->
 					<div class="headline"><h2><spring:message code="contactUs.Address"/></h2></div>
 					<ul class="list-unstyled who margin-bottom-30">
-						<li><a href="#"><i class="fa fa-home"></i>25B, Thanh Xuân Bắc, Hà Nội</a></li>
+						<li><a href="#"><i class="fa fa-home"></i>165, Thái Hà, Hà Nội</a></li>
 						<li><a href="#"><i class="fa fa-envelope"></i>info@goixe.vn</a></li>
 						<li><a href="#"><i class="fa fa-phone"></i>043.1233456 </a></li>
 						<li><a href="#"><i class="fa fa-globe"></i>http://goixe.vn</a></li>
