@@ -60,7 +60,7 @@ public class WalletControler extends BaseController {
 		log.info("===== Start confirm otp for mobile number {}", otpDTO.getOtpReference());
 
 		// TODO hardcode otp_code to 900531
-		Map map = tmnWalletClient.confirmOtp("900531", otpDTO.getMobileNumber(), otpDTO.getOtpReference());
+		Map map = tmnWalletClient.confirmOtp("123456", "{{otp_ref}}", otpDTO.getMobileNumber());
 		WalletTokenDTO walletToken = new WalletTokenDTO();
 		walletToken.setToken(map.get("token").toString());
 
