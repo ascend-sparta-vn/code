@@ -9,7 +9,7 @@
 				<!-- Logo -->
 				<a class="logo" href="/">
 <!-- 					<img src="/resources/img/logo1-blue.png" alt="Logo"> -->
-					<img src="/resources/img/logo.jpg" height="50px" width="90px" alt="Logo">
+					<img src="/resources/img/logoOnmart.jpg" height="50px" width="90px" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
