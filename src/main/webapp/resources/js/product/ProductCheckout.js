@@ -10,12 +10,7 @@ function ProductList(){
 ProductList.prototype.init = function () {
     var self = this;
     
-//    $('#next').click(() => {
-//       // this.processPayment(); 
-//        console.log("process payment");
-//    });
-    
-//    this.processPayment();
+    // this.processPayment();
     this.createMode = WALLET_CREATE_MODE_START;
 }
 

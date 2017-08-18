@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="/resources/css/pages/profile.css">
 <div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left">Cập nhật tài khoản</h1>
+				<h1 class="pull-left">Account profile</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="/">Trang chủ</a></li>
-					<li class="active">Cập nhật tài khoản</li>
+					<li><a href="/">Homepage</a></li>
+					<li class="active">Update profile</li>
 				</ul>
 			</div>
 		</div>

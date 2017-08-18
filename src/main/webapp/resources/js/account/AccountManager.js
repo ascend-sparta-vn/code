@@ -47,8 +47,8 @@ AccountManager.prototype.displayWallets = function(){
                         <div class="profile-blog">
                             <img class="rounded-x" src="/resources/img/icons/ascend.png" alt="">
                             <div class="name-location">
-                                <strong>${wallet.first_name + ' ' + wallet.last_name}</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="#">${wallet.address},</a></span>
+                                <a href="#"><strong>${wallet.first_name + ' ' + wallet.last_name}</strong></a>
+                                <span><i class="fa fa-map-marker"></i>${wallet.address}</span>
                             </div>
                             <div class="clearfix"></div>
                             
