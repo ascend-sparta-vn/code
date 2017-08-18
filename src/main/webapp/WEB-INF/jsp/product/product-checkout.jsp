@@ -165,13 +165,13 @@
                                                                 <div class="form-group">
                                                                     <label class="col-sm-4 no-col-space control-label">Mobile number</label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="text" class="form-control required" name="cardholder" placeholder="">
+                                                                        <input type="text" class="form-control required wl_mobilenumber" name="cardholder" placeholder="">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-sm-4 no-col-space control-label">Password</label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="password" class="form-control required" name="cardholder" placeholder="">
+                                                                        <input type="password" class="form-control required wl_password" name="cardholder" placeholder="">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group margin-left-20">
@@ -300,7 +300,7 @@
                 <!--=== End Shop Suvbscribe ===-->
                 
                 <!--=== Modals ===-->
-                <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog" style="margin: 120px auto;">
                         <div class="modal-content">
                             <div class="modal-header">
