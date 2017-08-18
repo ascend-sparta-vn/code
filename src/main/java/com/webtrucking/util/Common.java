@@ -240,13 +240,13 @@ public class Common {
 			username = authen.getName();
 			switch (username) {
 				case "admin":
-					return "order.list";
+					return "forward:/order/list";
 				case "customer":
-					return "product.list";
+					return "forward:/product/list";
 				case "provider":
 					return "provider_product.list";
 				case "transporter":
-					return "shipment.list";
+					return "forward:/shipment/list";
 				default:
 					return "account.login";
 			}

@@ -105,17 +105,19 @@
 								</a>
 							</li>
 						</sec:authorize>
-						
-						<li class="dropdown" id="menu4">
-							<a href="/trucking/list-trucking" class="dropdown-toggle" data-toggle="dropdown">
-								<spring:message code="homepage.post"/>
-							</a>
-							<ul class="dropdown-menu">
-								<li id="menu4-sub1">
-									<a href="#"><spring:message code="homepage.postShipment"/></a>
-								</li>
-							</ul>
-						</li>
+
+						<sec:authorize access="hasAnyRole('ADMIN')">
+							<li class="dropdown" id="menu4">
+								<a href="/trucking/list-trucking" class="dropdown-toggle" data-toggle="dropdown">
+									<spring:message code="homepage.post"/>
+								</a>
+								<ul class="dropdown-menu">
+									<li id="menu4-sub1">
+										<a href="#"><spring:message code="homepage.postShipment"/></a>
+									</li>
+								</ul>
+							</li>
+						</sec:authorize>
 						
 						<li class="dropdown" id="menu4">
 							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">

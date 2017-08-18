@@ -35,6 +35,7 @@ public interface ShipmentDAO extends CrudRepository<Shipment, Integer>{
 
 	List<Shipment> getShipmentByOwnerId(
 			@Param("ownerId") Integer ownerId);
+	List<Shipment> findAll();
 
 	
 	@Query(value="SELECT count(*) FROM shipment a"
