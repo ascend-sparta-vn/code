@@ -1832,3 +1832,11 @@ function convertLongDate(dateLong) {
     var date = new Date(dateLong);
     return ((date.getDate()) + '/' + (date.getMonth()+1)  + '/' +  date.getFullYear());
 }
+
+
+function waitingProcess() {
+    $('body').addClass("loading");
+}
+function completeProcess() {
+    $('body').removeClass("loading");
+}

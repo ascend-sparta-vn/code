@@ -9,7 +9,7 @@
 				<!-- Logo -->
 				<a class="logo" href="/">
 <!-- 					<img src="/resources/img/logo1-blue.png" alt="Logo"> -->
-					<img src="/resources/img/product/logo2.png" height="50px" width="90px" alt="Logo">
+					<img src="/resources/img/logoOnmart.jpg" height="50px" width="90px" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -91,7 +91,7 @@
 							</li>
 						</sec:authorize>
 
-						<sec:authorize access="hasAnyRole('ADMIN', '')">
+						<sec:authorize access="hasAnyRole('ADMIN', 'CUSTOMER')">
 							<li class="" id="menu2">
 								<a href="/order/list">
 									<spring:message code="homepage.listOrder"/>
