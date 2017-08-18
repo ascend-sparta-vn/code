@@ -1,8 +1,7 @@
-/**
- * 
- */
-
 const VND = '&#x20ab;';
+const WALLET_CREATE_MODE_START = 0;
+const WALLET_CREATE_MODE_WAIT_OTP = 1;
+const WALLET_CREATE_MODE_WAIT_PROFILE = 2;
 
 function ProductList(){
     this.listProduct = [];
@@ -11,12 +10,133 @@ function ProductList(){
 ProductList.prototype.init = function () {
     var self = this;
     
-//    $('#next').click(() => {
-//       // this.processPayment(); 
-//        console.log("process payment");
-//    });
+    // this.processPayment();
+    this.createMode = WALLET_CREATE_MODE_START;
+}
+
+ProductList.prototype.createWalletProfile = function(){    
+    function toggleInputs(disable) {
+        if (disable) {
+            $('.wl_firstname').attr('disabled','disabled');
+            $('.wl_lastname').attr('disabled','disabled');
+            $('.wl_email').attr('disabled','disabled');
+            $('.wl_mobile').attr('disabled','disabled');
+            $('.wl_occupation').attr('disabled','disabled');
+            $('.wl_postalcode').attr('disabled','disabled');
+            $('.wl_password').attr('disabled','disabled');
+            $('.wl_citizenid').attr('disabled','disabled');
+            $('.wl_address').attr('disabled','disabled');
+        } else {
+            $('.wl_firstname').removeAttr('disabled');
+            $('.wl_lastname').removeAttr('disabled');
+            $('.wl_email').removeAttr('disabled');
+            $('.wl_mobile').removeAttr('disabled');
+            $('.wl_occupation').removeAttr('disabled');
+            $('.wl_postalcode').removeAttr('disabled');
+            $('.wl_password').removeAttr('disabled');
+            $('.wl_citizenid').removeAttr('disabled');
+            $('.wl_address').removeAttr('disabled');
+        }
+    }
     
-    this.processPayment();
+    function confirmOtp(obj, successFunc){
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: '/wallet/confirm_otp',
+            dataType: 'text',
+            data: JSON.stringify(obj),
+            success: (response) => {
+                console.log(response);
+                successFunc(response);
+            },
+            error: (error) => {
+                console.log(error);
+            },
+            done: () => {
+                console.log("Done");
+            }
+        });
+    }
+    
+    toggleInputs(false);
+    
+    if (this.createMode == WALLET_CREATE_MODE_START) {
+        const mobile_number = $('.wl_mobile').val();
+        const URL = `/wallet/get_otp/${mobile_number}`;
+        
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: URL,
+            dataType: 'text',
+            success: (response) => {
+                var resp = JSON.parse(response);
+                
+                this.otp_reference = resp.otp_reference;
+                this.mobile_number = resp.mobile_number;
+                
+                $('.wl_otp').val(resp.otp_reference);
+            },
+            error: (error) => {
+                console.log(error);
+            },
+            done: () => {
+                console.log("Done");
+            }
+        });
+        
+        $('.btn-create-wallet').html('Confirm OTP');
+        toggleInputs(true);
+        this.createMode = WALLET_CREATE_MODE_WAIT_OTP;
+    } else if (this.createMode == WALLET_CREATE_MODE_WAIT_OTP) {
+        const URL = '/wallet/create_wallet';
+
+        var request = {
+            first_name: $('.wl_firstname').val(),
+            last_name: $('.wl_lastname').val(),
+            email: $('.wl_email').val(),
+            mobile_number: $('.wl_mobile').val(),
+            occupation: $('.wl_occupation').val(),
+            postal_code: $('.wl_postalcode').val(),
+            password: $('.wl_password').val(),
+            thai_id: $('.wl_citizenid').val(),
+            address: $('.wl_address').val(),
+            otp: $('.wl_otp').val()
+        };
+        
+        confirmOtp({
+            mobile_number: this.mobile_number,
+            otp_reference: this.otp_reference
+        }, (response) => {
+            var token = JSON.parse(response);
+            
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: URL,
+                headers: token,
+                dataType: 'json',
+                data : JSON.stringify(request),
+                success: (resp) => {
+                    console.log('laksdfjalskdfj;asldkfj')
+                    $('.btn-close').trigger('click');
+                    $('.modal-backdrop').hide();
+                    
+                    showMessage('You have successfully created new wallet', "success");
+                    this.createMode = WALLET_CREATE_MODE_START;
+                },
+                error: () => {
+                    toggleInputs(false);
+                    this.createMode = WALLET_CREATE_MODE_START;
+                },
+                done: () => {
+                    toggleInputs(false);
+                    this.createMode = WALLET_CREATE_MODE_START;
+                }
+            });
+        });
+    }
 }
 
 ProductList.prototype.processPayment = function () {

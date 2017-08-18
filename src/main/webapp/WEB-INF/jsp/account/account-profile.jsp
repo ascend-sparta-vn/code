@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="/resources/css/pages/profile.css">
 <div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left">Cập nhật tài khoản</h1>
+				<h1 class="pull-left">Account profile</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="/">Trang chủ</a></li>
-					<li class="active">Cập nhật tài khoản</li>
+					<li><a href="/">Homepage</a></li>
+					<li class="active">Update profile</li>
 				</ul>
 			</div>
 		</div>
@@ -131,6 +131,7 @@
                                         <label class="radio"><input type="radio" name="radio-inline" class="payment_method visa_card"><i class="rounded-x"></i>Visa</label>
                                         <label class="radio"><input type="radio" name="radio-inline" class="payment_method master_card"><i class="rounded-x"></i>MasterCard</label>
                                     </div>
+                                    <hr>
                                 </section>
                                 
                                 <div id="payment_by_visa_master">
@@ -237,7 +238,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="control-label" for="otp">Email</label>
-                            <p><input class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
+                            <p><input id="otp" class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
                         </div>
                     </div>    
                 </div>
