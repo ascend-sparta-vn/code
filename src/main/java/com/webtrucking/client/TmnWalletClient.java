@@ -124,6 +124,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map signOut(String token) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -135,6 +136,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getUserProfiles(String token, String deviceOS, String appVersion) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -146,6 +148,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getUserBalance(String token, String deviceOS, String appVersion) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -157,6 +160,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map toup(String mobileNo, String amount) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -170,6 +174,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map draftTransaction(String token, String mobileNo, String amount) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -184,6 +189,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map sendOtpTransfer(String token, String draftTransId, String personalMessage) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -198,6 +204,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map confirmOtpTransfer(String token, String draftTransId, String mobileNo, String otpRefCode, String otpString) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -214,6 +221,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getTransferStatus(String token, String draftTransId) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -226,6 +234,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getTransferDetails(String token, String draftTransId) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -238,6 +247,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map payAtRetail(String token) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
@@ -249,6 +259,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map listAllTransactions(String token) {
+        init();
 
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("Content-Type", MediaType.APPLICATION_JSON_UTF8);
