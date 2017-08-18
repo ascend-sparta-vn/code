@@ -24,54 +24,54 @@
 <div class="search-block">
 	<div class="container">
 		<div>
-			<div class="row" id="advanceSearchBox" style="display: none">
-				<div class="col-sm-3">
-					<div class="form-group">
-						<label class=""><spring:message code="district.from"/></label>
-						<div class="input-group ">
-							<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker"></i></span>
-							<select id="districtFrom" class="form-control">
-								<option value="-1" selected="selected"><spring:message code="district.from.choose"/></option>
-							</select>
+			<%--<div class="row" id="advanceSearchBox" style="display: none">--%>
+				<%--<div class="col-sm-3">--%>
+					<%--<div class="form-group">--%>
+						<%--<label class=""><spring:message code="district.from"/></label>--%>
+						<%--<div class="input-group ">--%>
+							<%--<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker"></i></span>--%>
+							<%--<select id="districtFrom" class="form-control">--%>
+								<%--<option value="-1" selected="selected"><spring:message code="district.from.choose"/></option>--%>
+							<%--</select>--%>
 
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-						<label class=""><spring:message code="district.to"/></label>
-						<div class="input-group ">
-							<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker"></i></span>
-							<select id="districtTo" class="form-control">
-								<option value="-1" selected="selected"><spring:message code="district.to.choose"/></option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-						<label class=""><spring:message code="date.to"/></label>
-						<div class="input-group ">
-							<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-calendar"></i></span>
-							<input type="text" class="datepicker form-control" id="toDate">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-offset-2 col-lg-2" style="text-align: center">
-				</div>
-				<div class="col-lg-2" style="text-align: center">
-					<label>&nbsp</label>
-					<button id="advancedTruckingBtn" class="btn rounded btn-primary btn-u-sm form-control" style="color: white;" type="button">
-						<i class="fa fa-search-plus"></i>&nbsp<spring:message code="trucking.search.advance"/></button>
-				</div>
-				<div class="col-lg-2" style="text-align: center">
-					<label>&nbsp</label>
-					<button id="clearTruckingBtn" class="btn rounded btn-primary btn-u-sm form-control" style="color: white;" type="button">
-						<i class="fa fa-refresh"></i>&nbsp<spring:message code="trucking.reenter"/></button>
-				</div>
-			</div>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+				<%--<div class="col-sm-3">--%>
+					<%--<div class="form-group">--%>
+						<%--<label class=""><spring:message code="district.to"/></label>--%>
+						<%--<div class="input-group ">--%>
+							<%--<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker"></i></span>--%>
+							<%--<select id="districtTo" class="form-control">--%>
+								<%--<option value="-1" selected="selected"><spring:message code="district.to.choose"/></option>--%>
+							<%--</select>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+				<%--<div class="col-sm-3">--%>
+					<%--<div class="form-group">--%>
+						<%--<label class=""><spring:message code="date.to"/></label>--%>
+						<%--<div class="input-group ">--%>
+							<%--<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-calendar"></i></span>--%>
+							<%--<input type="text" class="datepicker form-control" id="toDate">--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+			<%--<div class="row">--%>
+				<%--<div class="col-lg-offset-2 col-lg-2" style="text-align: center">--%>
+				<%--</div>--%>
+				<%--<div class="col-lg-2" style="text-align: center">--%>
+					<%--<label>&nbsp</label>--%>
+					<%--<button id="advancedTruckingBtn" class="btn rounded btn-primary btn-u-sm form-control" style="color: white;" type="button">--%>
+						<%--<i class="fa fa-search-plus"></i>&nbsp<spring:message code="trucking.search.advance"/></button>--%>
+				<%--</div>--%>
+				<%--<div class="col-lg-2" style="text-align: center">--%>
+					<%--<label>&nbsp</label>--%>
+					<%--<button id="clearTruckingBtn" class="btn rounded btn-primary btn-u-sm form-control" style="color: white;" type="button">--%>
+						<%--<i class="fa fa-refresh"></i>&nbsp<spring:message code="trucking.reenter"/></button>--%>
+				<%--</div>--%>
+			<%--</div>--%>
 		</div>
 	</div>
 </div>
@@ -79,13 +79,14 @@
 <div class="container content-sm">
 	<div class="row">
 		<div class="col-md-3 filter-by-block md-margin-bottom-60">
-			<h1></h1>
-			<div class="panel-group" id="accordion-v2">
+			<h1>Categories</h1>
+			<%--panel group    --%>
+			<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion-v2" href="#collapseTwo">
-								<spring:message code="kind.of.goods.trading" />
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								Status
 								<i class="fa fa-angle-down"></i>
 							</a>
 						</h2>
@@ -97,7 +98,7 @@
 									<label class="checkbox">
 										<input type="checkbox" name="checkbox" checked />
 										<i></i>
-										Delevering
+										Delivering
 										<small><a href="#">(23)</a></small>
 									</label>
 								</li>
@@ -109,28 +110,95 @@
 										<small><a href="#">(4)</a></small>
 									</label>
 								</li>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" />--%>
+										<%--<i></i>--%>
+										<%--Apple--%>
+										<%--<small><a href="#">(11)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" checked/>--%>
+										<%--<i></i>--%>
+										<%--Water Melon--%>
+										<%--<small><a href="#">(3)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" />--%>
+										<%--<i></i>--%>
+										<%--Strawberry--%>
+										<%--<small><a href="#">(87)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
 							</ul>
 						</div>
 					</div>
-					<%--<div id="collapseTwo" class="panel-collapse collapse in">--%>
+				</div>
+			</div>
+			<!--/end panel group-->
+			<%--<div class="panel-group" id="accordion">--%>
+				<%--<div class="panel panel-default">--%>
+					<%--<div class="panel-heading">--%>
+						<%--<h2 class="panel-title">--%>
+							<%--<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">--%>
+								<%--Providers--%>
+								<%--<i class="fa fa-angle-down"></i>--%>
+							<%--</a>--%>
+						<%--</h2>--%>
+					<%--</div>--%>
+					<%--<div id="collapseOne" class="panel-collapse collapse in">--%>
 						<%--<div class="panel-body">--%>
 							<%--<ul class="list-unstyled checkbox-list">--%>
-								<%--<c:forEach var="item" items="${listGoods}">--%>
-									<%--<li>--%>
-										<%--<label class="checkbox">--%>
-											<%--<input id="${item.id}" type="checkbox" name="checkbox" onclick="filterType(${item.id}, 'goodsType')">--%>
-											<%--<i></i>--%>
-												<%--${item.filter}--%>
-											<%--<small><a href="#">(${item.quantity})</a></small>--%>
-										<%--</label>--%>
-									<%--</li>--%>
-								<%--</c:forEach>--%>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" checked />--%>
+										<%--<i></i>--%>
+										<%--Happy Farm--%>
+										<%--<small><a href="#">(23)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" checked />--%>
+										<%--<i></i>--%>
+										<%--Monday Farm--%>
+										<%--<small><a href="#">(4)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" />--%>
+										<%--<i></i>--%>
+										<%--Frenzy Farm--%>
+										<%--<small><a href="#">(11)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" />--%>
+										<%--<i></i>--%>
+										<%--Green Farm--%>
+										<%--<small><a href="#">(3)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
+								<%--<li>--%>
+									<%--<label class="checkbox">--%>
+										<%--<input type="checkbox" name="checkbox" />--%>
+										<%--<i></i>--%>
+										<%--Organic Farm--%>
+										<%--<small><a href="#">(87)</a></small>--%>
+									<%--</label>--%>
+								<%--</li>--%>
 							<%--</ul>--%>
 						<%--</div>--%>
 					<%--</div>--%>
-				</div>
-			</div>
-			<%--<button id="resetButton" type="button" class="btn-u btn-brd btn-brd-hover btn-u-lg btn-u-sea-shop btn-block"></button>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+			<button id="resetButton" type="button" class="btn-u btn-brd btn-brd-hover btn-u-lg btn-u-sea-shop btn-block">Reset</button>
 		</div>
 
 		<div class="col-md-9">
@@ -164,7 +232,7 @@
 
 				<div class="panel panel-red margin-bottom-40">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-user"></i> LIST ORDERS </h3>
+						<h3 class="panel-title"><i class="fa fa-user"></i> LIST OF ORDERS </h3>
 					</div>
 					<div class="panel-body">
 						<table class="table">
