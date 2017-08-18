@@ -23,7 +23,7 @@
 <div class="container content-sm">
    <div class="row">
       <div class="col-md-3 filter-by-block md-margin-bottom-60">
-         <h1>Categorize</h1>
+         <h1>Categories</h1>
          <%--panel group    --%>
          <div class="panel-group" id="accordion">
             <div class="panel panel-default">
