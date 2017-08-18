@@ -5,11 +5,11 @@
 
 <div class="breadcrumbs">
    <div class="container">
-      <h1 class="pull-left"><spring:message code="shipment.detail"/></h1>
+      <h1 class="pull-left">Product Detail</h1>
       <ul class="pull-right breadcrumb">
          <li><a href="/"><spring:message code="homepage"/></a></li>
-         <li class="active"><a href="/shipment/list"><spring:message code="shipment.list"/></a></li>
-         <li class="active"><a href="#"><spring:message code="shipment.detail"/></a></li>
+         <li class="active"><a href="/shipment/list">Products List</a></li>
+         <li class="active"><a href="#">Product Detail</a></li>
       </ul>
    </div>
 </div>
@@ -21,8 +21,8 @@
    <div class="container">
       <ul class="breadcrumb-v5">
          <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-         <li><a href="#">Products</a></li>
-         <li class="active">New</li>
+         <li><a href="#">Products List</a></li>
+         <li class="active">Product Detail</li>
       </ul>
    </div>
    <!-- End Breadcrumbs v5 -->
@@ -91,7 +91,7 @@
                   <input type='text' class="quantity-field" name='qty' value="1" id='qty'/>
                   <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'>+</button>
                </form>
-               <button type="button" class="btn-u btn-u-sea-shop btn-u-lg">Add to Cart</button>
+               <button type="button" onclick="addToCart(${product.id})" class="btn-u btn-u-sea-shop btn-u-lg">Add to Cart</button>
             </div><!--/end product quantity-->
             </div>
                 </div>
@@ -349,4 +349,8 @@
         StyleSwitcher.initStyleSwitcher();
         MasterSliderShowcase2.initMasterSliderShowcase2();
     });
+
+    function addToCart(productId){
+        manager.addToCart(productId);
+    }
 </script>
