@@ -60,8 +60,11 @@ public class ShipmentController extends BaseController{
 		User user = getCurrentAccount();
 		String username = user.getUsername();
 
-		if("transporter".equals(username) || "admin".equals(username)) {
+		if("transporter".equals(username)) {
 			List<Shipment> shipments = shipmentDAO.getShipmentByOwnerId(user.getId());
+			model.addAttribute("shipments", shipments);
+		} else if("admin".equals(username)) {
+			List<Shipment> shipments = shipmentDAO.findAll();
 			model.addAttribute("shipments", shipments);
 		} else {
 			return "403";
