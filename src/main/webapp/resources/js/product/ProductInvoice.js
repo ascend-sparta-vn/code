@@ -84,7 +84,7 @@ ProductInvoice.prototype.getTransactionOtp = function (access_token) {
     };
     
     var req = {
-        amount: '100',
+        amount: amount,
         mobile_number : ONMART_WALLET_NUMBER,
         token: access_token
     };

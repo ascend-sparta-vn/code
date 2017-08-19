@@ -170,6 +170,8 @@
 <script>
 
     var access_token = '${walletCheckout.token}';
+    var amount = $("#amountTotal").val() || 0;
+    
     var manager = new ProductInvoice();
     manager.init();
     $(document).ready(function(){
