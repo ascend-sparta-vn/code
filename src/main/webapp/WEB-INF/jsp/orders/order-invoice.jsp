@@ -127,7 +127,7 @@
             <ul class="list-unstyled invoice-total-info">
                 <li><strong>Subtotal:</strong> ${amoutTotal}</li>
                 <li><strong>Shipping:</strong> $0</li>
-                <li><strong>Total:</strong> ${amoutTotal}</li>
+                <li><strong>Total:</strong> <span id="amountTotal">${amoutTotal}</span></li>
             </ul>
             <button class="btn-u sm-margin-bottom-10" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</button>
             <button class="btn-u" id="btnConfirmOtp">Confirm OTP</button>
@@ -170,7 +170,7 @@
 <script>
 
     var access_token = '${walletCheckout.token}';
-    var amount = $("#amountTotal").val() || 0;
+    var amount = $("#amountTotal").html() || 0;
     
     var manager = new ProductInvoice();
     manager.init();

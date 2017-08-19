@@ -88,6 +88,9 @@ ProductInvoice.prototype.getTransactionOtp = function (access_token) {
         mobile_number : ONMART_WALLET_NUMBER,
         token: access_token
     };
+    
+    console.log(req);
+    
     createDraftTransaction(req, {
         mobile_number : ONMART_WALLET_NUMBER,
         token: access_token},
