@@ -245,6 +245,10 @@
                                             <p>Enter your coupon code</p>
                                             <input class="form-control margin-bottom-10" name="code" type="text">
                                             <button type="button" class="btn-u btn-u-sea-shop">Apply Coupon</button>
+                                            <button type="button" class="btn-u btn-u-sea-shop"
+                                                    onclick="location.href= '/product/list/'">
+                                                Continue shopping
+                                            </button>
                                         </div>
                                         <div class="col-sm-3 col-sm-offset-5">
                                             <ul class="list-inline total-result">

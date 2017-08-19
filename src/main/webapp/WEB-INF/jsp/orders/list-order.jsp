@@ -13,7 +13,7 @@
 <div class="breadcrumbs-v4">
 	<div class="container">
 		<span class="page-name">Searching</span>
-		<h1>List of <span class="shop-blue">Order</span> </h1>
+		<h1>List <span class="shop-blue">Order</span> </h1>
 		<ul class="breadcrumb-v4-in">
 			<li><a href="index.html">Homepage</a></li>
 			<li class="active shop-blue">Order List</li>
@@ -204,7 +204,7 @@
 		<div class="col-md-9">
 			<div class="row margin-bottom-5">
 				<div class="col-sm-6 result-category">
-					<h2> List of Order </h2>
+					<h2> List Order </h2>
 					<small class="shop-bg-red badge-results" id="totalResult">${listOrder.size()}</small>
 				</div>
 				<div class="col-sm-6">
@@ -230,9 +230,9 @@
 
 			<div class="filter-results" id="contentData">
 
-				<div class="panel panel-red margin-bottom-40">
+				<div class="panel panel-blue margin-bottom-40">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-user"></i> LIST OF ORDERS </h3>
+						<h3 class="panel-title"><i class="fa fa-user"></i> LIST ORDERS </h3>
 					</div>
 					<div class="panel-body">
 						<table class="table">
