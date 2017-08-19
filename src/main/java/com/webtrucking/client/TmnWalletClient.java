@@ -1,10 +1,7 @@
 package com.webtrucking.client;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.Gson;
 import com.webtrucking.client.constant.ApiIDs;
 import com.webtrucking.dao.ApiConfigurationDAO;
-import com.webtrucking.dto.GeneralResponse;
 import com.webtrucking.entity.ApiConfiguration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,23 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
-import java.io.StringReader;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
