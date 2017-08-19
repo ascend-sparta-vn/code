@@ -18,6 +18,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.json.Json;
@@ -106,7 +108,7 @@ public class TmnWalletClient implements BeanPostProcessor
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.CREATE_PROFILE.getId()).getMethod());
         String endpoint = apiConfigurations.get(ApiIDs.CREATE_PROFILE.getId()).getUrl();
-        return callApi(endpoint, method, headerMap, null);
+        return callApi(endpoint, method, headerMap, requestMap);
     }
 
     public Map signIn(String username, String password) {

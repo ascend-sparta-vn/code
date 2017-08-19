@@ -4,10 +4,7 @@ const WALLET_CREATE_MODE_WAIT_PROFILE = 2;
 
 function AccountManager() {
 	this.walletList = [
-        { thai_id: "3231744035655", first_name: "Ascend", last_name: "Hackathon", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", address: "89 AIA Dindang, Bangkok", occupation: "developer"},
-        { thai_id: "3231744035657", first_name: "Tulu", last_name: "Tran", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", "address": "89 AIA Dindang, Bangkok", occupation: "developer"}
     ];
-
 }
 
 AccountManager.prototype.init = function(){
@@ -19,6 +16,20 @@ AccountManager.prototype.init = function(){
     self.displayWallets();
     
     this.createMode = WALLET_CREATE_MODE_START;
+    
+    this.initTempInputs();
+}
+
+AccountManager.prototype.initTempInputs = function(){
+    $('.wl_firstname').val('');
+    $('.wl_lastname').val('');
+    $('.wl_email').val('ascendian??@ascend.com');
+    $('.wl_mobile').val('');
+    $('.wl_occupation').val('IT dev');
+    $('.wl_postalcode').val('10000');
+    $('.wl_password').val('Welcome1234');
+    $('.wl_citizenid').val('3231744035655');
+    $('.wl_address').val('165 Thai Ha street, Hanoi');
 }
 
 /*
@@ -224,8 +235,16 @@ AccountManager.prototype.createWalletProfile = function(){
         });
     }
     
-    toggleInputs(false);
+    function handleErrors(message){
+        $('.btn-close').trigger('click');
+        $('.modal-backdrop').hide();
 
+        toggleInputs(false);
+        this.createMode = WALLET_CREATE_MODE_START;
+        showMessage(message, "error");
+    }
+
+    
     if (this.createMode == WALLET_CREATE_MODE_START) {
         const mobile_number = $('.wl_mobile').val();
         const URL = `/wallet/get_otp/${mobile_number}`;
@@ -238,16 +257,14 @@ AccountManager.prototype.createWalletProfile = function(){
             success: (response) => {
                 var resp = JSON.parse(response);
                 
-                this.otp_reference = resp.otp_reference;
-                this.mobile_number = resp.mobile_number;
+                this.otp_reference = resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1');
+                this.mobile_number = resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1');
+                this.otp_code = '123456';
                 
-                $('.wl_otp').val(resp.otp_reference);
+                $('.wl_otp').val(resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1'));
             },
             error: (error) => {
-                console.log(error);
-            },
-            done: () => {
-                console.log("Done");
+                handleErrors("Can't create OTP for this number " + mobile_number);
             }
         });
         
@@ -272,7 +289,8 @@ AccountManager.prototype.createWalletProfile = function(){
         
         confirmOtp({
             mobile_number: this.mobile_number,
-            otp_reference: this.otp_reference
+            otp_reference: this.otp_reference,
+            otp_code: this.otp_code
         }, (response) => {
             var token = JSON.parse(response);
             
@@ -280,11 +298,23 @@ AccountManager.prototype.createWalletProfile = function(){
                 type: "POST",
                 contentType: "application/json",
                 url: URL,
-                headers: token,
+                headers: {token: token.token.replace(/^"(.+(?="$))"$/, '$1')},
                 dataType: 'json',
                 data : JSON.stringify(request),
                 success: (resp) => {
-                    this.walletList.push(resp);
+                    var wallet = {
+                        thai_id: resp.thai_id.replace(/^"(.+(?="$))"$/, '$1'),
+                        first_name: resp.first_name.replace(/^"(.+(?="$))"$/, '$1'),
+                        last_name: resp.last_name.replace(/^"(.+(?="$))"$/, '$1'),
+                        postal_code: resp.postal_code.replace(/^"(.+(?="$))"$/, '$1'),
+                        mobile_number: resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1'),
+                        password: resp.password.replace(/^"(.+(?="$))"$/, '$1'),
+                        email: resp.email.replace(/^"(.+(?="$))"$/, '$1'),
+                        address: resp.address.replace(/^"(.+(?="$))"$/, '$1'),
+                        occupation: resp.occupation.replace(/^"(.+(?="$))"$/, '$1')
+                    };
+                    
+                    this.walletList.push(wallet);
                     
                     toggleInputs(false);
                     this.displayWallets();
@@ -296,124 +326,9 @@ AccountManager.prototype.createWalletProfile = function(){
                     this.createMode = WALLET_CREATE_MODE_START;
                 },
                 error: () => {
-                    toggleInputs(false);
-                    this.createMode = WALLET_CREATE_MODE_START;
-                },
-                done: () => {
-                    toggleInputs(false);
-                    this.createMode = WALLET_CREATE_MODE_START;
+                    handleErrors("Register wallet error");
                 }
             });
         });
     }
 }
-
-AccountManager.prototype.validate = function(updateFlag){
-	var self = this;
-	var error = "";
-	var email = $("#email").val();
-	var password = $("#password").val();
-	var repassword = $("#repassword").val();
-	var name = $("#last-name").val();
-	var mobileNumber = $("#mobile-number").val();
-	var address = $("#address").val();
-	if(!self.validateEmail(email)){
-		error = $("#message-email").val();
-		return error;
-	}
-	
-	if(updateFlag) {
-	} else {
-		if(password.trim() == '') {
-			error = $("#message-password").val();
-			return error;
-		}
-		
-		if(repassword.trim() == '') {
-			error = $("#message-repassword").val();
-			return error;
-		}
-		
-		if(repassword != password) {
-			error = $("#message-correctpassword").val();
-			return error;
-		}
-		
-		if(!$("#check-agree").is(':checked')) {
-			error = $("#account-agree").val();
-			return error;
-		}
-		
-		if ($("#defaultReal").val() == ""){
-			error = $("#message-capcha").val();
-			return error;
-		}
-	}
-	
-	
-	if(name.trim() == '') {
-		error = $("#message-name").val();
-		return error;
-	}
-	
-	if(!self.validateMobileNumber(mobileNumber)) {
-		error = $("#message-tel").val();
-		return error;
-	}
-	
-	if(address.trim() == '') {
-		error = $("#message-address").val();
-		return error;
-	}
-	
-	return "";
-	
-}
-
-AccountManager.prototype.validateEmail = function(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-AccountManager.prototype.validateMobileNumber = function(val) {
-	//return /^\d{10}$/.test(val);
-	if (val == '' || val.trim() == '') {
-		return false;
-	}
-	return true;
-}
-
-AccountManager.prototype.getFormData = function(val) {
-	var self = this;
-	var obj = {};
-	obj.password = $("#password").val();
-	obj.memberSex = $("#memberSex").val();
-	obj.firstname=$("#firstname").val();
-	obj.lastName = $("#last-name").val(); 
-	obj.mobileNumber = $("#mobile-number").val();
-	obj.address = $("#address").val();
-	obj.province = $("#province").val();
-	obj.goodType = $("#goodType").val();
-	obj.weighPerMonth = $("#weighPerMonth").val();
-	obj.description = $("#description").val();
-	obj.companyName = $("#company-name").val();
-	obj.companyAddress = $("#company-address").val();
-	obj.startYear = $("#start-year").val();
-	obj.totalEmployee = $("#total-employee").val();
-	obj.companyIso = $("#company-iso").val();
-	obj.companyRole = $("#company-role").val();
-	obj.directorName = $("#director-name").val();
-	obj.taxCode = $("#tax-code").val();
-	obj.companyPhoneNumber = $("#company-phone-number").val();
-	obj.companyFax = $("#company-fax").val();
-	obj.paperNumber = $("#paper-number").val();
-	obj.accountBankName = $("#account-bank-name").val();
-	obj.accountBankNumber = $("#account-bank-number").val();
-	obj.bankingName = $("#banking-name").val();
-	obj.memberType = $("#password").val();
-	
-	return obj;
-}
-
-
-

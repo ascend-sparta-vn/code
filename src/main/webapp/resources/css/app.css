@@ -2593,7 +2593,9 @@ img.img-center,
    with position:fixed. Width, height, top and left speak
    for themselves. Background we set to 80% white with
    our animation centered, and no-repeating */
-.modal {
+
+
+.modal_progress {
 	display:    none;
 	position:   fixed;
 	z-index:    1000;
@@ -2607,14 +2609,10 @@ img.img-center,
 	no-repeat;
 }
 
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
 body.loading {
 	overflow: hidden;
 }
 
-/* Anytime the body has the loading class, our
-   modal element will be visible */
-body.loading .modal {
+body.loading .modal_progress {
 	display: block;
 }

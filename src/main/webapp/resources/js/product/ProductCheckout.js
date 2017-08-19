@@ -75,6 +75,7 @@ ProductList.prototype.createWalletProfile = function(){
                 
                 this.otp_reference = resp.otp_reference;
                 this.mobile_number = resp.mobile_number;
+                this.otp_code = "123456";
                 
                 $('.wl_otp').val(resp.otp_reference);
             },
