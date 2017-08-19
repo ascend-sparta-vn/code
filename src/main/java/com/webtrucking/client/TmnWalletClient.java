@@ -142,7 +142,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_USER_BALANCE.getId()).getMethod());
         String endpoint = String.format(apiConfigurations.get(ApiIDs.GET_USER_BALANCE.getId()).getUrl(), deviceOS, appVersion);

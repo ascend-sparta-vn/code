@@ -9,6 +9,7 @@ import com.webtrucking.entity.Wallet;
 import com.webtrucking.json.entity.AccountInfo;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.services.UserService;
+import com.webtrucking.util.CacheUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -108,19 +109,14 @@ public class UserController extends BaseController {
 
 		if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString().equals("anonymousUser")) {
 			UserDetails userDetail = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			List<Account_bk> accounts = UserDAO.findAccountByUsername(userDetail.getUsername());
-//			Account_bk account = accounts.get(0);
-//			model.addAttribute("account", account);
-//			if(account.getAccountDetailId() != null) {
-//				AccountDetail accountDetail = accountDetailDAO.findOne(account.getAccountDetailId());
-//				model.addAttribute("accountDetail", accountDetail);
-//			}
 
 			User currentUser = getCurrentAccount();
 			model.addAttribute("currentUser", currentUser);
 
 			List<Wallet> wallets = walletDAO.findByUserId(currentUser.getId());
 			model.addAttribute("wallets", wallets);
+
+			model.addAttribute("token", CacheUtil.walletCheckout.get(currentUser.getUsername()));
 
 			return "account.profile";
 		} else {

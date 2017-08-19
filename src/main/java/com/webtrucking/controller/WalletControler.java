@@ -9,6 +9,7 @@ import com.webtrucking.controller.domain.WalletTokenDTO;
 import com.webtrucking.dao.WalletDAO;
 import com.webtrucking.entity.User;
 import com.webtrucking.entity.Wallet;
+import com.webtrucking.util.CacheUtil;
 import com.webtrucking.util.JsonMapConverter;
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONObject;
@@ -187,6 +188,8 @@ public class WalletControler extends BaseController {
 
 		Map result = tmnWalletClient.confirmOtpTransfer(accessToken, draftTransactionId, mobileNumber, otpRefCode, otpString);
 		JSONObject jsonObject = JsonMapConverter.toJson(result);
+
+		CacheUtil.listCheckoutByCustomer.clear();
 
 		log.info("===== End confirm otp transfer");
 		return jsonObject.toString();

@@ -72,7 +72,7 @@ AccountManager.prototype.displayWallets = function(){
                         <div class="profile-blog">
                             <img class="rounded-x" src="/resources/img/icons/ascend.png" alt="">
                             <div class="name-location">
-                                <a href="#"><strong>${wallet.first_name + ' ' + wallet.last_name}</strong></a>
+                                <a href="#" onclick="javascript: accountManager.getWalletBalance()"><strong>${wallet.first_name + ' ' + wallet.last_name}</strong></a>
                                 <span><i class="fa fa-map-marker"></i>${wallet.address}</span>
                             </div>
                             <div class="clearfix"></div>
@@ -202,6 +202,37 @@ AccountManager.prototype.refreshForm = function(){
 
 AccountManager.prototype.initWalletCreateZone = function(){
     
+}
+
+AccountManager.prototype.getWalletBalance = function(){
+    var self = this;
+    
+    console.log(access_token);
+    
+    $.ajax({
+        type : "POST",
+        contentType : "application/json",
+        url : '/wallet/get_user_balance',
+        data : JSON.stringify({token: access_token}),
+        dataType : 'json',
+        success : function(data) {
+            console.log(data.data);
+            var balance = '0';
+            if(data != null && data.data != null && data.data != ''){
+                var arr = data.data.split(':');
+                if(arr != null && arr.length > 0){
+                    var ballanceStr = arr[1];
+                    balance = ballanceStr.replace('}','');
+                }
+            }
+            
+            $('#currentBalance').val(balance);
+            
+            $('#walletBalance').modal('show');
+        },
+        error : function(e) {
+        }
+    });
 }
 
 AccountManager.prototype.createWalletProfile = function(){    

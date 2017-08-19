@@ -268,9 +268,50 @@
   </div>
 </div>
 
+<div id="walletBalance" class="modal fade" role="dialog" style="margin-top: 100px">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <p4>Wallet Info</p4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="panel-body cus-form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 no-col-space control-label">Ballance</label>
+                            <div class="col-sm-8">
+                                <input id="currentBalance" type="text" class="form-control" name="cardholder">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 no-col-space control-label">Mobile Number</label>
+                            <div class="col-sm-8">
+                                <input id="mobileWallet" type="text" class="form-control" name="cardholder" value="${wallets[0].mobileNumber}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 no-col-space control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input id="emailWallet" type="text" class="form-control" name="cardholder" value="${wallets[0].email}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <script type="text/javascript" src="/resources/js/account/AccountManager.js"></script>
 <script>
+    var access_token = '${token.token}';
+    
 	var accountManager = new AccountManager();
 	$(function () {
 		accountManager.init();
