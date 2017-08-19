@@ -102,11 +102,11 @@
             <c:forEach items="${listProduct}" var="product">
                 <c:set var="amoutTotal" value="${amoutTotal + product.price * product.quantity}" />
                 <tr>
-                    <td>${product.name}</td>
-                    <td>${product.description}</td>
-                    <td>${product.quantity}</td>
-                    <td>${product.price}</td>
-                    <td>${product.price * product.quantity}</td>
+                    <%--<td>${product.name}</td>--%>
+                    <%--<td>${product.description}</td>--%>
+                    <%--<td>${product.quantity}</td>--%>
+                    <%--<td>${product.price}</td>--%>
+                    <%--<td>${product.price * product.quantity}</td>--%>
 
                 </tr>
 
@@ -130,18 +130,56 @@
                 <li><strong>Total:</strong> ${amoutTotal}</li>
             </ul>
             <button class="btn-u sm-margin-bottom-10" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</button>
-            <button class="btn-u">Submit The Invoice</button>
+            <button class="btn-u" id="btnConfirmOtp">Confirm OTP</button>
         </div>
     </div>
     <!--End Invoice Footer-->
 </div><!--/container-->
 <!--=== End Content Part ===-->
 
+<%--Modal OTP--%>
+<div id="otpModal" class="modal fade" role="dialog" style="margin-top: 100px">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <p4>Confirm OTP</p4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label" for="otp">Enter OTP</label>
+                        <p><input id="otp" class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="btn-confifm" data-dismiss="modal">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <script src="/resources/js/plugins/utils/slider/style-switcher.js"></script>
+<script src="/resources/js/product/ProductInvoice.js"></script>
+
 <script>
-    var manager = new ProductDetail();
+
+    var access_token = '${walletCheckout.token}';
+    var manager = new ProductInvoice();
+    manager.init();
     $(document).ready(function(){
         StyleSwitcher.initStyleSwitcher();
     });
+
+    // submit OTP
+    $("#btnConfirmOtp").click(function(){
+        manager.getTransactionOtp(access_token); 
+        $("#otpModal").modal('show');
+    });
+
 </script>
