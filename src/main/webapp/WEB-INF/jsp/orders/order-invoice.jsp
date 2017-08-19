@@ -49,12 +49,12 @@
     <div class="row invoice-info">
         <div class="col-xs-6">
             <div class="tag-box tag-box-v3">
-                <h2>Client Information:</h2>
+                <h2>Customer Information:</h2>
                 <ul class="list-unstyled">
-                    <li><strong>First Name:</strong> MR.JOHN</li>
-                    <li><strong>Last Name:</strong> NILSON</li>
-                    <li><strong>Country:</strong> CANADA</li>
-                    <li><strong>DOB:</strong> YYYY/MM/DD</li>
+                    <li><strong>Full Name:</strong> ${currentUser.username}</li>
+                    <li><strong>Mobile Number:</strong> ${currentUser.mobile}</li>
+                    <li><strong>Email:</strong> ${currentUser.email}</li>
+                    <li><strong>Address:</strong> ${currentUser.address}</li>
                 </ul>
             </div>
         </div>
@@ -62,10 +62,11 @@
             <div class="tag-box tag-box-v3">
                 <h2>Peyment Details:</h2>
                 <ul class="list-unstyled">
-                    <li><strong>Bank Name:</strong> 123456789012</li>
-                    <li><strong>Account Number:</strong> 123456789012</li>
-                    <li><strong>SWIFT Code:</strong> 123DEMO45DEMO</li>
-                    <li><strong>V.A.T Reg #:</strong> 678DEMO45545</li>
+                    <li><strong>Bank Name:</strong> Ascend Bank</li>
+                    <li><strong>Mobile Number:</strong> ${wallet.mobileNumber}</li>
+                    <li><strong>Thai ID:</strong> ${wallet.thaiId}</li>
+                    <li><strong>Email:</strong> ${wallet.email}</li>
+                    <li><strong>First Name:</strong> ${wallet.firstName}</li>
                 </ul>
             </div>
         </div>
@@ -83,7 +84,6 @@
         <table class="table table-striped invoice-table">
             <thead>
             <tr>
-                <th>#</th>
                 <th>Item</th>
                 <th class="hidden-sm">Description</th>
                 <th>Quantity</th>
@@ -92,46 +92,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Keyboard</td>
-                <td class="hidden-sm">At vero eos et accusamus etofficia mollitia</td>
-                <td>252</td>
-                <td>$52</td>
-                <td>$18476</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Displays</td>
-                <td class="hidden-sm">Verode eoset accusamus etofficia deserunt</td>
-                <td>78</td>
-                <td>$128</td>
-                <td>$12047</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Phones</td>
-                <td class="hidden-sm">Etquas molestias deexcepturi dasint</td>
-                <td>16</td>
-                <td>$450</td>
-                <td>$7968</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Software</td>
-                <td class="hidden-sm">Atofficia droeos etofficia taccusamus</td>
-                <td>191</td>
-                <td>$24</td>
-                <td>$4099</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Speakers</td>
-                <td class="hidden-sm">Dacusamus deserunt veroeoset vero eos</td>
-                <td>65</td>
-                <td>$119</td>
-                <td>$9456</td>
-            </tr>
+            <c:forEach items="${listProduct}" var="product">
+                <tr>
+                    <td>${product.name}</td>
+                    <td>${product.description}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.price}</td>
+                    <td>${product.price * product.quantity}</td>
+
+                </tr>
+
+            </c:forEach>
             </tbody>
         </table>
     </div>

@@ -10,7 +10,6 @@ function ProductList(){
 ProductList.prototype.init = function () {
     var self = this;
     
-    // this.processPayment();
     this.createMode = WALLET_CREATE_MODE_START;
 }
 
@@ -155,7 +154,9 @@ ProductList.prototype.logInAscendWallet = function(){
         dataType : 'json',
         success : function(data) {
             self.redirectPayment(username, data.access_token);
-            showMessage("Your Ascend wallet is valid", "success");
+            
+            // self.processPayment(data.access_token);
+            // showMessage("Your Ascend wallet is valid", "success");
         },
         error : function(e) {
             // showMessage("Can't login your Ascend wallet", "error");
@@ -187,7 +188,7 @@ ProductList.prototype.verifyWallet = function(me) {
     me.logInAscendWallet();
 }
 
-ProductList.prototype.processPayment = function () {
+ProductList.prototype.processPayment = function (access_token) {
     const ONMART_WALLET_NUMBER = "0983561001";
     
     function createDraftTransaction(request, hookdata, sendOTPForTransaction){
@@ -271,7 +272,11 @@ ProductList.prototype.processPayment = function () {
     var req = {
         amount: '100',
         mobile_number : ONMART_WALLET_NUMBER,
-        token: data.access_token
+        token: access_token
     };
-    createDraftTransaction(req, sendOTPForTransaction);    
+    createDraftTransaction(req, {
+        mobile_number : ONMART_WALLET_NUMBER,
+        token: access_token},
+        sendOTPForTransaction
+    );
 }
