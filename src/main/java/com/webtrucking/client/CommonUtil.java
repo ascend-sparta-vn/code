@@ -41,16 +41,6 @@ public class CommonUtil {
         return object;
     }
 
-    public static void main(String[] args) {
-        String json = "{\"a\":\"value\"}";
-        System.out.println(json);
-        System.out.println(jsonFromString(json));
-        String json2 = "{\"a\":\"value\"}";
-
-        System.out.println(jsonFromString2(json2));
-
-    }
-
     public static Map<String, String> mapFromJsonString(String jsonObjectStr) {
 
         JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr));
