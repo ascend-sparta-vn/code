@@ -1,10 +1,7 @@
 package com.webtrucking.controller;
 
-<<<<<<< HEAD
-import com.webtrucking.client.CommonUtil;
-=======
 import com.google.gson.Gson;
->>>>>>> master
+import com.webtrucking.client.CommonUtil;
 import com.webtrucking.client.TmnWalletClient;
 import com.webtrucking.dao.ProvinceDAO;
 import com.webtrucking.dao.UserDAO;
@@ -13,7 +10,6 @@ import com.webtrucking.entity.Province;
 import com.webtrucking.json.entity.AccountInfo;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.services.UserService;
-import com.webtrucking.util.Common;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -71,20 +67,15 @@ public class TestController extends BaseController {
 	@Autowired
 	private TmnWalletClient tmnWalletClient;
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/getotp/{mobno}", method = RequestMethod.GET)
 	public String getotp(@PathVariable String mobno) {
 		Map otp = tmnWalletClient.getOtp(mobno);
 		log.info("GetOTP: {}",otp);
 		log.info("Confirm: {}",tmnWalletClient.confirmOtp("123456",otp.get("otp_reference").toString(),mobno).toString());
-=======
-	@RequestMapping(value = "/getotp/{mobileNo}", method = RequestMethod.GET)
-	public String getotp(@PathVariable("mobileNo") String mobileNo) {
-			log.info("GetOTP: {}",tmnWalletClient.getOtp(mobileNo).toString());
+
 
 		return "register";
 	}
->>>>>>> master
 
 	@RequestMapping(value = "/buildinput", method = RequestMethod.GET)
 	public String getotp() {
@@ -232,5 +223,7 @@ public class TestController extends BaseController {
 			}
 		}
 	}
+
+
 
 }

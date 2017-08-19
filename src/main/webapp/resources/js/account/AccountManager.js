@@ -270,11 +270,11 @@ AccountManager.prototype.createWalletProfile = function(){
             success: (response) => {
                 var resp = JSON.parse(response);
                 
-                this.otp_reference = resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1');
-                this.mobile_number = resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1');
+                this.otp_reference = resp.otp_reference;
+                this.mobile_number = resp.mobile_number;
                 this.otp_code = '123456';
                 
-                $('.wl_otp').val(resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1'));
+                $('.wl_otp').val(resp.otp_reference);
             },
             error: (error) => {
                 handleErrors("Can't create OTP for this number " + mobile_number);
@@ -311,20 +311,20 @@ AccountManager.prototype.createWalletProfile = function(){
                 type: "POST",
                 contentType: "application/json",
                 url: URL,
-                headers: {token: token.token.replace(/^"(.+(?="$))"$/, '$1')},
+                headers: {token: token.token},
                 dataType: 'json',
                 data : JSON.stringify(request),
                 success: (resp) => {
                     var wallet = {
-                        thai_id: resp.thai_id.replace(/^"(.+(?="$))"$/, '$1'),
-                        first_name: resp.first_name.replace(/^"(.+(?="$))"$/, '$1'),
-                        last_name: resp.last_name.replace(/^"(.+(?="$))"$/, '$1'),
-                        postal_code: resp.postal_code.replace(/^"(.+(?="$))"$/, '$1'),
-                        mobile_number: resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1'),
-                        password: resp.password.replace(/^"(.+(?="$))"$/, '$1'),
-                        email: resp.email.replace(/^"(.+(?="$))"$/, '$1'),
-                        address: resp.address.replace(/^"(.+(?="$))"$/, '$1'),
-                        occupation: resp.occupation.replace(/^"(.+(?="$))"$/, '$1')
+                        thai_id: resp.thai_id,
+                        first_name: resp.first_name,
+                        last_name: resp.last_name,
+                        postal_code: resp.postal_code,
+                        mobile_number: resp.mobile_number,
+                        password: resp.password,
+                        email: resp.email,
+                        address: resp.address,
+                        occupation: resp.occupation
                     };
                     
                     this.walletList.push(wallet);

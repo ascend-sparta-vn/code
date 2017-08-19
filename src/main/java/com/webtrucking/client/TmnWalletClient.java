@@ -287,4 +287,8 @@ public class TmnWalletClient implements BeanPostProcessor
         log.info("Received data from tmn wallet portal with response {}", responseEntity.getBody());
         return response;
     }
+
+    public Map<Integer, ApiConfiguration> getApiConfigurations() {
+        return apiConfigurations;
+    }
 }
