@@ -140,32 +140,42 @@ ProductList.prototype.createWalletProfile = function(){
 }
 
 ProductList.prototype.logInAscendWallet = function(){
-    var walletAuthenInfo = {
-        username: $('.wl_mobilenumber').val(),
-        password: $('.wl_password').val()
-    }
+    var self = this;
+    var username = $('.wl_mobilenumber').val();
+    var password = $('.wl_password').val();
     
     $.ajax({
         type : "POST",
         contentType : "application/json",
         url : '/wallet/sign_in',
-        data : JSON.stringify(walletAuthenInfo),
+        data : JSON.stringify({
+            username: username,
+            password: password
+        }),
         dataType : 'json',
+        success : function(data) {
+            self.redirectPayment(username, data.access_token);
+            showMessage("Your Ascend wallet is valid", "success");
+        },
+        error : function(e) {
+            // showMessage("Can't login your Ascend wallet", "error");
+        }
+    });
+}
+
+ProductList.prototype.redirectPayment = function(walletName, accessToken){
+    $.ajax({
+        type : "POST",
+        contentType : "application/json",
+        url : '/product/invoice',
+        data : JSON.stringify({
+            mobileNumber: walletName,
+            token: accessToken
+        }),
         success : function(data) {
             console.log("Loginwallet resp", data);
 
-//            var req = {
-//                amount: $('.total_cost').html(),
-//                mobile_number : ONMART_WALLET_NUMBER,
-//                token: data.access_token
-//            };
-//            var hookdata = {
-//                access_token: data.access_token,
-//                mobile_number: request.username
-//            }
-//
-//            createDraftTransaction(req, hookdata, sendOTPForTransaction);
-            showMessage(data.access_token, "success");
+            showMessage(data.access_token, "success");            
         },
         error : function(e) {
             showMessage("Can't login your Ascend wallet", "error");

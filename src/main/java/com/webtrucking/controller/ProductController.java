@@ -3,6 +3,7 @@ package com.webtrucking.controller;
 import com.webtrucking.dao.ProductDAO;
 import com.webtrucking.entity.CheckoutProduct;
 import com.webtrucking.entity.Product;
+import com.webtrucking.entity.WalletCheckout;
 import com.webtrucking.util.CacheUtil;
 import com.webtrucking.util.Common;
 import org.apache.log4j.Logger;
@@ -115,9 +116,15 @@ public class ProductController extends BaseController{
 		model.addAttribute("listProduct", listProduct);
 		return "product.checkout";
 	}
-	@RequestMapping("/invoice")
-	public String invoice(Model model) {
 
-		return "product.invoice";
+	@RequestMapping(value = "/invoice", method = RequestMethod.POST)
+	@ResponseBody
+	public String invoice(@RequestBody WalletCheckout walletCheckout, Model model) {
+
+		if(walletCheckout != null){
+			log.info(walletCheckout);
+		}
+
+		return "redirect:/product/invoice/";
 	}
 }
