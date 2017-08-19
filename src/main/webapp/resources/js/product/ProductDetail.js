@@ -107,7 +107,6 @@ ProductDetail.prototype.addToCart = function (productId, quantity){
         type : "GET",
         url : url,
         success : function(response) {
-            console.log('success');
             if(response == 1)
                 showMessage('add product to successfull', "success");
             else
