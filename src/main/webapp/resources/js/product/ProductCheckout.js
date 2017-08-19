@@ -14,6 +14,10 @@ ProductList.prototype.init = function () {
     this.createMode = WALLET_CREATE_MODE_START;
 }
 
+ProductList.prototype.verifyWallet = function() {
+    this.logInWallet();
+}
+
 ProductList.prototype.createWalletProfile = function(){    
     function toggleInputs(disable) {
         if (disable) {
@@ -120,7 +124,6 @@ ProductList.prototype.createWalletProfile = function(){
                 dataType: 'json',
                 data : JSON.stringify(request),
                 success: (resp) => {
-                    console.log('laksdfjalskdfj;asldkfj')
                     $('.btn-close').trigger('click');
                     $('.modal-backdrop').hide();
                     
@@ -138,6 +141,40 @@ ProductList.prototype.createWalletProfile = function(){
             });
         });
     }
+}
+
+ProductList.prototype.logInWallet = function(){
+    var walletAuthenInfo = {
+        username: $('.wl_mobilenumber').val(),
+        password: $('.wl_password').val()
+    }
+    console.log(walletAuthenInfo);
+    
+    $.ajax({
+        type : "POST",
+        contentType : "application/json",
+        url : '/wallet/sign_in',
+        data : JSON.stringify(request),
+        dataType : 'json',
+        success : function(data) {
+            console.log("Loginwallet resp", data);
+
+//            var req = {
+//                amount: $('.total_cost').html(),
+//                mobile_number : ONMART_WALLET_NUMBER,
+//                token: data.access_token
+//            };
+//            var hookdata = {
+//                access_token: data.access_token,
+//                mobile_number: request.username
+//            }
+//
+//            createDraftTransaction(req, hookdata, sendOTPForTransaction);
+        },
+        error : function(e) {
+            showMessage("Can't login your Ascend wallet", "error");
+        }
+    });
 }
 
 ProductList.prototype.processPayment = function () {

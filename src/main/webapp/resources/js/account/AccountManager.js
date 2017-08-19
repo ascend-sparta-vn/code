@@ -20,6 +20,20 @@ AccountManager.prototype.init = function(){
     this.initTempInputs();
 }
 
+AccountManager.prototype.initWallet = function(mobileNumber, email, thaiId, firstName, lastName, password, address, postalCode, occupation){
+    this.walletList.push({
+        mobile_number: mobileNumber,
+        email: email,
+        thai_id: thaiId,
+        first_name: firstName,
+        last_name: lastName,
+        password: password,
+        address: address,
+        postal_code: postalCode,
+        occupation: occupation
+    });
+}
+
 AccountManager.prototype.initTempInputs = function(){
     $('.wl_firstname').val('');
     $('.wl_lastname').val('');
@@ -223,7 +237,6 @@ AccountManager.prototype.createWalletProfile = function(){
             dataType: 'text',
             data: JSON.stringify(obj),
             success: (response) => {
-                //console.log(response);
                 successFunc(response);
             },
             error: (error) => {

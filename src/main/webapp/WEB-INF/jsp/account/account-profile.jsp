@@ -275,6 +275,20 @@
 	$(function () {
 		accountManager.init();
 	});
+
+	<c:forEach items="${wallets}" var="wallet">
+        accountManager.initWallet(
+            '${wallet.mobileNumber}',
+            '${wallet.email}',
+            '${wallet.thaiId}',
+            '${wallet.password}',
+            '${wallet.firstName}',
+            '${wallet.lastName}',
+            '${wallet.address}',
+            '${wallet.postalCode}',
+            '${wallet.occupation}'
+        );
+    </c:forEach>
 </script>
 
 
