@@ -11,6 +11,7 @@
 <link href="/resources/plugins/datepicker/datepicker.css" rel="stylesheet" />
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link href="/resources/css/pages/page_search_inner_tables.css" rel="stylesheet" />
 <link href="/resources/plugins/datepicker/datepicker.css" rel="stylesheet" />
@@ -32,8 +33,53 @@
 <div class="container content-sm">
     <div class="row">
         <!-- list of shipments -->
-        <div class="filter-results">
-            <div class="row illustration-v2 margin-bottom-30">
+        <div class="filter-results" id="contentData">
+            <div class="panel panel-red margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-user"></i> SHIPMENT LIST </h3>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>GOODS</th>
+                                <th>FROM ADDRESS</th>
+                                <th>TO ADDRESS</th>
+                                <th>CREATED DATE</th>
+                                <th>EXPIRED DATE</th>
+                                <th>DESCRIPTION</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <c:forEach items="${shipments}" var="item" varStatus="myIndex">
+                                <tr>
+                                    <td>${myIndex.index + 1}</td>
+                                    <td>
+                                        <code>${item.name}</code>
+                                    </td>
+                                    <td>
+                                        ${item.fromDetailAddress}
+                                    </td>
+                                    <td>
+                                        ${item.toDetailAddress}
+                                    </td>
+                                    <td>
+                                        <fmt:formatDate value="${item.createdDate}" pattern="yyyy/MM/dd HH:s"/>
+                                    </td>
+                                    <td>
+                                        <fmt:formatDate value="${item.expiredDate}" pattern="MM/dd/yyyy HH:s"/>
+                                    </td>
+                                    <td>
+                                        ${item.description}
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
