@@ -52,7 +52,7 @@
                 <h2>Customer Information:</h2>
                 <ul class="list-unstyled">
                     <li><strong>Full Name:</strong> ${currentUser.username}</li>
-                    <li><strong>Mobile Number:</strong> ${currentUser.mobile}</li>
+                    <li><strong>Mobile Number:</strong> ${currentUser.mobileNumber}</li>
                     <li><strong>Email:</strong> ${currentUser.email}</li>
                     <li><strong>Address:</strong> ${currentUser.address}</li>
                 </ul>
@@ -138,8 +138,12 @@
 
 
 <script src="/resources/js/plugins/utils/slider/style-switcher.js"></script>
+<script src="/resources/js/product/ProductInvoice.js"></script>
+
 <script>
-    var manager = new ProductDetail();
+    var access_token = '${walletCheckout.token}';
+    var manager = new ProductInvoice();
+    manager.init();
     $(document).ready(function(){
         StyleSwitcher.initStyleSwitcher();
     });
