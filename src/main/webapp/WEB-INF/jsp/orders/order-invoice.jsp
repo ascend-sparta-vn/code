@@ -102,11 +102,11 @@
             <c:forEach items="${listProduct}" var="product">
                 <c:set var="amoutTotal" value="${amoutTotal + product.price * product.quantity}" />
                 <tr>
-                    <%--<td>${product.name}</td>--%>
-                    <%--<td>${product.description}</td>--%>
-                    <%--<td>${product.quantity}</td>--%>
-                    <%--<td>${product.price}</td>--%>
-                    <%--<td>${product.price * product.quantity}</td>--%>
+                    <td>${product.name}</td>
+                    <td>${product.description}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.price}</td>
+                    <td>${product.price * product.quantity}</td>
 
                 </tr>
 
