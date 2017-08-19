@@ -11,4 +11,6 @@ import java.util.List;
 public interface WalletDAO extends CrudRepository<Wallet, Integer>{
 
 	List<Wallet> findByUserId(Integer userId);
+
+	List<Wallet> findByMobileNumber(String mobileNumber);
 }

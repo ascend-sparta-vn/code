@@ -32,23 +32,13 @@
 <!--=== Content Part ===-->
 <div class="container content">
     <!--Invoice Header-->
-    <div class="row invoice-header">
-        <div class="col-xs-6">
-            <img src="assets/img/img.jpg" alt="">
-            <!-- You also can use a title instead of image
-            <h2 class="pull-left">Product Invoice</h2>-->
-        </div>
-        <div class="col-xs-6 invoice-numb">
-            #123456789 / 20, October 2013
-            <span>Auiderer facilis consectetur</span>
-        </div>
-    </div>
+
     <!--End Invoice Header-->
 
     <!--Invoice Detials-->
     <div class="row invoice-info">
         <div class="col-xs-6">
-            <div class="tag-box tag-box-v3">
+            <div class="tag-box tag-box-v3" style="height: 180px;">
                 <h2>Customer Information:</h2>
                 <ul class="list-unstyled">
                     <li><strong>Full Name:</strong> ${currentUser.username}</li>
@@ -59,8 +49,8 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <div class="tag-box tag-box-v3">
-                <h2>Peyment Details:</h2>
+            <div class="tag-box tag-box-v3" style="height: 180px;">
+                <h2>Payment Details:</h2>
                 <ul class="list-unstyled">
                     <li><strong>Bank Name:</strong> Ascend Bank</li>
                     <li><strong>Mobile Number:</strong> ${wallet.mobileNumber}</li>
@@ -73,13 +63,29 @@
     </div>
     <!--End Invoice Detials-->
 
+    <div class="row invoice-info">
+        <div class="col-xs-6">
+            <div class="tag-box tag-box-v3" style="height: 130px;">
+                <h2>Wallet Onmart:</h2>
+                <ul class="list-unstyled">
+                    <li><strong>Mobile Number:</strong> ${wallet.mobileNumber}</li>
+                    <li><strong>Email:</strong> ${wallet.email}</li>
+                    <li><strong>First Name:</strong> ${wallet.firstName}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-6">
+
+        </div>
+    </div>
+
     <!--Invoice Table-->
     <div class="panel panel-default margin-bottom-40">
         <div class="panel-heading">
             <h3 class="panel-title">Invoice Details</h3>
         </div>
         <div class="panel-body">
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
+
         </div>
         <table class="table table-striped invoice-table">
             <thead>
@@ -92,7 +98,9 @@
             </tr>
             </thead>
             <tbody>
+            <c:set var="amoutTotal" value="${0}" />
             <c:forEach items="${listProduct}" var="product">
+                <c:set var="amoutTotal" value="${amoutTotal + product.price * product.quantity}" />
                 <tr>
                     <%--<td>${product.name}</td>--%>
                     <%--<td>${product.description}</td>--%>
@@ -111,22 +119,15 @@
     <!--Invoice Footer-->
     <div class="row">
         <div class="col-xs-6">
-            <div class="tag-box tag-box-v3 no-margin-bottom">
-                <address class="no-margin-bottom">
-                    25, Lorem Lis Street, Orange <br>
-                    California, US <br>
-                    Phone: 800 123 3456 <br>
-                    Fax: 800 123 3456 <br>
-                    Email: <a href="mailto:info@example.com">info@example.com</a>
-                </address>
+            <div class="">
+
             </div>
         </div>
         <div class="col-xs-6 text-right">
             <ul class="list-unstyled invoice-total-info">
-                <li><strong>Sub - Total Amount:</strong> $109365</li>
-                <li><strong>Discount:</strong> 14.8%</li>
-                <li><strong>VAT ($6):</strong> $8371</li>
-                <li><strong>Grand Total:</strong> $101486</li>
+                <li><strong>Subtotal:</strong> ${amoutTotal}</li>
+                <li><strong>Shipping:</strong> $0</li>
+                <li><strong>Total:</strong> ${amoutTotal}</li>
             </ul>
             <button class="btn-u sm-margin-bottom-10" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</button>
             <button class="btn-u" id="btnConfirmOtp">Confirm OTP</button>
