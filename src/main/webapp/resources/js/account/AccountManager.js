@@ -20,6 +20,20 @@ AccountManager.prototype.init = function(){
     this.initTempInputs();
 }
 
+AccountManager.prototype.initWallet = function(mobileNumber, email, thaiId, firstName, lastName, password, address, postalCode, occupation){
+    this.walletList.push({
+        mobile_number: mobileNumber,
+        email: email,
+        thai_id: thaiId,
+        first_name: firstName,
+        last_name: lastName,
+        password: password,
+        address: address,
+        postal_code: postalCode,
+        occupation: occupation
+    });
+}
+
 AccountManager.prototype.initTempInputs = function(){
     $('.wl_firstname').val('');
     $('.wl_lastname').val('');
@@ -223,7 +237,6 @@ AccountManager.prototype.createWalletProfile = function(){
             dataType: 'text',
             data: JSON.stringify(obj),
             success: (response) => {
-                //console.log(response);
                 successFunc(response);
             },
             error: (error) => {
@@ -257,11 +270,11 @@ AccountManager.prototype.createWalletProfile = function(){
             success: (response) => {
                 var resp = JSON.parse(response);
                 
-                this.otp_reference = resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1');
-                this.mobile_number = resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1');
+                this.otp_reference = resp.otp_reference;
+                this.mobile_number = resp.mobile_number;
                 this.otp_code = '123456';
                 
-                $('.wl_otp').val(resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1'));
+                $('.wl_otp').val(resp.otp_reference);
             },
             error: (error) => {
                 handleErrors("Can't create OTP for this number " + mobile_number);
@@ -298,20 +311,20 @@ AccountManager.prototype.createWalletProfile = function(){
                 type: "POST",
                 contentType: "application/json",
                 url: URL,
-                headers: {token: token.token.replace(/^"(.+(?="$))"$/, '$1')},
+                headers: {token: token.token},
                 dataType: 'json',
                 data : JSON.stringify(request),
                 success: (resp) => {
                     var wallet = {
-                        thai_id: resp.thai_id.replace(/^"(.+(?="$))"$/, '$1'),
-                        first_name: resp.first_name.replace(/^"(.+(?="$))"$/, '$1'),
-                        last_name: resp.last_name.replace(/^"(.+(?="$))"$/, '$1'),
-                        postal_code: resp.postal_code.replace(/^"(.+(?="$))"$/, '$1'),
-                        mobile_number: resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1'),
-                        password: resp.password.replace(/^"(.+(?="$))"$/, '$1'),
-                        email: resp.email.replace(/^"(.+(?="$))"$/, '$1'),
-                        address: resp.address.replace(/^"(.+(?="$))"$/, '$1'),
-                        occupation: resp.occupation.replace(/^"(.+(?="$))"$/, '$1')
+                        thai_id: resp.thai_id,
+                        first_name: resp.first_name,
+                        last_name: resp.last_name,
+                        postal_code: resp.postal_code,
+                        mobile_number: resp.mobile_number,
+                        password: resp.password,
+                        email: resp.email,
+                        address: resp.address,
+                        occupation: resp.occupation
                     };
                     
                     this.walletList.push(wallet);

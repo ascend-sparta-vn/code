@@ -363,13 +363,12 @@
                 <script>
                     var productList = new ProductList();
                     $(document).ready(function() {
-                        <%--productList.listProduct.push(${listProduct});--%>
                         getResource(function() {
                             productList.init();
                         });
-                        // init slider lib
+                        
                         App.initScrollBar();
-                        StepWizard.initStepWizard();
+                        StepWizard.initStepWizard(productList);
                         MasterSliderShowcase2.initMasterSliderShowcase2();
                     });
 

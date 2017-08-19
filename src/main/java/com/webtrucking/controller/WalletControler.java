@@ -6,6 +6,9 @@ import com.webtrucking.client.TmnWalletClient;
 import com.webtrucking.controller.domain.WalletCreateProfileDTO;
 import com.webtrucking.controller.domain.WalletOtpDTO;
 import com.webtrucking.controller.domain.WalletTokenDTO;
+import com.webtrucking.dao.WalletDAO;
+import com.webtrucking.entity.User;
+import com.webtrucking.entity.Wallet;
 import com.webtrucking.util.JsonMapConverter;
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONObject;
@@ -37,6 +40,9 @@ public class WalletControler extends BaseController {
 
 	@Autowired
 	private TmnWalletClient tmnWalletClient;
+
+	@Autowired
+	WalletDAO walletDAO;
 
     @RequestMapping(value = "/get_otp/{mobileNumber}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
@@ -86,9 +92,25 @@ public class WalletControler extends BaseController {
 		requests.put("postal_code", walletCreateProfileDTO.getPostalCode());
 		requests.put("occupation", walletCreateProfileDTO.getOccupation());
 
-		log.info("Create profile for request {}", requests);
+		// Save wallet to database
+		User curUser = getCurrentAccount();
+
 		Map profile = tmnWalletClient.createProfile(token.get(0), requests);
 
+		Wallet wallet = new Wallet();
+		wallet.setUserId(curUser.getId());
+		wallet.setThaiId(profile.get("thai_id").toString());
+		wallet.setFirstName(profile.get("first_name").toString());
+		wallet.setLastName(profile.get("last_name").toString());
+		wallet.setPostalCode(profile.get("postal_code").toString());
+		wallet.setMobileNumber(profile.get("mobile_number").toString());
+		wallet.setPassword(profile.get("password").toString());
+		wallet.setEmail(profile.get("email").toString());
+		wallet.setAddress(profile.get("address").toString());
+		wallet.setOccupation(profile.get("occupation").toString());
+		Wallet savedWallet = walletDAO.save(wallet);
+
+		// Send to frontend
 		WalletCreateProfileDTO resp = new WalletCreateProfileDTO();
 		resp.setThaiId(profile.get("thai_id").toString());
 		resp.setFirstName(profile.get("first_name").toString());
@@ -107,7 +129,7 @@ public class WalletControler extends BaseController {
 
 	@RequestMapping(value = "/sign_in", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
 	@ResponseBody
-	public String createWallet(@RequestBody Map<String, String> requests) {
+	public String signIn(@RequestBody Map<String, String> requests) {
 		log.info("===== Start sign in wallet {}", requests);
 
 		String userName = requests.get("username").toString();

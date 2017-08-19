@@ -2,8 +2,10 @@ package com.webtrucking.controller;
 
 import com.webtrucking.dao.ProvinceDAO;
 import com.webtrucking.dao.UserDAO;
+import com.webtrucking.dao.WalletDAO;
 import com.webtrucking.entity.Province;
 import com.webtrucking.entity.User;
+import com.webtrucking.entity.Wallet;
 import com.webtrucking.json.entity.AccountInfo;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.services.UserService;
@@ -43,6 +45,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private WalletDAO walletDAO;
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -113,6 +118,9 @@ public class UserController extends BaseController {
 
 			User currentUser = getCurrentAccount();
 			model.addAttribute("currentUser", currentUser);
+
+			List<Wallet> wallets = walletDAO.findByUserId(currentUser.getId());
+			model.addAttribute("wallets", wallets);
 
 			return "account.profile";
 		} else {
