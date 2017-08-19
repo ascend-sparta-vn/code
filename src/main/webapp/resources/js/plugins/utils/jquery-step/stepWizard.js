@@ -2,7 +2,7 @@ var StepWizard = function () {
 
     return {
 
-        initStepWizard: function (finishHandle) {
+        initStepWizard: function (productCheckoutController) {
             var form = $(".shopping-cart");
                 form.validate({
                     errorPlacement: function errorPlacement(error, element) { element.before(error); },
@@ -26,7 +26,7 @@ var StepWizard = function () {
                         return form.valid();
                     },
                     onFinishing: function (event, currentIndex) {
-                        finishHandle();
+                        productCheckoutController.verifyWallet(productCheckoutController);
                         
                         form.validate().settings.ignore = ":disabled";
                         return form.valid();

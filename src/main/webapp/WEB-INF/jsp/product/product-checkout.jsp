@@ -364,7 +364,7 @@
                         });
                         
                         App.initScrollBar();
-                        StepWizard.initStepWizard(productList.verifyWallet);
+                        StepWizard.initStepWizard(productList);
                         MasterSliderShowcase2.initMasterSliderShowcase2();
                     });
 
