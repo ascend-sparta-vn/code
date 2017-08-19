@@ -166,7 +166,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("mobileNumber", mobileNo);
         requestMap.put("amount", amount);
@@ -180,7 +180,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
         headerMap.put("draft-transaction-id", draftTransId);
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("personalMessage", personalMessage);
@@ -194,7 +194,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
         headerMap.put("draft-transaction-id", draftTransId);
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("mobile_number", mobileNo);
@@ -210,7 +210,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
         headerMap.put("draft-transaction-id", draftTransId);
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_TRANSFER_STATUS.getId()).getMethod());
@@ -222,7 +222,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
         headerMap.put("draft-transaction-id", draftTransId);
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_TRANSFER_DETAILS.getId()).getMethod());
@@ -234,7 +234,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.PAY_BARCODE_AT_RETAIL.getId()).getMethod());
         String endpoint = apiConfigurations.get(ApiIDs.PAY_BARCODE_AT_RETAIL.getId()).getUrl();
@@ -245,7 +245,7 @@ public class TmnWalletClient implements BeanPostProcessor
         init();
 
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("token", token);
+        headerMap.put("access-token", token);
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.GET_ALL_PAYMENT_HISTORY.getId()).getMethod());
         String endpoint = apiConfigurations.get(ApiIDs.GET_ALL_PAYMENT_HISTORY.getId()).getUrl();

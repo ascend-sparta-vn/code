@@ -71,9 +71,18 @@ public class TestController extends BaseController {
 	public String getotp(@PathVariable String mobno) {
 		Map otp = tmnWalletClient.getOtp(mobno);
 		log.info("GetOTP: {}",otp);
-		log.info("Confirm: {}",tmnWalletClient.confirmOtp("123456",otp.get("otp_reference").toString(),mobno).toString());
-
-
+		Map confirmedOtpInfo = tmnWalletClient.confirmOtp("123456",otp.get("otp_reference").toString(),mobno);
+		Map requests = new HashMap();
+		requests.put("mobile_number", mobno);
+		requests.put("email", "email"+mobno+"@gmail.com");
+		requests.put("thai_id", "3231744035655");
+		requests.put("first_name", mobno);
+		requests.put("last_name", mobno);
+		requests.put("password", "Welcome1234");
+		requests.put("address", mobno);
+		requests.put("postal_code", 10000);
+		requests.put("occupation", mobno);
+		log.info("Create profle: {}", tmnWalletClient.createProfile(confirmedOtpInfo.get("token").toString(),requests));
 		return "register";
 	}
 
