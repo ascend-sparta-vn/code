@@ -106,7 +106,7 @@ public class TmnWalletClient implements BeanPostProcessor
         Map<String, String> headerMap = new HashMap<>();
 
         Map<String, String> requestMap = new HashMap<>();
-        String encryptedPassword = CommonUtil.toSHA1(password.getBytes());
+        String encryptedPassword = CommonUtil.toSHA1((username + password).getBytes()).toLowerCase();
         requestMap.put("username", username);
         requestMap.put("password", encryptedPassword);
 

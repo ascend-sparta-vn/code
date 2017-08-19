@@ -129,7 +129,7 @@ public class WalletControler extends BaseController {
 
 	@RequestMapping(value = "/sign_in", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
 	@ResponseBody
-	public String createWallet(@RequestBody Map<String, String> requests) {
+	public String signIn(@RequestBody Map<String, String> requests) {
 		log.info("===== Start sign in wallet {}", requests);
 
 		String userName = requests.get("username").toString();
