@@ -68,9 +68,9 @@
             <div class="tag-box tag-box-v3" style="height: 130px;">
                 <h2>Wallet Onmart:</h2>
                 <ul class="list-unstyled">
-                    <li><strong>Mobile Number:</strong> ${wallet.mobileNumber}</li>
-                    <li><strong>Email:</strong> ${wallet.email}</li>
-                    <li><strong>First Name:</strong> ${wallet.firstName}</li>
+                    <li><strong>Mobile Number:</strong> ${walletPay.mobileNumber}</li>
+                    <li><strong>Email:</strong> ${walletPay.email}</li>
+                    <li><strong>First Name:</strong> ${walletPay.firstName}</li>
                 </ul>
             </div>
         </div>
