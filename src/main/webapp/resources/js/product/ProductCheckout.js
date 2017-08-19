@@ -153,10 +153,10 @@ ProductList.prototype.logInAscendWallet = function(){
         }),
         dataType : 'json',
         success : function(data) {
-            // self.redirectPayment(username, data.access_token);
+            self.redirectPayment(username, data.access_token);
             
-            self.processPayment(data.access_token);
-            showMessage("Your Ascend wallet is valid", "success");
+            // self.processPayment(data.access_token);
+            // showMessage("Your Ascend wallet is valid", "success");
         },
         error : function(e) {
             // showMessage("Can't login your Ascend wallet", "error");
