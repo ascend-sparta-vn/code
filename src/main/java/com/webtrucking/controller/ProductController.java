@@ -117,14 +117,28 @@ public class ProductController extends BaseController{
 		return "product.checkout";
 	}
 
-	@RequestMapping(value = "/invoice", method = RequestMethod.POST)
+	@RequestMapping(value = "/cache/invoice", method = RequestMethod.POST)
 	@ResponseBody
-	public String invoice(@RequestBody WalletCheckout walletCheckout, Model model) {
+	public String cacheInvoice(@RequestBody WalletCheckout walletCheckout, Model model) {
 
 		if(walletCheckout != null){
 			log.info(walletCheckout);
 		}
 
-		return "redirect:/product/invoice/";
+		// put to cache
+		String username = getCurrentUsername();
+		CacheUtil.walletCheckout.put(username, walletCheckout);
+
+		return "1";
+	}
+	@RequestMapping(value = "/invoice")
+	public String invoice(Model model) {
+
+		// get wallet checkout from cache
+		String username = getCurrentUsername();
+		WalletCheckout checkout = CacheUtil.walletCheckout.get(username);
+		model.addAttribute("walletCheckout", checkout);
+
+		return "product.invoice";
 	}
 }

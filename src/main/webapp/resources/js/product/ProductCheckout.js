@@ -167,15 +167,15 @@ ProductList.prototype.redirectPayment = function(walletName, accessToken){
     $.ajax({
         type : "POST",
         contentType : "application/json",
-        url : '/product/invoice',
+        url : '/product/cache/invoice',
         data : JSON.stringify({
             mobileNumber: walletName,
             token: accessToken
         }),
         success : function(data) {
-            console.log("Loginwallet resp", data);
-
-            showMessage(data.access_token, "success");            
+            if (data == '1') {
+                window.location.replace("/product/invoice");
+            }
         },
         error : function(e) {
             showMessage("Can't login your Ascend wallet", "error");
@@ -188,35 +188,7 @@ ProductList.prototype.verifyWallet = function(me) {
 }
 
 ProductList.prototype.processPayment = function () {
-    const ONMART_WALLET_NUMBER = "0855555555";
-    
-    function loginWallet(request, createDraftTransaction){
-        $.ajax({
-			type : "POST",
-			contentType : "application/json",
-			url : '/wallet/sign_in',
-			data : JSON.stringify(request),
-			dataType : 'json',
-			success : function(data) {
-                console.log("Loginwallet resp", data);
-                
-                var req = {
-                    amount: $('.total_cost').html(),
-                    mobile_number : ONMART_WALLET_NUMBER,
-                    token: data.access_token
-                };
-                var hookdata = {
-                    access_token: data.access_token,
-                    mobile_number: request.username
-                }
-                
-                createDraftTransaction(req, hookdata, sendOTPForTransaction);
-			},
-			error : function(e) {
-                console.log(e);
-			}
-		});
-    };
+    const ONMART_WALLET_NUMBER = "0983561001";
     
     function createDraftTransaction(request, hookdata, sendOTPForTransaction){
         $.ajax({
@@ -296,9 +268,10 @@ ProductList.prototype.processPayment = function () {
     // Step 3: Send OTP for transfer api
     // Step 4: confirm OTP transaction
 
-    var walletAuthenInfo = {
-        username: $('.wl_mobilenumber').val(),
-        password: $('.wl_password').val()
-    }
-    loginWallet(walletAuthenInfo, createDraftTransaction);    
+    var req = {
+        amount: '100',
+        mobile_number : ONMART_WALLET_NUMBER,
+        token: data.access_token
+    };
+    createDraftTransaction(req, sendOTPForTransaction);    
 }
