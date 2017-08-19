@@ -1,7 +1,9 @@
+const WALLET_CREATE_MODE_START = 0;
+const WALLET_CREATE_MODE_WAIT_OTP = 1;
+const WALLET_CREATE_MODE_WAIT_PROFILE = 2;
+
 function AccountManager() {
 	this.walletList = [
-        { thai_id: "3231744035655", first_name: "Ascend", last_name: "Hackathon", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", address: "89 AIA Dindang, Bangkok", occupation: "developer"},
-        { thai_id: "3231744035657", first_name: "Tulu", last_name: "Tran", postal_code: "10400", mobile_number: "0050000001", device_os: "android", password: "Welcome1234", email: "ascender@gmail.com", "address": "89 AIA Dindang, Bangkok", occupation: "developer"}
     ];
 }
 
@@ -12,6 +14,22 @@ AccountManager.prototype.init = function(){
 
     self.displayPaymentMethod();
     self.displayWallets();
+    
+    this.createMode = WALLET_CREATE_MODE_START;
+    
+    this.initTempInputs();
+}
+
+AccountManager.prototype.initTempInputs = function(){
+    $('.wl_firstname').val('');
+    $('.wl_lastname').val('');
+    $('.wl_email').val('ascendian??@ascend.com');
+    $('.wl_mobile').val('');
+    $('.wl_occupation').val('IT dev');
+    $('.wl_postalcode').val('10000');
+    $('.wl_password').val('Welcome1234');
+    $('.wl_citizenid').val('3231744035655');
+    $('.wl_address').val('165 Thai Ha street, Hanoi');
 }
 
 /*
@@ -36,20 +54,19 @@ AccountManager.prototype.displayWallets = function(){
     for (index in this.walletList){
         var wallet = this.walletList[index];
         
-        var walletDom = `<div class="col-sm-6 sm-margin-bottom-20">
+        var walletDom = `<div class="col-sm-6 sm-margin-bottom-10">
                         <div class="profile-blog">
                             <img class="rounded-x" src="/resources/img/icons/ascend.png" alt="">
                             <div class="name-location">
-                                <strong>${wallet.first_name + ' ' + wallet.last_name}</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="#">${wallet.address},</a></span>
+                                <a href="#"><strong>${wallet.first_name + ' ' + wallet.last_name}</strong></a>
+                                <span><i class="fa fa-map-marker"></i>${wallet.address}</span>
                             </div>
-                            <div class="clearfix margin-bottom-20"></div>
+                            <div class="clearfix"></div>
                             
                             <ul class="list-inline share-list">
                                 <li><i class="fa fa-phone"></i><span>${wallet.mobile_number}</span></li>
                                 <li><i class="fa fa-envelope"></i><span>${wallet.email}</span></li>
                             </ul>
-                            <div class="clearfix margin-bottom-20"></div>
                         </div>
                     </div>`;
         if (index % 2 == 1) {
@@ -148,7 +165,6 @@ AccountManager.prototype.initButtonClick = function(){
 		window.history.back();
 	});
 
-    // Kai added
     $('.payment_method').change(() => {
         this.displayPaymentMethod();
     });
@@ -160,122 +176,159 @@ AccountManager.prototype.displayPaymentMethod = function(){
     else
         $('#payment_by_visa_master').show();
     
-    if ($('.visa_card').is(':checked'))
+    if ($('.visa_card').is(':checked') || $('.master_card').is(':checked'))
         $('#payment_by_ascend_wallet').hide();
     else
-        $('#payment_by_ascend_wallet').show();
+        $('#payment_by_ascend_wallet').show();    
 }
 
 AccountManager.prototype.refreshForm = function(){
 	$("input").val('');
 }
 
-AccountManager.prototype.validate = function(updateFlag){
-	var self = this;
-	var error = "";
-	var email = $("#email").val();
-	var password = $("#password").val();
-	var repassword = $("#repassword").val();
-	var name = $("#last-name").val();
-	var mobileNumber = $("#mobile-number").val();
-	var address = $("#address").val();
-	if(!self.validateEmail(email)){
-		error = $("#message-email").val();
-		return error;
-	}
-	
-	if(updateFlag) {
-	} else {
-		if(password.trim() == '') {
-			error = $("#message-password").val();
-			return error;
-		}
-		
-		if(repassword.trim() == '') {
-			error = $("#message-repassword").val();
-			return error;
-		}
-		
-		if(repassword != password) {
-			error = $("#message-correctpassword").val();
-			return error;
-		}
-		
-		if(!$("#check-agree").is(':checked')) {
-			error = $("#account-agree").val();
-			return error;
-		}
-		
-		if ($("#defaultReal").val() == ""){
-			error = $("#message-capcha").val();
-			return error;
-		}
-	}
-	
-	
-	if(name.trim() == '') {
-		error = $("#message-name").val();
-		return error;
-	}
-	
-	if(!self.validateMobileNumber(mobileNumber)) {
-		error = $("#message-tel").val();
-		return error;
-	}
-	
-	if(address.trim() == '') {
-		error = $("#message-address").val();
-		return error;
-	}
-	
-	return "";
-	
+AccountManager.prototype.initWalletCreateZone = function(){
+    
 }
 
-AccountManager.prototype.validateEmail = function(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+AccountManager.prototype.createWalletProfile = function(){    
+    function toggleInputs(disable) {
+        if (disable) {
+            $('.wl_firstname').attr('disabled','disabled');
+            $('.wl_lastname').attr('disabled','disabled');
+            $('.wl_email').attr('disabled','disabled');
+            $('.wl_mobile').attr('disabled','disabled');
+            $('.wl_occupation').attr('disabled','disabled');
+            $('.wl_postalcode').attr('disabled','disabled');
+            $('.wl_password').attr('disabled','disabled');
+            $('.wl_citizenid').attr('disabled','disabled');
+            $('.wl_address').attr('disabled','disabled');
+        } else {
+            $('.wl_firstname').removeAttr('disabled');
+            $('.wl_lastname').removeAttr('disabled');
+            $('.wl_email').removeAttr('disabled');
+            $('.wl_mobile').removeAttr('disabled');
+            $('.wl_occupation').removeAttr('disabled');
+            $('.wl_postalcode').removeAttr('disabled');
+            $('.wl_password').removeAttr('disabled');
+            $('.wl_citizenid').removeAttr('disabled');
+            $('.wl_address').removeAttr('disabled');
+        }
+    }
+    
+    function confirmOtp(obj, successFunc){
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: '/wallet/confirm_otp',
+            dataType: 'text',
+            data: JSON.stringify(obj),
+            success: (response) => {
+                //console.log(response);
+                successFunc(response);
+            },
+            error: (error) => {
+                console.log(error);
+            },
+            done: () => {
+                console.log("Done");
+            }
+        });
+    }
+    
+    function handleErrors(message){
+        $('.btn-close').trigger('click');
+        $('.modal-backdrop').hide();
+
+        toggleInputs(false);
+        this.createMode = WALLET_CREATE_MODE_START;
+        showMessage(message, "error");
+    }
+
+    
+    if (this.createMode == WALLET_CREATE_MODE_START) {
+        const mobile_number = $('.wl_mobile').val();
+        const URL = `/wallet/get_otp/${mobile_number}`;
+        
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: URL,
+            dataType: 'text',
+            success: (response) => {
+                var resp = JSON.parse(response);
+                
+                this.otp_reference = resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1');
+                this.mobile_number = resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1');
+                this.otp_code = '123456';
+                
+                $('.wl_otp').val(resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1'));
+            },
+            error: (error) => {
+                handleErrors("Can't create OTP for this number " + mobile_number);
+            }
+        });
+        
+        $('.btn-create-wallet').html('Confirm OTP');
+        toggleInputs(true);
+        this.createMode = WALLET_CREATE_MODE_WAIT_OTP;
+    } else if (this.createMode == WALLET_CREATE_MODE_WAIT_OTP) {
+        const URL = '/wallet/create_wallet';
+
+        var request = {
+            first_name: $('.wl_firstname').val(),
+            last_name: $('.wl_lastname').val(),
+            email: $('.wl_email').val(),
+            mobile_number: $('.wl_mobile').val(),
+            occupation: $('.wl_occupation').val(),
+            postal_code: $('.wl_postalcode').val(),
+            password: $('.wl_password').val(),
+            thai_id: $('.wl_citizenid').val(),
+            address: $('.wl_address').val(),
+            otp: $('.wl_otp').val()
+        };
+        
+        confirmOtp({
+            mobile_number: this.mobile_number,
+            otp_reference: this.otp_reference,
+            otp_code: this.otp_code
+        }, (response) => {
+            var token = JSON.parse(response);
+            
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: URL,
+                headers: {token: token.token.replace(/^"(.+(?="$))"$/, '$1')},
+                dataType: 'json',
+                data : JSON.stringify(request),
+                success: (resp) => {
+                    var wallet = {
+                        thai_id: resp.thai_id.replace(/^"(.+(?="$))"$/, '$1'),
+                        first_name: resp.first_name.replace(/^"(.+(?="$))"$/, '$1'),
+                        last_name: resp.last_name.replace(/^"(.+(?="$))"$/, '$1'),
+                        postal_code: resp.postal_code.replace(/^"(.+(?="$))"$/, '$1'),
+                        mobile_number: resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1'),
+                        password: resp.password.replace(/^"(.+(?="$))"$/, '$1'),
+                        email: resp.email.replace(/^"(.+(?="$))"$/, '$1'),
+                        address: resp.address.replace(/^"(.+(?="$))"$/, '$1'),
+                        occupation: resp.occupation.replace(/^"(.+(?="$))"$/, '$1')
+                    };
+                    
+                    this.walletList.push(wallet);
+                    
+                    toggleInputs(false);
+                    this.displayWallets();
+                    
+                    $('.btn-close').trigger('click');
+                    $('.modal-backdrop').hide();
+                    
+                    showMessage('You have successfully created new wallet', "success");
+                    this.createMode = WALLET_CREATE_MODE_START;
+                },
+                error: () => {
+                    handleErrors("Register wallet error");
+                }
+            });
+        });
+    }
 }
-
-AccountManager.prototype.validateMobileNumber = function(val) {
-	//return /^\d{10}$/.test(val);
-	if (val == '' || val.trim() == '') {
-		return false;
-	}
-	return true;
-}
-
-AccountManager.prototype.getFormData = function(val) {
-	var self = this;
-	var obj = {};
-	obj.password = $("#password").val();
-	obj.memberSex = $("#memberSex").val();
-	obj.firstname=$("#firstname").val();
-	obj.lastName = $("#last-name").val(); 
-	obj.mobileNumber = $("#mobile-number").val();
-	obj.address = $("#address").val();
-	obj.province = $("#province").val();
-	obj.goodType = $("#goodType").val();
-	obj.weighPerMonth = $("#weighPerMonth").val();
-	obj.description = $("#description").val();
-	obj.companyName = $("#company-name").val();
-	obj.companyAddress = $("#company-address").val();
-	obj.startYear = $("#start-year").val();
-	obj.totalEmployee = $("#total-employee").val();
-	obj.companyIso = $("#company-iso").val();
-	obj.companyRole = $("#company-role").val();
-	obj.directorName = $("#director-name").val();
-	obj.taxCode = $("#tax-code").val();
-	obj.companyPhoneNumber = $("#company-phone-number").val();
-	obj.companyFax = $("#company-fax").val();
-	obj.paperNumber = $("#paper-number").val();
-	obj.accountBankName = $("#account-bank-name").val();
-	obj.accountBankNumber = $("#account-bank-number").val();
-	obj.bankingName = $("#banking-name").val();
-	obj.memberType = $("#password").val();
-	
-	return obj;
-}
-
-
-

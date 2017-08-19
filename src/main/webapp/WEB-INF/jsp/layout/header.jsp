@@ -9,7 +9,7 @@
 				<!-- Logo -->
 				<a class="logo" href="/">
 <!-- 					<img src="/resources/img/logo1-blue.png" alt="Logo"> -->
-					<img src="/resources/img/logo_goixe.png" alt="Logo">
+					<img src="/resources/img/logoOnmart.jpg" height="50px" width="90px" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -50,8 +50,11 @@
 							<ul class="languages hoverSelectorBlock">
 								<li><a href="/logout"><spring:message code="homepage.logout"/></a></li>
 								<li><a href="/account/account-profile"><spring:message code="homepage.account"/></a></li>
-								<li><a href="/product/checkout">My Cart</a></li>
+
 							</ul>
+						</sec:authorize>
+						<sec:authorize access="hasAnyRole('ADMIN', 'CUSTOMER')">
+							<li><a href="/product/checkout"> | <i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li><a href="/login"><spring:message code="homepage.login"/></a></li>
@@ -75,40 +78,46 @@
 			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
 				<div class="container">
 					<ul class="nav navbar-nav">
-						<li id="menu1">
+						<%--li id="menu1">
 							<a href="/" class="dropdown-toggle">
 								<spring:message code="homepage"/>
 							</a>
-						</li>
+						</li--%>
+						<sec:authorize access="hasAnyRole('ADMIN', 'TRANSPORTER')">
+							<li class="" id="menu5">
+								<a href="/shipment/list">
+									<spring:message code="bidding.label"/>
+								</a>
+							</li>
+						</sec:authorize>
 
-						<li class="" id="menu5">
-							<a href="/auction/list">
-								<spring:message code="bidding.label"/>
-							</a>
-						</li>
+						<sec:authorize access="hasAnyRole('ADMIN', 'CUSTOMER')">
+							<li class="" id="menu2">
+								<a href="/order/list">
+									<spring:message code="homepage.listOrder"/>
+								</a>
+							</li>
+						</sec:authorize>
+						<sec:authorize access="hasAnyRole('ADMIN', 'CUSTOMER')">
+							<li class="" id="menu3">
+								<a href="/product/list">
+									<spring:message code="homepage.listProduct"/>
+								</a>
+							</li>
+						</sec:authorize>
 
-						<li class="" id="menu2">
-							<a href="/order/list">
-								<spring:message code="homepage.listOrder"/>
-							</a>
-						</li>
-						
-						<li class="" id="menu3">
-							<a href="/product/list">
-								<spring:message code="homepage.listProduct"/>
-							</a>
-						</li>
-						
-						<li class="dropdown" id="menu4">
-							<a href="/trucking/list-trucking" class="dropdown-toggle" data-toggle="dropdown">
-								<spring:message code="homepage.post"/>
-							</a>
-							<ul class="dropdown-menu">
-								<li id="menu4-sub1"> 
-									<a href="/order/post"><spring:message code="homepage.postShipment"/></a>
-								</li>
-							</ul>
-						</li>
+						<sec:authorize access="hasAnyRole('ADMIN')">
+							<li class="dropdown" id="menu4">
+								<a href="/trucking/list-trucking" class="dropdown-toggle" data-toggle="dropdown">
+									<spring:message code="homepage.post"/>
+								</a>
+								<ul class="dropdown-menu">
+									<li id="menu4-sub1">
+										<a href="#"><spring:message code="homepage.postShipment"/></a>
+									</li>
+								</ul>
+							</li>
+						</sec:authorize>
 						
 						<li class="dropdown" id="menu4">
 							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">

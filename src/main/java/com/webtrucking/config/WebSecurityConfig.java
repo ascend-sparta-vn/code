@@ -40,15 +40,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 
 		/*homepage manager*/
-		http.authorizeRequests().antMatchers("/homepage").permitAll();
+		http.authorizeRequests().antMatchers("/").access("hasAnyRole('ADMIN', 'CUSTOMER', 'PROVIDER', 'TRANSPORTER')");
+		http.authorizeRequests().antMatchers("/homepage").access("hasAnyRole('ADMIN', 'CUSTOMER', 'PROVIDER', 'TRANSPORTER')");
 		http.authorizeRequests().antMatchers("/rest/*").permitAll();
 		http.authorizeRequests().antMatchers("/admin/*").access("hasRole('ADMIN')");
 		http.authorizeRequests().antMatchers("/admin/view-user/*").access("hasRole('ADMIN')");
 
 		/*order manager*/
-		http.authorizeRequests().antMatchers("/order/*").access("hasRole('ADMIN')");
+		http.authorizeRequests().antMatchers("/order/*").access("hasAnyRole('ADMIN', 'CUSTOMER')");
 		http.authorizeRequests().antMatchers("/rest_shipment/*").access("hasRole('ADMIN')");
 		http.authorizeRequests().antMatchers("/shipment/post").access("hasRole('ADMIN')");
+
+		http.authorizeRequests().antMatchers("/shipment/list").access("hasAnyRole('ADMIN', 'TRANSPORTER')");
 
 		/*tranportation manager*/
 		http.authorizeRequests().antMatchers("/auction/*").access("hasAnyRole('ADMIN', 'TRANSPORTER')");
@@ -94,5 +97,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.rememberMe();
 
 	}
-	
 }

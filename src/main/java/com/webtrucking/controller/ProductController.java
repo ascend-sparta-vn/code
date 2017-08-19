@@ -1,6 +1,7 @@
 package com.webtrucking.controller;
 
 import com.webtrucking.dao.ProductDAO;
+import com.webtrucking.entity.CheckoutProduct;
 import com.webtrucking.entity.Product;
 import com.webtrucking.util.CacheUtil;
 import com.webtrucking.util.Common;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by sonph on 01/12/16.
@@ -44,9 +44,9 @@ public class ProductController extends BaseController{
 		return "product.detail";
 	}
 
-	@RequestMapping(value = "/cart/add/{productId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cart/add/{productId}/{quantity}", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer addCheckout(@PathVariable(value = "productId") Integer productId) {
+	public Integer addCheckout(@PathVariable(value = "productId") Integer productId, @PathVariable(value = "quantity") Integer quantity) {
 
 		Integer responseCode = 0;
 		// get current userId login
@@ -54,12 +54,45 @@ public class ProductController extends BaseController{
 
 		// put listProductId to web-app cache
 		if(productId != null){
-			List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
-			if(listProductId == null || listProductId.size() < 1){
-				listProductId = new ArrayList<>();
+			List<CheckoutProduct> listProduct = CacheUtil.listCheckoutByCustomer.get(username);
+			if(listProduct == null || listProduct.size() < 1){
+				listProduct = new ArrayList<>();
 			}
-			listProductId.add(productId);
-			CacheUtil.listCheckoutByCustomer.put(username, listProductId);
+			boolean isExist = false;
+			for(CheckoutProduct p : listProduct){
+				if(p.getProductId() == productId){
+					p.setQuantity(p.getQuantity() + quantity);
+					isExist = true;
+				}
+			}
+			if(!isExist)
+				listProduct.add(new CheckoutProduct(productId, quantity));
+			CacheUtil.listCheckoutByCustomer.put(username, listProduct);
+			responseCode = 1;
+		}
+		return responseCode;
+
+	}
+	@RequestMapping(value = "/cart/remove/{productId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Integer removeProductCheckout(@PathVariable(value = "productId") Integer productId) {
+
+		Integer responseCode = 0;
+		// get current userId login
+		String username = getCurrentUsername();
+
+		// put listProductId to web-app cache
+		if(productId != null){
+			List<CheckoutProduct> listProductCheckout = CacheUtil.listCheckoutByCustomer.get(username);
+			if(listProductCheckout != null && listProductCheckout.size() > 0){
+				for(CheckoutProduct cp : listProductCheckout){
+					if(cp.getProductId() == productId){
+						listProductCheckout.remove(cp);
+						CacheUtil.listCheckoutByCustomer.put(username, listProductCheckout);
+						break;
+					}
+				}
+			}
 			responseCode = 1;
 		}
 		return responseCode;
@@ -67,18 +100,19 @@ public class ProductController extends BaseController{
 	}
 	@RequestMapping("/checkout")
 	public String checkout(Model model) {
-		List<Product> listProductCheckout = new ArrayList<>();
+		List<Product> listProduct = new ArrayList<>();
 		String username = getCurrentUsername();
-		List<Integer> listProductId = CacheUtil.listCheckoutByCustomer.get(username);
-		if(listProductId != null){
-			for(Integer id : listProductId){
-				Product prd = productDAO.findOne(id);
+		List<CheckoutProduct> listProductCheckout = CacheUtil.listCheckoutByCustomer.get(username);
+		if(listProductCheckout != null && listProductCheckout.size() > 0){
+			for(CheckoutProduct p : listProductCheckout){
+				Product prd = productDAO.findOne(p.getProductId());
 				if(prd != null){
-					listProductCheckout.add(prd);
+					prd.setQuantity(p.getQuantity());
+					listProduct.add(prd);
 				}
 			}
 		}
-		model.addAttribute("listProduct", listProductCheckout);
+		model.addAttribute("listProduct", listProduct);
 		return "product.checkout";
 	}
 	@RequestMapping("/invoice")

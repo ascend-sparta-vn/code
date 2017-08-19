@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="/resources/css/pages/profile.css">
 <div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left">Cập nhật tài khoản</h1>
+				<h1 class="pull-left">Account profile</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="/">Trang chủ</a></li>
-					<li class="active">Cập nhật tài khoản</li>
+					<li><a href="/">Homepage</a></li>
+					<li class="active">Update profile</li>
 				</ul>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
                             <dl class="dl-horizontal">
                                 <dt><strong>Your name </strong></dt>
                                 <dd>
-                                    Edward Rooster
+                                    ${currentUser.username}
                                     <span>
                                         <a class="pull-right" href="#">
                                             <i class="fa fa-pencil"></i>
@@ -51,29 +51,10 @@
                                     </span>
                                 </dd>
                                 <hr>
-                                <dt><strong>Your ID </strong></dt>
+
+                                <dt><strong>Email </strong></dt>
                                 <dd>
-                                    FKJ-032440
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Company name </strong></dt>
-                                <dd>
-                                    Htmlstream
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Primary Email Address </strong></dt>
-                                <dd>
-                                    edward-rooster@gmail.com
+                                    ${currentUser.email}
                                     <span>
                                         <a class="pull-right" href="#">
                                             <i class="fa fa-pencil"></i>
@@ -83,27 +64,7 @@
                                 <hr>
                                 <dt><strong>Phone Number </strong></dt>
                                 <dd>
-                                    (304) 33-2867-499
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Office Number </strong></dt>
-                                <dd>
-                                    (304) 44-9810-296
-                                    <span>
-                                        <a class="pull-right" href="#">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </span>
-                                </dd>
-                                <hr>
-                                <dt><strong>Address </strong></dt>
-                                <dd>
-                                    California, US
+                                    ${currentUser.mobileNumber}
                                     <span>
                                         <a class="pull-right" href="#">
                                             <i class="fa fa-pencil"></i>
@@ -170,6 +131,7 @@
                                         <label class="radio"><input type="radio" name="radio-inline" class="payment_method visa_card"><i class="rounded-x"></i>Visa</label>
                                         <label class="radio"><input type="radio" name="radio-inline" class="payment_method master_card"><i class="rounded-x"></i>MasterCard</label>
                                     </div>
+                                    <hr>
                                 </section>
                                 
                                 <div id="payment_by_visa_master">
@@ -228,53 +190,7 @@
                                 <div id="payment_by_ascend_wallet">
                                    <div id="wallet_list"></div>
                                     
-                                    <button type="button" class="btn-u btn-u-default btn-block text-center" data-toggle="modal" data-target="#responsive">Create new wallet</button>
-                                    <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" style="margin: 120px auto;">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title" id="myModalLabel4">Wallet information</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <p><input class="form-control wl_firstname" placeholder="First name" type="text" /></p>
-                                                            <p><input class="form-control wl_email" placeholder="Email" type="text" /></p>
-                                                            <p><input class="form-control wl_occupation" placeholder="Occupation" type="text" /></p>
-                                                            <p><input class="form-control wl_password" placeholder="Password" type="password" /></p>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p><input class="form-control wl_lastname" placeholder="Last name" type="text" /></p>
-                                                            <p><input class="form-control wl_mobile" placeholder="Mobile number" type="text" /></p>
-                                                            <p><input class="form-control wl_postalcode" placeholder="Postal code" type="text" /></p>
-                                                            <p><input class="form-control wl_citizenid" placeholder="Citizen id" type="text" /></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                       <div class="col-md-12">
-                                                           <p><input class="form-control wl_address" placeholder="Address" type="text" /></p>
-                                                       </div>
-                                                    </div>
-                                                    
-                                                    <div id="modal_otp_zone">
-                                                        <hr>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label class="control-label" for="otp">Email</label>
-                                                                <p><input class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
-                                                            </div>
-                                                        </div>    
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn-u btn-u-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button type="button" class="btn-u btn-u-default btn-block text-center" data-toggle="modal" data-target="#create_wallet_modal">Create new wallet</button>
                                 </div>
                                 <!--End Checkout-Form-->
                             </form>
@@ -289,6 +205,53 @@
 </div>
 
 <!-- Modal -->
+<div class="modal" id="create_wallet_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin: 120px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel4">Wallet information</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><input class="form-control wl_firstname" placeholder="First name" type="text" /></p>
+                        <p><input class="form-control wl_email" placeholder="Email" type="text" /></p>
+                        <p><input class="form-control wl_occupation" placeholder="Occupation" type="text" /></p>
+                        <p><input class="form-control wl_password" placeholder="Password" type="password" /></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><input class="form-control wl_lastname" placeholder="Last name" type="text" /></p>
+                        <p><input class="form-control wl_mobile" placeholder="Mobile number" type="text" /></p>
+                        <p><input class="form-control wl_postalcode" placeholder="Postal code" type="text" /></p>
+                        <p><input class="form-control wl_citizenid" placeholder="Citizen id" type="text" /></p>
+                    </div>
+                </div>
+                <div class="row">
+                   <div class="col-md-12">
+                       <p><input class="form-control wl_address" placeholder="Address" type="text" /></p>
+                   </div>
+                </div>
+
+                <div id="modal_otp_zone">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="otp">Email</label>
+                            <p><input id="otp" class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-u btn-u-default btn-close" data-dismiss="modal">Close</button>
+                <button type="button" class="btn-u btn-u-primary btn-create-wallet" onclick="javascript: accountManager.createWalletProfile()">Create wallet</button>
+            </div>
+        </div>
+    </div>
+</div>
+                                    
 <div id="error-dialog" class="modal fade" role="dialog">
   <div class="modal-dialog">
 

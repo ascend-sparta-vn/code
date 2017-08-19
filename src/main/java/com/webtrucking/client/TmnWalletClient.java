@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.json.Json;
@@ -106,7 +109,7 @@ public class TmnWalletClient implements BeanPostProcessor
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.CREATE_PROFILE.getId()).getMethod());
         String endpoint = apiConfigurations.get(ApiIDs.CREATE_PROFILE.getId()).getUrl();
-        return callApi(endpoint, method, headerMap, null);
+        return callApi(endpoint, method, headerMap, requestMap);
     }
 
     public Map signIn(String username, String password) {
@@ -124,6 +127,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map signOut(String token) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         
@@ -135,6 +139,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getUserProfiles(String token, String deviceOS, String appVersion) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -145,6 +150,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getUserBalance(String token, String deviceOS, String appVersion) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -155,6 +161,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map toup(String mobileNo, String amount) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         Map<String, String> requestMap = new HashMap<>();
@@ -167,6 +174,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map draftTransaction(String token, String mobileNo, String amount) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -180,6 +188,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map sendOtpTransfer(String token, String draftTransId, String personalMessage) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -193,6 +202,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map confirmOtpTransfer(String token, String draftTransId, String mobileNo, String otpRefCode, String otpString) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -208,6 +218,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getTransferStatus(String token, String draftTransId) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -219,6 +230,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map getTransferDetails(String token, String draftTransId) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -230,6 +242,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map payAtRetail(String token) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -240,6 +253,7 @@ public class TmnWalletClient implements BeanPostProcessor
     }
 
     public Map listAllTransactions(String token) {
+        init();
 
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("token", token);
@@ -283,77 +297,5 @@ public class TmnWalletClient implements BeanPostProcessor
         }
         log.info("Received data from tmn wallet portal with response {}", responseEntity.getBody());
         return response;
-    }
-
-    private Map callApiTest(String endpoint, HttpMethod method, Map<String, String> headerMap, Map<String, String> requestMap) {
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        if (headerMap != null) {
-            for (Entry<String, String> headerEntry : headerMap.entrySet()) {
-                httpHeaders.set(headerEntry.getKey(), headerEntry.getValue().toString());
-            }
-        }
-
-        A body = new A("123456",requestMap.get("otp_reference").toString(), "0983561007");
-        body.setMobileNumber("");
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-//        String requestBody = mapToJsonString(requestMap);
-        HttpEntity<?> requestEntity = new HttpEntity<>(body, httpHeaders);
-        log.info("Sending data to tmn wallet portal with endpoint {}", endpoint);
-        log.info("Sending data to tmn wallet portal with request {}, method {}", requestEntity, method);
-        ResponseEntity<String> responseEntity = restTemplate().exchange(endpoint,
-                method, requestEntity, new ParameterizedTypeReference<String>() {
-                });
-        log.info("response data: {}", responseEntity.getBody());
-        String result = responseEntity.getBody();
-        JsonObject jsonResult = CommonUtil.jsonFromString(String.valueOf(result.toString()));
-        String data = String.valueOf(jsonResult.get("data"));
-        JsonObject dataJson = CommonUtil.jsonFromString(data);
-        Set<String> iterator = dataJson.keySet();
-        Map<String, String> response = new HashMap<>();
-        for (String key: iterator) {
-            response.put(key, dataJson.get(key).toString());
-        }
-        log.info("Received data from tmn wallet portal with response {}", responseEntity.getBody());
-        return response;
-    }
-}
-
-class A{
-    @JsonProperty("otp_code")
-    String otpCode;
-    @JsonProperty("otp_reference")
-    String otpRef;
-    @JsonProperty("mobile_number")
-    String mobileNumber;
-
-    public A(String otpCode, String otpRef, String mobileNumber) {
-        this.otpCode = otpCode;
-        this.otpRef = otpRef;
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getOtpCode() {
-        return otpCode;
-    }
-
-    public void setOtpCode(String otpCode) {
-        this.otpCode = otpCode;
-    }
-
-    public String getOtpRef() {
-        return otpRef;
-    }
-
-    public void setOtpRef(String otpRef) {
-        this.otpRef = otpRef;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
     }
 }

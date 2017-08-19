@@ -16,11 +16,11 @@
                                     <spring:message code="homepage" />
                                 </a>
                             </li>
-                            <li class="active">
-                                <a href="/shipment/list">
-                                    <spring:message code="shipment.list" />
-                                </a>
-                            </li>
+                            <%--<li class="active">--%>
+                                <%--<a href="/shipment/list">--%>
+                                    <%--<spring:message code="shipment.list" />--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
                             <li class="active">
                                 <a href="#">
                                     <spring:message code="shipment.detail" />
@@ -34,8 +34,8 @@
                 <!--=== Breadcrumbs v4 ===-->
                 <div class="breadcrumbs-v4">
                     <div class="container">
-                        <span class="page-name">Check Out</span>
-                        <h1>Maecenas <span class="shop-green">enim</span> sapien</h1>
+                        <span class="page-name">Shopping </span>
+                        <h1>Your <span class="shop-green">Cart</span></h1>
                         <ul class="breadcrumb-v4-in">
                             <li><a href="index.html">Home</a></li>
                             <li><a href="">Product</a></li>
@@ -74,7 +74,7 @@
                                                 <!-- Add no items sign here -->
 
                                                 <c:forEach items="${listProduct}" var="product">
-                                                    <c:set var="amoutTotal" value="${amoutTotal + product.price * 1}" />
+                                                    <c:set var="amoutTotal" value="${amoutTotal + product.price * product.quantity}" />
                                                     <tr>
                                                         <td class="product-in-table">
                                                             <img class="img-responsive" src=${product.imgUrl} alt="">
@@ -86,15 +86,15 @@
                                                         <td>Unit</td>
                                                         <td>${VND} ${product.price}</td>
                                                         <td>
-                                                            <button type='button' class="quantity-button" name='subtract'>-</button>
-                                                            <input type='text' class="quantity-field product_${product.id}" name='qty1' value="1" id='qty1'/>
-                                                            <button type='button' class="quantity-button" name='add'>+</button>
+                                                            <%--<button type='button' class="quantity-button" name='subtract'>-</button>--%>
+                                                            <input type='text' disabled class="quantity-field product_${product.id}" name='qty1' value="${product.quantity}" id='qty1'/>
+                                                            <%--<button type='button' class="quantity-button" name='add'>+</button>--%>
                                                         </td>
                                                         <td class="shop-red total product_${product.id}">
-                                                                ${VND} ${product.price * 1}
+                                                                ${VND} ${product.price * product.quantity}
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="close" >
+                                                            <button type="button" class="close" onclick="removeProductCheckout(${product.id})">
                                                                 <span>&times;</span>
                                                                 <span class="sr-only">Close</span>
                                                             </button>
@@ -111,7 +111,7 @@
                                 <div class="header-tags">
                                     <div class="overflow-h">
                                         <h2>Billing info</h2>
-                                        <p>Shipping and address infot</p>
+                                        <p>Shipping and address info</p>
                                         <i class="rounded-x fa fa-home"></i>
                                     </div>
                                 </div>
@@ -165,13 +165,13 @@
                                                                 <div class="form-group">
                                                                     <label class="col-sm-4 no-col-space control-label">Mobile number</label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="text" class="form-control required" name="cardholder" placeholder="">
+                                                                        <input type="text" class="form-control required wl_mobilenumber" name="cardholder" placeholder="">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-sm-4 no-col-space control-label">Password</label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="password" class="form-control required" name="cardholder" placeholder="">
+                                                                        <input type="password" class="form-control required wl_password" name="cardholder" placeholder="">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group margin-left-20">
@@ -300,7 +300,7 @@
                 <!--=== End Shop Suvbscribe ===-->
                 
                 <!--=== Modals ===-->
-                <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog" style="margin: 120px auto;">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -332,16 +332,16 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="control-label" for="otp">Email</label>
-                                            <p><input class="form-control col-md-2" placeholder="OTP code" type="text" /></p>
+                                            <label class="control-label" for="otp">OTP</label>
+                                            <p><input id="otp" class="form-control col-md-2 wl_otp" placeholder="OTP code" type="text" /></p>
                                         </div>
                                     </div>    
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn-u btn-u-primary">Save changes</button>
+                                <button type="button" class="btn-u btn-u-default btn-close" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn-u btn-u-primary btn-create-wallet" onclick="javascript: productList.createWalletProfile()">Create wallet</button>
                             </div>
                         </div>
                     </div>
@@ -368,4 +368,30 @@
                         StepWizard.initStepWizard();
                         MasterSliderShowcase2.initMasterSliderShowcase2();
                     });
+
+                    function removeProductCheckout(productId){
+                        var url = "/product/cart/remove/" + productId;
+                        $.ajax({
+                            type : "GET",
+                            url : url,
+                            success : function(response) {
+                                console.log('success');
+                                if(response == 1){
+//                                    showMessage('remove product in Cart successfull', "success");
+                                    location.reload();
+                                }
+
+                            else
+                                showMessage('remove product in Cart failed', "error");
+                            },
+                            error : function(e) {
+                                console.log("ERROR remove in Cart: ", e);
+                                showMessage('Contact to admin to resolve this problem', "error");
+                            },
+                            done : function(e) {
+                                console.log("DONE");
+                            }
+                        });
+                    }
+
                 </script>

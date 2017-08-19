@@ -49,7 +49,7 @@ ContactUs.prototype.initMap = function(latLngObj){
 	                }
 	            ];
 	  var mapOptions = {
-	    center: (latLngObj == null) ? new google.maps.LatLng(20.991475, 105.798983) : latLngObj, 
+	    center: (latLngObj == null) ? new google.maps.LatLng(21.010817, 105.82214399999998) : latLngObj,
 	    zoom: 17,
 	    styles:styles
 	  }
@@ -59,7 +59,7 @@ ContactUs.prototype.initMap = function(latLngObj){
 		  self.mapPlanning = map;
 		});
 	  
-	  var myLatLng = {lat: 20.991475, lng: 105.798983};
+	  var myLatLng = {lat: 21.010817, lng: 105.82214399999998};
 	  var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
