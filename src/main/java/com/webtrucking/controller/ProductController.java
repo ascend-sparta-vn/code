@@ -158,10 +158,18 @@ public class ProductController extends BaseController{
 			wallet = wallets.get(0);
 		}
 
+		List<Wallet> walletPays = walletDAO.findByMobileNumber("0983561001");
+		Wallet walletPay = new Wallet();
+		if(!walletPays.isEmpty()) {
+			walletPay = walletPays.get(0);
+		}
+
 		model.addAttribute("currentUser", user);
 		model.addAttribute("wallet", wallet);
 		model.addAttribute("listProduct", listProduct);
 		model.addAttribute("walletCheckout", checkout);
+
+		model.addAttribute("walletPay", walletPay);
 
 		return "product.invoice";
 	}
