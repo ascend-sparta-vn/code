@@ -1,9 +1,8 @@
 package com.webtrucking.controller;
 
 import com.webtrucking.dao.ProductDAO;
-import com.webtrucking.entity.CheckoutProduct;
-import com.webtrucking.entity.Product;
-import com.webtrucking.entity.WalletCheckout;
+import com.webtrucking.dao.WalletDAO;
+import com.webtrucking.entity.*;
 import com.webtrucking.util.CacheUtil;
 import com.webtrucking.util.Common;
 import org.apache.log4j.Logger;
@@ -26,6 +25,9 @@ public class ProductController extends BaseController{
 
 	@Autowired
 	ProductDAO productDAO;
+
+	@Autowired
+	WalletDAO walletDAO;
 
 	@RequestMapping("/list")
 	public String list(Model model,
@@ -133,10 +135,32 @@ public class ProductController extends BaseController{
 	}
 	@RequestMapping(value = "/invoice")
 	public String invoice(Model model) {
-
+		List<Product> listProduct = new ArrayList<>();
 		// get wallet checkout from cache
-		String username = getCurrentUsername();
-		WalletCheckout checkout = CacheUtil.walletCheckout.get(username);
+		User user = getCurrentAccount();
+		if(user == null) return "";
+
+		WalletCheckout checkout = CacheUtil.walletCheckout.get(user.getUsername());
+		List<CheckoutProduct> listProductCheckout = CacheUtil.listCheckoutByCustomer.get(user.getUsername());
+		if(listProductCheckout != null && listProductCheckout.size() > 0){
+			for(CheckoutProduct p : listProductCheckout){
+				Product prd = productDAO.findOne(p.getProductId());
+				if(prd != null){
+					prd.setQuantity(p.getQuantity());
+					listProduct.add(prd);
+				}
+			}
+		}
+
+		Wallet wallet = null;
+		List<Wallet> wallets = walletDAO.findByUserId(user.getId());
+		if(wallets != null & wallets.size() > 0){
+			wallet = wallets.get(0);
+		}
+
+		model.addAttribute("currentUser", user);
+		model.addAttribute("wallet", wallet);
+		model.addAttribute("listProduct", listProduct);
 		model.addAttribute("walletCheckout", checkout);
 
 		return "product.invoice";

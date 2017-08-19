@@ -33,7 +33,19 @@ public class User {
 	@Column(name = "created_time")
 	private Date createdTime;
 
+	@Column(name="address")
+	private String address;
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Column(name = "last_updated_time")
+
 	private Date lastUpdatedTime;
 
 	public Integer getId() {
