@@ -108,7 +108,7 @@ public class TmnWalletClient implements BeanPostProcessor
 
         HttpMethod method = HttpMethod.resolve(apiConfigurations.get(ApiIDs.CREATE_PROFILE.getId()).getMethod());
         String endpoint = apiConfigurations.get(ApiIDs.CREATE_PROFILE.getId()).getUrl();
-        return callApi(endpoint, method, headerMap, null);
+        return callApi(endpoint, method, headerMap, requestMap);
     }
 
     public Map signIn(String username, String password) {

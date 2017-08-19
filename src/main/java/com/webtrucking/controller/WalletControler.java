@@ -73,20 +73,22 @@ public class WalletControler extends BaseController {
 	public ResponseEntity<WalletCreateProfileDTO> createWallet(@RequestBody WalletCreateProfileDTO walletCreateProfileDTO, @RequestHeader HttpHeaders headers) {
 		List<String> token = headers.get("token");
 
-		log.info("===== Start create profile. Token {} and request {}", token, walletCreateProfileDTO);
+		log.info("===== Start create profile. Token {} and request {}", token.get(0), walletCreateProfileDTO);
 
 		Map<String, String> requests = new HashMap<>();
+		requests.put("mobile_number", walletCreateProfileDTO.getMobileNumber());
+		requests.put("email", walletCreateProfileDTO.getEmail());
 		requests.put("thai_id", walletCreateProfileDTO.getThaiId());
 		requests.put("first_name", walletCreateProfileDTO.getFirstName());
 		requests.put("last_name", walletCreateProfileDTO.getLastName());
-		requests.put("postal_code", walletCreateProfileDTO.getPostalCode());
-		requests.put("mobile_number", walletCreateProfileDTO.getMobileNumber());
 		requests.put("password", walletCreateProfileDTO.getPassword());
-		requests.put("email", walletCreateProfileDTO.getEmail());
 		requests.put("address", walletCreateProfileDTO.getAddress());
+		requests.put("postal_code", walletCreateProfileDTO.getPostalCode());
 		requests.put("occupation", walletCreateProfileDTO.getOccupation());
 
+		log.info("Create profile for request {}", requests);
 		Map profile = tmnWalletClient.createProfile(token.get(0), requests);
+
 		WalletCreateProfileDTO resp = new WalletCreateProfileDTO();
 		resp.setThaiId(profile.get("thai_id").toString());
 		resp.setFirstName(profile.get("first_name").toString());
