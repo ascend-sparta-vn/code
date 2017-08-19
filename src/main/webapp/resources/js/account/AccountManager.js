@@ -238,8 +238,9 @@ AccountManager.prototype.createWalletProfile = function(){
             success: (response) => {
                 var resp = JSON.parse(response);
                 
-                this.otp_reference = resp.otp_reference;
-                this.mobile_number = resp.mobile_number;
+                this.otp_reference = resp.otp_reference.replace(/^"(.+(?="$))"$/, '$1');
+                this.mobile_number = resp.mobile_number.replace(/^"(.+(?="$))"$/, '$1');
+                this.otp_code = '123456';
                 
                 $('.wl_otp').val(resp.otp_reference);
             },
@@ -272,15 +273,18 @@ AccountManager.prototype.createWalletProfile = function(){
         
         confirmOtp({
             mobile_number: this.mobile_number,
-            otp_reference: this.otp_reference
+            otp_reference: this.otp_reference,
+            otp_code: this.otp_code
         }, (response) => {
             var token = JSON.parse(response);
+            
+            console.log(token);
             
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
                 url: URL,
-                headers: token,
+                headers: {token: token.token.replace(/^"(.+(?="$))"$/, '$1')},
                 dataType: 'json',
                 data : JSON.stringify(request),
                 success: (resp) => {

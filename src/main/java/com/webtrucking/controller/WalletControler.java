@@ -47,7 +47,7 @@ public class WalletControler extends BaseController {
 		String number = otp.get("mobile_number").toString();
 		String otpReference = otp.get("otp_reference").toString();
 
-		WalletOtpDTO walletOtpDTO = new WalletOtpDTO(number, otpReference);
+		WalletOtpDTO walletOtpDTO = new WalletOtpDTO(number, otpReference, null);
 
 		log.info("===== End get otp for mobile number {}", mobileNumber);
 
@@ -59,12 +59,11 @@ public class WalletControler extends BaseController {
 	public ResponseEntity<WalletTokenDTO> confirmOtp(@RequestBody WalletOtpDTO otpDTO) {
 		log.info("===== Start confirm otp for mobile number {}", otpDTO.getOtpReference());
 
-		// TODO hardcode otp_code to 900531
-		Map map = tmnWalletClient.confirmOtp("123456", "{{otp_ref}}", otpDTO.getMobileNumber());
+		Map map = tmnWalletClient.confirmOtp(otpDTO.getOtpCode(), otpDTO.getOtpReference(), otpDTO.getMobileNumber());
 		WalletTokenDTO walletToken = new WalletTokenDTO();
 		walletToken.setToken(map.get("token").toString());
 
-		log.info("===== End confirm otp for mobile number {}", otpDTO.getOtpReference());
+		log.info("===== End confirm otp for mobile number {}", otpDTO.getOtpCode());
 
 		return new ResponseEntity<WalletTokenDTO>(walletToken, HttpStatus.OK);
 	}
@@ -74,7 +73,7 @@ public class WalletControler extends BaseController {
 	public ResponseEntity<WalletCreateProfileDTO> createWallet(@RequestBody WalletCreateProfileDTO walletCreateProfileDTO, @RequestHeader HttpHeaders headers) {
 		List<String> token = headers.get("token");
 
-		log.info("===== Start create profile. Token {}", token);
+		log.info("===== Start create profile. Token {} and request {}", token, walletCreateProfileDTO);
 
 		Map<String, String> requests = new HashMap<>();
 		requests.put("thai_id", walletCreateProfileDTO.getThaiId());

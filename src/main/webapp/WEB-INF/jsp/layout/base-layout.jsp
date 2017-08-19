@@ -189,7 +189,7 @@
 <!-- 	<script src='https://www.google.com/recaptcha/api.js?hl=vi'></script> -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 
-	<div class="modal"><!-- Place at bottom of page --></div>
+	<div class="modal_progress"><!-- Place at bottom of page --></div>
 </body>
 </html>
 
