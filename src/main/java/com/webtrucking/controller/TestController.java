@@ -1,6 +1,10 @@
 package com.webtrucking.controller;
 
+<<<<<<< HEAD
+import com.webtrucking.client.CommonUtil;
+=======
 import com.google.gson.Gson;
+>>>>>>> master
 import com.webtrucking.client.TmnWalletClient;
 import com.webtrucking.dao.ProvinceDAO;
 import com.webtrucking.dao.UserDAO;
@@ -9,6 +13,7 @@ import com.webtrucking.entity.Province;
 import com.webtrucking.json.entity.AccountInfo;
 import com.webtrucking.services.EmailService;
 import com.webtrucking.services.UserService;
+import com.webtrucking.util.Common;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -66,12 +71,20 @@ public class TestController extends BaseController {
 	@Autowired
 	private TmnWalletClient tmnWalletClient;
 
+<<<<<<< HEAD
+	@RequestMapping(value = "/getotp/{mobno}", method = RequestMethod.GET)
+	public String getotp(@PathVariable String mobno) {
+		Map otp = tmnWalletClient.getOtp(mobno);
+		log.info("GetOTP: {}",otp);
+		log.info("Confirm: {}",tmnWalletClient.confirmOtp("123456",otp.get("otp_reference").toString(),mobno).toString());
+=======
 	@RequestMapping(value = "/getotp/{mobileNo}", method = RequestMethod.GET)
 	public String getotp(@PathVariable("mobileNo") String mobileNo) {
 			log.info("GetOTP: {}",tmnWalletClient.getOtp(mobileNo).toString());
 
 		return "register";
 	}
+>>>>>>> master
 
 	@RequestMapping(value = "/buildinput", method = RequestMethod.GET)
 	public String getotp() {
@@ -84,7 +97,7 @@ public class TestController extends BaseController {
 	public String getProfile(@PathVariable String token, @PathVariable String deviceos, @PathVariable String appversion) {
 		log.info("GetUserProfile: {}",tmnWalletClient.getUserProfiles(token,deviceos,appversion).toString());
 		String input = "{ \"thai_id\": \"3231744035655\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"postal_code\": \"10400\", \"mobile_number\": \"0050000001\", \"device_os\": \"android\", \"password\": \"Welcome1234\", \"email\": \"ascender@gmail.com\", \"address\": \"89 AIA Dindang, Bangkok\", \"occupation\": \"แม่บ้าน\" }\n";
-		Map inputMap = TmnWalletClient.mapFromJsonString(input);
+		Map inputMap = CommonUtil.mapFromJsonString(input);
 		log.info("GetUserProfile: {}",tmnWalletClient.createProfile("futoken",inputMap));
 
 		return "register";
@@ -93,7 +106,7 @@ public class TestController extends BaseController {
 	@RequestMapping(value = "/createprofile", method = RequestMethod.GET)
 	public String createProfile() {
 		String input = "{ \"thai_id\": \"3231744035655\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"postal_code\": \"10400\", \"mobile_number\": \"0050000001\", \"device_os\": \"android\", \"password\": \"Welcome1234\", \"email\": \"ascender@gmail.com\", \"address\": \"89 AIA Dindang, Bangkok\", \"occupation\": \"แม่บ้าน\" }\n";
-		Map inputMap = TmnWalletClient.mapFromJsonString(input);
+		Map inputMap = CommonUtil.mapFromJsonString(input);
 		log.info("GetUserProfile: {}",tmnWalletClient.createProfile("futoken",inputMap));
 
 		return "register";
@@ -102,7 +115,7 @@ public class TestController extends BaseController {
 	@RequestMapping(value = "/api/confirmOtp", method = RequestMethod.GET)
 	public String confirmOtp() {
 		String input = "{ \"thai_id\": \"3231744035655\", \"first_name\": \"Ascend\", \"last_name\": \"Hackathon\", \"postal_code\": \"10400\", \"mobile_number\": \"0050000001\", \"device_os\": \"android\", \"password\": \"Welcome1234\", \"email\": \"ascender@gmail.com\", \"address\": \"89 AIA Dindang, Bangkok\", \"occupation\": \"แม่บ้าน\" }\n";
-		Map inputMap = TmnWalletClient.mapFromJsonString(input);
+		Map inputMap = CommonUtil.mapFromJsonString(input);
 		log.info("GetUserProfile: {}",tmnWalletClient.confirmOtp("futoken","otpref","976686535"));
 
 		return "register";
